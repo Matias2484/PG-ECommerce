@@ -1,21 +1,23 @@
 import {
-    EJEMPLO
-} from '../actions';
+    GET_BOOKS
+} from '../Actions/index';
 
 const initialState = {
-    catalogo: [],
-    catalogoFiltrado: [],
-    detalles: {}
+    allBooks: [],
+    filteredAllBooks: [],
+    details: {}
 }
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
-        case EJEMPLO:
-            
-            break;
+        case GET_BOOKS:
+            return{
+                ...state,
+                allBooks: action.payload,
+                filteredAllBooks: action.payload
+            }
     
-        default:
-            break;
+        default: return state
     }
 }
 
