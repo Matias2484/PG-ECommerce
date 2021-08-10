@@ -2,20 +2,21 @@ import {
     EJEMPLO
 } from '../actions';
 
-const store = {
+const initialState = {
     catalogo: [],
     catalogoFiltrado: [],
     detalles: {}
 }
 
-function rootReducer(state = store, action) {
-    if(action.type === EJEMPLO) {
-        return {
-            ...state,
-
-        }
+function rootReducer(state = initialState, action) {
+    switch (action.type) {
+        case EJEMPLO:
+            
+            break;
+    
+        default:
+            break;
     }
-    return state;
 }
 
 export default rootReducer;
