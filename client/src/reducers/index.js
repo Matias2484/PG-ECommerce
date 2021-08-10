@@ -12,8 +12,10 @@ function rootReducer(state = store, action) {
     if(action.type === EJEMPLO) {
         return {
             ...state,
-            
+
         }
     }
     return state;
 }
+
+export default rootReducer;
