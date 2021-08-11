@@ -27,26 +27,5 @@ const busqueda = async () => {
       await producto.save();
     });
 };
+
 busqueda();
-
-// const dbConnection = () => {};
-// //conexion a MongoDB
-mongoose
-  .connect(connectionString, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  })
-  .then(() => {
-    console.log("Database connect");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-// // // Buscar en la BD
-// // Note.find({}).then((res) => {
-// //   console.log(res);
-// //   mongoose.connection.close();
-// // });
