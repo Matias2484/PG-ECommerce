@@ -6,3 +6,7 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 export default store;
+console.log('estado inicial: ', store.getState());
+  store.subscribe(()=>{// esto es para ver el cambio de estado
+    console.log('cambio de estado: ', store.getState());
+  });
