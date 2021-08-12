@@ -1,7 +1,7 @@
 import {
     GET_BOOKS,FIND_BYCATEGORY,
     DETAILS
-} from '../actions/index';
+} from '../Actions/index';
 
 
 const initialState = {
@@ -37,7 +37,7 @@ function rootReducer(state = initialState, action) {
 
                 return {
                 ...state,
-                details: allBooks.filter( book => book._id === action.payload)
+                details: state.allBooks.filter( book => book._id === action.payload)
 
             }
     
