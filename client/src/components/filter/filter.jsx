@@ -44,6 +44,6 @@ function mapStateToProps(state) {
     return {
         actualState: state.filteredAllBooks
     };
-}
+} /* hacer con hooks */
 
     export default connect(mapStateToProps, {categoryFilter, getAllBooks})(Filter); 

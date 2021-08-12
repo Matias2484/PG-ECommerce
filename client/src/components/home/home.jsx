@@ -1,23 +1,16 @@
-
-
-
 import "./home.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks } from "../../Actions";
+import { getAllBooks } from "../../actions";
 import Producto from "../producto/producto";
 import Filter from '../filter/filter';
 
-
-
 export function Home () {
     const dispatch = useDispatch()
+    const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
     useEffect(() => {
         dispatch(getAllBooks())
     },[dispatch])
-
-
-
 
   const [currentPage, setCurrentPage] = useState(0);
   var librosIniciales = filteredAllBooks.slice(currentPage, currentPage + 20);
@@ -31,13 +24,18 @@ export function Home () {
 
   return (
     <div className="home">
+      <Filter/>
       <div className="paginado">
-        <button className="botonPrev" onClick={prevPage}>
-          Prev Page
-        </button>
-        <button className="botonNext" onClick={nextPage}>
-          Next Page
-        </button>
+        {currentPage > 0 ? (
+          <button className="botonPrev" onClick={prevPage}>
+            Prev Page
+          </button>
+        ) : null}
+        {currentPage < 80 ? (
+          <button className="botonNext" onClick={nextPage}>
+            Next Page
+          </button>
+        ) : null}
       </div>
 
       <div className="books">
@@ -53,17 +51,6 @@ export function Home () {
       </div>
     </div>
   );
-
-
-    return (
-        <div className='home'>
-                <Filter/>
-            <Link to='/details' >
-                <button>Detalles</button>
-            </Link>
-        </div>
-    )
-
 }
 
 

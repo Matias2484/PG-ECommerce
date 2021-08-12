@@ -57,6 +57,6 @@ function mapStateToProps(state){
     return {
         details: state.details
     }
-}
+}/* hacer con hooks */
 
 export default connect( mapStateToProps, { getDetails } )(Details);;
