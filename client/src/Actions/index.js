@@ -1,6 +1,8 @@
-import fetch from 'node-fetch';
+
 export const GET_BOOKS = 'GET_BOOKS';
+export const FIND_BYCATEGORY = 'FIND_BYCATEGORY';
 export const DETAILS = 'DETAILS';
+
 
 export function getAllBooks(){
     return function(dispatch){
@@ -73,6 +75,14 @@ export function createGender(payload){
         });
         const res= await gender.json();
         return dispatch({type:'CREATE_GENDER', payload:res})
+    };
+};
+
+
+export function categoryFilter(generos){
+    return{
+        type: FIND_BYCATEGORY,
+        payload:generos
     };
 };
 

@@ -1,19 +1,23 @@
+
+
+
 import "./home.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBooks } from "../../Actions";
 import Producto from "../producto/producto";
-
-// import Filter from "../filter/filter";
-
-export function Home() {
-  const dispatch = useDispatch();
-  const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
+import Filter from '../filter/filter';
 
 
-  useEffect(() => {
-    dispatch(getAllBooks());
-  }, [dispatch]);
+
+export function Home () {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getAllBooks())
+    },[dispatch])
+
+
+
 
   const [currentPage, setCurrentPage] = useState(0);
   var librosIniciales = filteredAllBooks.slice(currentPage, currentPage + 20);
@@ -50,8 +54,10 @@ export function Home() {
     </div>
   );
 
+
     return (
         <div className='home'>
+                <Filter/>
             <Link to='/details' >
                 <button>Detalles</button>
             </Link>
@@ -60,4 +66,6 @@ export function Home() {
 
 }
 
+
 export default Home;
+
