@@ -1,4 +1,4 @@
-import {categoryFilter, getAllBooks} from "../../actions/index"
+import {categoryFilter, getAllBooks} from "../../Actions/index"
 import "./filter.css"
 import {connect} from "react-redux";
 import React, {useState} from 'react';

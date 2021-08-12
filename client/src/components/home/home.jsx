@@ -1,7 +1,7 @@
 import "./home.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks } from "../../actions";
+import { getAllBooks } from "../../Actions/index";
 import Producto from "../producto/producto";
 import Filter from '../filter/filter';
 
