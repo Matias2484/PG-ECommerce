@@ -1,9 +1,10 @@
 import fetch from 'node-fetch';
 export const GET_BOOKS = 'GET_BOOKS';
+export const DETAILS = 'DETAILS';
 
 export function getAllBooks(){
     return function(dispatch){
-        return fetch(`http://localhost:3001/`)
+        return fetch(`http://localhost:4000/productos`)
         .then(response=> response.json())
         .then(json=>{
             dispatch({
@@ -44,3 +45,10 @@ export function createGender(payload){
         return dispatch({type:'CREATE_GENDER', payload:res})
     };
 };
+
+export function getDetails(data){
+    return ({
+        type: DETAILS,
+        payload: data
+    })
+}
