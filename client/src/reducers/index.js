@@ -5,12 +5,13 @@ import {
 
 
 const initialState = {
-    allBooks: [],
-    filteredAllBooks: [],
-    details: {}
-}
+  allBooks: [],
+  filteredAllBooks: [],
+  details: {},
+};
 
 function rootReducer(state = initialState, action) {
+
     switch (action.type) {
         case GET_BOOKS:
             return{
@@ -32,7 +33,8 @@ function rootReducer(state = initialState, action) {
                     return false;
                 }) 
 
-        case DETAILS:
+              case DETAILS:
+
             return {
                 ...state,
                 details: allBooks.filter( book => book._id === action.payload)
@@ -41,6 +43,7 @@ function rootReducer(state = initialState, action) {
     
         default: return state
     }
+
 }
 
 export default rootReducer;
