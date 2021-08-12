@@ -1,6 +1,8 @@
 import {
-    GET_BOOKS, FIND_BYCATEGORY
-} from '../actions/index';
+    GET_BOOKS,FIND_BYCATEGORY,
+    DETAILS
+} from '../Actions/index';
+
 
 const initialState = {
     allBooks: [],
@@ -16,6 +18,7 @@ function rootReducer(state = initialState, action) {
                 allBooks: action.payload,
                 filteredAllBooks: action.payload
             }
+
         case FIND_BYCATEGORY:
             return{
                 ...state,
@@ -28,6 +31,12 @@ function rootReducer(state = initialState, action) {
                     }
                     return false;
                 }) 
+
+        case DETAILS:
+            return {
+                ...state,
+                details: allBooks.filter( book => book._id === action.payload)
+
             }
     
         default: return state

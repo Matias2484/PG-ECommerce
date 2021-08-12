@@ -13,6 +13,9 @@ export function Home () {
     return (
         <div className='home'>
                 <Filter/>
+            <Link to='/details' >
+                <button>Detalles</button>
+            </Link>
         </div>
     )
 }

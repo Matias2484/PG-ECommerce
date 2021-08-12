@@ -1,6 +1,8 @@
 
 export const GET_BOOKS = 'GET_BOOKS';
 export const FIND_BYCATEGORY = 'FIND_BYCATEGORY';
+export const DETAILS = 'DETAILS';
+
 
 export function getAllBooks(){
     return function(dispatch){
@@ -46,9 +48,18 @@ export function createGender(payload){
     };
 };
 
+
 export function categoryFilter(generos){
     return{
         type: FIND_BYCATEGORY,
         payload:generos
     };
 };
+
+export function getDetails(data){
+    return ({
+        type: DETAILS,
+        payload: data
+    })
+}
+
