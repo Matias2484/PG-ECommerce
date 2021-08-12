@@ -10,6 +10,7 @@ export function Home() {
   const dispatch = useDispatch();
   const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
 
+
   useEffect(() => {
     dispatch(getAllBooks());
   }, [dispatch]);
@@ -48,6 +49,15 @@ export function Home() {
       </div>
     </div>
   );
+
+    return (
+        <div className='home'>
+            <Link to='/details' >
+                <button>Detalles</button>
+            </Link>
+        </div>
+    )
+
 }
 
 export default Home;
