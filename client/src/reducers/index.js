@@ -1,5 +1,6 @@
 import {
-    GET_BOOKS
+    GET_BOOKS,
+    DETAILS
 } from '../Actions/index';
 
 const initialState = {
@@ -15,6 +16,11 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 allBooks: action.payload,
                 filteredAllBooks: action.payload
+            }
+        case DETAILS:
+            return {
+                ...state,
+                details: allBooks.filter( book => book._id === action.payload)
             }
     
         default: return state

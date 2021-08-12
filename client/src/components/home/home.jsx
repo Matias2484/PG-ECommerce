@@ -11,7 +11,9 @@ export function Home (props) {
 
     return (
         <div className='home'>
-
+            <Link to='/details' >
+                <button>Detalles</button>
+            </Link>
         </div>
     )
 }
