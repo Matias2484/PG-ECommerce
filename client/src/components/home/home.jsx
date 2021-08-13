@@ -8,6 +8,9 @@ import Filter from '../filter/filter';
 export function Home () {
     const dispatch = useDispatch()
     const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
+
+    const [state, setState] = useState([]);
+
     useEffect(() => {
         dispatch(getAllBooks())
         dispatch(getGenders())
@@ -23,8 +26,76 @@ export function Home () {
     if (currentPage > 0) setCurrentPage(currentPage - 20);
   };
 
+
+  //Ordenado
+
+  const selectOptionOrder = (e) => {
+    setState({ ...state, [e.target.id]: e.target.value });
+  };
+
+  if (state.select === "A-Z") {
+    filteredAllBooks.sort((a, b) => {
+      if (a.titulo < b.titulo) {
+        return -1;
+      }
+      if (a.titulo > b.titulo) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  if (state.select === "Z-A") {
+    filteredAllBooks.sort((b, a) => {
+      if (a.titulo < b.titulo) {
+        return -1;
+      }
+      if (a.titulo > b.titulo) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  if (state.select === "Mayor_Precio") {
+    filteredAllBooks.sort((b, a) => {
+      if (a.precio < b.precio) {
+        return -1;
+      }
+      if (a.precio > b.precio) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  if (state.select === "Menor_Precio") {
+    filteredAllBooks.sort((a, b) => {
+      if (a.precio < b.precio) {
+        return -1;
+      }
+      if (a.precio > b.precio) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
   return (
     <div className="home">
+      <div className="botonesPaginadoOrdenado">
+            {/* Ordenar por Nombre y Fuerza */}
+
+            <div className="ordenado">
+              <select id="select" onChange={selectOptionOrder}>
+                <option defaultValue>Ordenar por... </option>
+                <option id="A-Z" value="A-Z">
+                  A-Z
+                </option>
+                <option value="Z-A">Z-A</option>
+
+                <option value="Mayor_Precio">Mayor Precio</option>
+                <option value="Menor_Precio">Menor Precio</option>
+              </select>
+            </div>
+         </div>
       <Filter/>
       <div className="paginado">
         {currentPage > 0 ? (
