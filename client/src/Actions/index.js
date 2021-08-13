@@ -18,23 +18,29 @@ export function getAllBooks(){
             })
         });
 }};
-  
-
-
-export function createProduct(payload) {
-  return async function (dispatch) {
-    var book = await fetch("http://localhost:4000/productos", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json; charset=utf-8",
-      },
-      body: JSON.stringify(payload),
-    });
-    const res = await book.json();
-    return dispatch({ type: "CREATE_PRODUCT", payload: res });
+ 
+export function getGenders(){
+  return async function(dispatch) {
+      var genders= await fetch('http://localhost:4000/generos');
+          genders= await genders.json();
+      return dispatch({type:GET_GENDERS, payload:genders})
   };
-}
+};
+
+export function createBook(payload){
+  return async function (dispatch){
+      var book= await fetch('http://localhost:4000/productos',{
+          method: 'POST',
+          headers:{
+              'Accept': 'application/json',
+              'Content-type': 'application/json; charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+      })
+      const res= await book.json();
+      return dispatch ({type: CREATE_BOOK, payload:res});
+  };
+};
 
 export function categoryFilter(generos){
   return{
@@ -65,7 +71,20 @@ export function createGender(payload) {
   };
 }
 
-    
+export function editBook(payload,id){
+  return async function(dispatch) {
+      var book= await fetch(`http://localhost:4000/productos/edit/${id}`,{
+          method: 'PUT',
+          headers:{
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+      });
+      const res= await book.json();
+      return dispatch({type: EDIT_BOOK, payload:res})
+  };
+};
 
 
 
