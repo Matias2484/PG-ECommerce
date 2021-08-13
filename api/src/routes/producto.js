@@ -21,39 +21,17 @@ router.get('/:id', async(req,res)=>{
 })
 
 router.post("/", async (req, res) => {
-  const {
-    titulo,
-    autor,
-    editorial,
-    descripcion,
-    fecha,
-    paginas,
-    generos,
-    img,
-    idioma,
-    precio,
-    stock,
-  } = req.body;
+  try {
+    const producto = new Producto(req.body);
+    await producto.save();
 
-  const producto = new Producto({
-    titulo,
-    autor,
-    editorial,
-    descripcion,
-    fecha,
-    paginas,
-    generos,
-    img,
-    idioma,
-    precio,
-    stock,
-  });
+    mongoose.connection.close();
 
-  await producto.save();
+    res.status(201).send(producto);     
 
-  mongoose.connection.close();
-
-  res.status(201).send(producto);
+  } catch (error) {
+    res.status(500).send({ok: false, msg:' nose pudo crear el producto'}); 
+  }
 });
 
 router.put('/edit/:id',async (req,res)=>{

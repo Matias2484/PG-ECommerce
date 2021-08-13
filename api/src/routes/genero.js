@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const { dbConnection } = require("../configDB/config");
 const Genero = require("../models/Genero");
+const Producto = require("../models/Producto");
 const mongoose = require("mongoose");
 
 dbConnection();
@@ -33,9 +34,9 @@ router.delete('/', async (req, res)=>{
   const {genero}=req.query
 
   await Genero.findOneAndDelete({genero})
-//   await  Book.generos.genero().remove()
+  await Producto.updateMany({"generos":genero},{$pull:{"generos":genero}})
 
-res.sendStatus(200)
+  res.status(200).send({ok:true})
 
 })
 
