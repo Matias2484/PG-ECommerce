@@ -37,7 +37,7 @@ function rootReducer(state = initialState, action) {
 
                 return {
                 ...state,
-                details: state.allBooks.filter( book => book._id === action.payload)
+                details: action.payload
 
             }
     
