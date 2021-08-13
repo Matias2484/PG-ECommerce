@@ -49,13 +49,18 @@ export function categoryFilter(generos){
   };
 };
 
-export function getDetails(data){
-  return ({
-      type: DETAILS,
-      payload: data
-  })
-}
-
+export function getDetails(id){
+  return function(dispatch){
+    return fetch(`http://localhost:4000/productos/${id}`)
+      .then(response => response.json())
+      .then(data =>{
+        dispatch({
+          type: DETAILS,
+          payload: data
+        })
+      });
+  }
+};
 export function createGender(payload) {
   return async function (dispatch) {
     var gender = await fetch("http://localhost:4000/generos", {

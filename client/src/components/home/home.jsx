@@ -47,6 +47,7 @@ export function Home () {
             img={e.img}
             autor={e.autor}
             precio={e.precio}
+            id={e._id}
           />
         ))}
       </div>

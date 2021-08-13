@@ -42,7 +42,7 @@ function rootReducer(state = initialState, action) {
         case DETAILS:
             return {
             ...state,
-            details: state.allBooks.filter( book => book._id === action.payload)
+            details: action.payload
 
         }
         case GET_GENDERS:
@@ -65,6 +65,7 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 allBooks:[action.payload, state.allBooks.filter(e=>e._id !== action.payload._id)],
                 filteredAllBooks: [action.payload, state.filteredAllBooks.filter(e=>e._id !== action.payload._id)]
+
             }
 
         default: return state

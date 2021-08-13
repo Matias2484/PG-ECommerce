@@ -1,17 +1,22 @@
 import './details.css';
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { getDetails } from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from "react-router";
+import { getDetails } from '../../Actions';
 
-export function Details( props, myId ) {
+export default function Details() {
 
-    props.getDetails(myId);
+    const dispatch = useDispatch();
+    const details = useSelector((state) => state.details);
+    const { id } = useParams();
+   
+    useEffect(() => {
+        dispatch(getDetails(id));
+    }, [dispatch, id]);
 
-    let { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio } = props.details;
+    let { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio } = details;
 
-    useEffect( () => {
-    },[ props.details ])
-
+    if(titulo) {
     return (
         <div className='details'>
             <h2>{titulo}</h2>
@@ -27,7 +32,7 @@ export function Details( props, myId ) {
             </div>
             <div className='commontextDetails'>
                 <p>Fecha de lanzamiento:</p>
-                <p>{fecha}</p>
+                <p>{fecha.substring(0, 10)}</p>
             </div>
             <div className='commontextDetails'>
                 <p>Editorial:</p>
@@ -51,12 +56,9 @@ export function Details( props, myId ) {
             </div>
         </div>
     )
+} else {
+    return <h1>cargando</h1>
+   
+}
 }
 
-function mapStateToProps(state){
-    return {
-        details: state.details
-    }
-}/* hacer con hooks */
-
-export default connect( mapStateToProps, { getDetails } )(Details);;
