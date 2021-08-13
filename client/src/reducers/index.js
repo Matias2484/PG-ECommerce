@@ -1,12 +1,18 @@
 import {
-    GET_BOOKS,FIND_BYCATEGORY,
-    DETAILS
+    GET_BOOKS,
+    FIND_BYCATEGORY,
+    DETAILS,
+    GET_GENDERS,
+    CREATE_GENDER,
+    CREATE_BOOK,
+    EDIT_BOOK
 } from '../Actions/index';
 
 
 const initialState = {
   allBooks: [],
   filteredAllBooks: [],
+  genders:[],
   details: {},
 };
 
@@ -33,14 +39,34 @@ function rootReducer(state = initialState, action) {
                     return false;
                 })}; 
 
-            case DETAILS:
+        case DETAILS:
+            return {
+            ...state,
+            details: state.allBooks.filter( book => book._id === action.payload)
 
-                return {
+        }
+        case GET_GENDERS:
+            return{
                 ...state,
-                details: state.allBooks.filter( book => book._id === action.payload)
-
+                genders: action.payload
             }
-    
+        case CREATE_BOOK:
+            return{
+                ...state,
+                allBooks: [action.payload,...state.allBooks],
+            }
+        case CREATE_GENDER:
+            return{
+                ...state,
+                genders:[action.payload, ...state.genders]
+            }
+        case EDIT_BOOK:
+            return{
+                ...state,
+                allBooks:[action.payload, state.allBooks.filter(e=>e._id !== action.payload._id)],
+                filteredAllBooks: [action.payload, state.filteredAllBooks.filter(e=>e._id !== action.payload._id)]
+            }
+
         default: return state
     }
 
