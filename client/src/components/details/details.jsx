@@ -21,7 +21,7 @@ export default function Details() {
         <div className='details'>
             <h2>{titulo}</h2>
             <h3>{autor}</h3>
-            <img src={img} alt={`imagen de portada del libro: {${titulo}}`} />
+            <img src={img} alt={`imagen de portada del libro: ${titulo}`} />
             <div classname='descripcion'>
                 <p>Descripción</p>
                 <p>{descripcion}</p>
