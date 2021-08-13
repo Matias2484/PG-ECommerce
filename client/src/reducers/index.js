@@ -7,7 +7,7 @@ import {
     CREATE_BOOK,
     EDIT_BOOK,
     ADD_CART,
-    REMOVE_ONE_CART,
+    // REMOVE_ONE_CART,
     REMOVE_ALL_CART,
     CLEAR_CART,
     ADD_BUY_USER
@@ -82,13 +82,13 @@ function rootReducer(state = initialState, action) {
                     ...state,
                     cart: book? state.cart : [{...action.payload, count: 1}, ...state.cart]
                 }
-            case REMOVE_ONE_CART:
-                var book= state.cart.findIndex(e=>e._id===action.payload)
-                state.cart[book].count-1 !== 0 && state.cart[book].count-1
-                return{
-                    ...state,
-                    cart: state.cart[book].count-1 === 0 ? state.cart.filter(e=> e._id !== action.payload) : state.cart
-                }
+            // case REMOVE_ONE_CART:
+            //     var book= state.cart.findIndex(e=>e._id===action.payload)
+            //     state.cart[book].count-1 !== 0 && state.cart[book].count-1
+            //     return{
+            //         ...state,
+            //         cart: state.cart[book].count-1 === 0 ? state.cart.filter(e=> e._id !== action.payload) : state.cart
+            //     }
             case REMOVE_ALL_CART:
                 return{
                     ...state,

@@ -18,7 +18,7 @@ export default function Producto({ titulo, autor, img, precio, id }) {
           <p>{autor}</p>
         </div>
         <div>
-          <p>{precio}</p>
+          <p>$: {precio}</p>
         </div>
       </div>
     </div>

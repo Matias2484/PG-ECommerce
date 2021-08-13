@@ -27,3 +27,6 @@ router.get('/:idProducto',async (req,res)=>{
 
     res.send(book)
 })
+
+
+module.exports = router;
