@@ -6,6 +6,12 @@ export const GET_GENDERS = 'GET_GENDERS';
 export const CREATE_BOOK = 'CREATE_BOOK';
 export const CREATE_GENDER = 'CREATE_GENDER';
 export const EDIT_BOOK = 'EDIT_BOOK'
+export const ADD_CART = 'ADD_CART';
+export const REMOVE_ONE_CART = 'REMOVE_ONE_CART';
+export const REMOVE_ALL_CART = 'REMOVE_ALL_CART';
+export const CLEAR_CART = 'CLEAR_CART';
+export const ADD_BUY_USER = 'ADD_BUY_USER';
+
 
 export function getAllBooks(){
     return function(dispatch){
@@ -86,6 +92,47 @@ export function editBook(payload,id){
   };
 };
 
+export function addCart (id){
+  return async function(dispatch) {
+    var book= await fetch(`http://localhost:4000/productos/cart/${id}`);
+        book= await book.json();
+    return dispatch({type:ADD_CART, payload:book})
+  };
+};
+
+export function removeOneCart(id){
+  return {
+    type : REMOVE_ONE_CART,
+    payload:id
+  }
+}
+export function removeAllCart(id){
+  return {
+    type : REMOVE_ALL_CART,
+    payload:id
+  }
+}
+
+export function clearCart(){
+  return {
+    type : CLEAR_CART
+  }
+}
+
+export function addBuyUser (payload){
+  return async function (dispatch) {
+    var booksCart = await fetch ('http://localhost:4000/productos/cart/', {
+      method: 'POST',
+      headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload)
+    });
+    const res= await booksCart.json();
+    return dispatch ({type: ADD_BOOK_CART, payload:res})
+  };
+};
 
 
 
