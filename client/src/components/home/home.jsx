@@ -1,7 +1,7 @@
 import "./home.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks } from "../../Actions/index";
+import { getAllBooks, getGenders } from "../../Actions/index";
 import Producto from "../producto/producto";
 import Filter from '../filter/filter';
 
@@ -10,6 +10,7 @@ export function Home () {
     const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
     useEffect(() => {
         dispatch(getAllBooks())
+        dispatch(getGenders())
     },[dispatch])
 
   const [currentPage, setCurrentPage] = useState(0);
