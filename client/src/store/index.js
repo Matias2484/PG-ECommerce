@@ -12,7 +12,4 @@ const store = createStore(
 );
 
 export default store;
-// console.log('estado inicial: ', store.getState());
-//   store.subscribe(()=>{// esto es para ver el cambio de estado
-//     console.log('cambio de estado: ', store.getState());
-//   });
+
