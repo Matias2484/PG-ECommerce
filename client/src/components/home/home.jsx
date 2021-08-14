@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllBooks, getGenders } from "../../Actions/index";
 import Producto from "../producto/producto";
 import Filter from '../filter/filter';
+import toLeft from '../../img/toLeft.png'
+import toRight from '../../img/toRight.png';
 
 let leftBarState = false;
 
