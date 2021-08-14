@@ -5,6 +5,24 @@ import { getAllBooks, getGenders } from "../../Actions/index";
 import Producto from "../producto/producto";
 import Filter from '../filter/filter';
 
+let leftBarState = false;
+
+function leftBarFunction(){
+  
+  let leftNavBar = document.getElementById('leftNavBar');
+  let leftNavIcon = document.getElementById('leftNavIcon');
+
+  if( leftBarState ){
+    leftNavIcon.src = toRight;
+    leftNavBar.style.left = '-400px';
+    leftBarState = false;
+  }else{
+    leftNavIcon.src = toLeft;
+    leftNavBar.style.left = '0px';
+    leftBarState = true;
+  }
+}
+
 export function Home () {
     const dispatch = useDispatch()
     const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
@@ -79,48 +97,63 @@ export function Home () {
   }
 
   return (
-    <div className="home">
-      <div className="botonesPaginadoOrdenado">
-            {/* Ordenar por Nombre y Fuerza */}
 
-            <div className="ordenado">
-              <select id="select" onChange={selectOptionOrder}>
-                <option defaultValue>Ordenar por... </option>
-                <option id="A-Z" value="A-Z">
-                  A-Z
-                </option>
-                <option value="Z-A">Z-A</option>
+    <div className='principalHome'>
+      <div className='mainNavBar'>
+        <button id='leftNavBarButton' className='leftNavBarButton' onClick={ leftBarFunction }>
+          <img id='leftNavIcon' src={toLeft} alt="panel dysplay icon" />
+        </button>
+        <div id='leftNavBar' className='leftNavBar'>
+          <div className="botonesPaginadoOrdenado">
+              {/* Ordenar por Nombre y Fuerza */}
+              <div className="ordenado">
+                <select id="select" onChange={selectOptionOrder}>
+                  <option defaultValue>Ordenar por... </option>
+                  <option id="A-Z" value="A-Z">
+                    A-Z
+                  </option>
+                  <option value="Z-A">Z-A</option>
 
-                <option value="Mayor_Precio">Mayor Precio</option>
-                <option value="Menor_Precio">Menor Precio</option>
-              </select>
+                  <option value="Mayor_Precio">Mayor Precio</option>
+                  <option value="Menor_Precio">Menor Precio</option>
+                </select>
+              </div>
             </div>
-         </div>
-      <Filter/>
-      <div className="paginado">
-        {currentPage > 0 ? (
-          <button className="botonPrev" onClick={prevPage}>
-            Prev Page
-          </button>
-        ) : null}
-        {currentPage < 80 ? (
-          <button className="botonNext" onClick={nextPage}>
-            Next Page
-          </button>
-        ) : null}
+        </div>
+        <div className='searchMenu'>
+          <p>soy el primer div</p>
+        </div>
+        <div className='rightNavBar'>
+          <p>soy rightNavBar</p>
+        </div>
       </div>
+      <div className="home">
+        <Filter/>
+        <div className="paginado">
+          {currentPage > 0 ? (
+            <button className="botonPrev" onClick={prevPage}>
+              Prev Page
+            </button>
+          ) : null}
+          {currentPage < 80 ? (
+            <button className="botonNext" onClick={nextPage}>
+              Next Page
+            </button>
+          ) : null}
+        </div>
 
-      <div className="books">
-        {librosIniciales.map((e, index) => (
-          <Producto
-            key={index + 1}
-            titulo={e.titulo}
-            img={e.img}
-            autor={e.autor}
-            precio={e.precio}
-            id={e._id}
-          />
-        ))}
+        <div className="books">
+          {librosIniciales.map((e, index) => (
+            <Producto
+              key={index + 1}
+              titulo={e.titulo}
+              img={e.img}
+              autor={e.autor}
+              precio={e.precio}
+              id={e._id}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
