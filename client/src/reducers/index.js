@@ -20,9 +20,11 @@ const initialState = {
   genders:[],
   details: {},
   cart: []
+
 };
 
 function rootReducer(state = initialState, action) {
+    
 
     switch (action.type) {
         case GET_BOOKS:
@@ -33,17 +35,14 @@ function rootReducer(state = initialState, action) {
             }
 
         case FIND_BYCATEGORY:
+            
             return{
                 ...state,
-                filteredAllBooks: state.filteredAllBooks.filter(book =>{
-
-                    for( let i=0 ; i < book.generos.length ; i++ ) {
-                        for( let j=0 ; j < action.payload.length ; j++ ) {
-                            if( book.generos[i] === action.payload[j] ) return true;
-                        }
-                    }
-                    return false;
-                })}; 
+                filteredAllBooks: state.filteredAllBooks.filter((book) => {
+                    return book.generos.some((t) => t === action.payload);
+                }),
+            }; 
+            
 
         case DETAILS:
             return {

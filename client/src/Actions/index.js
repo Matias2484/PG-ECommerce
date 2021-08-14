@@ -52,6 +52,7 @@ export function categoryFilter(generos){
   return{
       type: FIND_BYCATEGORY,
       payload:generos
+      
   };
 };
 

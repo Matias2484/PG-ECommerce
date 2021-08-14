@@ -1,49 +1,57 @@
-import {categoryFilter, getAllBooks} from "../../Actions/index"
+import {categoryFilter} from "../../Actions/index"
+import { connect } from 'react-redux';
+import React from 'react';
+import CheckList from "../checklist/checklist";
 import "./filter.css"
-import {connect} from "react-redux";
-import React, {useState} from 'react';
 
-export function Filter(props){
-    const[books, setBooks] = useState({
-        inputCategory:[]
-    });
+function categoryCheck() {
+    let categoryBox = document.getElementById('categoryBox')
+    let categoryList = document.getElementById('categoryList')
+    if(categoryBox.checked) categoryList.style.display = 'flex';
+    else categoryList.style.display = 'none';
+}
 
-    function handleSubmitCategory(e){
-        e.preventDefault()
-        props.categoryFilter(books.inputCategory)
-    };
+export function Filter(props) {
 
-    let handleCategory = (e)=> setBooks({...books, inputCategory:e.target.value});
+    function genreCheckLooks() {
+        let genreList = props.genders.map( category => {
+            let gender = document.getElementById('C'+ category );
+            if(gender.checked) {
+                gender.checked = false;
+                return category
+            };
+            return undefined;
+        })
+        genreList = genreList.filter( g => g !== undefined )
+        props.categoryFilter(genreList)
+    } 
 
-    return(
-        <>
-            <form className="form1">
-            <h1>Filtros</h1>
-            <label>Por categoria </label>
-        <select className= "select" name='category' onChange={handleCategory} multiple={true} 
-        value={books.inputCategory}>
-                    <option value="">Categorias</option>
-                    <option value="Ficción">Ficción</option>
-                    <option value="Poesía">Poesía</option>
-                    <option value="Ensayo">Ensayo</option>
-                    <option value="Cuento">Cuento</option>
-                    <option value="Crónica">Crónica</option>
-                    <option value="Novela">Novela</option>
-                    <option value="Fantasía">Fantasía</option>
-                    <option value="Biografía">Biografía</option>
-                    <option value="Auto biografía">Auto biografía</option>
-                </select>
-        <button className="button" onClick={handleSubmitCategory}>go</button>
-
-            </form> 
-        </>
-    );
-};
+    return (
+        <div className='categoryFilter'>
+            <label htmlFor='categoryBox' className='categoryLabel'>
+                <input 
+                    type="checkbox" 
+                    id="categoryBox" 
+                    value="first_checkbox" 
+                    className='categoryInput'
+                    onChange={() => categoryCheck()}
+                />
+                
+                <span className='radioSpan'>Generos</span>
+            </label>
+            <CheckList items={props.genders} id='categoryList' type='C'/> 
+            <button id='categoryButton' className='Button3' onClick={genreCheckLooks}>Filtrar</button> 
+        </div>
+    )
+}
 
 function mapStateToProps(state) {
     return {
-        actualState: state.filteredAllBooks
-    };
-} /* hacer con hooks */
+        genders: state.genders
+    }
+}
 
-    export default connect(mapStateToProps, {categoryFilter, getAllBooks})(Filter); 
+export default connect ( mapStateToProps, { categoryFilter } )(Filter);
+
+
+
