@@ -1,8 +1,8 @@
 import React from "react";
 import "./producto.css";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Producto({ titulo, autor, img, precio }) {
+export default function Producto({ titulo, autor, img, precio, id }) {
   return (
     <div className="libro">
       <div className="producto">
@@ -10,15 +10,15 @@ export default function Producto({ titulo, autor, img, precio }) {
           <h2 className="titulo">{titulo}</h2>
         </div>
         <div>
-          {/* <Link to={`/home/pokemon/${id}`}> */}
+          <Link to={`/details/${id}`}>
           <img className="imagen" src={img} alt={titulo}></img>
-          {/* </Link> */}
+          </Link>
         </div>
         <div>
           <p>{autor}</p>
         </div>
         <div>
-          <p>{precio}</p>
+          <p>$: {precio}</p>
         </div>
       </div>
     </div>

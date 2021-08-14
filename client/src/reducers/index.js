@@ -1,13 +1,26 @@
 import {
-    GET_BOOKS,FIND_BYCATEGORY,
-    DETAILS
+    GET_BOOKS,
+    FIND_BYCATEGORY,
+    DETAILS,
+    GET_GENDERS,
+    CREATE_GENDER,
+    CREATE_BOOK,
+    EDIT_BOOK,
+    ADD_CART,
+    // REMOVE_ONE_CART,
+    REMOVE_ALL_CART,
+    CLEAR_CART,
+    ADD_BUY_USER
 } from '../Actions/index';
 
 
 const initialState = {
   allBooks: [],
   filteredAllBooks: [],
-  details: {}
+  genders:[],
+  details: {},
+  cart: []
+
 };
 
 function rootReducer(state = initialState, action) {
@@ -31,14 +44,65 @@ function rootReducer(state = initialState, action) {
             }; 
             
 
-            case DETAILS:
+        case DETAILS:
+            return {
+            ...state,
+            details: action.payload
 
-                return {
+        }
+        case GET_GENDERS:
+            return{
                 ...state,
-                details: state.allBooks.filter( book => book._id === action.payload)
+                genders: action.payload
+            }
+        case CREATE_BOOK:
+            return{
+                ...state,
+                allBooks: [action.payload,...state.allBooks],
+            }
+        case CREATE_GENDER:
+            return{
+                ...state,
+                genders:[action.payload, ...state.genders]
+            }
+        case EDIT_BOOK:
+            return{
+                ...state,
+                allBooks:[action.payload, state.allBooks.filter(e=>e._id !== action.payload._id)],
+                filteredAllBooks: [action.payload, state.filteredAllBooks.filter(e=>e._id !== action.payload._id)]
 
             }
-    
+            case ADD_CART:
+                if(state.cart.length>1) {
+                   var book= state.cart.findIndex(e=>e._id===action.payload._id)
+                   book && state.cart[book].count++
+                }
+                return{
+                    ...state,
+                    cart: book? state.cart : [{...action.payload, count: 1}, ...state.cart]
+                }
+            // case REMOVE_ONE_CART:
+            //     var book= state.cart.findIndex(e=>e._id===action.payload)
+            //     state.cart[book].count-1 !== 0 && state.cart[book].count-1
+            //     return{
+            //         ...state,
+            //         cart: state.cart[book].count-1 === 0 ? state.cart.filter(e=> e._id !== action.payload) : state.cart
+            //     }
+            case REMOVE_ALL_CART:
+                return{
+                    ...state,
+                    cart: state.cart.filter(e=> e._id !== action.payload)
+                }
+            case CLEAR_CART:
+                return {
+                    ...state,
+                    cart: []
+                }
+            case ADD_BUY_USER:
+                return {
+                    ...state,
+                    cart:[]
+                }       
         default: return state
     }
 
