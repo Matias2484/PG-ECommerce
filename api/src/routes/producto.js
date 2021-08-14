@@ -1,4 +1,4 @@
-const { dbConnection } = require("../configDB/config");
+
 const Producto = require("../models/Producto");
 const { Router } = require("express");
 const mongoose = require("mongoose");
@@ -6,7 +6,7 @@ const router = Router();
 
 
 
-dbConnection();
+
 
 router.get("/", async (req, res) => {
   var books = await Producto.find({},{"editorial":0, "descripcion":0,"fecha":0, "paginas":0,"generos":0,"idioma":0,"stock":0});

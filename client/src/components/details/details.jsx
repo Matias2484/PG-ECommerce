@@ -9,7 +9,7 @@ export default function Details() {
     const dispatch = useDispatch();
     const details = useSelector((state) => state.details);
     const { id } = useParams();
-   
+
     useEffect(() => {
         dispatch(getDetails(id));
     }, [dispatch, id]);

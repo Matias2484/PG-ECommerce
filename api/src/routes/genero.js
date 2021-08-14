@@ -1,11 +1,10 @@
 const { Router } = require("express");
 const router = Router();
-const { dbConnection } = require("../configDB/config");
 const Genero = require("../models/Genero");
 const Producto = require("../models/Producto");
 const mongoose = require("mongoose");
 
-dbConnection();
+
 
 router.get('/', async (req,res)=>{
   const resp= await Genero.find({},{"genero":1,"_id":0})    
