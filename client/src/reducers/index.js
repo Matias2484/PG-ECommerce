@@ -15,11 +15,11 @@ import {
 
 
 const initialState = {
-  allBooks: [],
-  filteredAllBooks: [],
-  genders:[],
-  details: {},
-  cart: []
+    allBooks: [],
+    filteredAllBooks: [],
+    genders:[],
+    details: {},
+    cart: []
 
 };
 
