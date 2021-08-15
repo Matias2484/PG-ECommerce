@@ -1,4 +1,4 @@
-import {categoryFilter} from "../../Actions/index"
+import {categoryFilter, filterClear } from "../../Actions/index"
 import { connect } from 'react-redux';
 import React from 'react';
 import CheckList from "../checklist/checklist";
@@ -26,6 +26,11 @@ export function Filter(props) {
         props.categoryFilter(genreList)
     } 
 
+    function categoryClear(e){
+        e.preventDefault()
+        props.filterClear()
+    }
+
     return (
         <div className='categoryFilter'>
             <label htmlFor='categoryBox' className='categoryLabel'>
@@ -40,7 +45,8 @@ export function Filter(props) {
                 <span className='radioSpan'>Generos</span>
             </label>
             <CheckList items={props.genders} id='categoryList' type='C'/> 
-            <button id='categoryButton' className='Button3' onClick={genreCheckLooks}>Filtrar</button> 
+            <button id='categoryButton' className='categoryButton' onClick={genreCheckLooks}>Filtrar</button>
+            <button id='cleanButton' className='cleanButton' onClick={categoryClear}>Limpiar filtro</button>
         </div>
     )
 }
@@ -51,7 +57,7 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect ( mapStateToProps, { categoryFilter } )(Filter);
+export default connect ( mapStateToProps, { categoryFilter, filterClear } )(Filter);
 
 
 

@@ -10,7 +10,8 @@ import {
     // REMOVE_ONE_CART,
     REMOVE_ALL_CART,
     CLEAR_CART,
-    ADD_BUY_USER
+    ADD_BUY_USER,
+    FILTER_CLEAR
 } from '../Actions/index';
 
 
@@ -38,10 +39,20 @@ function rootReducer(state = initialState, action) {
             
             return{
                 ...state,
-                filteredAllBooks: state.filteredAllBooks.filter((book) => {
-                    return book.generos.some((t) => t === action.payload);
-                }),
+                filteredAllBooks: state.filteredAllBooks.filter( book => {
+                    for( let i=0 ; i<book.generos.length ; i++ ) {
+                        for( let j=0 ; j<action.payload.length ; j++ ) {
+                            if( book.generos[i] === action.payload[j] ) return true;
+                        }
+                    }
+                    return false;
+                })
             }; 
+            case FILTER_CLEAR:
+                return{
+                    ...state,
+                    filteredAllBooks: state.allBooks
+                }
             
 
         case DETAILS:
@@ -74,8 +85,8 @@ function rootReducer(state = initialState, action) {
             }
             case ADD_CART:
                 if(state.cart.length>1) {
-                   var book= state.cart.findIndex(e=>e._id===action.payload._id)
-                   book && state.cart[book].count++
+                    var book= state.cart.findIndex(e=>e._id===action.payload._id)
+                    book && state.cart[book].count++
                 }
                 return{
                     ...state,
