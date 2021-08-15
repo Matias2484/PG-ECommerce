@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllBooks, getGenders, filterBook, filterClear } from "../../Actions/index";
 import Producto from "../producto/producto";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import undraw from "../../img/undraw.svg"
 
 
 export function Home () {
@@ -40,18 +41,27 @@ console.log(filterBooks);
     if (currentPage > 0) setCurrentPage(currentPage - 20);
   };
 
-  function categoryClear(e){
+function categoryClear(e){
     e.preventDefault()
     dispatch(filterClear())
+  
 }
 
+
+  
 
   if (filterBooks.length > 0)
   return (
     <div className="home">
         <div className='principalHome'>
-         
+         <div className="carousel">
+           <img src={undraw} alt="imagenPresentacion" className="imagenPresentacion"></img>
+           <div className="titulos_carousel">
+    <h2>Bienvenido Usuario!!</h2><h4>Compra tus libros esenciales aquí</h4>
+      </div>
+           </div>
           <div className="e_books"><h1>E-Books</h1></div>
+
           <div className="paginado">
             {currentPage > 0 ? (
               <button className="botonPrev" onClick={prevPage}>
@@ -64,16 +74,20 @@ console.log(filterBooks);
               </button>
             ) : null}
           </div>
-          
-          <div>
+          <div className="botones_generos">
+          <div className="box_generos">
             {genders.map((gen) => (
-          <button id={gen}className="generos" onClick={typesFilter}>{gen}</button>
+          <button id={gen} className="generos" onClick={typesFilter}>{gen}</button>
             )
             )}
-             <button id='cleanButton' className='cleanButton' onClick={categoryClear}>Limpiar filtro</button>
+            
           </div>
+          {filterBooks.length > 0 ? 
+              <button id='cleanButton' className='cleanButton' onClick={categoryClear}>Limpiar filtro</button>
+              : null }
     
-    
+          </div>
+          
             <div className="books">
               {filterBooks.map((e, index) => (
                 <Producto
@@ -92,7 +106,12 @@ console.log(filterBooks);
   return (
 <div className="home">
     <div className='principalHome'>
-     
+    
+    <div className="carousel"> <img src={undraw} alt="imagenPresentacion" className="imagenPresentacion"></img>
+    <div className="titulos_carousel">
+    <h2>Bienvenido Usuario!!</h2><h4>Compra tus libros esenciales aquí</h4>
+      </div>
+      </div>
       <div className="e_books"><h1>E-Books</h1></div>
       <div className="paginado">
         {currentPage > 0 ? (
@@ -107,13 +126,13 @@ console.log(filterBooks);
         ) : null}
       </div>
       
-      <div>
+      <div className="box_generos">
         {genders.map((gen) => (
       <button id={gen}className="generos" onClick={typesFilter}>{gen}</button>
       
         )
         )}
-        <button id='cleanButton' className='cleanButton' onClick={categoryClear}>Limpiar filtro</button>
+       
       </div>
 
 

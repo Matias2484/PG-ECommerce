@@ -7,6 +7,7 @@
 
 .home {
   background-color: #f8f7f7;
+  user-select: none;
 }
 
 .books {
@@ -35,6 +36,84 @@
 }
 .paginado {
   float: right;
-  
   margin-right: 1rem;
+}
+
+.box_generos {
+  display: flex;
+  overflow-x: scroll;
+  width: 60%;
+  margin: auto;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.box_generos::-webkit-scrollbar-thumb {
+ visibility: hidden;
+}
+.generos {
+padding: 1rem;
+border: none;
+margin-bottom: 0.4rem;
+border-radius: 10px;
+margin-left: 1rem;
+font-weight: bold;
+cursor: pointer;
+margin-top: 2rem;
+font-size: 1rem;
+}
+.generos:focus {
+  background-color: rgb(250, 220, 164);
+  color: white;
+}
+
+.e_books h1{
+left: 3rem;
+position: absolute;
+}
+
+.carousel {
+  background-color: rgb(250, 220, 164);
+  width: 35rem;
+  height: 12rem;
+  border-radius: 15px; 
+  display: flex;
+  position: relative;
+  margin: auto;
+  margin-bottom: 1rem;
+  
+}
+.titulos_carousel {
+  position: absolute;
+  font-size: 1rem;
+  right: 4rem;
+  top: 2.5rem;
+}
+.titulos_carousel h1{
+  margin-bottom: 0;
+}
+
+.imagenPresentacion {
+  width: 25rem;
+  height: 12rem;
+  position: absolute;
+  left: -7rem;
+}
+.botones_generos {
+  display: flex;
+}
+.cleanButton {
+ position: absolute;
+ right: 9rem;
+ top: 24rem;
+ border: none;
+ padding: 1rem;
+ cursor: pointer;
+ border-radius: 7px;
+ font-weight: bold;
+ background-color: sandybrown;
+}
+.cleanButton:hover {
+  background-color: rgb(221, 98, 98);
+  color: white;
 }

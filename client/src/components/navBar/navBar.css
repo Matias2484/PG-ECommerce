@@ -4,6 +4,7 @@
     width: 99vw;
     background-color: #f8f7f7;
     display: flex;
+    padding-bottom: 2rem;
   }
 #leftNavBar{
     width: 400px;
@@ -63,6 +64,11 @@
 
 .titulo_principal {
     margin-left: 5rem;
+     
+}
+.titulo_b {
+  text-decoration: none;
+  color: black;
 }
 .icono_nav_der {
     font-size: 2rem;
