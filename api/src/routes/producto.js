@@ -9,8 +9,8 @@ const router = Router();
 
 
 router.get("/", async (req, res) => {
-  var books = await Producto.find({},{"editorial":0, "descripcion":0,"fecha":0, "paginas":0,"generos":0,"idioma":0,"stock":0});
-  res.json(books);
+  var books = await Producto.find({});
+  res.status(200).json(books);
 });
 
 router.get('/:id', async(req,res)=>{
@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
     const producto = new Producto(req.body);
     await producto.save();
 
-    mongoose.connection.close();
+    /* mongoose.connection.close(); */
 
     res.status(201).send(producto);     
 

@@ -11,7 +11,7 @@ export const REMOVE_ONE_CART = 'REMOVE_ONE_CART';
 export const REMOVE_ALL_CART = 'REMOVE_ALL_CART';
 export const CLEAR_CART = 'CLEAR_CART';
 export const ADD_BUY_USER = 'ADD_BUY_USER';
-
+export const FILTER_CLEAR =   'FILTER_CLEAR'
 
 export function getAllBooks(){
     return function(dispatch){
@@ -54,6 +54,12 @@ export function categoryFilter(generos){
       payload:generos
       
   };
+};
+
+export function filterClear(){
+  return{
+    type:FILTER_CLEAR
+  }; 
 };
 
 export function getDetails(id){
