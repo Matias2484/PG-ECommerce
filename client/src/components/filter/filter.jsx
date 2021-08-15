@@ -42,7 +42,7 @@ export function Filter(props) {
                     onChange={() => categoryCheck()}
                 />
                 
-                <span className='radioSpan'>Generos</span>
+                <span className='radioSpan'>Generos ↓</span>
             </label>
             <CheckList items={props.genders} id='categoryList' type='C'/> 
             <button id='categoryButton' className='categoryButton' onClick={genreCheckLooks}>Filtrar</button>

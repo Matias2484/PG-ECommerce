@@ -24,6 +24,22 @@ function leftBarFunction(){
     leftBarState = true;
   }
 }
+let rightBarState = false
+function rightBarFunction(){
+  
+  let rightNavBar = document.getElementById('rightNavBar');
+  let rightNavIcon = document.getElementById('rightNavIcon');
+
+  if( rightBarState ){
+    rightNavIcon.src = toLeft;
+    rightNavBar.style.top = '-100vh';
+    rightBarState = false;
+  }else{
+    rightNavIcon.src = toRight;
+    rightNavBar.style.top = '0px';
+    rightBarState = true;
+  }
+}
 
 export function Home () {
     const dispatch = useDispatch()
@@ -103,11 +119,12 @@ export function Home () {
     <div className='principalHome'>
       <div className='mainNavBar'>
         <button id='leftNavBarButton' className='leftNavBarButton' onClick={ leftBarFunction }>
-          <img id='leftNavIcon' src={toLeft} alt="panel dysplay icon" />
+          <img id='leftNavIcon' src={toRight} alt="panel dysplay icon" />
         </button>
         <div id='leftNavBar' className='leftNavBar'>
           <div className="botonesPaginadoOrdenado">
               {/* Ordenar por Nombre y Fuerza */}
+              <Filter/>
               <div className="ordenado">
                 <select id="select" onChange={selectOptionOrder}>
                   <option defaultValue>Ordenar por... </option>
@@ -125,12 +142,16 @@ export function Home () {
         <div className='searchMenu'>
           <p>soy el primer div</p>
         </div>
-        <div className='rightNavBar'>
-          <p>soy rightNavBar</p>
+        <button id='rightNavBarButton' className='rightNavBarButton' onClick={ rightBarFunction }>
+          <img id='rightNavIcon' src={toLeft} alt="panel dysplay icon" />
+          
+          </button>
+        <div id ="rightNavBar" className='rightNavBar'>
+        <p>soy rightNavBar</p>
         </div>
       </div>
       <div className="home">
-        <Filter/>
+        
         <div className="paginado">
           {currentPage > 0 ? (
             <button className="botonPrev" onClick={prevPage}>
