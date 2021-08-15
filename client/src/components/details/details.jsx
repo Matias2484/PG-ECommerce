@@ -19,42 +19,46 @@ export default function Details() {
     if(titulo) {
     return (
         <div className='details'>
-            <h2>{titulo}</h2>
-            <h3>{autor}</h3>
-            <img src={img} alt={`imagen de portada del libro: ${titulo}`} />
-            <div classname='descripcion'>
-                <p>Descripción</p>
-                <p>{descripcion}</p>
-            </div>
-            <div className='commontextDetails'>
-                <p>Generos:</p>
-                <p>{generos}</p>
-            </div>
-            <div className='commontextDetails'>
-                <p>Fecha de lanzamiento:</p>
-                <p>{fecha.substring(0, 10)}</p>
-            </div>
-            <div className='commontextDetails'>
-                <p>Editorial:</p>
-                <p>{editorial}</p>
-            </div>
-            <div className='commontextDetails'>
-                <p>Paginas:</p>
-                <p>{paginas}</p>
-            </div>
-            <div className='commontextDetails'>
-                <p>Idioma:</p>
-                <p>{idioma}</p>
-            </div>
-            <div className='commontextDetails'>
-                <p>Precio:</p>
-                <p>{precio}</p>
-            </div>
-            <div className='commontextDetails'>
-                <p>Stock:</p>
-                <p>{stock}</p>
-            </div>
+        <div className="img_stock">
+        <img className="imagen_detail" src={img} alt={`imagen de portada del libro: ${titulo}`} />
+        <div className='stock'>
+            <p>Stock:</p>
+            <p>{stock}</p>
         </div>
+        </div>
+        <div className="contenido_details">
+        <h2 className="titulo_detail">{titulo}</h2>
+        <h3 className="autor_detail">{autor}</h3>
+        <p>Editorial:</p>
+        <p>{editorial}</p>
+        <div classname='descripcion'>
+            <p>Descripción</p>
+            <p>{descripcion}</p>
+        </div>
+        <div className='generos'>
+            <p >Generos:</p>
+            <p>{generos}</p>
+        </div>
+        <div className='fecha_lanzamiento'>
+            <p className="">Fecha de lanzamiento:</p>
+            <p>{fecha.substring(0, 10)}</p>
+        </div>
+       
+        <div className='paginas'>
+            <p >Paginas:</p>
+            <p>{paginas}</p>
+        </div>
+        <div className='idioma'>
+            <p >Idioma:</p>
+            <p>{idioma}</p>
+        </div>
+        <div className='precio_detalle'>
+            <p>Precio:</p>
+            <p>{precio}</p>
+        </div>
+        
+        </div>
+    </div>
     )
 } else {
     return <h1>cargando</h1>

@@ -1,0 +1,28 @@
+.details {
+    display: flex;
+    background-color: #f0f0f0;
+}
+.img_stock {
+    border-radius: 10px;
+    height: 25rem;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: white;
+}
+.imagen_detail {
+    width: 15rem;
+    height: 20rem;  
+}
+.titulo_detail {
+    font-size: 2rem;
+}
+.autor_detail{
+    font-size: 1.5rem;
+}
+
+.contenido_details {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
