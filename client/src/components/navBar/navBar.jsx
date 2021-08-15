@@ -5,6 +5,7 @@ import { getAllBooks, getGenders, orderBooks } from "../../Actions/index";
 import './navBar.css'
 import {MdMenu, MdShoppingCart, MdAccountCircle} from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
+import { NavLink } from "react-router-dom"; 
 
 
 
@@ -102,7 +103,10 @@ export default function NavBar() {
                     
                </div>
     <div className="titulo_principal">
-            <h1>B-Comm</h1>
+      <NavLink  className="titulo_b" to={'/'}>
+      <h1>B-Comm</h1>
+      </NavLink>
+            
         </div>  
         
         
