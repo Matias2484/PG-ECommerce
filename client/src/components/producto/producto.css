@@ -1,9 +1,14 @@
+
+
+
+
 .libro {
   width: 15rem;
-  height: 22rem;
+  height: 24rem;
   margin: auto;
-  border: 1px solid black;
+  border-radius: 10px;
   margin-bottom: 2rem;
+  background-color: rgb(233, 233, 233);
 }
 
 .producto {
@@ -11,10 +16,27 @@
 }
 .titulo {
   font-weight: bold;
-  margin-bottom: 2rem;
-  font-size: 15px;
+  margin-bottom: 3rem;
+  margin-top: 0.5rem;
+  font-size: 17px;
   height: 1rem;
+  color: #181717;
 }
 .imagen {
   width: 8rem;
+  height: 12rem;
+}
+.autor {
+  height: 2rem;
+  color: #413e3e;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.precio {
+  color: #666666;
+  font-weight: bold;
+  
+}
+.peso {
+  color: #FD9727;
 }

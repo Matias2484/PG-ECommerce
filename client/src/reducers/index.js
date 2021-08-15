@@ -11,14 +11,18 @@ import {
     REMOVE_ALL_CART,
     CLEAR_CART,
     ADD_BUY_USER,
-    FILTER_CLEAR
+    FILTER_CLEAR,
+    ORDER_BOOKS,
+    FILTER_BOOK
 } from '../Actions/index';
 
 
 const initialState = {
     allBooks: [],
     filteredAllBooks: [],
+    filterBooks: [],
     genders:[],
+    orderBooks: [],
     details: {},
     cart: []
 
@@ -51,7 +55,7 @@ function rootReducer(state = initialState, action) {
             case FILTER_CLEAR:
                 return{
                     ...state,
-                    filteredAllBooks: state.allBooks
+                    filterBooks: [],
                 }
             
 
@@ -70,6 +74,11 @@ function rootReducer(state = initialState, action) {
             return{
                 ...state,
                 allBooks: [action.payload,...state.allBooks],
+            }
+        case ORDER_BOOKS:
+            return{
+                ...state,
+                orderBooks: action.payload,
             }
         case CREATE_GENDER:
             return{
@@ -113,7 +122,14 @@ function rootReducer(state = initialState, action) {
                 return {
                     ...state,
                     cart:[]
-                }       
+                }   
+            case FILTER_BOOK:
+                return {
+                    ...state,
+                    filterBooks: state.filteredAllBooks.filter((book) => {
+                        return book.generos.some((t) => t=== action.payload);
+                      }),
+                }    
         default: return state
     }
 

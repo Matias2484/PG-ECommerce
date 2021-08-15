@@ -1,4 +1,3 @@
-
 export const GET_BOOKS = 'GET_BOOKS';
 export const FIND_BYCATEGORY = 'FIND_BYCATEGORY';
 export const DETAILS = 'DETAILS';
@@ -12,6 +11,8 @@ export const REMOVE_ALL_CART = 'REMOVE_ALL_CART';
 export const CLEAR_CART = 'CLEAR_CART';
 export const ADD_BUY_USER = 'ADD_BUY_USER';
 export const FILTER_CLEAR =   'FILTER_CLEAR'
+export const ORDER_BOOKS =   'ORDER_BOOKS'
+export const FILTER_BOOK = 'FILTER_BOOK'
 
 export function getAllBooks(){
     return function(dispatch){
@@ -111,6 +112,56 @@ export function addCart (id){
     return dispatch({type:ADD_CART, payload:book})
   };
 };
+export function orderBooks(orden, catalogo) {
+  if (orden === "A-Z") {
+    catalogo.sort((a, b) => {
+      if (a.titulo < b.titulo) {
+        return -1;
+      }
+      if (a.titulo > b.titulo) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  if (orden === "Z-A") {
+    catalogo.sort((b, a) => {
+      if (a.titulo < b.titulo) {
+        return -1;
+      }
+      if (a.titulo > b.titulo) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  if (orden === "Mayor_Precio") {
+    catalogo.sort((b, a) => {
+      if (a.precio < b.precio) {
+        return -1;
+      }
+      if (a.precio > b.precio) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  if (orden === "Menor_Precio") {
+    catalogo.sort((a, b) => {
+      if (a.precio < b.precio) {
+        return -1;
+      }
+      if (a.precio > b.precio) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  return {
+    type : ORDER_BOOKS,
+    payload: catalogo
+  }
+}
 
 export function removeOneCart(id){
   return {
@@ -131,6 +182,12 @@ export function clearCart(){
   }
 }
 
+export function filterBook(genero) {
+  return {
+    type: FILTER_BOOK,
+    payload: genero,
+  }
+}
 
 
 

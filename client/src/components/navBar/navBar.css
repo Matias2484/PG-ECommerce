@@ -1,0 +1,109 @@
+
+.mainNavBar{
+    position: relative;
+    width: 99vw;
+    background-color: #f8f7f7;
+    display: flex;
+  }
+#leftNavBar{
+    width: 400px;
+    height: 100vh;
+    background-color: #f8f7f7;
+    opacity: 0.85;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    z-index: 8;
+    left: -400px;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  #rightNavBar{
+    width: 400px;
+    display: flex;
+    height: 100vh;
+    background-color: #f8f7f7;
+    opacity: 0.85;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    z-index: 8;
+    right: 0px;
+    top: -100vh;
+    transition: all 0.5s ease-in-out;
+  }
+  #leftNavBarButton{
+    position: absolute;
+    z-index: 9;
+    top: 3px;
+    left: 3px;
+    margin: auto;
+  }
+  
+  
+#rightNavBarButton{
+    position: absolute;
+    z-index: 9;
+    top: 3px;
+    right: 10rem;
+    margin: auto;
+  }
+  .rightNavBarButton {
+      display: flex;
+      align-items: center;
+      background-color: rgb(233, 233, 233);
+      padding: 0.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+  }
+.icono_nav {
+    font-size: 2rem;   
+}
+
+.titulo_principal {
+    margin-left: 5rem;
+}
+.icono_nav_der {
+    font-size: 2rem;
+}
+.numero_icono {
+    font-size: 1.5rem;
+    margin-left: 3px;
+}
+.icono_Usuario {
+    position: absolute;
+    right: 2rem;
+    font-size: 3rem;
+}
+
+.searchBar {
+width: 30rem;
+background-color: rgb(233, 233, 233);
+align-self: center;
+padding: 0.5rem;
+margin-left: 6rem;
+border-radius: 1rem;
+display: flex;
+}
+
+.search-input {
+  border: none;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  color: rgb(37, 36, 36);
+  font-weight: bold;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+.search-btn {
+  align-self: center;
+  color: rgb(56, 55, 55);
+  font-size: 1.2rem;
+}
+
+
+.search-input::placeholder{
+  color: rgb(105, 104, 104);
+}
