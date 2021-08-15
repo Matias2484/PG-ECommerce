@@ -1,5 +1,7 @@
 .categoryFilter{
     position: relative;
+    display: flow-root;
+
 }
 .categoryLabel{
     font-size: 20px;
@@ -17,4 +19,15 @@
     background-color: brown;
     position: absolute;
     z-index: 2;
+}
+
+.categoryButton{
+    display: flexbox;
+}
+.categoryButton{
+    margin-left: 2.4em;
+}
+.cleanButton{
+    
+    margin-left: 1.5em;
 }
