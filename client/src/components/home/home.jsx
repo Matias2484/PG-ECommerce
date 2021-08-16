@@ -10,7 +10,7 @@ import undraw from "../../img/undraw.svg"
 export function Home () {
     const dispatch = useDispatch()
     const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
-    useSelector((state) => state.forRender); 
+    const forRender = useSelector((state) => state.forRender); 
     const genders = useSelector((state) => state.genders);
     const allBooks = useSelector((state) => state.allBooks);
 
