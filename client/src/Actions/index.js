@@ -15,6 +15,7 @@ export const ORDER_BOOKS =   'ORDER_BOOKS'
 export const FILTER_BOOK = 'FILTER_BOOK'
 export const SEARCH_BOOK = 'SEACRH_BOOK'
 export const URL = "URL";
+export const CHECKOUT_CART = 'CHECKOUT_CART';
 
 
 export function getAllBooks(){
@@ -125,54 +126,11 @@ export function addCart (id){
     return dispatch({type:ADD_CART, payload:book})
   };
 };
-export function orderBooks(orden, catalogo) {
-  if (orden === "A-Z") {
-    catalogo.sort((a, b) => {
-      if (a.titulo < b.titulo) {
-        return -1;
-      }
-      if (a.titulo > b.titulo) {
-        return 1;
-      }
-      return 0;
-    });
-  }
-  if (orden === "Z-A") {
-    catalogo.sort((b, a) => {
-      if (a.titulo < b.titulo) {
-        return -1;
-      }
-      if (a.titulo > b.titulo) {
-        return 1;
-      }
-      return 0;
-    });
-  }
-  if (orden === "Mayor_Precio") {
-    catalogo.sort((b, a) => {
-      if (a.precio < b.precio) {
-        return -1;
-      }
-      if (a.precio > b.precio) {
-        return 1;
-      }
-      return 0;
-    });
-  }
-  if (orden === "Menor_Precio") {
-    catalogo.sort((a, b) => {
-      if (a.precio < b.precio) {
-        return -1;
-      }
-      if (a.precio > b.precio) {
-        return 1;
-      }
-      return 0;
-    });
-  }
+export function orderBooks(orden ) {
+  
   return {
     type : ORDER_BOOKS,
-    payload: catalogo
+    payload: orden
   }
 }
 

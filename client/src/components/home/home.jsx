@@ -10,20 +10,18 @@ import undraw from "../../img/undraw.svg"
 export function Home () {
     const dispatch = useDispatch()
     const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
-    const orderBooks = useSelector((state) => state.orderBooks)
+    const forRender = useSelector((state) => state.forRender)
     const filterBooks = useSelector((state) => state.filterBooks)
     const genders = useSelector((state) => state.genders)
-
+    const allBooks = useSelector((state) => state.allBooks)
 
     const [filter, setFilter] = useState([]);
 
     useEffect(() => {
         dispatch(getAllBooks())
         dispatch(getGenders())
-        dispatch(filterBook()) 
-        dispatch(filterClear())
         dispatch(url(window.location.href)) 
-    },[dispatch,orderBooks])
+    },[dispatch])
 
 
     const typesFilter = (e) => {
@@ -33,7 +31,7 @@ export function Home () {
     };
 
   const [currentPage, setCurrentPage] = useState(0);
-  var librosIniciales = orderBooks.length !== 0 ? orderBooks.slice(currentPage, currentPage + 20) : filteredAllBooks.slice(currentPage, currentPage + 20);
+  var librosIniciales =  filteredAllBooks.slice(currentPage, currentPage + 20)
 
   const nextPage = () => {
     setCurrentPage(currentPage + 20);
@@ -48,21 +46,16 @@ function categoryClear(e){
   
 }
 
-
-  
-
-  if (filterBooks.length > 0)
   return (
     <div className="home">
         <div className='principalHome'>
-         <div className="carousel">
-           <img src={undraw} alt="imagenPresentacion" className="imagenPresentacion"></img>
-           <div className="titulos_carousel">
+        <div className="carousel">
+          <img src={undraw} alt="imagenPresentacion" className="imagenPresentacion"></img>
+          <div className="titulos_carousel">
     <h2>Bienvenido Usuario!!</h2><h4>Compra tus libros esenciales aquí</h4>
       </div>
-           </div>
+          </div>
           <div className="e_books"><h1>E-Books</h1></div>
-
           <div className="paginado">
             {currentPage > 0 ? (
               <button className="botonPrev" onClick={prevPage}>
@@ -83,14 +76,13 @@ function categoryClear(e){
             )}
             
           </div>
-          {filterBooks.length > 0 ? 
+          {filteredAllBooks.length !== allBooks.length ? 
               <button id='cleanButton' className='cleanButton' onClick={categoryClear}>Limpiar filtro</button>
               : null }
-    
           </div>
           
             <div className="books">
-              {filterBooks.map((e, index) => (
+              {filteredAllBooks.map((e, index) => (
                 <Producto
                   key={index + 1}
                   titulo={e.titulo}
@@ -104,54 +96,6 @@ function categoryClear(e){
           </div>
         </div>
       );
-  return (
-<div className="home">
-    <div className='principalHome'>
-    
-    <div className="carousel"> <img src={undraw} alt="imagenPresentacion" className="imagenPresentacion"></img>
-    <div className="titulos_carousel">
-    <h2>Bienvenido Usuario!!</h2><h4>Compra tus libros esenciales aquí</h4>
-      </div>
-      </div>
-      <div className="e_books"><h1>E-Books</h1></div>
-      <div className="paginado">
-        {currentPage > 0 ? (
-          <button className="botonPrev" onClick={prevPage}>
-            <MdKeyboardArrowLeft/>
-          </button>
-        ) : null}
-        {currentPage < 80 ? (
-          <button className="botonNext" onClick={nextPage}>
-            <MdKeyboardArrowRight/>
-          </button>
-        ) : null}
-      </div>
-      
-      <div className="box_generos">
-        {genders.map((gen) => (
-      <button id={gen}className="generos" onClick={typesFilter}>{gen}</button>
-      
-        )
-        )}
-       
-      </div>
-
-
-        <div className="books">
-          {librosIniciales.map((e, index) => (
-            <Producto
-              key={index + 1}
-              titulo={e.titulo}
-              img={e.img}
-              autor={e.autor}
-              precio={e.precio}
-              id={e._id}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
 }
 
 
