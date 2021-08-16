@@ -2,7 +2,7 @@ import './details.css';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router";
-import { getDetails } from '../../Actions';
+import { getDetails, url } from '../../Actions';
 
 export default function Details() {
 
@@ -12,6 +12,7 @@ export default function Details() {
 
     useEffect(() => {
         dispatch(getDetails(id));
+        dispatch(url(window.location.href))
     }, [dispatch, id]);
 
     let { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio } = details;

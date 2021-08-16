@@ -13,10 +13,14 @@ export default function NavBar() {
 
     const dispatch = useDispatch()
     const orderAllBooks = useSelector((state) => state.allBooks);
-   
+    const url = useSelector((state) => state.url);
+
+
     useEffect(() => {
+
         dispatch(getAllBooks())
         dispatch(getGenders())
+
     },[dispatch])
 
     let leftBarState = false;
@@ -68,13 +72,13 @@ export default function NavBar() {
          // eslint-disable-next-line
       }, [state.select])
       
- 
+  console.log(url);
 
   return (
   <div className="nav_principal">
     <div>
     <div className='mainNavBar'>
-      {window.location.href === "http://localhost:3000/" ?(
+      {url === "http://localhost:3000/" ? (
          <div>
         <button id='leftNavBarButton' onClick={ leftBarFunction }>
             <MdMenu className="icono_nav"/>
