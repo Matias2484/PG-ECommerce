@@ -16,46 +16,56 @@ export default function Details() {
     }, [dispatch, id]);
 
     let { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio } = details;
-
+   
     if(titulo) {
+        
     return (
         <div className='details'>
-        <div className="img_stock">
+        <div className="detalles_izq">
         <img className="imagen_detail" src={img} alt={`imagen de portada del libro: ${titulo}`} />
-        <div className='stock'>
-            <p>Stock:</p>
-            <p>{stock}</p>
-        </div>
-        </div>
-        <div className="contenido_details">
-        <h2 className="titulo_detail">{titulo}</h2>
         <h3 className="autor_detail">{autor}</h3>
-        <p>Editorial:</p>
-        <p>{editorial}</p>
-        <div className='descripcion'>
-            <p>Descripción</p>
-            <p>{descripcion}</p>
+        <div className="detail_info">
+        <div>
+        <p className="generos_detail">Generos:</p>
+        <p className="detail_texto">{generos.join(", ")}</p>
         </div>
-        <div className='generos'>
-            <p >Generos:</p>
-            <p>{generos}</p>
+        <div>
+        <p>Idioma: </p>
+        <p className="detail_texto"> {idioma}</p>
         </div>
-        <div className='fecha_lanzamiento'>
-            <p className="">Fecha de lanzamiento:</p>
-            <p>{fecha.substring(0, 10)}</p>
+        <div>
+        <p >Paginas: </p>
+        <p className="detail_texto">{paginas}</p>
         </div>
-       
-        <div className='paginas'>
-            <p >Paginas:</p>
-            <p>{paginas}</p>
-        </div>
-        <div className='idioma'>
-            <p >Idioma:</p>
-            <p>{idioma}</p>
+       <div>
+       <p>Publicación:</p>
+        <p className="detail_texto">{fecha.substring(0, 10)}</p>
+       </div> 
+    </div>
+ </div>
+
+        <div className="contenido_details">
+            <div className="comprar">
+            <button className="comprar_detail">Comprar</button>
+            <p className="comprar_carrito">Agregar a la Cesta</p>
+            </div>
+        
+        <h2 className="titulo_detail">{titulo}</h2>
+        <div className="autor_editorial">
+            <h3 className="autor_detail_der">{autor}</h3>
+            <p className="guion_der">-</p>
+            <p className="editorial_der">{editorial}</p>
         </div>
         <div className='precio_detalle'>
-            <p>Precio:</p>
-            <p>{precio}</p>
+            <p className="precio_peso">$</p>
+            <p className="precio_numero">{precio}</p>
+        </div>
+        <div className='stock'>
+            <p className={stock=== 0? "stock_vacio": "stock_unidad"}>Quedan {stock} unidades</p>
+        </div>
+        <div className='descripcion'>
+            <p className="descripcion_titulo">Reseña del Libro</p>
+            <p className="descripcion_contenido">{descripcion}</p>
         </div>
         
         </div>
