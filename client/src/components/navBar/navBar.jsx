@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 export default function NavBar() {
 
     const dispatch = useDispatch()
-    const orderAllBooks = useSelector((state) => state.allBooks);
+    const orderAllBooks = useSelector((state) => state.filteredAllBooks);
     const url = useSelector((state) => state.url);
 
 
@@ -84,7 +84,7 @@ export default function NavBar() {
         dispatch(searchByName(e.target.value));
       }
 
-  console.log(url);
+  
 
 
     

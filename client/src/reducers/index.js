@@ -15,8 +15,7 @@ import {
     ORDER_BOOKS,
     FILTER_BOOK,
     SEARCH_BOOK,
-    URL
-
+    URL,
 } from '../Actions/index';
 
 
@@ -30,11 +29,13 @@ const initialState = {
     cart: [],
     book: undefined,
     url: "",
+    forRender:0
 
 };
 
+
 function rootReducer(state = initialState, action) {
-    
+
 
     switch (action.type) {
 
@@ -43,7 +44,7 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 allBooks: action.payload,
                 filteredAllBooks: action.payload
-            }
+            } 
 
         case FIND_BYCATEGORY:
             
@@ -59,26 +60,25 @@ function rootReducer(state = initialState, action) {
                 })
             }; 
 
-            case FILTER_CLEAR:
+        case FILTER_CLEAR:
                 return{
                     ...state,
-                    filterBooks: [],
-                }
+                    filteredAllBooks: state.allBooks
+                } 
             
-            case  SEARCH_BOOK:
+        case  SEARCH_BOOK:
                 return {
                     ...state,
                     filteredAllBooks: state.allBooks.filter( book => {
                         return book.titulo.toString().toLowerCase().includes(action.payload)
                     })
-                    }
+                }
             
 
         case DETAILS:
             return {
             ...state,
             details: action.payload
-
         }
 
         case GET_GENDERS:
@@ -94,10 +94,66 @@ function rootReducer(state = initialState, action) {
             }
 
         case ORDER_BOOKS:
-            return{
-                ...state,
-                orderBooks: action.payload,
+            if (action.payload === "A-Z") {
+                return{
+                    ...state,
+                    forRender:state.forRender+1,
+                    filteredAllBooks:state.filteredAllBooks.sort((a, b) => {
+                    if (a.titulo < b.titulo) {
+                    return -1;
+                    }
+                    if (a.titulo > b.titulo) {
+                    return 1;
+                    }
+                    return 0;
+                })
+                }
             }
+            if (action.payload === "Z-A") {
+                return{
+                    ...state,
+                    forRender:state.forRender+1,
+                    filteredAllBooks:state.filteredAllBooks.sort((b, a) => {
+                if (a.titulo < b.titulo) {
+                    return -1;
+                }
+                if (a.titulo > b.titulo) {
+                    return 1;
+                }
+                return 0;
+                })
+            }
+            }
+            if (action.payload === "Mayor_Precio") {
+                return{
+                    ...state,
+                    forRender:state.forRender+1,
+                    filteredAllBooks:state.filteredAllBooks.sort((b, a) => {
+                if (a.precio < b.precio) {
+                    return -1;
+                }
+                if (a.precio > b.precio) {
+                    return 1;
+                }
+                return 0;
+                })
+            }
+            }
+            if (action.payload === "Menor_Precio") {
+                return{
+                    ...state,
+                    forRender:state.forRender+1,    
+                    filteredAllBooks:state.filteredAllBooks.sort((a, b) => {
+                    if (a.precio < b.precio) {
+                    return -1;
+                }
+                if (a.precio > b.precio) {
+                    return 1;
+                }
+                return 0;
+                })
+            }
+            } break
 
         case CREATE_GENDER:
             return{
@@ -122,6 +178,7 @@ function rootReducer(state = initialState, action) {
                     ...state,
                     cart: book? state.cart : [{...action.payload, count: 1}, ...state.cart]
                 }
+
             // case REMOVE_ONE_CART:
             //     var book= state.cart.findIndex(e=>e._id===action.payload)
             //     state.cart[book].count-1 !== 0 && state.cart[book].count-1
@@ -149,9 +206,10 @@ function rootReducer(state = initialState, action) {
                 }   
 
             case FILTER_BOOK:
+                
                 return {
                     ...state,
-                    filterBooks: state.filteredAllBooks.filter((book) => {
+                    filteredAllBooks: state.allBooks.filter((book) => {
                         return book.generos.some((t) => t=== action.payload);
                     }),
                 }
