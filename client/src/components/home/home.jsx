@@ -10,7 +10,7 @@ import undraw from "../../img/undraw.svg"
 export function Home () {
     const dispatch = useDispatch()
     const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
-    const forRender = useSelector((state) => state.forRender); 
+     useSelector((state) => state.forRender); 
     const genders = useSelector((state) => state.genders);
     const allBooks = useSelector((state) => state.allBooks);
 
@@ -22,16 +22,23 @@ export function Home () {
         dispatch(url(window.location.href)) 
     },[dispatch])
 
+//Paginas
+var numeroPagina = []
+var numerosPaginas = Math.round(filteredAllBooks.length / 20)
+for (let i = 1; i <= numerosPaginas; i++) {
+  numeroPagina.push(i)
+}
+const numberPage = (e) => {
+  setCurrentPage(e.target.value)
+  e.preventDefault()
+  
+}
 
-    const typesFilter = (e) => {
-      
-      setFilter({ ...filter, [e.target.id]: e.target.value });
-      dispatch(filterBook(e.target.id));
-    };
+
 
   const [currentPage, setCurrentPage] = useState(0);
   var librosIniciales =  filteredAllBooks.slice(currentPage, currentPage + 20)
-
+ 
   const nextPage = () => {
     setCurrentPage(currentPage + 20);
   };
@@ -39,10 +46,17 @@ export function Home () {
     if (currentPage > 0) setCurrentPage(currentPage - 20);
   };
 
+  
+const typesFilter = (e) => {
+      
+    setFilter({ ...filter, [e.target.id]: e.target.value });
+    dispatch(filterBook(e.target.id));
+    setCurrentPage(0)
+  };
+
 function categoryClear(e){
     e.preventDefault()
-    dispatch(filterClear())
-  
+    dispatch(filterClear()) 
 }
 
   return (
@@ -92,6 +106,10 @@ function categoryClear(e){
                 />
               ))}
             </div>
+            <div className="btn_page">{numeroPagina.map(e=> {
+              return (<button className="btn_number" value={e} onClick={numberPage}>{e}</button>)
+            })}   
+           </div>
           </div>
         </div>
       );

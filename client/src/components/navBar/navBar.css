@@ -1,10 +1,11 @@
 
 .mainNavBar{
     position: relative;
-    width: 99vw;
+    width: 100%;
     background-color: #f8f7f7;
     display: flex;
     padding-bottom: 2rem;
+    
   }
 
 #leftNavBar{
