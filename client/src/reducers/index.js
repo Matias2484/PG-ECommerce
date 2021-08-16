@@ -13,7 +13,8 @@ import {
     ADD_BUY_USER,
     FILTER_CLEAR,
     ORDER_BOOKS,
-    FILTER_BOOK
+    FILTER_BOOK,
+    SEARCH_BOOK
 } from '../Actions/index';
 
 
@@ -24,7 +25,8 @@ const initialState = {
     genders:[],
     orderBooks: [],
     details: {},
-    cart: []
+    cart: [],
+    book: undefined
 
 };
 
@@ -57,6 +59,14 @@ function rootReducer(state = initialState, action) {
                     ...state,
                     filterBooks: [],
                 }
+            
+            case  SEARCH_BOOK:
+                return {
+                    ...state,
+                    filteredAllBooks: state.allBooks.filter( book => {
+                        return book.titulo.toString().toLowerCase().includes(action.payload)
+                    })
+                    }
             
 
         case DETAILS:
