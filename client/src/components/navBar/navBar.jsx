@@ -1,11 +1,12 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks, getGenders, orderBooks } from "../../Actions/index";
+import { getAllBooks, getGenders, orderBooks,searchByName} from "../../Actions/index";
 import './navBar.css'
 import {MdMenu, MdShoppingCart, MdAccountCircle} from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
 import { NavLink } from "react-router-dom"; 
+
 
 
 
@@ -67,13 +68,26 @@ export default function NavBar() {
   };
 
   
- useEffect(() => {
-         dispatch(orderBooks(state.select, orderAllBooks))
+  useEffect(() => {
+          dispatch(orderBooks(state.select, orderAllBooks))
          // eslint-disable-next-line
       }, [state.select])
+
+      //busqueda
       
+
+      const[busqueda, setBusqueda] = useState("")
+
+
+      const handleChange = e =>{
+        setBusqueda(e.target.value)
+        dispatch(searchByName(e.target.value));
+      }
+
   console.log(url);
 
+
+    
   return (
   <div className="nav_principal">
     <div>
@@ -102,10 +116,10 @@ export default function NavBar() {
               </div>
             </div>
       ) : null} 
-       
+      
                 <div className='searchMenu'>
                     
-               </div>
+                </div>
     <div className="titulo_principal">
       <NavLink  className="titulo_b" to={'/'}>
       <h1>B-Comm</h1>
@@ -116,11 +130,13 @@ export default function NavBar() {
         
         <div className="searchBar">
         <BiSearchAlt className="search-btn"/>
-        <input className="search-input" type="text" placeholder="Buscar" />
+        <input className="search-input" type="text" placeholder="Buscar" 
+        value={busqueda}
+        onChange={handleChange}/>
         </div>
             
             
-             
+            
         <div className="icono_Usuario">
         <MdAccountCircle/>
         </div>

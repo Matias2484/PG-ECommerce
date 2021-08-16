@@ -14,7 +14,9 @@ import {
     FILTER_CLEAR,
     ORDER_BOOKS,
     FILTER_BOOK,
+    SEARCH_BOOK,
     URL
+
 } from '../Actions/index';
 
 
@@ -26,7 +28,9 @@ const initialState = {
     orderBooks: [],
     details: {},
     cart: [],
+    book: undefined,
     url: "",
+
 };
 
 function rootReducer(state = initialState, action) {
@@ -60,6 +64,14 @@ function rootReducer(state = initialState, action) {
                     ...state,
                     filterBooks: [],
                 }
+            
+            case  SEARCH_BOOK:
+                return {
+                    ...state,
+                    filteredAllBooks: state.allBooks.filter( book => {
+                        return book.titulo.toString().toLowerCase().includes(action.payload)
+                    })
+                    }
             
 
         case DETAILS:

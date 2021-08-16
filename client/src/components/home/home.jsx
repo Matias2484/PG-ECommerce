@@ -14,7 +14,7 @@ export function Home () {
     const filterBooks = useSelector((state) => state.filterBooks)
     const genders = useSelector((state) => state.genders)
 
-console.log(filterBooks);
+
     const [filter, setFilter] = useState([]);
 
     useEffect(() => {

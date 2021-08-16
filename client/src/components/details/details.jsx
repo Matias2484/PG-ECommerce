@@ -32,7 +32,7 @@ export default function Details() {
         <h3 className="autor_detail">{autor}</h3>
         <p>Editorial:</p>
         <p>{editorial}</p>
-        <div classname='descripcion'>
+        <div className='descripcion'>
             <p>Descripción</p>
             <p>{descripcion}</p>
         </div>
