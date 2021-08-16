@@ -10,10 +10,9 @@ import undraw from "../../img/undraw.svg"
 export function Home () {
     const dispatch = useDispatch()
     const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
-    const forRender = useSelector((state) => state.forRender)
-    const filterBooks = useSelector((state) => state.filterBooks)
-    const genders = useSelector((state) => state.genders)
-    const allBooks = useSelector((state) => state.allBooks)
+    useSelector((state) => state.forRender); 
+    const genders = useSelector((state) => state.genders);
+    const allBooks = useSelector((state) => state.allBooks);
 
     const [filter, setFilter] = useState([]);
 
@@ -62,7 +61,7 @@ function categoryClear(e){
                 <MdKeyboardArrowLeft/>
               </button>
             ) : null}
-            {currentPage < 80 ? (
+            {currentPage < filteredAllBooks.length - 20 ? (
               <button className="botonNext" onClick={nextPage}>
                 <MdKeyboardArrowRight/>
               </button>
@@ -82,7 +81,7 @@ function categoryClear(e){
           </div>
           
             <div className="books">
-              {filteredAllBooks.map((e, index) => (
+              {librosIniciales.map((e, index) => (
                 <Producto
                   key={index + 1}
                   titulo={e.titulo}

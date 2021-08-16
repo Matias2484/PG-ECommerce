@@ -70,7 +70,7 @@ function rootReducer(state = initialState, action) {
                 return {
                     ...state,
                     filteredAllBooks: state.allBooks.filter( book => {
-                        return book.titulo.toString().toLowerCase().includes(action.payload)
+                        return book.titulo.toString().toLowerCase().includes(action.payload.toLowerCase()) || book.autor.toString().toLowerCase().includes(action.payload.toLowerCase())
                     })
                 }
             
