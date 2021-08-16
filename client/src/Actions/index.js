@@ -14,6 +14,8 @@ export const FILTER_CLEAR =   'FILTER_CLEAR'
 export const ORDER_BOOKS =   'ORDER_BOOKS'
 export const FILTER_BOOK = 'FILTER_BOOK'
 export const SEARCH_BOOK = 'SEACRH_BOOK'
+export const URL = "URL";
+
 
 export function getAllBooks(){
     return function(dispatch){
@@ -197,6 +199,13 @@ export function filterBook(genero) {
   return {
     type: FILTER_BOOK,
     payload: genero,
+  }
+}
+
+export function url(url) {
+  return {
+    type: URL,
+    payload: url,
   }
 }
 

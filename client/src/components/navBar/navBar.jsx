@@ -5,6 +5,7 @@ import { getAllBooks, getGenders, orderBooks,searchByName} from "../../Actions/i
 import './navBar.css'
 import {MdMenu, MdShoppingCart, MdAccountCircle} from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
+import { NavLink } from "react-router-dom"; 
 
 
 
@@ -13,10 +14,14 @@ export default function NavBar() {
 
     const dispatch = useDispatch()
     const orderAllBooks = useSelector((state) => state.allBooks);
-   
+    const url = useSelector((state) => state.url);
+
+
     useEffect(() => {
+
         dispatch(getAllBooks())
         dispatch(getGenders())
+
     },[dispatch])
 
     let leftBarState = false;
@@ -70,6 +75,7 @@ export default function NavBar() {
 
       //busqueda
       
+
       const[busqueda, setBusqueda] = useState("")
 
 
@@ -78,12 +84,15 @@ export default function NavBar() {
         dispatch(searchByName(e.target.value));
       }
 
+  console.log(url);
+
+
     
   return (
   <div className="nav_principal">
     <div>
     <div className='mainNavBar'>
-      {window.location.href === "http://localhost:3000/" ?(
+      {url === "http://localhost:3000/" ? (
          <div>
         <button id='leftNavBarButton' onClick={ leftBarFunction }>
             <MdMenu className="icono_nav"/>
@@ -112,7 +121,10 @@ export default function NavBar() {
                     
                 </div>
     <div className="titulo_principal">
-            <h1>B-Comm</h1>
+      <NavLink  className="titulo_b" to={'/'}>
+      <h1>B-Comm</h1>
+      </NavLink>
+            
         </div>  
         
         
