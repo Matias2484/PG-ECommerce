@@ -2,8 +2,8 @@ import './details.css';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router";
-import { getDetails, url, addCart, editBook} from '../../Actions';
-
+import { getDetails, url, addCart,} from '../../Actions';
+import { Link } from 'react-router-dom';
 export default function Details() {
     const dispatch = useDispatch();
     const details = useSelector((state) => state.details);
@@ -14,9 +14,7 @@ export default function Details() {
     }, [dispatch, id]);
 
     const { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio, } = details;
-    useEffect(() => {
-        dispatch( getDetails(id))
-     }, [stock])
+    
     if(titulo) {
         
     return (
@@ -67,7 +65,7 @@ export default function Details() {
         <div className='descripcion'>
             <p className="descripcion_titulo">Reseña del Libro</p>
             <p className="descripcion_contenido">{descripcion}</p>
-            <button onClick={()=> dispatch(editBook(id))}></button>{/* agregar estilo para que renderice el boton */}
+            <Link to='/edit'>Edit</Link>
         </div>
         
         </div>

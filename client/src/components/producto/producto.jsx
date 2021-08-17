@@ -1,11 +1,9 @@
 import React from "react";
 import "./producto.css";
 import { Link } from "react-router-dom";
-import {editBook} from "../../Actions"
-import { useDispatch } from "react-redux";
 
 export default function Producto({ titulo, autor, img, precio, id }) {
-  const dispatch = useDispatch()
+  
   return (
     <div className="libro">
       <div className="producto">
@@ -23,7 +21,7 @@ export default function Producto({ titulo, autor, img, precio, id }) {
         <div>
           <p className="precio"><span className="peso">$:</span> {precio}</p>
         </div>
-        <button onClick={()=> dispatch(editBook(id))}></button>{/* agregar estilo para que renderice el boton */}
+        <Link to='/edit'>Edit</Link>
       </div>
       
     </div>
