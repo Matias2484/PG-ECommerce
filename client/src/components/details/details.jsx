@@ -14,7 +14,10 @@ export default function Details() {
     }, [dispatch, id]);
 
     const { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio, } = details;
-    
+    useEffect(() => {
+        dispatch(getDetails(id));
+    }, [details,dispatch,id])
+
     if(titulo) {
         
     return (

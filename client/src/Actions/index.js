@@ -143,19 +143,22 @@ export function orderBooks(orden ) {
 }
 
 export function removeOneCart(id){
-  return {
-    type : REMOVE_ONE_CART,
-    payload:id
-  }
+  return async function (dispatch){
+    var removeOne= await fetch(`http://localhost:4000/cart/removeOne/${id}`);
+    removeOne= await removeOne.json();
+    return dispatch({type:REMOVE_ONE_CART, payload:removeOne})
+  };
 }
-export function removeAllCart(id){
-  return {
-    type : REMOVE_ALL_CART,
-    payload:id
-  }
+export function removeAllCart(id,count){
+  return async function (dispatch){
+    var removeAll= await fetch(`http://localhost:4000/cart/removeAll/${id}/${count}`);
+    removeAll= await removeAll.json();
+    return dispatch({type:REMOVE_ALL_CART, payload:removeAll})
+  };
 }
 
-export function clearCart(){
+export function clearCart(payload){
+
   return {
     type : CLEAR_CART
   }

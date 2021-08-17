@@ -85,7 +85,7 @@ function categoryClear(e){
           <div className="botones_generos">
           <div className="box_generos">
             {genders.map((gen) => (
-          <button id={gen} className="generos" onClick={typesFilter}>{gen}</button>
+          <button key={gen} id={gen} className="generos" onClick={typesFilter}>{gen}</button>
             )
             )}
             
@@ -110,7 +110,7 @@ function categoryClear(e){
             </div>
             
             <div className="btn_page">{numeroPagina.map(e=> {
-              return (<button className={currentPage / 20 === e ? "btn_number_default": "btn_number"} value={e} onClick={numberPage}>{e+1}</button>)
+              return (<button key={e} className={currentPage / 20 === e ? "btn_number_default": "btn_number"} value={e} onClick={numberPage}>{e+1}</button>)
             })}   
           </div>
           </div>
