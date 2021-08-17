@@ -94,23 +94,25 @@ function categoryClear(e){
               <button id='cleanButton' className='cleanButton' onClick={categoryClear}>Limpiar filtro</button>
               : null }
           </div>
-          
             <div className="books">
-              {librosIniciales.map((e, index) => (
-                <Producto
-                  key={index + 1}
-                  titulo={e.titulo}
-                  img={e.img}
-                  autor={e.autor}
-                  precio={e.precio}
-                  id={e._id}
-                />
-              ))}
+              {!filteredAllBooks.length ? <p className="failSearch">no se encontraron coincidencias... :C </p> :(
+                librosIniciales.map((e, index) => (
+                  <Producto
+                    key={index + 1}
+                    titulo={e.titulo}
+                    img={e.img}
+                    autor={e.autor}
+                    precio={e.precio}
+                    id={e._id}
+                />)
+                ))
+              }
             </div>
+            
             <div className="btn_page">{numeroPagina.map(e=> {
               return (<button className={currentPage / 20 === e ? "btn_number_default": "btn_number"} value={e} onClick={numberPage}>{e+1}</button>)
             })}   
-           </div>
+          </div>
           </div>
         </div>
       );

@@ -157,3 +157,11 @@ position: absolute;
   color: white;
   font-weight: bold;
 }
+
+.failSearch{
+  color: grey;
+  
+  font-size: 100px;
+  font-weight: bold;
+  margin-left: 50%;
+}
