@@ -24,12 +24,14 @@ export default function Cart() {
                         <p>Unidades: {e.count}</p>
                         <div>
                             <button className='cartsButton' onClick={()=> dispatch(addCart(e._id))}><IoMdAddCircleOutline /></button>    
-                            <button className='cartsButton' onClick={()=> dispatch(removeOneCart(e._id))}><IoMdRemoveCircleOutline /></button>
+                            <button className='cartsButton' onClick={()=> dispatch(removeOneCart(e._id,e.count))}><IoMdRemoveCircleOutline /></button>
                         </div>                  
                     </div>)
                 })
+                } {
+
                 }
-                <button className='cartsButton' onClick={()=> dispatch(clearCart())}><IoMdTrash/></button>
+                <button className='cartsButton' onClick={()=> dispatch(clearCart(arrayCart))}><IoMdTrash/></button>
             </div>)
             } 
             {

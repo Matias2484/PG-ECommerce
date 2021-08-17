@@ -172,10 +172,7 @@ function rootReducer(state = initialState, action) {
             }
 
             case ADD_CART:
-                if(state.cart.length>1) {
-                    var book= state.cart.findIndex(e=>e._id===action.payload._id)
-                    book && state.cart[book].count++
-                }
+
                 const addCart= localStore(action.payload,'add')
                 return{
                     ...state,
