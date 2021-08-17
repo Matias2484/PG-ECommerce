@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks, getGenders, orderBooks,searchByName, seeCart} from "../../Actions/index";
+import { getAllBooks, getGenders, orderBooks,searchByName} from "../../Actions/index";
 import './navBar.css'
 import {MdMenu, MdShoppingCart, MdAccountCircle} from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
@@ -18,10 +18,8 @@ export default function NavBar() {
     const carts = useSelector((state)=>state.cart)
 
     useEffect(() => {
-
         dispatch(getAllBooks())
         dispatch(getGenders())
-
     },[dispatch])
 
     let leftBarState = false;

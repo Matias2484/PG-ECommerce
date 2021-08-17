@@ -28,8 +28,6 @@ export default function Form ({state, genderAll, handleChange, handleSubmit, han
                 onChange={(e)=>handleGenders(e)}
                 />
             </div> 
-            <p>Descripcion</p>
-            <textarea type='text' minLength='20' required autoComplete='off' name='descripcion' value={state.descripcion} onChange={(e)=>handleChange(e)}/>
             <div className='tercero_form'>
                 <p>Descripcion</p>
                 <textarea className='inputsFom' type='text' minLength='20' required autoComplete='off' name='descripcion' value={state.descripcion} onChange={(e)=>handleChange(e)}/>

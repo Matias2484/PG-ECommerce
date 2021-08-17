@@ -2,27 +2,28 @@ import './details.css';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router";
-import { getDetails,url,addCart,createBook } from '../../Actions';
+import { getDetails, url, addCart, editBook} from '../../Actions';
 
 export default function Details() {
-
     const dispatch = useDispatch();
     const details = useSelector((state) => state.details);
     const { id } = useParams();
-
     useEffect(() => {
         dispatch(getDetails(id));
         dispatch(url(window.location.href))
     }, [dispatch, id]);
 
-    let { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio } = details;
-   
+    const { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio, } = details;
+    useEffect(() => {
+        dispatch( getDetails(id))
+     }, [stock])
     if(titulo) {
         
     return (
         <div className='details'>
         <div className="detalles_izq">
         <img className="imagen_detail" src={img} alt={`imagen de portada del libro: ${titulo}`} />
+        
         <h3 className="autor_detail">{autor}</h3>
         <div className="detail_info">
         <div>
@@ -37,16 +38,16 @@ export default function Details() {
         <p >Paginas: </p>
         <p className="detail_texto">{paginas}</p>
         </div>
-       <div>
-       <p>Publicación:</p>
+    <div>
+    <p>Publicación:</p>
         <p className="detail_texto">{fecha.substring(0, 10)}</p>
-       </div> 
+    </div> 
     </div>
- </div>
+</div>
 
         <div className="contenido_details">
             <div className="comprar">
-            <button className="comprar_detail">Comprar</button>
+            <button className="comprar_detail" onClick={()=>dispatch(addCart(id))}>Comprar</button>
             <p className="comprar_carrito">Agregar a la Cesta</p>
             </div>
         
@@ -66,6 +67,7 @@ export default function Details() {
         <div className='descripcion'>
             <p className="descripcion_titulo">Reseña del Libro</p>
             <p className="descripcion_contenido">{descripcion}</p>
+            <button onClick={()=> dispatch(editBook(id))}></button>{/* agregar estilo para que renderice el boton */}
         </div>
         
         </div>
@@ -73,7 +75,6 @@ export default function Details() {
     )
 } else {
     return <h1>cargando</h1>
-   
 }
 }
 
