@@ -1,9 +1,7 @@
 import React,{useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from "react-router-dom";
-
 import {createBook, createGender} from '../../Actions/index'
-
 import Form from '../form/form'
 
 
@@ -60,7 +58,8 @@ export default function CreateProducto(){
         arrGender.forEach(element => {
             if (genderAll.indexOf(element.value) === -1)dispatch(createGender(element.value))
         });
-        dispatch(createBook({...state,generos:arrGender}))
+        const generosValue= arrGender.map(e=>e.value)
+        dispatch(createBook({...state,generos:generosValue}))
         setstate({
             titulo:'',
             autor:'',

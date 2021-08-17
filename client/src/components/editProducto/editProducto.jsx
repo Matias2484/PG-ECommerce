@@ -1,10 +1,8 @@
-import React,{useState} from 'react';
+import {editBook, createGender} from '../../Actions/index'
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from "react-router-dom";
-
-import {editBook, createGender} from '../../Actions/index'
-
-import Form from '../Form/Form.jsx'
+import React,{useState} from 'react';
+import Form from '../form/form.jsx'
 
 
 export default function EditProduct (){
@@ -64,7 +62,8 @@ export default function EditProduct (){
         arrGender.forEach(element => {
             if (genderAll.indexOf(element.value) === -1)dispatch(createGender(element.value))
         });
-        dispatch(editBook({...state,generos:arrGender}))
+        const generosValue= arrGender.map(e=>e.value)
+        dispatch(editBook({...state,generos:generosValue}))
         setstate({
             titulo:'',
             autor:'',
@@ -79,6 +78,6 @@ export default function EditProduct (){
     };
 
     return (
-        <Form genderAll={genderAll} state={state} arrGender={arrGender}  handleGenders={handleGenders} handleChange={handleChange} handleSubmit={handleSubmit} processImage={processImage} />
+        <Form genderAll={genderAll} state={state}   handleGenders={handleGenders} handleChange={handleChange} handleSubmit={handleSubmit} processImage={processImage} />
     )
 }

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {useHistory} from 'react-router-dom'
 import {IoMdRemoveCircleOutline, IoMdAddCircleOutline, IoIosCloseCircle } from "react-icons/io";
 import swal from 'sweetalert';
-
 import {addCart,removeAllCart, clearCart, removeOneCart} from '../../Actions/index'
 
 

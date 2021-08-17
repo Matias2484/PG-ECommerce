@@ -6,7 +6,7 @@ import './App.css';
 import React from 'react';
 import CreateProducto from './components/createProducto/createProducto'
 import checkCart from './components/checkCart/checkCart'
-
+import EditProduct from './components/editProducto/editProducto'
 
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
       <Route path='/details/:id' component = {Details} />
       <Route path= '/add' component={CreateProducto} />
       <Route path= '/check' component={checkCart} />
+      <Route path= '/edit' component={EditProduct} />
     </div>
   );
 }

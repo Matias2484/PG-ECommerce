@@ -176,6 +176,7 @@ function rootReducer(state = initialState, action) {
                     var book= state.cart.findIndex(e=>e._id===action.payload._id)
                     book && state.cart[book].count++
                 }
+                const addCart= localStore(action.payload,'add')
                 return{
                     ...state,
                     cart: addCart

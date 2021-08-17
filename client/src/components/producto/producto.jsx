@@ -1,7 +1,9 @@
 import React from "react";
 import "./producto.css";
 import { Link } from "react-router-dom";
+
 export default function Producto({ titulo, autor, img, precio, id }) {
+  
   return (
     <div className="libro">
       <div className="producto">
@@ -19,7 +21,9 @@ export default function Producto({ titulo, autor, img, precio, id }) {
         <div>
           <p className="precio"><span className="peso">$:</span> {precio}</p>
         </div>
+        <Link to='/edit'>Edit</Link>
       </div>
+      
     </div>
   );
 }

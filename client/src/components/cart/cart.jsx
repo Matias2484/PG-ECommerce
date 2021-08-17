@@ -34,7 +34,7 @@ export default function Cart() {
             } 
             {
                 arrayCart.length===0 && (<div><p>Tu carrito está vacío</p>
-                   <p>¿No sabés qué comprar? ¡Miles de libros te esperan!</p> 
+                <p>¿No sabés qué comprar? ¡Miles de libros te esperan!</p> 
                 </div>)
             }           
         </div>
