@@ -10,7 +10,7 @@ import undraw from "../../img/undraw.svg"
 export function Home () {
     const dispatch = useDispatch()
     const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
-     useSelector((state) => state.forRender); 
+    useSelector((state) => state.forRender); 
     const genders = useSelector((state) => state.genders);
     const allBooks = useSelector((state) => state.allBooks);
 
@@ -25,20 +25,20 @@ export function Home () {
 //Paginas
 var numeroPagina = []
 var numerosPaginas = Math.round(filteredAllBooks.length / 20)
-for (let i = 1; i <= numerosPaginas; i++) {
+for (let i = 0; i < numerosPaginas; i++) {
   numeroPagina.push(i)
 }
 const numberPage = (e) => {
-  setCurrentPage(e.target.value)
-  e.preventDefault()
-  
+  setCurrentPage(Number(e.target.value) * 20);
+  e.preventDefault();
 }
 
 
-
+  
   const [currentPage, setCurrentPage] = useState(0);
   var librosIniciales =  filteredAllBooks.slice(currentPage, currentPage + 20)
- 
+  
+
   const nextPage = () => {
     setCurrentPage(currentPage + 20);
   };
@@ -107,7 +107,7 @@ function categoryClear(e){
               ))}
             </div>
             <div className="btn_page">{numeroPagina.map(e=> {
-              return (<button className="btn_number" value={e} onClick={numberPage}>{e}</button>)
+              return (<button className={currentPage / 20 === e ? "btn_number_default": "btn_number"} value={e} onClick={numberPage}>{e+1}</button>)
             })}   
            </div>
           </div>

@@ -21,6 +21,7 @@
 }
 
 .botonNext {
+  margin-top: 3rem;
   width: 2rem;
   height: 2.5rem;
   top: 3rem;
@@ -30,11 +31,12 @@
  
 }
 .botonPrev {
+  margin-top: 3rem;
   width: 2rem;
   height: 2.5rem;
   margin-right: 2rem;
   top: 3rem;
-  right: 15px;
+  right: 25px;
   position: absolute;
   
 }
@@ -136,6 +138,21 @@ position: absolute;
   font-weight: bold;
 }
 .btn_number:focus {
+  background-color: rgb(250, 220, 164);
+  color: white;
+  font-weight: bold;
+}
+
+.btn_number_default {
+  font-size: 1rem;
+  width: 2rem;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(233, 233, 233);
+  font-weight: bold;
   background-color: rgb(250, 220, 164);
   color: white;
   font-weight: bold;
