@@ -1,14 +1,8 @@
 const { Router } = require("express");
 /* const { dbConnection } = require("../configDB/config"); */
-
-
 const router = Router();
-
 const Usuario = 'ira el usuario al crearlo'
 const Producto= require("../models/Producto");
-
-
-
 //-----guarda la compra ya hecha en el usuario
 router.post('/',async (req,res)=>{
     const cart = req.body
@@ -17,7 +11,6 @@ router.post('/',async (req,res)=>{
     
     res.send({ok:true})
 });
-
 //------busca el libro, cambia el stock y lo envia al front para el carrito
 router.get('/:idProducto',async (req,res)=>{
     const {idProducto}= req.params
@@ -27,6 +20,5 @@ router.get('/:idProducto',async (req,res)=>{
 
     res.send(book)
 })
-
 
 module.exports = router;
