@@ -57,6 +57,7 @@ export default function CreateProducto(){
 //------aca se revisa si en el estado de los generos hay alguno distinto al array de generos anterior para despachar la creacion
         arrGender.forEach(element => {
             if (genderAll.indexOf(element.value) === -1)dispatch(createGender(element.value))
+            console.log(element.value);
         });
         const generosValue= arrGender.map(e=>e.value)
         dispatch(createBook({...state,generos:generosValue}))
@@ -72,6 +73,7 @@ export default function CreateProducto(){
         })    
         history.push('/')
     };
+  
 
     return (
         <Form genderAll={genderAll} state={state} arrGender={arrGender}  handleGenders={handleGenders} handleChange={handleChange} handleSubmit={handleSubmit} processImage={processImage} />

@@ -101,7 +101,7 @@ export function createGender(payload) {
       body: JSON.stringify(payload),
     });
     const res = await gender.json();
-    return dispatch({ type: "CREATE_GENDER", payload: res });
+    return dispatch({ type: CREATE_GENDER, payload: res });
   };
 }
 
@@ -143,10 +143,11 @@ export function orderBooks(orden ) {
 }
 
 export function removeOneCart(id){
-  return {
-    type : REMOVE_ONE_CART,
-    payload:id
-  }
+  return async function (dispatch){
+    var removeOne= await fetch(`http://localhost:4000/cart/removeOne/${id}`);
+    removeOne= await removeOne.json();
+    return dispatch({type:REMOVE_ONE_CART, payload:removeOne})
+  };
 }
 export function removeAllCart(id){
   return {
