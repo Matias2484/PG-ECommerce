@@ -13,7 +13,7 @@ export default function Details() {
         dispatch(url(window.location.href))
     }, [dispatch, id]);
 
-    const { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio, } = details;
+    const { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio, _id } = details;
     useEffect(() => {
         dispatch(getDetails(id));
     }, [details,dispatch,id])
@@ -69,7 +69,7 @@ export default function Details() {
         <div className='descripcion'>
             <p className="descripcion_titulo">Reseña del Libro</p>
             <p className="descripcion_contenido">{descripcion}</p>
-            <Link to='/edit'>Edit</Link>
+            <Link to={`/edit/${_id}`}>Edit</Link>
         </div>
         
         </div>

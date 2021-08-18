@@ -17,7 +17,7 @@ function App() {
       <Route path='/details/:id' component = {Details} />
       <Route path= '/add' component={CreateProducto} />
       <Route path= '/check' component={checkCart} />
-      <Route path= '/edit' component={EditProduct} />
+      <Route path= '/edit/:id' component={EditProduct} />
     </div>
   );
 }

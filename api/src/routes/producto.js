@@ -7,7 +7,6 @@ const router = Router();
 
 
 
-
 router.get("/", async (req, res) => {
   var books = await Producto.find({},{"editorial":0, "descripcion":0,"fecha":0, "paginas":0,"idioma":0});
   res.status(200).json(books);
@@ -37,7 +36,7 @@ router.post("/", async (req, res) => {
 router.put('/edit/:id',async (req,res)=>{
   const {id}=req.params
   const update= req.body
-  const editBook= await Producto.findByIdAndUpdate(id,update); 
+  const editBook= await Producto.findByIdAndUpdate(id,update, {new:true}); 
   res.status(201).send(editBook);
 })
 

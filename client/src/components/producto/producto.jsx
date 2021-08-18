@@ -20,9 +20,14 @@ export default function Producto({ titulo, autor, img, precio, id, stock }) {
         </div>
         {stock !== 0? <div>
           <p className="precio"><span className="peso">$:</span> {precio}</p>
+
+       
+      
+
         </div>:<div className="vacio">No hay unidades disponibles</div>}
         
       </div> 
+
     </div>
   );
 }
