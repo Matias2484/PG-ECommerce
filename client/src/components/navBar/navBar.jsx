@@ -70,6 +70,7 @@ export default function NavBar() {
       const handleChange = e =>{
         setBusqueda(e.target.value)
         dispatch(searchByName(e.target.value));
+        
       }
 
   
@@ -79,6 +80,7 @@ export default function NavBar() {
     <div className='mainNavBar'>
       {url === "http://localhost:3000/" ? (
         <div>
+         
         <button id='leftNavBarButton' onClick={ leftBarFunction }>
             <MdMenu className="icono_nav"/>
         </button>
@@ -115,7 +117,8 @@ export default function NavBar() {
         
         <div className="searchBar">
         <BiSearchAlt className="search-btn"/>
-        <input className="search-input" type="text" placeholder="Buscar" 
+        <input className="search-input" type="text" placeholder="Buscar"
+        autoComplete="on"
         value={busqueda}
         onChange={handleChange}/>
         </div>
