@@ -7,6 +7,7 @@ import {MdMenu, MdShoppingCart, MdAccountCircle} from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
 import { NavLink } from "react-router-dom"; 
 import Cart from '../cart/cart'
+import {userLoginForm ,adminLoginForm} from "../loginForm/loginForms";
 
 
 
@@ -33,7 +34,6 @@ export default function NavBar() {
     let rightBarState = false
     function rightBarFunction(){
       let rightNavBar = document.getElementById('rightNavBar');
-      
       <Cart/>
       if( rightBarState ){
         
@@ -43,6 +43,17 @@ export default function NavBar() {
         
         rightNavBar.style.top = '0px';
         rightBarState = true;
+      }
+    }
+    let loginBarState = false
+    function loginBarFunction(){
+      let loginNavBar = document.getElementById('loginNavBar');
+      if( loginBarState ){
+        loginNavBar.style.top = '-100vh';
+        loginBarState = false;
+      }else{
+        loginNavBar.style.top = '0px';
+        loginBarState = true;
       }
     }
     
@@ -123,11 +134,18 @@ export default function NavBar() {
         <div style={{marginLeft:'10%'}}>
           <NavLink to='/add' style={{textDecoration:'none'}}><h3 className="search">Agregar Libro</h3></NavLink>
         </div>
-            
-        <div className="icono_Usuario">
-        <MdAccountCircle/>
-        </div>
         
+          <div className="icono_Usuario">
+          <div id='loginNavBarbutton' className="loginNavBarbutton" onClick={ loginBarFunction }>
+          <MdAccountCircle/>
+          <div id ="loginNavBar">
+            <button className="userLoginButton" onClick={userLoginForm}>Ingresar como usuario</button>
+            <button className="adminLoginButton" onClick={adminLoginForm}>Ingresar como admin</button>
+            {/* falta el button para el registro */}
+            </div>
+          </div>
+        </div>
+      
         </div>
             <div id='rightNavBarButton' className="rightNavBarButton" onClick={ rightBarFunction }>
             <MdShoppingCart className="icono_nav_der"/> <span className="numero_icono">{Object.values(carts).length}</span>
@@ -137,7 +155,7 @@ export default function NavBar() {
             <Cart/>
             </div>
         </div>
-  
+      
     </div> 
   );
 }
