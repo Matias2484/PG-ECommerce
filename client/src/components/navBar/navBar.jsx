@@ -7,7 +7,7 @@ import {MdMenu, MdShoppingCart, MdAccountCircle} from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
 import { NavLink } from "react-router-dom"; 
 import Cart from '../cart/cart'
-import {userLoginForm ,adminLoginForm} from "../loginForm/loginForms";
+import {userLoginForm } from "../loginForm/loginForms";
 
 
 
@@ -140,7 +140,6 @@ export default function NavBar() {
           <MdAccountCircle/>
           <div id ="loginNavBar">
             <button className="userLoginButton" onClick={userLoginForm}>Ingresar como usuario</button>
-            <button className="adminLoginButton" onClick={adminLoginForm}>Ingresar como admin</button>
             {/* falta el button para el registro */}
             </div>
           </div>
