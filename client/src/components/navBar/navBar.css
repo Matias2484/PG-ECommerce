@@ -38,6 +38,44 @@
     top: -100vh;
     transition: all 0.5s ease-in-out;
   }
+
+  #loginNavBar{
+    align-items: center;
+    width: 400px;
+    display: flex;
+    height: 100vh;
+    background-color: #f8f7f7;
+    opacity: 0.85;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    z-index: 8;
+    right: 0px;
+    top: -100vh;
+    transition: all 0.5s ease-in-out;
+  }
+  .userLoginButton{
+      border: none;
+      width: 10rem;
+      padding: 0.7rem;
+      border-radius: 5px;
+      background-color: sandybrown;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+  }
+
+  .adminLoginButton{
+      border: none;
+      width: 10rem;
+      padding: 0.7rem;
+      border-radius: 5px;
+      background-color: sandybrown;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+  }
+
   #leftNavBarButton{
     position: absolute;
     z-index: 9;
@@ -73,8 +111,6 @@
 
 .titulo_principal {
     margin-left: 5rem;
-    margin-top: 0.5rem;
-     
 }
 .titulo_b {
   text-decoration: none;
@@ -88,10 +124,19 @@
     font-size: 1.5rem;
     margin-left: 3px;
 }
+.login-btn{
+  position: absolute;
+    right: 2rem;
+    font-size: 3rem;
+    background-color: transparent;
+    border: none;
+}
+
 .icono_Usuario {
     position: absolute;
     right: 2rem;
     font-size: 3rem;
+    
 }
 
 .searchBar {
