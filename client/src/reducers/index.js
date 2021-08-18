@@ -159,6 +159,7 @@ function rootReducer(state = initialState, action) {
             } break
 
         case CREATE_GENDER:
+            console.log(action.payload)
             return{
                 ...state,
                 genders:[action.payload, ...state.genders]

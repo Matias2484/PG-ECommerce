@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from "react-router-dom";
 import React,{useState} from 'react';
 import Form from '../form/form.jsx'
+import { useParams } from "react-router";
 
 
 export default function EditProduct (){
@@ -13,9 +14,10 @@ export default function EditProduct (){
     const genderAll= useSelector(state=>state.genders)
     const bookDetail= useSelector(state=>state.details)
 
-    
+    const { id } = useParams();
 
- const {titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, precio, stock}=bookDetail
+ const {titulo, autor, editorial, descripcion, fecha, paginas, img, idioma, precio, stock}=bookDetail
+
 //-----empieza con el form con los datos del obj para que edite solo los que quiera
     const [state, setstate] = useState({
         titulo,
@@ -24,14 +26,13 @@ export default function EditProduct (){
         descripcion, 
         fecha:fecha.split('T')[0],
         paginas, 
-        generos:'',
         img,
         idioma,
         precio,
         stock
     });
 //-----estado para colocar los multiples generos
-    const [arrGender, setArrGender]= useState(generos)
+    const [arrGender, setArrGender]= useState([])
 //-----array para colocar los multiples generos
 
 //------modifica el estado principal
@@ -59,11 +60,13 @@ export default function EditProduct (){
     function handleSubmit(e){
         e.preventDefault();
 //------aca se revisa si en el estado de los generos hay alguno distinto al array de generos anterior para despachar la creacion
-        arrGender.forEach(element => {
-            if (genderAll.indexOf(element.value) === -1)dispatch(createGender(element.value))
+        arrGender.forEach(e => {
+            if (genderAll.indexOf(e.value) === -1){
+                return dispatch(createGender({genero:e.value}))
+            }
         });
         const generosValue= arrGender.map(e=>e.value)
-        dispatch(editBook({...state,generos:generosValue}))
+        dispatch(editBook({...state,generos:generosValue},id))
         setstate({
             titulo:'',
             autor:'',

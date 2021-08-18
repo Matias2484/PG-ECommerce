@@ -21,7 +21,6 @@ export default function Producto({ titulo, autor, img, precio, id }) {
         <div>
           <p className="precio"><span className="peso">$:</span> {precio}</p>
         </div>
-        <Link to='/edit'>Edit</Link>
       </div>
       
     </div>
