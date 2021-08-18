@@ -101,7 +101,7 @@ export function createGender(payload) {
       body: JSON.stringify(payload),
     });
     const res = await gender.json();
-    return dispatch({ type: "CREATE_GENDER", payload: res });
+    return dispatch({ type: CREATE_GENDER, payload: res });
   };
 }
 

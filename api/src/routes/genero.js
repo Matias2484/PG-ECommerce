@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 
 
 
+
 router.get('/', async (req,res)=>{
   const resp= await Genero.find({},{"genero":1,"_id":0})    
 
@@ -25,7 +26,7 @@ router.post("/", async (req, res) => { /* add agregar */
 
   /* mongoose.connection.close(); */
 
-  res.json(newGenero);
+  res.json(newGenero.genero);
 
 });
 
@@ -34,7 +35,6 @@ router.delete('/', async (req, res)=>{
 
   await Genero.findOneAndDelete({genero})
   await Producto.updateMany({"generos":genero},{$pull:{"generos":genero}})
-
   res.status(200).send({ok:true})
 
 })

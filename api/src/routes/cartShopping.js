@@ -7,8 +7,8 @@ const Producto= require("../models/Producto");
 //-----guarda la compra ya hecha en el usuario
 router.post('/',async (req,res)=>{
     const cart = req.body
-    const idUser='lo resivo por JSON WEB TOKEN'
-    await Usuario.findByIdAndUpdate({"_id":idUser},{$push:{"shopping": cart}})
+    const id=req.uid
+    await Usuario.findByIdAndUpdate(id, {$push:{"shopping": cart}})
     
     res.send({ok:true})
 });

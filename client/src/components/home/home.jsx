@@ -9,10 +9,10 @@ import undraw from "../../img/undraw.svg"
 
 export function Home () {
     const dispatch = useDispatch()
-    const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
+    const filteredAllBooks = useSelector((state) => state.filteredAllBooks.reverse());
     useSelector((state) => state.forRender); 
     const genders = useSelector((state) => state.genders);
-    const allBooks = useSelector((state) => state.allBooks);
+    const allBooks = useSelector((state) => state.allBooks.reverse());
 
     const [filter, setFilter] = useState([]);
 
@@ -25,7 +25,7 @@ export function Home () {
 
 //Paginas
 var numeroPagina = []
-var numerosPaginas = Math.round(filteredAllBooks.length / 20)
+var numerosPaginas = Math.ceil(filteredAllBooks.length / 20)
 for (let i = 0; i < numerosPaginas; i++) {
   numeroPagina.push(i)
 }
@@ -104,6 +104,7 @@ function categoryClear(e){
                     autor={e.autor}
                     precio={e.precio}
                     id={e._id}
+                    stock={e.stock}
                 />)
                 ))
               }
