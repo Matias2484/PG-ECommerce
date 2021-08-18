@@ -51,6 +51,7 @@
  font-weight: 500;
  padding-right: 1rem;
  margin-top: 1rem;
+ width: 60rem;
 }
 .autor_detail_der {
  text-align: left;
@@ -144,4 +145,9 @@
    margin-top: 2rem;
    color: #413e3e;
    font-weight: bold;
+}
+
+.vacio_detail {
+    display: none;
+    
 }

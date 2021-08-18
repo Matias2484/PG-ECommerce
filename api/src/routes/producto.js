@@ -8,7 +8,7 @@ const router = Router();
 
 
 router.get("/", async (req, res) => {
-  var books = await Producto.find({},{"editorial":0, "descripcion":0,"fecha":0, "paginas":0,"idioma":0,"stock":0});
+  var books = await Producto.find({},{"editorial":0, "descripcion":0,"fecha":0, "paginas":0,"idioma":0});
   res.status(200).json(books);
 });
 

@@ -9,10 +9,10 @@ import undraw from "../../img/undraw.svg"
 
 export function Home () {
     const dispatch = useDispatch()
-    const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
+    const filteredAllBooks = useSelector((state) => state.filteredAllBooks.reverse());
     useSelector((state) => state.forRender); 
     const genders = useSelector((state) => state.genders);
-    const allBooks = useSelector((state) => state.allBooks);
+    const allBooks = useSelector((state) => state.allBooks.reverse());
 
     const [filter, setFilter] = useState([]);
 
@@ -25,7 +25,7 @@ export function Home () {
 
 //Paginas
 var numeroPagina = []
-var numerosPaginas = Math.round(filteredAllBooks.length / 20)
+var numerosPaginas = Math.ceil(filteredAllBooks.length / 20)
 for (let i = 0; i < numerosPaginas; i++) {
   numeroPagina.push(i)
 }
@@ -94,23 +94,26 @@ function categoryClear(e){
               <button id='cleanButton' className='cleanButton' onClick={categoryClear}>Limpiar filtro</button>
               : null }
           </div>
-          
             <div className="books">
-              {librosIniciales.map((e, index) => (
-                <Producto
-                  key={index + 1}
-                  titulo={e.titulo}
-                  img={e.img}
-                  autor={e.autor}
-                  precio={e.precio}
-                  id={e._id}
-                />
-              ))}
+              {!filteredAllBooks.length ? <p className="failSearch">no se encontraron coincidencias... :C </p> :(
+                librosIniciales.map((e, index) => (
+                  <Producto
+                    key={index + 1}
+                    titulo={e.titulo}
+                    img={e.img}
+                    autor={e.autor}
+                    precio={e.precio}
+                    id={e._id}
+                    stock={e.stock}
+                />)
+                ))
+              }
             </div>
+            
             <div className="btn_page">{numeroPagina.map(e=> {
               return (<button key={e} className={currentPage / 20 === e ? "btn_number_default": "btn_number"} value={e} onClick={numberPage}>{e+1}</button>)
             })}   
-           </div>
+          </div>
           </div>
         </div>
       );

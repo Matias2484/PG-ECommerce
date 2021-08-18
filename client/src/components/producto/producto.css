@@ -1,7 +1,3 @@
-
-
-
-
 .libro {
   width: 15rem;
   height: 24rem;
@@ -40,3 +36,10 @@
 .peso {
   color: #FD9727;
 }
+.vacio {
+  color: red;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+
