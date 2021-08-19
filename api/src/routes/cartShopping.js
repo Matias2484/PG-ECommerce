@@ -1,14 +1,16 @@
 const { Router } = require("express");
 /* const { dbConnection } = require("../configDB/config"); */
 const router = Router();
-const Usuario = 'ira el usuario al crearlo'
+const Usuario = require ("../models/Usuario")
 const Producto= require("../models/Producto");
+const {validarJWT} = require ("../middleware/validarJWT")
+
 
 //-----guarda la compra ya hecha en el usuario
-router.post('/',async (req,res)=>{
+router.post('/', validarJWT, async (req,res)=>{
     const cart = req.body
     const id=req.uid
-    await Usuario.findByIdAndUpdate(id, {$push:{"shopping": cart}})
+    await Usuario.findByIdAndUpdate(id, {$push:{"historialDeCompras": cart}})
     
     res.send({ok:true})
 });
