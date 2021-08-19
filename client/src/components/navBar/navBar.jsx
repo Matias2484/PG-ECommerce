@@ -7,7 +7,7 @@ import {MdMenu, MdShoppingCart, MdAccountCircle} from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
 import { NavLink } from "react-router-dom"; 
 import Cart from '../cart/cart'
-import {userLoginForm } from "../loginForm/loginForms";
+import LoginForms  from "../loginForm/loginForms.jsx"; 
 
 
 
@@ -59,39 +59,37 @@ export default function NavBar() {
     
 
       //Ordenado
-
-      
   const [state, setState] = useState([]);
   const selectOptionOrder = (e) => {
     setState({ ...state, [e.target.id]: e.target.value });
-  };
-
-  
+  };  
   useEffect(() => {
           dispatch(orderBooks(state.select, orderAllBooks))
          // eslint-disable-next-line
       }, [state.select])
-
       //busqueda
-      
-
       const[busqueda, setBusqueda] = useState("")
-
-
       const handleChange = e =>{
-        setBusqueda(e.target.value)
+        setBusqueda(e.target.value);
         dispatch(searchByName(e.target.value));
-        
       }
-
-  
+      
+      //POP-UP DE LOGIN
+      const[isOpenModal, setIsOpenModal] = useState(false);
+      const openModal = () => {
+        setIsOpenModal(true)
+      }
+      
+      const closeModal = () => {
+        setIsOpenModal(false)
+      }
   return (
   <div className="nav_principal">
     <div>
     <div className='mainNavBar'>
       {url === "http://localhost:3000/" ? (
         <div>
-         
+        
         <button id='leftNavBarButton' onClick={ leftBarFunction }>
             <MdMenu className="icono_nav"/>
         </button>
@@ -141,17 +139,26 @@ export default function NavBar() {
           <div className="icono_Usuario">
           <div id='loginNavBarbutton' className="loginNavBarbutton" onClick={ loginBarFunction }>
           <MdAccountCircle/>
-          <div id ="loginNavBar">
-            <button className="userLoginButton" onClick={userLoginForm}>Ingresar como usuario</button>
-            {/* falta el button para el registro */}
-            </div>
           </div>
+          <div id ="loginNavBar">
+            <button onClick={openModal} className="userLoginButton">Accede!</button>
+            <LoginForms 
+            isOpen = {isOpenModal}
+            closeModal = {closeModal}
+            />
+
+
+            <button className="userLoginButton">Resgistrate!</button>
+            
+            </div>
+          
+          
+
         </div>
       
         </div>
             <div id='rightNavBarButton' className="rightNavBarButton" onClick={ rightBarFunction }>
             <MdShoppingCart className="icono_nav_der"/> <span className="numero_icono">{Object.values(carts).length}</span>
-  
             </div>           
             <div id ="rightNavBar">
             <Cart/>
