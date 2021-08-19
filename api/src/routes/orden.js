@@ -9,7 +9,11 @@ router.post('/', async (req,res)=>{
     orden.user=req.uid
     await orden.save();
     res.send(orden)
-    
 });
+
+router.get('/', async (req,res)=>{
+    const history= await Orden.find({})
+    res.send(history)
+})
 
 module.exports = router;
