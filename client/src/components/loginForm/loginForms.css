@@ -1,0 +1,55 @@
+.modal{
+    background-color: rgba(161, 159, 159);
+    display: none;
+    width: 4em;
+    margin: 0;
+}
+.modal-open{
+    display:grid;
+    
+}
+.modal_dialog{
+    align-items:center ;
+}
+.loginUser{
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+}
+
+.loginPass{
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+}
+.close {
+    position: relative;
+    float: right;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+    margin-left: 81%;
+    background-color: rgba(219, 93, 74, 0.5);
+    
+    }
+    .close:hover {
+        opacity: 1;
+    }
+    .close:before .close:after {
+        position: relative;
+        float: right;
+        content: ' ';
+        height: 33px;
+        width: 2px;
+        background-color: #333;
+    }
+    
+    .logginBtn{
+        border: none;
+        width: 10rem;
+        padding: 1rem;
+        border-radius: 5px;
+        background-color: sandybrown;
+        color: white;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
