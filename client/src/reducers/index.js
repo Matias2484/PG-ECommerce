@@ -180,20 +180,20 @@ function rootReducer(state = initialState, action) {
                     cart: addCart
                 }
 
-                case REMOVE_ONE_CART:
+            case REMOVE_ONE_CART:
                     const removeOneCart=localStore(action.payload, 'subtract')
                     return{
                         ...state,
                         cart:removeOneCart
                     }
 
-                    case REMOVE_ALL_CART:
+            case REMOVE_ALL_CART:
                         const removeAllCart = localStore( action.payload, 'delete')
                         return{
                             ...state,
                             cart: removeAllCart
                         }
-                    case SEE_CART:
+            case SEE_CART:
                         const seeCart = localStore('see','see')
         
                         return{

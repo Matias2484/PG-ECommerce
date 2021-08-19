@@ -48,8 +48,8 @@ export default function Details() {
 
         <div className="contenido_details">
             <div className="comprar">
-            <button className={stock=== 0? "vacio_detail": "comprar_detail"} onClick={()=>dispatch(addCart(id))}>Comprar</button>
-            <p className={stock=== 0? "vacio_detail": "comprar_carrito"}>Agregar a la Cesta</p>
+            <button className={stock<= 0? "vacio_detail": "comprar_detail"} onClick={()=>dispatch(addCart(id))}>Comprar</button>
+            <p className={stock<= 0? "vacio_detail": "comprar_carrito"}>Agregar a la Cesta</p>
             </div>
         
         <h2 className="titulo_detail">{titulo}</h2>
@@ -64,7 +64,7 @@ export default function Details() {
         </div>
         <div className='stock'>
             
-            <p className={stock=== 0? "stock_vacio": "stock_unidad"}>{stock===0? "No hay unidades disponibles":`Quedan ${stock} unidades`}</p>
+            <p className={stock<= 0? "stock_vacio": "stock_unidad"}>{stock<=0? "No hay unidades disponibles":`Quedan ${stock} unidades`}</p>
         </div>
         <div className='descripcion'>
             <p className="descripcion_titulo">Reseña del Libro</p>
