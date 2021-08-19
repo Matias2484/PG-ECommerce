@@ -10,7 +10,7 @@ export default function Form ({state, genderAll, handleChange, handleSubmit, han
         <form onSubmit={(e)=>handleSubmit(e)} className='form'>
         <div className='cuerpo_form'>
             <div className='primer_form'>
-                <h1 className='titulo-form'>Register new book</h1>
+                <h1 className='titulo-form'>Registra un nuevo libro</h1>
                     <p>Titulo</p>
                     <input className='inputsFom' type='text' required  minLength='4' autoComplete='off' name='titulo' value={state.titulo} onChange={(e)=>handleChange(e)}/>
                     <p>Autor</p>

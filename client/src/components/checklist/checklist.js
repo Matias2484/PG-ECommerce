@@ -2,8 +2,9 @@ import './checklist.css';
 import React from 'react';
 
 export function CheckList({ items, id, type }){
-
+    
     return (
+       
         <fieldset className='checkList' id={id}>
             {items.map( item => {
                 return (
