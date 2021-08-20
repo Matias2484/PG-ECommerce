@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { getDetails, url, addCart,} from '../../Actions';
 import { Link } from 'react-router-dom';
 import ReviewForm from './review/reviewForm/reviewForm';
+import gif_carga from "../../img/libros_paginas.gif";
 
 export default function Details() {
     
@@ -76,7 +77,7 @@ export default function Details() {
             </div>
         )
     } else {
-        return <h1>cargando</h1>
+        return <img src={gif_carga} alt="Cargando..."/>
     }
 }
 
