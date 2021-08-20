@@ -1,0 +1,36 @@
+.openPop{
+    border: none;
+    width: 10rem;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: sandybrown;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+.closePop{
+    border: none;
+    width: 5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: rgb(244, 164, 96);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+.inputMail{
+    border-style: hidden;
+    margin-left: 50px;
+    background-color: rgb(134, 128, 128, 0.2);
+}
+.enviaPop{
+    border: none;
+    width: 5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: rgb(244, 164, 96);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 20px;
+}

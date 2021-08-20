@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import GoogleLogin from 'react-google-login';
-import userLogin from '../../Actions/index'
+import userLogin from '../../funciones/logIn'
 import {useDispatch} from 'react-redux';
-import LoginGithub  from 'react-github-login';
-import  './loginForms.css'
+import RecoverPass from '../recoverPass/recoverPass';
+import  './loginForms.css';
 
 
 export default function LoginForms  ({isOpen, closeModal,payload}){
@@ -13,20 +13,15 @@ export default function LoginForms  ({isOpen, closeModal,payload}){
             password:""
         });
         
-        
         //funcion envia datos al BK
         const handleSumbit =  async (e) => {
             e.preventDefault();
             const a =  await dispatch(userLogin(data))
             window.localStorage.setItem("token", a.token)
             console.log(a.token)
-            /* dispatch(userLogin(data)) */
-
-            
         }
 
         const handleChange = (e) =>{
-            
             setData({
                 ...data,
                 [e.target.name]: e.target.value
@@ -42,9 +37,6 @@ export default function LoginForms  ({isOpen, closeModal,payload}){
             const a = await dispatch(userLogin(login))
             window.localStorage.setItem("token", a.token)
         }
-        //loggin github
-        const onSuccess = response => console.log(response);
-        const onFailure = response => console.error(response);
         
 
 
@@ -69,11 +61,8 @@ export default function LoginForms  ({isOpen, closeModal,payload}){
                     cookiePolicy={'single_host_origin'}
                 />
 
-                {/* gitHub button */}
-                <LoginGithub clientId="ac56fad434a3a3c1561e"
-                onSuccess={onSuccess}
-                onFailure={onFailure}/>
-                
+                {/* recupera la contraseña gil */}
+                <RecoverPass/>
             </div>
         </div>
     );
