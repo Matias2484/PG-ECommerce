@@ -56,8 +56,8 @@ router.get('/historyShopping',validarJWTUser, async(req,res)=>{
 //-----recibe id de orden por params,para user
 router.get('/see/:id',validarJWTUser, (req,res)=>{
     const {idOrden}=req.params
-    const history= await Orden.findById(idOrden)
-                              .populate('productos.producto',['titulo','precio'])
+    const history= Orden.findById(idOrden)
+                            .populate('productos.producto',['titulo','precio'])
     res.send(history)
 })
 
