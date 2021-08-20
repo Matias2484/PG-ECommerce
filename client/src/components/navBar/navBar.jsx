@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBooks, getGenders, orderBooks,searchByName} from "../../Actions/index";
@@ -12,16 +11,20 @@ import LoginForms  from "../loginForm/loginForms.jsx";
 
 
 export default function NavBar() {
-    const dispatch = useDispatch()
+
+    const dispatch = useDispatch();
     const orderAllBooks = useSelector((state) => state.filteredAllBooks);
     const url = useSelector((state) => state.url);
-    const carts = useSelector((state)=>state.cart)
+    const carts = useSelector((state)=>state.cart);
+
     useEffect(() => {
         dispatch(getAllBooks())
         dispatch(getGenders())
     },[dispatch])
+
     let leftBarState = false;
     function leftBarFunction(){
+
       let leftNavBar = document.getElementById('leftNavBar');
       if( leftBarState ){
         leftNavBar.style.left = '-400px';
@@ -31,6 +34,7 @@ export default function NavBar() {
         leftBarState = true;
       }
     }
+
     let rightBarState = false
     function rightBarFunction(){
       let rightNavBar = document.getElementById('rightNavBar');
@@ -45,6 +49,7 @@ export default function NavBar() {
         rightBarState = true;
       }
     }
+
     let loginBarState = false
     function loginBarFunction(){
       let loginNavBar = document.getElementById('loginNavBar');
@@ -58,15 +63,17 @@ export default function NavBar() {
     }
     
 
-      //Ordenado
+  //Ordenado
   const [state, setState] = useState([]);
   const selectOptionOrder = (e) => {
     setState({ ...state, [e.target.id]: e.target.value });
-  };  
+  };
+    
   useEffect(() => {
           dispatch(orderBooks(state.select, orderAllBooks))
          // eslint-disable-next-line
       }, [state.select])
+
       //busqueda
       const[busqueda, setBusqueda] = useState("")
       const handleChange = e =>{
@@ -83,6 +90,7 @@ export default function NavBar() {
       const closeModal = () => {
         setIsOpenModal(false)
       }
+
   return (
   <div className="nav_principal">
     <div>
@@ -133,7 +141,7 @@ export default function NavBar() {
         </div>
             
         <div style={{marginLeft:'10%'}}>
-          <NavLink to='/add' style={{textDecoration:'none'}}><h3 className="search">Agregar Libro</h3></NavLink>
+          <NavLink to='/add' style={{textDecoration:'none'}}><h3 className="agregar_libro">Agregar Libro</h3></NavLink>
         </div>
         
           <div className="icono_Usuario">

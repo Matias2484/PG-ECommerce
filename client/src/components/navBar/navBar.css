@@ -22,7 +22,6 @@
     transition: all 0.5s ease-in-out;
     
   }
- 
   
   #rightNavBar{
     width: 400px;
@@ -53,6 +52,7 @@
     top: -100vh;
     transition: all 0.5s ease-in-out;
   }
+
   .userLoginButton{
       border: none;
       width: 10rem;
@@ -84,6 +84,7 @@
     right: 0rem;
     margin: auto;
   }
+  
   .loginNavBarbutton{
       display: flex;
       align-items: center;
@@ -101,9 +102,11 @@
     margin: auto;
     color: rgb(44, 41, 41);
   }
+  
   #rightNavBarButton:hover {
-    background-color: rgb(160, 154, 154);
+    background-color: rgba(145, 175, 214, 0.438);
   }
+
   .rightNavBarButton {
       display: flex;
       align-items: center;
@@ -112,6 +115,7 @@
       border-radius: 10px;
       cursor: pointer;
   }
+
 .icono_nav {
     font-size: 2rem;
     color: rgb(68, 63, 63);
@@ -121,15 +125,22 @@
 .titulo_principal {
     margin-left: 5rem;
 }
+
 .titulo_b {
   text-decoration: none;
   color: black;
   
 }
+
+.titulo_b:hover {
+  color: sandybrown;
+}
+
 .icono_nav_der {
     font-size: 2rem;
     padding: 0.2rem;
 }
+
 .numero_icono {
     font-size: 1.5rem;
     margin-left: 15px;
@@ -137,6 +148,7 @@
     font-weight: bold;
     color: sandybrown;;
 }
+
 .login-btn{
   position: absolute;
     right: 2rem;
@@ -179,11 +191,22 @@ margin-top: 0.5rem;
   font-size: 1.2rem;
 }
 
-
 .search-input::placeholder{
   color: rgb(105, 104, 104);
 }
+
 .search {
   margin-top: 0.5rem;
   color: black;
+}
+
+.agregar_libro {
+  
+  margin-top: 1rem;
+  color: black;
+  margin-left: -3rem;
+}
+
+.agregar_libro:hover {
+  color: rgba(0, 128, 0, 0.774);
 }

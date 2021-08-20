@@ -5,7 +5,7 @@ import { getAllBooks, getGenders, filterBook, filterClear, url, seeCart } from "
 import Producto from "../producto/producto";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import undraw from "../../img/undraw.svg"
-
+import gif_carga from "../../img/libros_paginas.gif";
 
 export function Home () {
     const dispatch = useDispatch()
@@ -88,14 +88,14 @@ function categoryClear(e){
           <button key={gen} id={gen} className="generos" onClick={typesFilter}>{gen}</button>
             )
             )}
-            
+          
           </div>
           {filteredAllBooks.length !== allBooks.length ? 
               <button id='cleanButton' className='cleanButton' onClick={categoryClear}>Limpiar filtro</button>
               : null }
           </div>
             <div className="books">
-              {!filteredAllBooks.length ? <p className="failSearch">no se encontraron coincidencias... :C </p> :(
+              {!filteredAllBooks.length ? <img className="img_carga" src={gif_carga} atl="Cargando..."/> :(
                 librosIniciales.map((e, index) => (
                   <Producto
                     key={index + 1}
