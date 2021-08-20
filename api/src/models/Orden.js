@@ -13,14 +13,19 @@ const OrdenSchema = Schema({
         type: String,
         required: true
     },
-    // user:{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Usuario',
-    //     required: true
-    // },
+    user:{
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario',
+        required: true
+    },
     direccion:{
         type: String,
         required: true
+    },
+    pago:{
+        type: String,
+        required: true,
+        unique: true
     },
     productos:[{
         producto: {

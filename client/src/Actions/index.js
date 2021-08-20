@@ -17,6 +17,8 @@ export const SEARCH_BOOK = 'SEACRH_BOOK'
 export const URL = "URL";
 export const CHECKOUT_CART = 'CHECKOUT_CART';
 export const SEE_CART = 'SEE_CART'
+export const GET_ORDENES = 'GET_ORNDES';
+export const ORDEN_DETAIL = 'ORDEN_DETAIL';
 
 
 export function getAllBooks(){
@@ -210,4 +212,48 @@ export function url(url) {
     type: URL,
     payload: url,
   }
+};
+export function getOrdenes(){
+  return async function(dispatch) {
+    let ordenes= await fetch('http://localhost:4000/orden');
+        ordenes= await ordenes.json();
+    return dispatch({type:GET_ORDENES, payload:ordenes})
+  };
 }
+export function getOrdenesID(id){
+  return async function(dispatch) {
+    let orden= await fetch(`http://localhost:4000/orden/${id}`);
+        orden= await orden.json();
+    return dispatch({type:ORDEN_DETAIL, payload:orden})
+  };
+
+}
+
+export function getOrdenesUser(token){
+  return async function (dispatch) {
+    let ordenesUser= await fetch ('http://localhost:4000/auth/historyShopping', {
+        method: 'GET',
+        headers:{
+          'x-token': token,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      });
+      ordenesUser= await ordenesUser.json()
+      return dispatch ({type: GET_ORDENES, payload:ordenesUser})
+    };
+};
+
+export function updateOrden(state,id){
+  return async function (dispatch) {
+    let updateState= await fetch (`http://localhost:4000/orden/${state}/${id}`, {
+        method: 'post',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      });
+      updateState= await updateState.json()
+      return dispatch ({type:ORDEN_DETAIL, payload:updateState})
+    };
+};

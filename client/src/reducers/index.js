@@ -1,4 +1,4 @@
-import {localStore} from './localStoreFunction.js'
+import {localStore} from '../funciones/localStoreFunction'
 import {
     GET_BOOKS,
     FIND_BYCATEGORY,

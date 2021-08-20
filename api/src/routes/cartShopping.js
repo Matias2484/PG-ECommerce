@@ -4,15 +4,20 @@ const { Router } = require("express");
 const router = Router();
 const Usuario = require ("../models/Usuario")
 const Producto= require("../models/Producto");
-const {validarJWT} = require ("../middleware/validarJWT")
+const Orden = require("../models/Orden");
+const {validarJWTAdmin,validarJWTUser} = require ('../middleware/validarJWT');
 
+//-----guarda la compra ya hecha en el usuario y en la base de datos general que seria para el adm
+//-----ruta para user y admin
+router.post('/',validarJWTUser, validarJWT, async (req,res)=>{
+    const orden= new Orden(req.body);
+    orden.user=req.uid
+    await orden.save();
 
-//-----guarda la compra ya hecha en el usuario
-router.post('/', validarJWT, async (req,res)=>{
-    const cart = req.body
     const id=req.uid
-    await Usuario.findByIdAndUpdate(id, {$push:{"historialDeCompras": cart}})
-    
+    await Usuario.findByIdAndUpdate(id, {$push:{"historialDeCompras": orden}})
+
+
     res.send({ok:true})
 });
 //------busca el libro, cambia el stock y lo envia al front para el carrito

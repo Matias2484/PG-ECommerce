@@ -1,12 +1,13 @@
 const Producto = require("../models/Producto");
 const { Router } = require("express");
 const router = Router();
+const {validarJWTAdmin} = require ("../middleware/validarJWT")
 
 router.get("/", async (req, res) => {
   var books = await Producto.find({},{"editorial":0, "descripcion":0,"fecha":0, "paginas":0,"idioma":0});
   res.status(200).json(books);
 });
-
+//---recibe id de producto por params
 router.get('/:id', async(req,res)=>{
   const {id}=req.params
   const bookDetail = await Producto.findById(id, (err, productDetail)=>{
@@ -14,7 +15,7 @@ router.get('/:id', async(req,res)=>{
   })
 })
 
-router.post("/", async (req, res) => {
+router.post("/",validarJWTAdmin, async (req, res) => {
   try {
     const producto = new Producto(req.body);
     await producto.save();
@@ -32,8 +33,8 @@ router.post("/review", async (req, res) => {
     res.status(500).send({ msg:' nose pudo dejar su review' }); 
   }
 });
-
-router.put('/edit/:id',async (req,res)=>{
+//---recibe id de producto por params
+router.put('/edit/:id',validarJWTAdmin, async (req,res)=>{
   const {id}=req.params
   const update= req.body
   const editBook= await Producto.findByIdAndUpdate(id,update, {new:true}); 

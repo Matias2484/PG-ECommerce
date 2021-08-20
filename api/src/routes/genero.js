@@ -3,6 +3,7 @@ const router = Router();
 const Genero = require("../models/Genero");
 const Producto = require("../models/Producto");
 const mongoose = require("mongoose");
+const {validarJWTAdmin, validarJWTUser} = require ("../middleware/validarJWT")
 
 
 
@@ -17,7 +18,7 @@ router.get('/', async (req,res)=>{
   /* mongoose.connection.close(); */
 });
 
-router.post("/", async (req, res) => { /* add agregar */ 
+router.post("/",validarJWTAdmin, async (req, res) => { /* add agregar */ 
   const { genero } = req.body;
 
   const newGenero = new Genero({ genero });
@@ -30,7 +31,7 @@ router.post("/", async (req, res) => { /* add agregar */
 
 });
 
-router.delete('/', async (req, res)=>{
+router.delete('/', validarJWTAdmin,async (req, res)=>{
   const {genero}=req.query
 
   await Genero.findOneAndDelete({genero})
