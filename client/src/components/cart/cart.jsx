@@ -17,7 +17,7 @@ export default function Cart() {
         arrayCart.push(carts[i]);
         console.log(" "+ carts[i].titulo+": ",carts[i].precio);
         totalPrecio += carts[i].precio*carts[i].count
-        console.log(totalPrecio);
+        
     }
     
 

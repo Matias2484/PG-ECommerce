@@ -1,5 +1,6 @@
 const { Router } = require("express");
 /* const { dbConnection } = require("../configDB/config"); */
+
 const router = Router();
 const Usuario = require ("../models/Usuario")
 const Producto= require("../models/Producto");
