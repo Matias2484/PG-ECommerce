@@ -13,7 +13,7 @@
     margin-bottom: 0.5rem;
     border-radius: 5px;
     margin-left: 0.5rem; 
-    
+    margin-top: 1rem;
 }
 
 
@@ -124,17 +124,20 @@
     padding: 0.7rem; 
     margin-bottom: 2rem;
     background-color: sandybrown;
+    color: white;
 }
 .btn_confirm:hover {
     cursor: pointer;
     background-color: rgb(255, 168, 6);
-    color: white;
+    color: #413e3e;
     font-weight: bold;
 }
+
 .confirm_text {
-color: black;
-font-weight: bold;
+    color: black;
+    font-weight: bold;
 }
+
 .cartsButton {
     cursor: pointer;
     float: right;
@@ -144,4 +147,8 @@ font-weight: bold;
 }
 .cartsButton:hover {
     color: red;
+}
+
+.carrito_vacio {
+    margin-top: 5rem;
 }

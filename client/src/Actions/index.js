@@ -20,6 +20,8 @@ export const GET_ORDENES = 'GET_ORNDES';
 export const ORDEN_DETAIL = 'ORDEN_DETAIL';
 
 export const FILTRAR_ORDENES = 'FILTRAR_ORDENES'
+export const FILTER_PRICE = 'FILTER_PRICE';
+export const FILTER_LANGUAGE = 'FILTER_LANGUAGE';
 
 
 export function getAllBooks(){
@@ -157,6 +159,7 @@ export function removeOneCart(id){
     return dispatch({type:REMOVE_ONE_CART, payload:removeOne})
   };
 }
+
 export function removeAllCart(id,count){
   return async function (dispatch){
     var removeAll= await fetch(`http://localhost:4000/cart/removeAll/${id}/${count}`);
@@ -192,6 +195,20 @@ export function filterBook(genero) {
   return {
     type: FILTER_BOOK,
     payload: genero,
+  }
+}
+
+export function filterPrice(min,max) {
+  return {
+    type: FILTER_PRICE,
+    payload: {min, max}
+  }
+}
+
+export function filterLanguage(idioma) {
+  return {
+    type: FILTER_LANGUAGE,
+    payload: idioma
   }
 }
 

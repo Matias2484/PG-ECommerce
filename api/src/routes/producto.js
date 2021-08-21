@@ -4,7 +4,7 @@ const router = Router();
 const {validarJWTAdmin} = require ("../middleware/validarJWT")
 
 router.get("/", async (req, res) => {
-  var books = await Producto.find({},{"editorial":0, "descripcion":0,"fecha":0, "paginas":0,"idioma":0});
+  var books = await Producto.find({},{"editorial":0, "descripcion":0,"fecha":0, "paginas":0});
   res.status(200).json(books);
 });
 //---recibe id de producto por params

@@ -160,6 +160,7 @@
     justify-content: center;
     margin-top: 40rem;
 }
+
 .menu_genero {
     border: none;
     width: 15.7rem;
@@ -167,7 +168,6 @@
     background-color:rgb(233, 233, 233);
     font-size: 15px;   
 }
-
 
 .contenedor_form_newbook_left_idioma {
 
@@ -212,7 +212,7 @@
     padding: 0.7rem;
     border-radius: 5px;
     background-color: sandybrown;
-    color: rgb(37, 36, 36);;
+    color: rgb(37, 36, 36);
     font-weight: bold;
     font-size: 15px;
 }
