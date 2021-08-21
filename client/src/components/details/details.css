@@ -152,3 +152,45 @@
     display: none;
     
 }
+.boton_editar {
+    margin-top: 2rem;
+    border: none;
+    width: 5rem;
+    padding: 0.7rem;
+    border-radius: 5px;
+    background-color: rgb(51, 40, 30);
+    
+    font-size: 15px;
+    
+}
+.boton_editar:hover {
+cursor: pointer;
+background-color: #666666;
+}
+.btn_editar {
+    color: white;
+    font-weight: bold;
+
+}
+.estrellas {
+    display: inline;
+    color: rgb(255, 168, 6);
+}
+
+.opiniones {
+    text-align: left;
+}
+.titulo_valoracion {
+    color: #413e3e;
+    margin-bottom: 2rem;
+}
+.valoraciones h4 {
+    color: #413e3e;
+    margin-bottom: 0.5rem;
+}
+.estrellas {
+    font-size: 1.5rem;
+}
+.comentario_usuario {
+    margin-bottom: 2rem;
+}

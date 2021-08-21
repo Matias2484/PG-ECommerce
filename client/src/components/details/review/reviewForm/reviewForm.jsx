@@ -2,6 +2,7 @@ import React from 'react';
 import Valoracion from "../valoracion/valoracion";
 import Comentarios from "../comentarios/comentarios";
 import { useSelector } from 'react-redux';
+import "./reviewForm.css"
 
 async function insertaReview(review) {
     let respuestaDelBack;
@@ -44,7 +45,7 @@ export default function ReviewForm() {
         <form onSubmit={ (e) => handleSubmitReview(e) }>
             <Valoracion />
             <Comentarios />
-            <input type="submit" value='Enviar' />
+            <input className="btn_review" type="submit" value='Enviar' />
         </form>
     )
 }

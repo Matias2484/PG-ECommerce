@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router";
 import { getDetails, url, addCart,} from '../../Actions';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import ReviewForm from './review/reviewForm/reviewForm';
 import gif_carga from "../../img/libros_paginas.gif";
 
@@ -18,12 +18,33 @@ export default function Details() {
         dispatch(url(window.location.href))
     }, [dispatch, id]);
 
-    const { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio, _id } = details;
-    useEffect(() => {
-        dispatch(getDetails(id));
-    }, [details,dispatch,id])
+    const { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio, _id, review } = details;
+    // useEffect(() => {
+    //     dispatch(getDetails(id));
+    // }, [details,dispatch,id])
+
+
+   
+    if(review) {
+
+        var valoraciones = review.map(r=> r.valoracion)
+        // eslint-disable-next-line
+        var estrella = valoraciones.map(e=>e)
+        
+    var estrellas = (estrella) => {
+        let estrellas = [];
+        for (let i = 0; i < estrella; i++) {
+            estrellas.push(<p className="estrellas">★</p>)
+            
+        }
+        return estrellas
+    }  
+}
+
+
 
     if(titulo) {
+        
         return (
             <div className='details'>
                 <div className="detalles_izq">
@@ -47,6 +68,8 @@ export default function Details() {
                             <p>Publicación:</p>
                             <p className="detail_texto">{fecha.substring(0, 10)}</p>
                         </div> 
+                        <button className="boton_editar"><NavLink className="btn_editar" style={{textDecoration:'none'}} to={`/edit/${_id}`} >Edit</NavLink></button>
+
                     </div>
                 </div>
                 <div className="contenido_details">
@@ -70,7 +93,24 @@ export default function Details() {
                     <div className='descripcion'>
                         <p className="descripcion_titulo">Reseña del Libro</p>
                         <p className="descripcion_contenido">{descripcion}</p>
-                        <Link to={`/edit/${_id}`}>Edit</Link>
+                      
+                    </div>
+                    <div className="opiniones">
+                    <h2 className="titulo_valoracion">Opiniones de nuestros lectores</h2>
+                    {review ?  <div> 
+                        
+                        {review.map(r=> { return (
+                            <div className="valoraciones">
+                            <h4>Usuario: {r.userId}</h4>
+                            <p>{estrellas(r.valoracion)}</p>
+                            <p className="comentario_usuario">" {r.comentario} "</p>
+                            </div>
+                            
+                        )
+                        })}
+    
+                        </div>
+                        : null}
                     </div>
                     <ReviewForm />
                 </div>
