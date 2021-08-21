@@ -17,7 +17,10 @@ import {
     FILTER_BOOK,
     SEARCH_BOOK,
     URL,
-    SEE_CART
+    SEE_CART,
+    FILTER_PRICE,
+    FILTER_LANGUAGE,
+
 } from '../Actions/index';
 
 
@@ -223,6 +226,29 @@ function rootReducer(state = initialState, action) {
                     filteredAllBooks: state.allBooks.filter((book) => {
                         return book.generos.some((t) => t=== action.payload);
                     }),
+                }
+            
+            case FILTER_PRICE:
+
+                return {
+                    ...state,
+                    // eslint-disable-next-line
+                    filteredAllBooks: state.filteredAllBooks.filter((book) => {
+                        if(book.precio >= action.payload.min && book.precio <= action.payload.max){
+                            return book;
+                        }
+                    })
+                }
+
+            case FILTER_LANGUAGE:
+                return {
+                    ...state,
+                    // eslint-disable-next-line
+                    filteredAllBooks: state.filteredAllBooks.filter((book) => {
+                        if(book.idioma === action.payload){
+                            return book;
+                        }
+                    })
                 }
                 
             case URL:

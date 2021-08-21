@@ -10,6 +10,7 @@ import undraw2 from "../../img/undraw_Gifts.svg"
 import { motion } from "framer-motion"
 
 export function Home () {
+
     const dispatch = useDispatch()
     const filteredAllBooks = useSelector((state) => state.filteredAllBooks);
     useSelector((state) => state.forRender); 
@@ -86,14 +87,17 @@ function categoryClear(e){
                     <motion.div className="carousel" variants={variantMotion}>
           <img src={undraw} alt="imagenPresentacion" className="imagenPresentacion"></img>
           <div className="titulos_carousel">
-    <h2>Bienvenido Usuario!!</h2><h4>Compra tus libros esenciales aquí</h4>
+    <h2>¡Bienvenido Usuario!</h2><h4>Compra tus libros esenciales aquí</h4>
       </div>
           </motion.div>
           <motion.div className="carousel" variants={variantMotion}>
-          <img src={undraw2} alt="imagenPresentacion" className="imagenPresentacion"></img>
-          <div className="titulos_carousel">
-    <h2>Regalos por registro</h2><h4>Registrate gratis y obten muchos beneficios</h4>
-      </div>
+            <a className="link_carousel" href="http://localhost:3000/add">
+              <img src={undraw2} alt="imagenPresentacion" className="imagenPresentacion"></img>
+            
+              <div className="titulos_carousel">
+                <h2>Regalos por registro</h2><h4>¡Regístrate gratis y obtén muchos beneficios!</h4>
+              </div>
+            </a>
           </motion.div>
           </motion.div>
           <div className="e_books"><h1>E-Books</h1></div>
@@ -122,7 +126,7 @@ function categoryClear(e){
               : null }
           </div>
             <div className="books">
-              {!filteredAllBooks.length ? <img className="img_carga" src={gif_carga} atl="Cargando..."/> :(
+              {!filteredAllBooks.length ? <img className="img_carga" src={gif_carga} alt="Cargando..."/> :(
                 librosIniciales.map((e, index) => (
                   <Producto
                     key={index + 1}

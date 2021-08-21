@@ -11,9 +11,7 @@
 #leftNavBar{
     width: 400px;
     height: 100vh;
-    background-color: #f8f7f7;
-    opacity: 0.85;
-    display: flex;
+    background-color: rgb(233, 233, 233);
     flex-direction: column;
     justify-content: space-evenly;
     position: absolute;
@@ -22,6 +20,8 @@
     transition: all 0.5s ease-in-out;
     
   }
+
+
   
   #rightNavBar{
     width: 400px;
@@ -43,7 +43,7 @@
     width: 400px;
     display: flex;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgb(233, 233, 233);
     flex-direction: column;
     justify-content: space-evenly;
     position: absolute;
@@ -65,7 +65,20 @@
   }
 
 
-  #leftNavBarButton{
+  .leftNavBarButton_active{
+    background-color: sandybrown;
+    position: absolute;
+    z-index: 9;
+    top: 8px;
+    left: 15px;
+    margin: auto;
+    border: none;
+    border-radius: 50px;
+    padding: 0.3rem;
+  }
+
+  .leftNavBarButton_inactive{
+  
     position: absolute;
     z-index: 9;
     top: 8px;
@@ -77,12 +90,23 @@
   }
   
 
-  #loginNavBarbutton{
+  #loginNavBarbutton_active{
+    margin-top: 0.3rem;
+    background-color: rgba(145, 175, 214, 0.438);
     position: absolute;
     z-index: 9;
     top: 3px;
     right: 0rem;
-    margin: auto;
+    
+  }
+
+  #loginNavBarbutton_inactive{
+    margin-top: 0.3rem;
+    position: absolute;
+    z-index: 9;
+    top: 3px;
+    right: 0rem;
+
   }
   
   .loginNavBarbutton{
@@ -94,18 +118,26 @@
       cursor: pointer;
   }
   
-#rightNavBarButton{
+#rightNavBarButton_active {
+    margin-top: 0.2rem;
+    background-color: rgba(145, 175, 214, 0.438);
     position: absolute;
     z-index: 9;
     top: 3px;
     right: 10rem;
-    margin: auto;
+    
     color: rgb(44, 41, 41);
-  }
+}
   
-  #rightNavBarButton:hover {
-    background-color: rgba(145, 175, 214, 0.438);
-  }
+#rightNavBarButton_inactive {
+  margin-top: 0.2rem;
+  position: absolute;
+  z-index: 9;
+  top: 3px;
+  right: 10rem;
+  
+  color: rgb(44, 41, 41);
+}
 
   .rightNavBarButton {
       display: flex;
@@ -121,6 +153,7 @@
     color: rgb(68, 63, 63);
     cursor: pointer;
 }
+
 
 .titulo_principal {
     margin-left: 5rem;
@@ -185,6 +218,7 @@ margin-top: 0.5rem;
   font-size: 1rem;
   margin-left: 1rem;
 }
+
 .search-btn {
   align-self: center;
   color: rgb(56, 55, 55);
@@ -209,4 +243,137 @@ margin-top: 0.5rem;
 
 .agregar_libro:hover {
   color: rgba(0, 128, 0, 0.774);
+}
+
+.titulo_leftNavBar {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  color: #181717;
+}
+
+.contenedor_ordenado {
+  display: flex;
+  margin-top: 3rem;
+}
+
+.titulo_ordenado {
+  margin-left: 2rem;
+  margin-right: 1rem;
+  color: #181717;
+}
+
+#select {
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.filtrado_leftNavBar {
+  display: flex;
+}
+
+.filtrado_icon {
+  margin-top: 0.3rem;
+  margin-left: 2rem;
+  font-size: 2rem;
+  color: #181717;
+}
+
+.titulo_filtrado {
+  font-size: 1.8rem;
+  margin-left: 1rem;
+  color: #181717;
+}
+
+.menu_filtrado_precio {
+  display: flex;
+  margin-left: 2rem;
+}
+
+.titulo_filtrado_precio {
+  margin-left: -17rem;
+  margin-top: 1rem;
+  color: #181717;
+  margin-bottom: 1rem;
+}
+
+.precio_min_input {
+  border: none;
+  border-radius: 3px;
+  padding: 0.3rem;
+  font-size: 15px;
+  width: 8.5rem;
+  margin-right: 1rem;
+  padding-left: 0.3rem;
+  color: #181717;
+}
+
+.precio_max_input {
+  border: none;
+  border-radius: 3px;
+  padding: 0.3rem;
+  font-size: 15px;
+  width: 8.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-left: 0.3rem;
+  color: #181717;
+}
+
+.precio_icon {
+  font-size: 20px;
+  color: #181717;
+  margin-top: 0.3rem;
+}
+
+.button_filtrar_precio_activo {
+  border: none;
+  float: right;
+  margin-right: 1.7rem;
+  border-radius: 5px;
+  background-color: sandybrown;
+  color: rgb(37, 36, 36);
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  font-size: 15px;
+}
+
+.button_filtrar_precio_activo:hover {
+  background-color: orange;
+  cursor: pointer;
+}
+
+.button_filtrar_precio_inactivo {
+  background-color: rgb(37, 36, 36);
+  border: none;
+  float: right;
+  margin-right: 1.7rem;
+  border-radius: 5px;
+  color: white;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  font-size: 15px;
+}
+
+.titulo_filtrado_idioma {
+  margin-top: 6rem;
+  color: #181717;
+  margin-bottom: 1rem;
+}
+
+.menu_filtrado_idioma {
+  display: flex;
+}
+
+.checkbox_filtro_idioma_es {
+  margin-left: 6rem;
+  margin-right: 5rem;
+  color: #181717;
+  cursor: pointer;
+}
+
+.checkbox_filtro_idioma_en {
+  color: #181717;
+  cursor: pointer;
 }

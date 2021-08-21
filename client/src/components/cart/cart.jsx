@@ -24,6 +24,7 @@ export default function Cart() {
     return (
         <div className="contenedor_cart">
         <div className="cart_contenedor">
+            <h3>Carrito de compras</h3>
             {arrayCart.length > 0 && (<div>
                 
                 {arrayCart.map(e=>{
@@ -51,7 +52,7 @@ export default function Cart() {
             </div>)
             } 
             {
-                arrayCart.length === 0 && (<div><p>Tu carrito está vacío</p>
+                arrayCart.length === 0 && (<div className="carrito_vacio"><p>Tu carrito está vacío</p>
                 <p>¿No sabés qué comprar? ¡Miles de libros te esperan!</p> 
                 </div>)
             }    
