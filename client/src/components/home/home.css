@@ -21,24 +21,23 @@
 }
 
 .botonNext {
-  margin-top: 3rem;
+  margin-top: 20rem;
   width: 2rem;
   height: 2.5rem;
   top: 3rem;
   right: 10px;
   position: absolute;
-  
- 
+  cursor: pointer;
 }
 .botonPrev {
-  margin-top: 3rem;
+  margin-top: 20rem;
   width: 2rem;
   height: 2.5rem;
   margin-right: 2rem;
   top: 3rem;
   right: 25px;
   position: absolute;
-  
+  cursor: pointer;
 }
 .paginado {
   float: right;
@@ -76,6 +75,7 @@ font-size: 1rem;
 .e_books h1{
 left: 3rem;
 position: absolute;
+margin-top: 1rem;
 }
 
 .carouselMajor{
@@ -90,16 +90,25 @@ position: absolute;
   display: flex;
   position: relative;
   margin: auto;
-  
+  text-decoration: none !important;
 }
 .titulos_carousel {
   position: absolute;
   font-size: 1rem;
   right: 4rem;
   top: 2.5rem;
+  text-decoration: none !important;
+  color: black;
 }
+
 .titulos_carousel h1{
   margin-bottom: 0;
+  text-decoration: none !important;
+}
+
+.link_carousel {
+  text-decoration: none !important;
+  color: black;
 }
 
 .imagenPresentacion {
@@ -112,15 +121,15 @@ position: absolute;
   display: flex;
 }
 .cleanButton {
- position: absolute;
- right: 9rem;
- top: 24rem;
- border: none;
- padding: 1rem;
- cursor: pointer;
- border-radius: 7px;
- font-weight: bold;
- background-color: sandybrown;
+  position: absolute;
+  right: 8rem;
+  top: 24rem;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 7px;
+  font-weight: bold;
+  background-color: sandybrown;
 }
 .cleanButton:hover {
   background-color: rgb(221, 98, 98);
@@ -163,7 +172,6 @@ position: absolute;
 
 .failSearch{
   color: grey;
-  
   font-size: 100px;
   font-weight: bold;
   margin-left: 50%;

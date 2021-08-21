@@ -54,7 +54,6 @@ export default function CreateProducto(){
     function handleSubmit(e){
         e.preventDefault();
 //------aca se revisa si en el estado de los generos hay alguno distinto al array de generos anterior para despachar la creacion
-        console.log("Hiciste click en el botón")
         arrGender.forEach(e => {
             if (genderAll.indexOf(e.value) === -1){
                 return dispatch(createGender({genero:e.value}))
