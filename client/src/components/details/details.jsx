@@ -29,9 +29,9 @@ export default function Details() {
 
         var valoraciones = review.map(r=> r.valoracion)
         // eslint-disable-next-line
-        var estrella = valoraciones.map(e=>e)
+        var estrellita = valoraciones.map(e=>e)
         
-    var estrellas = (estrella) => {
+    var estrellas = (estrellita) => {
         let estrellas = [];
         for (let i = 0; i < estrella; i++) {
             estrellas.push(<p className="estrellas">★</p>)
