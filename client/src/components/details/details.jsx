@@ -33,7 +33,7 @@ export default function Details() {
         
     var estrellas = (estrellita) => {
         let estrellas = [];
-        for (let i = 0; i < estrella; i++) {
+        for (let i = 0; i < estrellita; i++) {
             estrellas.push(<p className="estrellas">★</p>)
             
         }
