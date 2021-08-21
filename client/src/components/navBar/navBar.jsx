@@ -222,7 +222,7 @@ export default function NavBar() {
             isOpen = {isOpenModal}
             closeModal = {closeModal}
             />
-            <button className="userLoginButton">Resgistrate!</button>
+            <button className="userLoginButton">Registrate!</button>
             
             </div>
           

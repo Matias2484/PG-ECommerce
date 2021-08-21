@@ -2,11 +2,12 @@
     background-color: #f8f7f7;
     display: flex;
     justify-content: space-around;
+    
 }
 
 .cuerpo_form {
     overflow-y: scroll;
-    height: 35rem;
+    height: 33rem;
 }
 
 .form{
@@ -16,7 +17,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(233, 233, 233);
-    width: 35rem;
+    width: 36rem;
     border-radius: 10px;
     margin-left: 1rem;
 }
@@ -197,6 +198,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .img_new_book {
@@ -233,7 +235,7 @@
 }
 
 .button_confirm_newbook_disabled {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     border: none;
     width: 5rem;
     padding: 0.7rem;

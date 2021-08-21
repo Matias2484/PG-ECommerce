@@ -12,10 +12,15 @@ export function Comentarios(){
     },[dispatch]) */
 
     return(
+        <div className="contenedor_comentarios">
+        <div>
+        <span className='nombre'>Valoramos tu opinión sobre este libro</span>
+        </div>
+         
         <label className='labelForm' htmlFor="comentario">
-            <span className='nombre'>Comentario</span>
             <textarea className='comentario' id='comentario' name='comentario'></textarea>
         </label>
+        </div>
     )
 }
 
