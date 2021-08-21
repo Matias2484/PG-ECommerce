@@ -11,13 +11,15 @@ import {
     REMOVE_ONE_CART,
     REMOVE_ALL_CART,
     CLEAR_CART,
-    ADD_BUY_USER,
     FILTER_CLEAR,
     ORDER_BOOKS,
     FILTER_BOOK,
     SEARCH_BOOK,
     URL,
     SEE_CART,
+    GET_ORDENES,
+    ORDEN_DETAIL,
+    FILTRAR_ORDENES
     FILTER_PRICE,
     FILTER_LANGUAGE,
 
@@ -34,8 +36,9 @@ const initialState = {
     cart: {},
     book: undefined,
     url: "",
-    forRender:0
-
+    forRender:0,
+    ordenes:[],
+    ordenDetail:{}
 };
 
 
@@ -211,14 +214,6 @@ function rootReducer(state = initialState, action) {
                     ...state,
                     cart: clearCart
                 }
-
-            case ADD_BUY_USER:
-                const addBuyUser = localStore( 'clear', 'clear')
-                return {
-                    ...state,
-                    cart:addBuyUser
-                }   
-
             case FILTER_BOOK:
                 
                 return {
@@ -255,8 +250,22 @@ function rootReducer(state = initialState, action) {
                 return {
                     ...state,
                     url: action.payload
-                }       
-
+                }
+            case GET_ORDENES:
+                return{
+                    ...state,
+                    ordenes:action.payload
+                }
+            case ORDEN_DETAIL:
+                return{
+                    ...state,
+                    ordenDetail:action.payload
+                }
+            case FILTRAR_ORDENES:
+                return{
+                    ...state,
+                    ordenes: state.ordenes.filter(e=>e.estado===action.payload)
+                }  
         default: return state
     }
 

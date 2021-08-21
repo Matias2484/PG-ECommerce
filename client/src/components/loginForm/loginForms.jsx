@@ -18,7 +18,6 @@ export default function LoginForms  ({isOpen, closeModal,payload}){
             e.preventDefault();
             const a =  await dispatch(userLogin(data))
             window.localStorage.setItem("token", a.token)
-            console.log(a.token)
         }
 
         const handleChange = (e) =>{
