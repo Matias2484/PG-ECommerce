@@ -2,14 +2,14 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 export default function CardOrdenes({props}){
-    const {user,_id,productos,estado,valorTotal,fecha,}=props
+    const {user,_id,productos,estado,valorTotal,fecha,admin}=props
 
     return (
         <div>
             <Link exact to={`/ordenes/detail/${_id}`}><h2>compra</h2></Link>
             <p>N° de compra {_id}</p>
             <div>
-                <p>{`${user.nombre} ${user.apellido}`}</p>
+                {admin && <p>{`${user.nombre} ${user.apellido}`}</p>}
                 <p>{`fecha de compra: ${fecha.split('.')[0]}`}</p>
                 <label>Estado:{estado}</label>
                 <div>

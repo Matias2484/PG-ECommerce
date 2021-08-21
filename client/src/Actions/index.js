@@ -9,7 +9,6 @@ export const ADD_CART = 'ADD_CART';
 export const REMOVE_ONE_CART = 'REMOVE_ONE_CART';
 export const REMOVE_ALL_CART = 'REMOVE_ALL_CART';
 export const CLEAR_CART = 'CLEAR_CART';
-export const ADD_BUY_USER = 'ADD_BUY_USER';
 export const FILTER_CLEAR =   'FILTER_CLEAR'
 export const ORDER_BOOKS =   'ORDER_BOOKS'
 export const FILTER_BOOK = 'FILTER_BOOK'
@@ -19,6 +18,8 @@ export const CHECKOUT_CART = 'CHECKOUT_CART';
 export const SEE_CART = 'SEE_CART'
 export const GET_ORDENES = 'GET_ORNDES';
 export const ORDEN_DETAIL = 'ORDEN_DETAIL';
+
+export const FILTRAR_ORDENES = 'FILTRAR_ORDENES'
 
 
 export function getAllBooks(){
@@ -171,17 +172,18 @@ export function clearCart(payload){
   }
 }
 
-export function addBuyUser (payload){
+export function addBuyUser (payload,token){
   return async function (dispatch) {
     await fetch ('http://localhost:4000/productos/cart/', {
       method: 'POST',
       headers:{
+        'x-token': token,
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload)
     });
-    return dispatch ({type: ADD_CART})
+    return dispatch ({type: CLEAR_CART})
   };
 };
 
@@ -242,4 +244,11 @@ export function updateOrden(state,id){
       updateState= await updateState.json()
       return dispatch ({type:ORDEN_DETAIL, payload:updateState})
     };
+};
+
+export function filtrarOrdenes(estado){
+  return{
+    type: FILTRAR_ORDENES,
+    payload:estado
+  };
 };

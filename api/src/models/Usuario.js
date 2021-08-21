@@ -21,8 +21,7 @@ const UsuarioSchema = Schema({
         type:String,
     },
     documento: {
-        type: Number,
-        unique: true
+        type: Number
     },   
     direcciones: {
         type: Array
