@@ -3,34 +3,49 @@
     width: 10rem;
     padding: 1rem;
     border-radius: 5px;
-    background-color: sandybrown;
+    background-color: rgb(244, 164, 96, 0.5);
     color: white;
     font-weight: bold;
     font-size: 15px;
 }
+
+.openPop:hover{
+ background-color: rgb(244, 164, 96, 1); 
+}
 .closePop{
+    margin-top: 10px;
     border: none;
-    width: 5rem;
-    padding: 0.5rem;
+    padding: 0.6rem;
     border-radius: 5px;
     background-color: rgb(244, 164, 96);
     color: white;
     font-weight: bold;
     font-size: 15px;
+    
 }
 .inputMail{
     border-style: hidden;
-    margin-left: 50px;
+    margin-left: px;
     background-color: rgb(134, 128, 128, 0.2);
+    padding: 1em;
+    margin: 2em;
 }
 .enviaPop{
+    width: 100%;
     border: none;
-    width: 5rem;
     padding: 0.5rem;
     border-radius: 5px;
     background-color: rgb(244, 164, 96);
     color: white;
     font-weight: bold;
     font-size: 15px;
-    margin-left: 20px;
+    
+}
+.pepe{
+    display:grid;
+    background-color:#fff; 
+    padding: 4em;
+    margin-top:5%;
+    width: 40%;
+    margin-left: 28%;
 }

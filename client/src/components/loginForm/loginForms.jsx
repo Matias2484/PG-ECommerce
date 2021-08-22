@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import GoogleLogin from 'react-google-login';
 import userLogin from '../../funciones/logIn'
 import {useDispatch} from 'react-redux';
-import RecoverPass from '../recoverPass/recoverPass';
+import RecoverPopUp from '../recoverPass/recoverPopUp.jsx';
 import  './loginForms.css';
 
 
@@ -61,7 +61,7 @@ export default function LoginForms  ({isOpen, closeModal,payload}){
                 />
 
                 {/* recupera la contraseña gil */}
-                <RecoverPass/>
+                <RecoverPopUp/>
             </div>
         </div>
     );
