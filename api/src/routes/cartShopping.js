@@ -14,15 +14,15 @@ const stripe = new Stripe("sk_test_51JQAouFWmGEeX4od3qJjkwW2cdTVunEMWXE9PgKcNaz0
 //-----guarda la compra ya hecha en el usuario y en la base de datos general que seria para el adm
 //-----ruta para user y admin
 router.post('/',validarJWTUser, async (req,res)=>{
-   
+    const {medioPago, valorTotal} = req.body;
     try {
-        const {medioPago, valorTotal} = req.body;
+
 
         await stripe.paymentIntents.create({
 
             amount: valorTotal, 
             currency: "USD",
-            payment_method: medioPago,
+            payment_method: pago,
             confirm: true
         })
         var compra= {...req.body,estado:'creada'}      
