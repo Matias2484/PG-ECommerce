@@ -7,38 +7,36 @@ import  './loginForms.css';
 
 
 export default function LoginForms  ({isOpen, closeModal,payload}){
-        const dispatch = useDispatch();
-        const [data, setData] = useState({
-            email:"",
-            password:""
-        });
-        
-        //funcion envia datos al BK
-        const handleSumbit =  async (e) => {
-            e.preventDefault();
-            const a =  await dispatch(userLogin(data))
-            window.localStorage.setItem("token", a.token)
+    const dispatch = useDispatch();
+    const [data, setData] = useState({
+        email:"",
+        password:""
+    });
+
+    //funcion envia datos al BK
+    const handleSumbit =  async (e) => {
+        e.preventDefault();
+        const a = await dispatch( userLogin(data))
+        window.localStorage.setItem("token", a.token)
+        console.log(a.token)
+    }
+
+    const handleChange = (e) =>{
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    //loggin google
+    const respuestaGoogle = async (respuesta)=>{
+        const login = {
+            password: respuesta.profileObj.googleId,
+            email: respuesta.profileObj.email
         }
-
-        const handleChange = (e) =>{
-            setData({
-                ...data,
-                [e.target.name]: e.target.value
-            })
-        }
-
-        //loggin google
-        const respuestaGoogle = async (respuesta)=>{
-            const login = {
-                password: respuesta.profileObj.googleId,
-                email: respuesta.profileObj.email
-            }
-            const a = await dispatch(userLogin(login))
-            window.localStorage.setItem("token", a.token)
-        }
-        
-
-
+        const a = await dispatch(userLogin(login))
+        window.localStorage.setItem("token", a.token)
+    }
     return(
         <div className={`modal ${isOpen && 'modal-open'}`}>
             <div className="modal_dialog">
@@ -51,7 +49,7 @@ export default function LoginForms  ({isOpen, closeModal,payload}){
                     <input id="buttonInput"  type="submit" className="logginBtn" value ="Logueate" />
                 </form>
 
-               {/*  google button  */}
+                {/*  google button  /}
                 <GoogleLogin
                     clientId="1306055516-vqakgi1c0sql95der98ul0vpsufbppd9.apps.googleusercontent.com"
                     buttonText="Login"
@@ -60,12 +58,13 @@ export default function LoginForms  ({isOpen, closeModal,payload}){
                     cookiePolicy={'single_host_origin'}
                 />
 
-                {/* recupera la contraseña gil */}
+                {/ recupera la contraseña gil */}
                 <RecoverPopUp/>
             </div>
         </div>
     );
 };
+    
 
 
 
