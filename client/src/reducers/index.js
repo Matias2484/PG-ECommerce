@@ -19,7 +19,6 @@ import {
     SEE_CART,
     GET_ORDENES,
     ORDEN_DETAIL,
-    FILTRAR_ORDENES,
     FILTER_PRICE,
     FILTER_LANGUAGE,
 
@@ -260,12 +259,7 @@ function rootReducer(state = initialState, action) {
                 return{
                     ...state,
                     ordenDetail:action.payload
-                }
-            case FILTRAR_ORDENES:
-                return{
-                    ...state,
-                    ordenes: state.ordenes.filter(e=>e.estado===action.payload)
-                }  
+                } 
         default: return state
     }
 
