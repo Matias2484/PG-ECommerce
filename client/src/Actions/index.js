@@ -18,8 +18,6 @@ export const CHECKOUT_CART = 'CHECKOUT_CART';
 export const SEE_CART = 'SEE_CART'
 export const GET_ORDENES = 'GET_ORNDES';
 export const ORDEN_DETAIL = 'ORDEN_DETAIL';
-
-export const FILTRAR_ORDENES = 'FILTRAR_ORDENES'
 export const FILTER_PRICE = 'FILTER_PRICE';
 export const FILTER_LANGUAGE = 'FILTER_LANGUAGE';
 
