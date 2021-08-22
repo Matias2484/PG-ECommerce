@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getOrdenesUser, getOrdenes} from '../../Actions/index'
 import { payloadJWT } from '../../funciones/payloadJWT'
-import CardOrdenesAdmin from './cardOrdenes/cardOrdenes'
+import CardOrdenes from './cardOrdenes/cardOrdenes'
 import Select from 'react-select';
 
 export default function HistoryShopping(){
@@ -10,10 +10,19 @@ export default function HistoryShopping(){
     const admin=payloadJWT()
     const dispatch = useDispatch()
     const ordenesDeCompras= useSelector(state => state.ordenes)
+    const [ordenes, setordenes] = useState([])
 
  useEffect(() => {
-    admin.admin ? dispatch(getOrdenes()) : dispatch(getOrdenesUser(token))
- }, [token,admin.admin,dispatch])
+    admin.admin ? dispatch(getOrdenes(token)) : dispatch(getOrdenesUser(token))
+ }, [token,admin.admin,dispatch]);
+
+ useEffect(() => {
+    setordenes([...ordenesDeCompras])
+ }, [ordenesDeCompras]);
+
+ function filtrarOrdenes(estado){
+    setordenes([...ordenesDeCompras].filter(e=>e.estado===estado))
+ };
 
  const opcion=[{ value:'creada',label:'creada'},{ value:'cancelada',label:'cancelada'},{ value:'procesando',label:'procesando'},{ value:'completada',label:'completada'}]
 
@@ -29,7 +38,7 @@ export default function HistoryShopping(){
                     />
                 </div>
                 <div>
-                {ordenesDeCompras.length>0? ordenesDeCompras.map(e=> <CardOrdenesAdmin props={{...e,admin:true}} key={e._id}/>) : <p>Aun no hay compras realizadas</p>} 
+                {ordenes.length>0? ordenes.map(e=> <CardOrdenes props={{...e,admin:true}} key={e._id}/>) : <p>Aun no hay compras realizadas</p>} 
                 </div>
         </div>):
            ( <div>
@@ -42,7 +51,7 @@ export default function HistoryShopping(){
                     />
                 </div>
                 <div>
-                {ordenesDeCompras.length>0? ordenesDeCompras.map(e=> <CardOrdenes props={{...e,admin:false}} key={e._id}/>):<p>Aun no hay compras realizadas</p>} 
+                {ordenes.length>0? ordenes.map(e=> <CardOrdenes props={{...e,admin:false}} key={e._id}/>):<p>Aun no hay compras realizadas</p>} 
                 </div>
             </div>)
             }
