@@ -1,8 +1,9 @@
 .modal{
-    background-color: rgba(161, 159, 159);
+    background-color: rgb(250, 220, 164);
     display: none;
-    width: 4em;
+    width: 4em; 
     margin: 0;
+    transition: linear;
 }
 .modal-open{
     display:grid;
@@ -25,14 +26,15 @@
     float: right;
     width: 32px;
     height: 32px;
-    opacity: 0.3;
+
     margin-left: 81%;
     background-color: sandybrown;
+    border-style: none;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 40%;
     
     }
-    .close:hover {
-        opacity: 1;
-    }
+    
     .close:before .close:after {
         position: relative;
         float: right;
@@ -47,9 +49,14 @@
         width: 10rem;
         padding: 1rem;
         border-radius: 5px;
-        background-color: sandybrown;
+        background-color: rgb(244, 164, 96,0.5);
         color: white;
         font-weight: bold;
         font-size: 15px;
+
+    }
+
+    .logginBtn:hover{
+        background-color: rgb(244, 164, 96,1);
     }
 
