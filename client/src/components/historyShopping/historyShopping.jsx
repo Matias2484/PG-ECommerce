@@ -34,7 +34,7 @@ export default function HistoryShopping(){
                     <p>Filtrar por</p>
                 <Select
                         options={opcion}
-                         onChange={(e)=>dispatch(filtrarOrdenes(e.value))}
+                         onChange={(e)=>filtrarOrdenes(e.value)}
                     />
                 </div>
                 <div>
@@ -47,7 +47,7 @@ export default function HistoryShopping(){
                 <p>Filtrar por</p>
                 <Select
                         options={opcion}
-                        onChange={(e)=>dispatch(filtrarOrdenes(e.value))}
+                        onChange={(e)=>filtrarOrdenes(e.value)}
                     />
                 </div>
                 <div>
