@@ -18,7 +18,8 @@ router.get('/', async (req,res)=>{
   /* mongoose.connection.close(); */
 });
 
-router.post("/",validarJWTAdmin, async (req, res) => { /* add agregar */ 
+//Puta mierda de validación meter leugo de la demo validarJWTAdmin
+router.post("/", async (req, res) => { /* add agregar */ 
   const { genero } = req.body;
 
   const newGenero = new Genero({ genero });

@@ -14,17 +14,18 @@ router.get('/:id', async(req,res)=>{
       err? res.status(404).send({message:'error al buscar libro'}) : res.status(200).send(productDetail)
   })
 })
-
-router.post("/",validarJWTAdmin, async (req, res) => {
+//Falta volver a meter el validatenoseque validarJWTAdmin
+router.post("/", async (req, res) => {
   try {
     const producto = new Producto(req.body);
     await producto.save();
     res.status(201).send(producto);     
   } catch (error) {
-    res.status(500).send({ok: false, msg:' nose pudo crear el producto'}); 
+    console.log(error);
+    res.status(500).send(error); 
   }
 });
-
+//{ok: false, msg:' nose pudo crear el producto'}
 router.post("/review", async (req, res) => { 
   try {
     const producto = await Producto.updateOne({_id: req.body._id },{ $push:{ review:req.body } })
@@ -33,8 +34,8 @@ router.post("/review", async (req, res) => {
     res.status(500).send({ msg:' nose pudo dejar su review' }); 
   }
 });
-//---recibe id de producto por params
-router.put('/edit/:id',validarJWTAdmin, async (req,res)=>{
+//---recibe id de producto por params validarJWTAdmin
+router.put('/edit/:id', async (req,res)=>{
   const {id}=req.params
   const update= req.body
   const editBook= await Producto.findByIdAndUpdate(id,update, {new:true}); 
