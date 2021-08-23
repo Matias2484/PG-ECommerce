@@ -10,7 +10,9 @@ export default function RegisterForm({isOpen, closeModal}){
         apellido:'',
         password: '',
         email:'',
+        admin: true,
         });
+        
         const dispatch = useDispatch()
         const handleInputChange = (e) => {
     
@@ -21,19 +23,20 @@ export default function RegisterForm({isOpen, closeModal}){
         }
         const enviarInput = (e) => {
             e.preventDefault();
-            if(input.nombre && input.password) {
+            if(input.nombre && input.password && input.email) {
                 swal({
                 title: "Gracias",
                 text: "Formulario enviado con éxito",
                 icon: "success",
                 });
+                newUser(input);
             }
             }
 
     return (
         <div className={`modal ${isOpen && 'modal-open'}`}>
             <div className="modal_dialog">
-            <button className="close" >X</button>
+            <button className="close" onClick={closeModal}>X</button>
             <form  className="formLogin" onSubmit={enviarInput}>
                     <h1 className="loginUser">Nombre</h1>
                     <input  placeholder="username" name="nombre" onChange={handleInputChange} />

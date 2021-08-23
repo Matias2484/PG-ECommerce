@@ -4,7 +4,8 @@ const Usuario = require("../models/Usuario");
 const {generarJWT} = require ("../middleware/generarJWT")
 
 const createUser = async(req, res=response)=>{
-    const {email,password,nombre,apellido}=req.body
+    const {email,password,nombre,apellido,admin}=req.body
+    console.log(req.body)
 
     try {
         let user = await Usuario.findOne ({email});
@@ -24,6 +25,7 @@ const createUser = async(req, res=response)=>{
         res.status(201).send(token)
 
     } catch (error) {
+        console.log(error);
         res.sendStatus(500)
     }
 }

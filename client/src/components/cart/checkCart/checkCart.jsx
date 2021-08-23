@@ -22,7 +22,6 @@ export default function CheckCart(){
 
     for (const i in carts) {
         arrayCart.push(carts[i])
-        precioTotal+=carts[i].precio*carts[i].count
     }
 
     var compras=[]
