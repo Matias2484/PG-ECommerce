@@ -49,7 +49,7 @@ export default function LoginForms  ({isOpen, closeModal,payload}){
                     <input id="buttonInput"  type="submit" className="logginBtn" value ="Logueate" />
                 </form>
 
-                {/*  google button  /}
+                   
                 <GoogleLogin
                     clientId="1306055516-vqakgi1c0sql95der98ul0vpsufbppd9.apps.googleusercontent.com"
                     buttonText="Login"
@@ -58,7 +58,7 @@ export default function LoginForms  ({isOpen, closeModal,payload}){
                     cookiePolicy={'single_host_origin'}
                 />
 
-                {/ recupera la contraseña gil */}
+                
                 <RecoverPopUp/>
             </div>
         </div>
