@@ -20,6 +20,7 @@ export const GET_ORDENES = 'GET_ORNDES';
 export const ORDEN_DETAIL = 'ORDEN_DETAIL';
 export const FILTER_PRICE = 'FILTER_PRICE';
 export const FILTER_LANGUAGE = 'FILTER_LANGUAGE';
+export const GET_USER = 'GET_USER'
 
 
 export function getAllBooks(){
@@ -270,3 +271,4 @@ export function updateOrden(state,id,token){
       return dispatch ({type:ORDEN_DETAIL, payload:updateState})
     };
 };
+

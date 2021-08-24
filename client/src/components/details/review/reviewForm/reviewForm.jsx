@@ -3,6 +3,7 @@ import Valoracion from "../valoracion/valoracion";
 import Comentarios from "../comentarios/comentarios";
 import { useSelector } from 'react-redux';
 import "./reviewForm.css"
+import {payloadJWT} from "../../../../funciones/payloadJWT"
 
 async function insertaReview(review) {
     let respuestaDelBack;
@@ -21,6 +22,12 @@ async function insertaReview(review) {
 
 export default function ReviewForm() {
 
+
+    if(window.localStorage.token) {
+        var a = payloadJWT()
+        
+      }
+
     const details = useSelector((state) => state.details);
     let respuestaDelBack;
     
@@ -32,7 +39,7 @@ export default function ReviewForm() {
             if( starStatus ) valoracion++;
         }
         let review = {
-            userId: 1,
+            usuario:a.nombre,
             _id: details._id,
             valoracion,
             comentario: e.target[5].value

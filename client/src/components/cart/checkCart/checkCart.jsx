@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import {useHistory} from 'react-router-dom'
-import {IoMdRemoveCircleOutline, IoMdAddCircleOutline, IoIosCloseCircle } from "react-icons/io";
+// import {IoMdRemoveCircleOutline, IoMdAddCircleOutline, IoIosCloseCircle } from "react-icons/io";
 import swal from 'sweetalert';
-import {addCart,removeAllCart, addBuyUser, removeOneCart} from '../../../Actions/index'
+import { addBuyUser} from '../../../Actions/index'
 import {CardElement,useElements, useStripe} from "@stripe/react-stripe-js"
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';

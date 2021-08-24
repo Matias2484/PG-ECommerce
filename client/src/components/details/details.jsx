@@ -1,17 +1,27 @@
 import './details.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router";
-import { getDetails, url, addCart,} from '../../Actions';
+import { getDetails, url, addCart} from '../../Actions';
 import { NavLink } from 'react-router-dom';
 import ReviewForm from './review/reviewForm/reviewForm';
 import gif_carga from "../../img/libros_paginas.gif";
+import {payloadJWT} from "../../funciones/payloadJWT"
 
 export default function Details() {
     
     const dispatch = useDispatch();
     const details = useSelector((state) => state.details);
     const { id } = useParams();
+    
+
+    
+
+
+if(window.localStorage.token) {
+  var a = payloadJWT()
+  
+}
 
     useEffect(() => {
         dispatch(getDetails(id));
@@ -65,14 +75,14 @@ export default function Details() {
                             <p>Publicación:</p>
                             <p className="detail_texto">{fecha.substring(0, 10)}</p>
                         </div> 
-                        <button className="boton_editar"><NavLink className="btn_editar" style={{textDecoration:'none'}} to={`/edit/${_id}`} >Edit</NavLink></button>
+                      { a && a.admin===true? <button className="boton_editar"><NavLink className="btn_editar" style={{textDecoration:'none'}} to={`/edit/${_id}`} >Edit</NavLink></button>:null}
 
                     </div>
                 </div>
                 <div className="contenido_details">
                     <div className="comprar">
-                        <button className={stock<= 0? "vacio_detail": "comprar_detail"} onClick={()=>dispatch(addCart(id))}>Comprar</button>
-                        <p className={stock<= 0? "vacio_detail": "comprar_carrito"}>Agregar a la Cesta</p>
+                        {a && a.admin===false?<button className={stock<= 0? "vacio_detail": "comprar_detail"} onClick={()=>dispatch(addCart(id))}>Comprar</button>:null}
+                       
                     </div>
                     <h2 className="titulo_detail">{titulo}</h2>
                     <div className="autor_editorial">
@@ -109,7 +119,13 @@ export default function Details() {
                         </div>
                         : null}
                     </div>
-                    <ReviewForm />
+                    {a && a.admin===false?
+                <div>
+                <ReviewForm />
+                </div>    
+                :null}
+                    
+                    
                 </div>
             </div>
         )
