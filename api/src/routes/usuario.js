@@ -4,7 +4,7 @@ const router = Router();
 const {check}  = require ('express-validator')
 const {createUser, loginUser, revalidarToken} = require ('../controllers/auth')
 const {validarUser} = require ('../middleware/validarUser')
-const {validarJWTUser} = require ("../middleware/validarJWT")
+const {validarJWTUser, validarJWTAdmin} = require ("../middleware/validarJWT")
 const Usuario = require("../models/Usuario")
 
 
@@ -32,7 +32,7 @@ router.post(
     loginUser
 );
 //----elimina un usuario para que no se pueda logear
-router.delete('/delete/:id',(req,res)=>{
+router.delete('/delete/:id',validarJWTUser,(req,res)=>{
     const id= req.uid
     Usuario.findByIdAndDelete(id)
     res.send({ok:true, msg:'el usuario fue borrado'})

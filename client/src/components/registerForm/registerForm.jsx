@@ -10,7 +10,7 @@ export default function RegisterForm({isOpen, closeModal}){
         apellido:'',
         password: '',
         email:'',
-        admin: true,
+        
         });
         
         const dispatch = useDispatch()
@@ -21,7 +21,7 @@ export default function RegisterForm({isOpen, closeModal}){
                 [e.target.name]: e.target.value
             });
         }
-        const enviarInput = (e) => {
+        const enviarInput = async (e) => {
             e.preventDefault();
             if(input.nombre && input.password && input.email) {
                 swal({
@@ -29,9 +29,12 @@ export default function RegisterForm({isOpen, closeModal}){
                 text: "Formulario enviado con éxito",
                 icon: "success",
                 });
-                newUser(input);
+               var usuario = await newUser(input);
             }
-            }
+            console.log(usuario)
+            
+         }
+            
 
     return (
         <div className={`modal ${isOpen && 'modal-open'}`}>

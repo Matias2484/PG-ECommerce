@@ -1,0 +1,51 @@
+.pasarela {
+   background-color: #f8f7f7;
+}
+
+
+.contenedor_pasarela {
+   border: 1px solid black;
+   width: 60rem;
+   height: 35rem;
+   margin: auto;
+   
+   
+}
+.titulo_principal_pasarela {
+margin-bottom: 1rem;
+padding-top: 0.5rem;
+color: #413e3e;
+}
+.pasarela_card {
+   display: flex;
+   text-align: center;
+  justify-content: center;
+   margin-bottom: 1rem;
+}
+.pasarela_cdtm {
+   margin-left: 5rem;
+}
+.titulo_pasarela {
+   color: #413e3e;
+   font-weight: bold;
+}
+.autor_pasarela {
+   color: #666666;
+   font-weight: 500;
+}
+.editorial_pasarela {
+   color: sandybrown;
+   font-weight: 500;
+}
+.unidades_pasarela {
+   color: black;
+   font-weight: 500;
+}
+.peso_pasarela {
+   color: sandybrown;
+   font-weight: 500;
+}
+.precio_pasarela {
+   color: #666666;
+   font-weight: 500;
+}

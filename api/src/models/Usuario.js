@@ -37,7 +37,7 @@ const UsuarioSchema = Schema({
     },
     admin:{
         type: Boolean,
-        required: true
+        default: false
     },
 
 });

@@ -250,7 +250,7 @@ export default function NavBar() {
         </div>
       
         </div>
-            <div id={rightBarState === true ? "rightNavBarButton_active" : "rightNavBarButton_inactive"} className="rightNavBarButton" onClick={ rightBarFunction }>
+            <div id="rightNavBarButton_inactive" className="rightNavBarButton" onClick={ rightBarFunction }>
             <MdShoppingCart className="icono_nav_der"/> <span className="numero_icono">{Object.values(carts).length}</span>
             </div>           
             <div id ="rightNavBar">
