@@ -8,13 +8,15 @@ export function localStore(items, action) {
         if(getCart[`a${items._id}`]){
             getCart[`a${items._id}`].count+=1
         }else{
-            getCart[`a${items._id}`]={...items,id:items._id}
-            getCart[`a${items._id}`].count=1
+            getCart[`a${items._id}`]={...items,id:items._id, count:1}
+            
         } 
     }else if(action==='subtract'){
-        getCart[`a${items._id}`].count-1===0 ? delete getCart[`a${items._id}`] : getCart[`a${items._id}`].count-=1
+        
+        getCart[`a${items}`].count-1===0 ? delete getCart[`a${items}`] : getCart[`a${items}`].count-=1
     }else if(action==='delete'){
-        delete getCart[`a${items._id}`]
+        
+        delete getCart[`a${items}`]
     }else if(action==='clear'){
         getCart={}
     } 

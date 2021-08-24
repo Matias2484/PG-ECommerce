@@ -32,7 +32,7 @@ router.post("/", async (req, res) => { /* add agregar */
 
 });
 
-router.delete('/', validarJWTAdmin,async (req, res)=>{
+router.delete('/', async (req, res)=>{
   const {genero}=req.query
 
   await Genero.findOneAndDelete({genero})

@@ -7,6 +7,7 @@ import {addCart,removeAllCart, addBuyUser, removeOneCart} from '../../../Actions
 import {CardElement,useElements, useStripe} from "@stripe/react-stripe-js"
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import "./checkCart.css"
 
 const stripePromise = loadStripe("pk_test_51JQAouFWmGEeX4odlkQmbhbHUp3CKtVyX8x3IAZOECCAv0E7LUzOZJoUyBS8C5LTiPBgpQNd3ZdNb2oBfZeRZFCR00fcFxXLfG")
 
@@ -71,28 +72,34 @@ export default function CheckCart(){
 
 
     return (
-        <div>
+        <div className="pasarela">
+            <h1 className="titulo_principal_pasarela">Resumen de la compra</h1>
+        <div className="contenedor_pasarela">
+            <div className="pasarela_card">
             {arrayCart.map(e=>{
-                return (<div>
-                    <button className='cartsButton' onClick={()=> dispatch(removeAllCart(e._id))}><IoIosCloseCircle/></button>
-                        <p>{e.titulo}</p>
-                        <p>Unidades: {e.count}</p>
-                        <p>Precio: {e.precio * e.count}</p>
-                        <div>
-                            <button className='cartsButton' onClick={()=> dispatch(addCart(e._id))}><IoMdAddCircleOutline /></button>    
-                            <button className='cartsButton' onClick={()=> dispatch(removeOneCart(e._id))}><IoMdRemoveCircleOutline /></button>
-                        </div>                  
+                return (<div className="pasarela_cdtm">
+                
+                        <img className="imagen_pasarela"alt="imagen_pasarela"src={e.img}></img>
+                        <p className="titulo_pasarela">{e.titulo}</p>
+                        <p className="autor_pasarela">{e.autor}</p>
+                        <p className="editorial_pasarela">{e.editorial}</p>
+                        <p className="unidades_pasarela">Unidades: {e.count}</p>
+                        <p className="precio_pasarela"><span className="peso_pasarela">$</span> {e.precio * e.count}</p>
+                       
                     </div>)
+                    
             })}
-            <div>
-                <p>Precio: {precioTotal.toFixed(2)} </p>
-                <p>iva: {(Math.round(precioTotal * 0.5))}</p>
-                <p>Total: {(Math.round(precioTotal + precioTotal * 0.5))}</p>
+            </div>
+            <div className="datos_pasarela">
+                <p className='neto_pasarela'>Sub-Total: {precioTotal.toFixed(2)} </p>
+                <p className='iva_pasarela'>iva: {(Math.round(precioTotal * 0.15))}</p>
+                <p className='total_pasarela'>Total: {(Math.round(precioTotal + precioTotal * 0.15))}</p>
             </div>
             
             <Elements stripe={stripePromise}>
             <Payment/>
             </Elements>   
         </div>
+    </div>
     )
 }
