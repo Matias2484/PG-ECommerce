@@ -8,6 +8,7 @@ import undraw from "../../img/undraw.svg"
 import gif_carga from "../../img/libros_paginas.gif";
 import undraw2 from "../../img/undraw_Gifts.svg"
 import { motion } from "framer-motion"
+import {payloadJWT} from "../../funciones/payloadJWT"
 
 export function Home () {
 
@@ -17,6 +18,16 @@ export function Home () {
     const genders = useSelector((state) => state.genders);
     const allBooks = useSelector((state) => state.allBooks);
 
+
+ 
+
+
+    if(window.localStorage.token) {
+      var a = payloadJWT()
+      
+    }
+
+    
     const [filter, setFilter] = useState([]);
 
     useEffect(() => {
@@ -24,6 +35,7 @@ export function Home () {
         dispatch(getGenders())
         dispatch(url(window.location.href)) 
         dispatch(seeCart())
+        
     },[dispatch])
 
 //Paginas
@@ -36,6 +48,9 @@ const numberPage = (e) => {
   setCurrentPage(Number(e.target.value) * 20);
   e.preventDefault();
 }
+
+ 
+
 
 
   
@@ -86,8 +101,11 @@ function categoryClear(e){
         <motion.div variants={majorMotion} initial='hidden' animate='visible' className='carouselMajor'>
                     <motion.div className="carousel" variants={variantMotion}>
           <img src={undraw} alt="imagenPresentacion" className="imagenPresentacion"></img>
+
           <div className="titulos_carousel">
-    <h2>¡Bienvenido Usuario!</h2><h4>Compra tus libros esenciales aquí</h4>
+
+            {a && a.nombre ? <h2>{`¡Bienvenido ${a.nombre}!`}</h2>:<h2>¡Bienvenido Usuario!</h2>}
+    <h4>Compra tus libros esenciales aquí</h4>
       </div>
           </motion.div>
           <motion.div className="carousel" variants={variantMotion}>

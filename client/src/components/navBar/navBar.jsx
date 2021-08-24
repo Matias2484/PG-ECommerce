@@ -11,6 +11,7 @@ import Cart from '../cart/cart'
 import LoginForms  from "../loginForm/loginForms.jsx"; 
 import {logaut} from "../../funciones/logaut"
 import RegisterForm from "../registerForm/registerForm"
+import {payloadJWT} from "../../funciones/payloadJWT"
 
 
 export default function NavBar() {
@@ -19,8 +20,17 @@ export default function NavBar() {
     const orderAllBooks = useSelector((state) => state.filteredAllBooks);
     const url = useSelector((state) => state.url);
     const carts = useSelector((state)=>state.cart);
+  
 
-    /* const a = payloadJWT() */
+    
+
+
+    if(window.localStorage.token) {
+      var a = payloadJWT()
+      
+    }
+
+    
     const token = window.localStorage.getItem("token")
 
     useEffect(() => {
@@ -229,7 +239,7 @@ export default function NavBar() {
         </div>
         
         <div style={{marginLeft:'10%'}}>
-          <NavLink to='/add' style={{textDecoration:'none'}}><h3 className="agregar_libro">Agregar Libro</h3></NavLink>
+         {a && a.admin===true? <NavLink to='/add' style={{textDecoration:'none'}}><h3 className="agregar_libro">Agregar Libro</h3></NavLink>:null}
         </div>
         
           <div className="icono_Usuario">
@@ -246,15 +256,23 @@ export default function NavBar() {
     <LoginForms loginBarFunction={loginBarFunction} />
     <RegisterForm loginBarFunction={loginBarFunction}/>
 
+          </div>
+    </div>
 </div>
-</div>
-</div>
-            <div id={rightBarState === true ? "rightNavBarButton_active" : "rightNavBarButton_inactive"} className="rightNavBarButton" onClick={ rightBarFunction }>
-            <MdShoppingCart className="icono_nav_der"/> <span className="numero_icono">{Object.values(carts).length}</span>
-            </div>           
-            <div id ="rightNavBar">
+
+  {a && a.admin===false?(
+    <div>
+    <div id="rightNavBarButton_inactive" className="rightNavBarButton" onClick={ rightBarFunction }>
+    <MdShoppingCart className="icono_nav_der"/><span className="numero_icono">{Object.values(carts).length}</span>
+    </div>  
+    <div id ="rightNavBar">
             <Cart/>
             </div>
+    </div>
+  ):null}
+         
+            
+            
         </div>
       
     </div> 

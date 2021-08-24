@@ -10,7 +10,7 @@ export default async function newUser (data){
     })
     
         const res = await user.json();
-        console.log(user)
+        
 
          window.localStorage.setItem("token",res.token)
         return res

@@ -21,6 +21,7 @@ import {
     ORDEN_DETAIL,
     FILTER_PRICE,
     FILTER_LANGUAGE,
+   
 
 } from '../Actions/index';
 
@@ -33,6 +34,7 @@ const initialState = {
     orderBooks: [],
     details: {},
     cart: {},
+    user: {},
     book: undefined,
     url: "",
     forRender:0,
@@ -260,6 +262,7 @@ function rootReducer(state = initialState, action) {
                     ...state,
                     ordenDetail:action.payload
                 } 
+           
         default: return state
     }
 
