@@ -1,9 +1,14 @@
 .modal{
     background-color: rgb(250, 220, 164);
-    display: none;
-    width: 4em; 
+    display: grid;
+    opacity: 0; 
+    width: 5em; 
+    height: auto;
     margin: 0;
-    transition: linear;
+    transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1s ;
+    line-height: 0.5em;
+    z-index: 1;
+    position: absolute;
 }
 
 .modal-open{
@@ -13,27 +18,37 @@
 .modal_dialog{
     align-items:center ;
 }
-.loginUser{
+.regisName{
     color: rgb(0, 0, 0);
-    font-size: 25px;
+    font-size: 20px;
+    margin-bottom: -1em;
+}
+.regisLastName{
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    margin-bottom: -1em;
 }
 
-.loginPass{
+.regisPass{
     color: rgb(0, 0, 0);
-    font-size: 25px;
+    font-size: 20px;
+    margin-bottom: -1em;
 }
-.close {
+
+.regisEmail{
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    margin-bottom: -1em
+}
+.registerClose {
     position: relative;
     float: right;
     width: 32px;
     height: 32px;
-
-    margin-left: 81%;
     background-color: sandybrown;
     border-style: none;
     font-family: 'Courier New', Courier, monospace;
     border-radius: 40%;
-    
     }
     
     .close:before .close:after {
@@ -45,18 +60,18 @@
         background-color: #333;
     }
     
-    .logginBtn{
+    .regisBtn{
         border: none;
-        width: 10rem;
+        width: 80%;
         padding: 1rem;
         border-radius: 5px;
         background-color: rgb(244, 164, 96,0.5);
         color: white;
         font-weight: bold;
         font-size: 15px;
-
+        margin-top: 25px;
     }
 
-    .logginBtn:hover{
+    .regisBtn:hover{
         background-color: rgb(244, 164, 96,1);
     }

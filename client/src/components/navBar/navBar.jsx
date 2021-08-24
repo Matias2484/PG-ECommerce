@@ -116,30 +116,35 @@ export default function NavBar() {
           })
         }
       }
-
       //filtro idioma
       const handleChangeCheckBox = (e) =>{
         dispatch(filterLanguage(e.target.value));
       }
-      
-      //POP-UP DE LOGIN
-      const[isOpenModal, setIsOpenModal] = useState(false);
-      const openModal = () => {
-        setIsOpenModal(true)
-      }
-      
-      const closeModal = () => {
-        setIsOpenModal(false)
-      }
 
+      //POP-UP DE LOGIN
+      const openModal = () => {
+        let logModal = document.getElementById('logModal')
+        let ninjaButton = document.getElementById('buttonsForms')
+        logModal.style.opacity = '1';
+        logModal.style.zIndex = '2'; 
+        ninjaButton.style.opacity = '0';
+        ninjaButton.style.zIndex = '1'
+        
+      }
       /* POP-UP DE REGISTRO */
-      const[isOpenRegisModal, setOpenRegisModal] = useState(false);
+
       const openRegisModal = () => {
-        setOpenRegisModal(true)
+        let logModal = document.getElementById('regisModal')
+        let ninjaButton = document.getElementById('buttonsForms')
+        logModal.style.opacity = '1';
+        logModal.style.zIndex = '2'; 
+        ninjaButton.style.opacity = '0';
+        ninjaButton.style.zIndex = '1'
       }
       
-      const closeRegisModal = () => {
-        setOpenRegisModal(false)
+      const locaLogout = () => {
+        logaut();
+        loginBarFunction();
       }
 
   return (
@@ -222,7 +227,7 @@ export default function NavBar() {
         value={busqueda}
         onChange={handleChange}/>
         </div>
-            
+        
         <div style={{marginLeft:'10%'}}>
           <NavLink to='/add' style={{textDecoration:'none'}}><h3 className="agregar_libro">Agregar Libro</h3></NavLink>
         </div>
@@ -231,26 +236,20 @@ export default function NavBar() {
           <div id={loginBarState === true ? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
           <MdAccountCircle/>
           </div>
-          <div>
-            <div id ="loginNavBar">
-            {!token ? (<button onClick={openModal} className="userLoginButton">Accede!</button>):
-            (<button onClick={logaut} className="userLoginButton"> Cerrar Sesion </button>)}
-            <LoginForms 
-            isOpen = {isOpenModal}
-            closeModal = {closeModal}
-            />
-            {!token ? (<button className="userLoginButton" onClick={openRegisModal}>Registrate!</button>) : null }
-              <RegisterForm
-              isOpen = {isOpenRegisModal}
-              closeModal = {closeRegisModal}
-              />
-            </div>
-          </div>
-          
-        </div>
-      
-        </div>
-            <div id="rightNavBarButton_inactive" className="rightNavBarButton" onClick={ rightBarFunction }>
+  <div id ="loginNavBar">
+
+    <div id ="buttonsForms" >
+      {!token?(<button onClick={openModal} className="userLoginButton">Accede!</button>):
+      (<button onClick={locaLogout}  className="userLoginButton"> Cerrar Sesion </button>)}
+      {!token?(<button className="userLoginButton" onClick={openRegisModal}>Registrate!</button>):null}
+    </div>
+    <LoginForms loginBarFunction={loginBarFunction} />
+    <RegisterForm loginBarFunction={loginBarFunction}/>
+
+</div>
+</div>
+</div>
+            <div id={rightBarState === true ? "rightNavBarButton_active" : "rightNavBarButton_inactive"} className="rightNavBarButton" onClick={ rightBarFunction }>
             <MdShoppingCart className="icono_nav_der"/> <span className="numero_icono">{Object.values(carts).length}</span>
             </div>           
             <div id ="rightNavBar">
