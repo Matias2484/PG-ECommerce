@@ -14,9 +14,9 @@ const stripe = new Stripe("sk_test_51JQAouFWmGEeX4od3qJjkwW2cdTVunEMWXE9PgKcNaz0
 //-----guarda la compra ya hecha en el usuario y en la base de datos general que seria para el adm
 //-----ruta para user y admin
 router.post('/',validarJWTUser, async (req,res)=>{
-    const {pago, valorTotal} = req.body;
+    const {pago, valorTotal, productos} = req.body;
+    
     try {
-
 
         await stripe.paymentIntents.create({
 
@@ -27,6 +27,14 @@ router.post('/',validarJWTUser, async (req,res)=>{
         })
         var compra= {...req.body,estado:'creada'}      
         var response= 'ok'  
+    
+    productos.map(async p=> {
+        var book = await Producto.findById(p.producto)
+        book = await Producto.findByIdAndUpdate({"_id":p.producto},{"stock":book.stock-Number(p.cantidad)},{new:true})
+    })
+    
+
+    res.send(book)
     }
     catch (error){
         var compra= {...req.body,estado:'cancelada'}
@@ -43,29 +51,23 @@ router.post('/',validarJWTUser, async (req,res)=>{
 });
 //------busca el libro, cambia el stock y lo envia al front para el carrito
 
-router.get('/removeOne/:idRemoveOne',async (req,res)=>{
-    const {idRemoveOne}= req.params
+// router.get('/removeOne/:idRemoveOne',async (req,res)=>{
+//     const {idRemoveOne}= req.params
 
-    var book = await Producto.findById(idRemoveOne)
-    book = await Producto.findByIdAndUpdate({"_id":idRemoveOne},{"stock":book.stock+1},{new:true})
+//     var book = await Producto.findById(idRemoveOne)
+//     book = await Producto.findByIdAndUpdate({"_id":idRemoveOne},{"stock":book.stock+1},{new:true})
+//     res.send(book)
+// });
 
-    res.send(book)
-});
-
-router.get('/removeAll/:idProducto/:count',async (req,res)=>{
-    const {idProducto, count}= req.params
-
-    var book = await Producto.findById(idProducto)
-    book = await Producto.findByIdAndUpdate({"_id":idProducto},{"stock":book.stock+Number(count)},{new:true})
-
-    res.send(book)
-});
+// router.get('/removeAll/:idProducto/:count',async (req,res)=>{
+    
+// });
 
 router.get('/:idProducto',async (req,res)=>{
     const {idProducto}= req.params
 
     var book = await Producto.findById(idProducto)
-    book = await Producto.findByIdAndUpdate({"_id":idProducto},{"stock":book.stock-1},{new:true})
+    // book = await Producto.findByIdAndUpdate({"_id":idProducto},{"stock":book.stock-1},{new:true})
 
     res.send(book)
 });

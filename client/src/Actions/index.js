@@ -151,19 +151,19 @@ export function orderBooks(orden ) {
 }
 
 export function removeOneCart(id){
-  return async function (dispatch){
-    var removeOne= await fetch(`http://localhost:4000/cart/removeOne/${id}`);
-    removeOne= await removeOne.json();
-    return dispatch({type:REMOVE_ONE_CART, payload:removeOne})
-  };
+  // return async function (dispatch){
+    // var removeOne= await fetch(`http://localhost:4000/cart/removeOne/${id}`);
+    // removeOne= await removeOne.json();
+    return {type:REMOVE_ONE_CART, payload:id}
+  // };
 }
 
-export function removeAllCart(id,count){
-  return async function (dispatch){
-    var removeAll= await fetch(`http://localhost:4000/cart/removeAll/${id}/${count}`);
-    removeAll= await removeAll.json();
-    return dispatch({type:REMOVE_ALL_CART, payload:removeAll})
-  };
+export function removeAllCart(id){
+  // return async function (dispatch){
+  //   var removeAll= await fetch(`http://localhost:4000/cart/removeAll/${id}/${count}`);
+    // removeAll= await removeAll.json();
+    return {type:REMOVE_ALL_CART, payload:id}
+  // };
 }
 
 export function clearCart(payload){

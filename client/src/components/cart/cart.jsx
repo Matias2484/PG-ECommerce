@@ -15,8 +15,17 @@ export default function Cart() {
 
     for (const i in carts) {
         arrayCart.push(carts[i]);
-        totalPrecio += carts[i].precio*carts[i].count
-        
+        totalPrecio += carts[i].precio*carts[i].count   
+    }
+
+    // const [rightBarState, setrightBarState] = useState(true);
+    function rightBarFunction(){
+      let rightNavBar = document.getElementById('rightNavBar');
+
+      rightNavBar.style.top = '-100vh';
+       
+
+      
     }
     
 
@@ -62,7 +71,7 @@ export default function Cart() {
                 <div> 
                     <p className="total_cart"><span className="cart_total">Total:</span> <span className="total_peso">$</span>{totalPrecio.toFixed(2)} <hr className="cart_linea"/></p>  
                     <div >
-                        <button className="btn_confirm" ><NavLink to='/check' style={{textDecoration:"none"}}><span className="confirm_text">Confirmar</span></NavLink></button>
+                        <button className="btn_confirm" onClick={rightBarFunction}><NavLink to='/check' style={{textDecoration:"none"}}><span className="confirm_text">Confirmar</span></NavLink></button>
                     </div>   
                     <button className='cart_limpiar' onClick={()=> dispatch(clearCart(arrayCart))}>Limpiar Carrito</button>
                 </div>) : null

@@ -13,7 +13,7 @@ export default function RegisterForm({loginBarFunction}){
         apellido:'',
         password: '',
         email:'',
-        admin: true,
+        
         });
         
         
@@ -38,7 +38,6 @@ export default function RegisterForm({loginBarFunction}){
         }
         }
 
-    
         const closeRegisModal = () => {
             let logModal = document.getElementById('regisModal')
             let ninjaButton = document.getElementById('buttonsForms')
@@ -63,7 +62,6 @@ export default function RegisterForm({loginBarFunction}){
         window.localStorage.setItem("token", a.token)
     }
     
-
     return (
         <div id="regisModal" className="logModal">
             <div className="modal_dialog">

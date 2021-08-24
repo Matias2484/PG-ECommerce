@@ -236,8 +236,6 @@ export default function NavBar() {
           <div id={loginBarState === true ? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
           <MdAccountCircle/>
           </div>
-
-
   <div id ="loginNavBar">
 
     <div id ="buttonsForms" >
