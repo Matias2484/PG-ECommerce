@@ -10,7 +10,7 @@
 }
 
 .openPop:hover{
- background-color: rgb(244, 164, 96, 1); 
+background-color: rgb(244, 164, 96, 1); 
 }
 .closePop{
     margin-top: 10px;
@@ -28,14 +28,14 @@
     margin-left: px;
     background-color: rgb(134, 128, 128, 0.2);
     padding: 1em;
-    margin: 2em;
+    margin-bottom: 2em;
 }
-.enviaPop{
+#enviaPop{
     width: 100%;
     border: none;
     padding: 0.5rem;
     border-radius: 5px;
-    background-color: rgb(244, 164, 96);
+    background-color: grey;
     color: white;
     font-weight: bold;
     font-size: 15px;
@@ -48,4 +48,9 @@
     margin-top:5%;
     width: 40%;
     margin-left: 28%;
+}
+
+#msgRecoverPass{
+    font-size: smaller;
+    margin-top: 15px;
 }

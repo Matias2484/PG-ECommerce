@@ -1,18 +1,28 @@
-.modal{
+.logModal{
     background-color: rgb(250, 220, 164);
-    display: none;
-    width: 4em; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0; 
+    width: 90%; 
+    height: 90%;
     margin: 0;
-    transition: linear;
+    transition:  all 0.5s ease-in-out; 
+    line-height: 1em;
+    z-index: 1;
+    position: absolute;
+    justify-content: space-evenly;
 }
 
-.modal-open{
-    display:grid;
-    
-}
 .modal_dialog{
     align-items:center ;
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
+
 .loginUser{
     color: rgb(0, 0, 0);
     font-size: 25px;
@@ -23,17 +33,12 @@
     font-size: 25px;
 }
 .close {
-    position: relative;
-    float: right;
-    width: 32px;
-    height: 32px;
-
-    margin-left: 81%;
+    width: 52px;
+    height: 52px;
     background-color: sandybrown;
     border-style: none;
-    font-family: 'Courier New', Courier, monospace;
-    border-radius: 40%;
-    
+    font-family: 'Poppins', sans-serif;
+    border-radius: 30%;
     }
     
     .close:before .close:after {
@@ -59,5 +64,11 @@
 
     .logginBtn:hover{
         background-color: rgb(244, 164, 96,1);
+    }
+
+    .olvidaste{
+        color: grey;
+        font-size: 12px;
+        margin-bottom: -1.7em;
     }
 
