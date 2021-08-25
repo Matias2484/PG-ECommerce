@@ -19,15 +19,21 @@ export function Home () {
     const allBooks = useSelector((state) => state.allBooks);
 
 
- 
+ const token = window.localStorage.getItem('token')
 
 
-    if(window.localStorage.token) {
+    if(token) {
+      
       var a = payloadJWT()
       
     }
-
     
+   
+    // useEffect(() => {
+    //   a = undefined;
+    // }, [token])
+
+
     const [filter, setFilter] = useState([]);
 
     useEffect(() => {
@@ -35,8 +41,8 @@ export function Home () {
         dispatch(getGenders())
         dispatch(url(window.location.href)) 
         dispatch(seeCart())
-        
-    },[dispatch])
+        a = undefined;
+    },[dispatch, token])
 
 //Paginas
 var numeroPagina = []

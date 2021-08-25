@@ -44,7 +44,11 @@ const ProductoSchema = Schema({
     precio:{
         type: Number,
         required: true
+    },
+    review: {
+        type: Array,
     }
+
 
 });
 

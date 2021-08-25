@@ -1,5 +1,5 @@
 import './details.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router";
 import { getDetails, url, addCart} from '../../Actions';
@@ -108,7 +108,7 @@ if(window.localStorage.token) {
                         
                         {review.map(r=> { return (
                             <div className="valoraciones">
-                            <h4>Usuario: {r.userId}</h4>
+                            <h4>{r.usuario}</h4>
                             <p>{estrellas(r.valoracion)}</p>
                             <p className="comentario_usuario">" {r.comentario} "</p>
                             </div>
