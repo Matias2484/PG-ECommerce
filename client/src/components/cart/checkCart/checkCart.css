@@ -4,11 +4,12 @@
 
 
 .contenedor_pasarela {
-   border: 1px solid black;
-   width: 60rem;
+   width: 40rem;
    height: 35rem;
    margin: auto;
-   
+   overflow-y: scroll;
+   background-color: #d4cfcf50;
+   border-radius: 10px;
    
 }
 .titulo_principal_pasarela {
@@ -17,13 +18,19 @@ padding-top: 0.5rem;
 color: #413e3e;
 }
 .pasarela_card {
-   display: flex;
-   text-align: center;
+   text-align: left;
   justify-content: center;
-   margin-bottom: 1rem;
+   margin-bottom: 4rem;
+
 }
 .pasarela_cdtm {
+   display:flex;
+   margin-top: 2rem;
    margin-left: 5rem;
+   
+}
+.pasarela_info {
+   margin-left: 3rem;
 }
 .titulo_pasarela {
    color: #413e3e;
@@ -47,5 +54,45 @@ color: #413e3e;
 }
 .precio_pasarela {
    color: #666666;
-   font-weight: 500;
+   font-weight: bold;
+}
+.datos_pasarela {
+   text-align: left;
+   margin-left: 5rem;
+   margin-bottom: 2rem;
+   font-weight: 600;
+}
+.datos_pasarela span {
+  float: right;
+  margin-right: 2rem;
+  font-weight: 700;
+  
+}
+.subtotal_pasarela {
+  font-size: 1rem;
+  color: #666666;
+}
+.total_pasarela {
+   margin-top: 1rem;
+   font-size: 1.3rem;
+   
+}
+.total_numero_pasarela {
+   color: #413e3e;
+   
+}
+.tarjeta_pasarela {
+  
+   width: 40rem;
+   height: 5rem;
+   margin: auto;
+   margin-top: 2rem;
+}
+.tarjeta {
+  border: 1px solid rgb(46, 41, 37);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+.btn_pasarela_compra {
+   margin-top: 2rem;
 }

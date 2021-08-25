@@ -6,6 +6,8 @@ import "./reviewForm.css"
 import {payloadJWT} from "../../../../funciones/payloadJWT"
 
 async function insertaReview(review) {
+
+   
     let respuestaDelBack;
     await fetch (`http://localhost:4000/productos/review`, {
         method: 'POST',
@@ -23,6 +25,7 @@ async function insertaReview(review) {
 export default function ReviewForm() {
 
 
+    
     if(window.localStorage.token) {
         var a = payloadJWT()
         
@@ -30,9 +33,12 @@ export default function ReviewForm() {
 
     const details = useSelector((state) => state.details);
     let respuestaDelBack;
+
+
     
     async function handleSubmitReview(e){
-        e.preventDefault();
+          
+      
         let valoracion = 0;
         for( let i=0 ; i<5 ; i++ ) {
             let starStatus = e.target[i].checked
@@ -47,7 +53,7 @@ export default function ReviewForm() {
         respuestaDelBack = await insertaReview(review);
         console.log(respuestaDelBack)
     }
-
+   
     return (
         <form onSubmit={ (e) => handleSubmitReview(e) }>
             <Valoracion />
