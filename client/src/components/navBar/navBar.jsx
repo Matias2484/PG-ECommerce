@@ -11,7 +11,10 @@ import Cart from '../cart/cart'
 import LoginForms  from "../loginForm/loginForms.jsx"; 
 import {logaut} from "../../funciones/logaut"
 import RegisterForm from "../registerForm/registerForm"
-
+import { useHistory } from "react-router";
+import {payloadJWT} from '../../funciones/payloadJWT'
+import OpcionesUser from '../opciones/opcionesUser'
+import OpcionesAdmin from "../opciones/opcionesAdmin";
 
 export default function NavBar() {
 
@@ -19,10 +22,13 @@ export default function NavBar() {
     const orderAllBooks = useSelector((state) => state.filteredAllBooks);
     const url = useSelector((state) => state.url);
     const carts = useSelector((state)=>state.cart);
+    const history=useHistory()
 
     /* const a = payloadJWT() */
     const token = window.localStorage.getItem("token")
-
+  
+    if(token) {
+      var user=payloadJWT()}
     useEffect(() => {
         dispatch(getAllBooks())
         dispatch(getGenders())
@@ -145,6 +151,7 @@ export default function NavBar() {
       const locaLogout = () => {
         logaut();
         loginBarFunction();
+        history.push('/')
       }
 
   return (
@@ -228,9 +235,7 @@ export default function NavBar() {
         onChange={handleChange}/>
         </div>
         
-        <div style={{marginLeft:'10%'}}>
-          <NavLink to='/add' style={{textDecoration:'none'}}><h3 className="agregar_libro">Agregar Libro</h3></NavLink>
-        </div>
+
         
           <div className="icono_Usuario">
           <div id={loginBarState === true ? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
@@ -239,22 +244,30 @@ export default function NavBar() {
   <div id ="loginNavBar">
 
     <div id ="buttonsForms" >
-      {!token?(<button onClick={openModal} className="userLoginButton">Accede!</button>):
-      (<button onClick={locaLogout}  className="userLoginButton"> Cerrar Sesion </button>)}
-      {!token?(<button className="userLoginButton" onClick={openRegisModal}>Registrate!</button>):null}
+      {!token?(<div>
+         <button onClick={openModal} className="userLoginButton">Accede!</button>
+         <button className="userLoginButton" onClick={openRegisModal}>Registrate!</button>
+        </div>
+       ):
+      (<div>
+        {user? user.admin ? <OpcionesAdmin /> : <OpcionesUser/>: null}
+        <button onClick={locaLogout}  className="userLoginButton"> Cerrar Sesion </button>
+        </div>)}
+
     </div>
     <LoginForms loginBarFunction={loginBarFunction} />
     <RegisterForm loginBarFunction={loginBarFunction}/>
-
 </div>
 </div>
 </div>
+          {user && !user.admin && <div>
             <div id={rightBarState === true ? "rightNavBarButton_active" : "rightNavBarButton_inactive"} className="rightNavBarButton" onClick={ rightBarFunction }>
             <MdShoppingCart className="icono_nav_der"/> <span className="numero_icono">{Object.values(carts).length}</span>
             </div>           
             <div id ="rightNavBar">
             <Cart/>
             </div>
+          </div>  }  
         </div>
       
     </div> 

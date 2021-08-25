@@ -1,7 +1,7 @@
 const Producto = require("../models/Producto");
 const { Router } = require("express");
 const router = Router();
-const {validarJWTAdmin} = require ("../middleware/validarJWT")
+const {validarJWTAdmin, validarJWTUser} = require ("../middleware/validarJWT")
 
 router.get("/", async (req, res) => {
   var books = await Producto.find({},{"editorial":0, "descripcion":0,"fecha":0, "paginas":0});
@@ -26,9 +26,10 @@ router.post("/", validarJWTAdmin, async (req, res) => {
   }
 });
 
-router.post("/review", async (req, res) => { 
+router.post("/review",validarJWTUser, async (req, res) => { 
+  const {id}=req.uid
   try {
-    const producto = await Producto.updateOne({_id: req.body._id },{ $push:{ review:req.body } })
+    const producto = await Producto.findByIdAndUpdate(id ,{ $push:{ review:req.body } })
     res.status(201).send({ msg: 'exito' });     
   } catch (error) {
     res.status(500).send({ msg:' no se pudo dejar su review' }); 

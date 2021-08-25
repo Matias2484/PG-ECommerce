@@ -21,6 +21,8 @@ import {
     ORDEN_DETAIL,
     FILTER_PRICE,
     FILTER_LANGUAGE,
+    GET_PROFILE,
+    GET_PROFILES
 
 } from '../Actions/index';
 
@@ -37,7 +39,9 @@ const initialState = {
     url: "",
     forRender:0,
     ordenes:[],
-    ordenDetail:{}
+    ordenDetail:{},
+    profiles:[],
+    profile:{}
 };
 
 
@@ -260,6 +264,17 @@ function rootReducer(state = initialState, action) {
                     ...state,
                     ordenDetail:action.payload
                 } 
+            case GET_PROFILE:
+                return{
+                    ...state,
+                    profile:action.payload
+
+                }
+                case GET_PROFILES:
+                    return{
+                        ...state,
+                        profiles:action.payload
+                    }
         default: return state
     }
 

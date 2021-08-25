@@ -9,6 +9,8 @@ import checkCart from './components/cart/checkCart/checkCart'
 import EditProduct from './components/editProducto/editProducto'
 import HistoryShopping from './components/historyShopping/historyShopping'
 import DetailOrden from './components/historyShopping/detailOrden/detailOrden'
+import Profiles from './components/perfiles/perfilesAdmin'
+import Perfil from './components/perfiles/perfil'
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
       <Route path= '/edit/:id' component={EditProduct} />
       <Route exact path='/ordenes' component={HistoryShopping} />
       <Route path='/ordenes/detail/:id' component={DetailOrden} />
+      <Route path='/profiles' component={Profiles}/>
+      <Route path='/profile/:id' component={Perfil}/> 
     </div>
   );
 }

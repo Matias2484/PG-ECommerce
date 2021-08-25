@@ -65,9 +65,9 @@ export default function LoginForms  ({loginBarFunction}){
             <div className="modal_dialog">
             <form onSubmit={handleSumbit} className="formLogin">
                     <h1 className="loginUser">Correo Electronico</h1>
-                    <input  placeholder="Correo Electronico" name="email" onChange={handleChange} value={data.username}/>
+                    <input  placeholder="Correo Electronico" autoComplete='off' name="email" onChange={handleChange} value={data.username}/>
                     <h1 className="loginPass">Contraseña</h1>
-                    <input placeholder="password" name="password" type="password" onChange={handleChange} value={data.password}/>
+                    <input placeholder="password" name="password" type="password" autoComplete='off' onChange={handleChange} value={data.password}/>
                     <input id="buttonInput"  type="submit" className="logginBtn" value ="Logueate" />
                 </form>
                 <GoogleLogin
