@@ -51,7 +51,7 @@ export default function RegisterForm({loginBarFunction}){
     const respuestaGoogle = async (respuesta)=>{
         console.log(respuesta)
         const login = {
-            apellido: respuestaGoogle.profileObj.familyName,
+            apellido: respuesta.profileObj.familyName,
             password: respuesta.profileObj.googleId,
             email: respuesta.profileObj.email,
             nombre: respuesta.profileObj.nombre,
