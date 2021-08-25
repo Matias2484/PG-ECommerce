@@ -1,17 +1,29 @@
-import React  from 'react'
+import React, {useEffect}  from 'react'
 import CreatableSelect from 'react-select/creatable';
+import {useSelector, useDispatch } from 'react-redux';
+import { url } from '../../Actions';
 import './form.css'
 import undraw from "../../img/tree_book.svg";
 
 
+
 export default function Form ({state, genderAll, handleChange, handleSubmit, handleGenders, processImage}) {
+   
+    const dispatch = useDispatch();
+    const direccion = useSelector((state) => state.url);
+    
+
+    useEffect(() => {
+        dispatch(url(window.location.href))
+    }, [dispatch, direccion]);
+    
     const options = genderAll.map(e=>({ value:e,label:e}))
     return (
         <div className="contenedor_general_form">
             <form className='form'>
                 <div className='cuerpo_form'>
                     <div className='primer_form'>
-                        <h1 className='titulo-form'>Registra un nuevo libro</h1>
+                       <h1 className='titulo-form'>{direccion==="http://localhost:3000/add"?"Registra un nuevo libro":"Editar libro"}</h1>
 
                         <div className="contenedor_form_newbook_left"> 
                             <p className="titulo_book_form">Título</p>
@@ -95,7 +107,7 @@ export default function Form ({state, genderAll, handleChange, handleSubmit, han
                 {
                     state.titulo && state.autor && state.editorial && state.descripcion 
                     && state.fecha && state.paginas && state.img && state.idioma && state.precio 
-                    && state.stock ? (<button className="button_confirm_newbook" onClick={(e)=>handleSubmit(e)} >Crear</button>) : 
+                    && state.stock ? (<button className="button_confirm_newbook" onClick={(e)=>handleSubmit(e)} >{direccion==="http://localhost:3000/add"?"Crear":"Editar"}</button>) : 
                     (<button className="button_confirm_newbook_disabled" disabled>Crear</button>)
                 }
             </div>

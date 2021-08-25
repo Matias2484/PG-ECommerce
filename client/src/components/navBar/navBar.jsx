@@ -24,7 +24,16 @@ export default function NavBar() {
     const carts = useSelector((state)=>state.cart);
     const history=useHistory()
 
-    /* const a = payloadJWT() */
+
+    
+
+
+    if(window.localStorage.token) {
+      var a = payloadJWT()
+      
+    }
+
+    
     const token = window.localStorage.getItem("token")
   
     if(token) {
@@ -235,8 +244,6 @@ export default function NavBar() {
         onChange={handleChange}/>
         </div>
         
-
-        
           <div className="icono_Usuario">
           <div id={loginBarState === true ? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
           <MdAccountCircle/>
@@ -257,9 +264,10 @@ export default function NavBar() {
     </div>
     <LoginForms loginBarFunction={loginBarFunction} />
     <RegisterForm loginBarFunction={loginBarFunction}/>
+
 </div>
 </div>
-</div>
+       </div>
           {user && !user.admin && <div>
             <div id={rightBarState === true ? "rightNavBarButton_active" : "rightNavBarButton_inactive"} className="rightNavBarButton" onClick={ rightBarFunction }>
             <MdShoppingCart className="icono_nav_der"/> <span className="numero_icono">{Object.values(carts).length}</span>
@@ -268,6 +276,7 @@ export default function NavBar() {
             <Cart/>
             </div>
           </div>  }  
+
         </div>
       
     </div> 

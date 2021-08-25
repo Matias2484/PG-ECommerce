@@ -13,6 +13,7 @@ export default function LoginForms  ({loginBarFunction}){
         email:"",
         password:""
     });
+    
 
     //funcion envia datos al BK
     const handleSumbit =  async (e) => {
@@ -21,10 +22,12 @@ export default function LoginForms  ({loginBarFunction}){
         closeModal()
         enviarInput()
         const a = await dispatch( userLogin(data))
-        window.localStorage.setItem("token", a.token)
+        window.localStorage.setItem("token", a.token, "user", a.user)
         
     }
 
+    
+    
     const handleChange = (e) =>{
         setData({
             ...data,
