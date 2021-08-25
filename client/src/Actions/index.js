@@ -20,7 +20,9 @@ export const GET_ORDENES = 'GET_ORNDES';
 export const ORDEN_DETAIL = 'ORDEN_DETAIL';
 export const FILTER_PRICE = 'FILTER_PRICE';
 export const FILTER_LANGUAGE = 'FILTER_LANGUAGE';
-export const GET_USER = 'GET_USER'
+export const GET_PROFILE = 'GET_PROFILE';
+export const GET_PROFILES ='GET_PROFILES'
+
 
 
 export function getAllBooks(){
@@ -259,7 +261,7 @@ export function getOrdenesUser(token){
 
 export function updateOrden(state,id,token){
   return async function (dispatch) {
-    let updateState= await fetch (`http://localhost:4000/orden/${state}/${id}`, {
+    var updateState= await fetch (`http://localhost:4000/orden/${state}/${id}`, {
         method: 'post',
         headers:{
           'x-token': token,
@@ -272,3 +274,33 @@ export function updateOrden(state,id,token){
     };
 };
 
+export function getProfile (id){
+  return async function (dispatch){
+    var profile= await fetch (`http://localhost:4000/auth/profile/${id}`);
+    profile= await profile.json();
+    return dispatch({type: GET_PROFILE, payload:profile })
+  };
+};
+
+export function profileUpdate (id,payload){
+  return async function (dispatch) {
+    var profileUptate= await fetch (`http://localhost:4000/auth/profile/edit/${id}`, {
+        method: 'post',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+      profileUptate= await profileUptate.json()
+      return dispatch ({type:GET_PROFILE, payload:profileUptate})
+    };
+};
+
+export function getProfiles (){
+  return async function (dispatch){
+    var profiles= await fetch (`http://localhost:4000/auth/profiles`);
+    profiles= await profiles.json();
+    return dispatch({type: GET_PROFILES, payload:profiles})
+  };
+};

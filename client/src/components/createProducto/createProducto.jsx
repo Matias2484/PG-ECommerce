@@ -26,7 +26,7 @@ export default function CreateProducto(){
         stock:''
     });
 //-----estado para colocar los multiples generos
-    const [arrGender, setArrGender]= useState(['perro','gato'])
+    const [arrGender, setArrGender]= useState([])
 //-----array para colocar los multiples generos
 
 //------modifica el estado principal

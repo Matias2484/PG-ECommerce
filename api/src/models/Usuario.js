@@ -22,12 +22,16 @@ const UsuarioSchema = Schema({
     },
     documento: {
         type: Number
-    },   
+    },  
+    foto:{
+        type: String,
+        default: 'https://www.softzone.es/app/uploads-softzone.es/2018/04/guest.png?x=480&quality=20'
+    },
     direcciones: {
         type: Array
     },
     historialDeCompras:[{
-        orde:{
+        orden:{
             type: Schema.Types.ObjectId,
             ref: 'Orden',
         }
@@ -39,6 +43,11 @@ const UsuarioSchema = Schema({
         type: Boolean,
         default: false
     },
+    
+    passRetriever:{
+        type: String,
+    },
+
 
 });
 
