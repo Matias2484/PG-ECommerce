@@ -11,7 +11,7 @@ export default function HistoryShopping(){
     const dispatch = useDispatch()
     const ordenesDeCompras= useSelector(state => state.ordenes)
     const [ordenes, setordenes] = useState([])
-
+    console.log(admin)
  useEffect(() => {
     admin.admin ? dispatch(getOrdenes(token)) : dispatch(getOrdenesUser(token))
  }, [token,admin.admin,dispatch]);
@@ -34,7 +34,7 @@ export default function HistoryShopping(){
                     <p>Filtrar por</p>
                 <Select
                         options={opcion}
-                         onChange={(e)=>filtrarOrdenes(e.value)}
+                        onChange={(e)=>filtrarOrdenes(e.value)}
                     />
                 </div>
                 <div>

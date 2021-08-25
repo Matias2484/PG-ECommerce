@@ -25,8 +25,8 @@ router.post('/',validarJWTUser, async (req,res)=>{
             payment_method: pago,
             confirm: true
         })
-        var compra= {...req.body,estado:'creada'}      
-        var response= 'ok'  
+    var compra= {...req.body,estado:'creada'}      
+    var response= 'ok'  
     
     productos.map(async p=> {
         var book = await Producto.findById(p.producto)
