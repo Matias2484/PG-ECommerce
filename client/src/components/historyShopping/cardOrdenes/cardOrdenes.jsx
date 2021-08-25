@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom'
 
 export default function CardOrdenes({props}){
     const {user,_id,productos,estado,valorTotal,fecha,admin}=props
-
+    
     return (
         <div>
-            <Link exact to={`/ordenes/detail/${_id}`}><h2>compra</h2></Link>
+            <Link to={`/ordenes/detail/${_id}`}><h2>compra</h2></Link>
             <p>N° de compra {_id}</p>
             <div>
                 {admin && <p>{`${user.nombre} ${user.apellido}`}</p>}

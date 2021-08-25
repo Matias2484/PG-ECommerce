@@ -10,14 +10,15 @@ import { payloadJWT } from '../../../funciones/payloadJWT'
 export default function DetailOrdenAdmin (){
 
     const dispatch = useDispatch()
-    const {id } = useParams();
+    const {id} = useParams();
     const state = useSelector(state => state.ordenDetail)
     let token= window.localStorage.getItem('token')
     const {admin}=payloadJWT()
+
     const{user,productos}=state
 
-    var opcion1=[{ value:'cancelada',label:'cacelada'},{ value:'procesando',label:'procesando'}]
-    var opcion2=[{ value:'cancelada',label:'cacelada'},{ value:'completa',label:'completa'}]
+    var opcion1=[{ value:'cancelada',label:'cancelada'},{ value:'procesando',label:'procesando'}]
+    var opcion2=[{ value:'cancelada',label:'cancelada'},{ value:'completa',label:'completa'}]
 
     
 
@@ -55,7 +56,7 @@ export default function DetailOrdenAdmin (){
                 </div>
                 <div>
                   <p>estado del pedido: {state.estado}</p>
-                   {admin && <Select
+                   {admin && state.estado!=='completa' && <Select
                         options={state.estado==='creada'? opcion1 : opcion2}
                         onChange={(e)=>dispatch(updateOrden(e.value,state._id,token))}
                     />}
