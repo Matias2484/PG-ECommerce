@@ -22,8 +22,7 @@ export default function LoginForms  ({loginBarFunction}){
         closeModal()
         enviarInput()
         const a = await dispatch( userLogin(data))
-        window.localStorage.setItem("token", a.token, "user", a.user)
-        
+        window.localStorage.setItem("token", a.token, "user", a.user)  
     }
 
     
