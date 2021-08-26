@@ -24,6 +24,7 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const GET_PROFILES ='GET_PROFILES'
 
 
+
 export function getAllBooks(){
     return function(dispatch){
         return fetch(`http://localhost:4000/productos`)
@@ -303,4 +304,3 @@ export function getProfiles (){
     return dispatch({type: GET_PROFILES, payload:profiles})
   };
 };
-

@@ -13,6 +13,7 @@ export default function LoginForms  ({loginBarFunction}){
         email:"",
         password:""
     });
+    
 
     //funcion envia datos al BK
     const handleSumbit =  async (e) => {
@@ -32,8 +33,11 @@ export default function LoginForms  ({loginBarFunction}){
             title: "A ocurrido un error",
             icon: "error",
         }))
+
     }
 
+    
+    
     const handleChange = (e) =>{
         setData({
             ...data,

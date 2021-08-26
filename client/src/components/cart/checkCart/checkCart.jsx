@@ -73,12 +73,11 @@ export default function CheckCart(){
         }
     }
         return <form className= "form_compra" onSubmit={handleSubmit}>
-            <div className='tarjetas_div'>
-                  <CardElement className="tarjeta"/>      
-            </div>
+           <CardElement className="tarjeta"/>      
            {state.pais && state.calle && state.codigoPostal && <button>
                 Comprar
             </button>}
+
         </form>
     }
 
@@ -90,22 +89,25 @@ export default function CheckCart(){
             <div className="pasarela_card">
             {arrayCart.map(e=>{
                 return (<div className="pasarela_cdtm">
-                
+                        <div>
                         <img className="imagen_pasarela"alt="imagen_pasarela"src={e.img}></img>
+                        </div>
+                        <div className="pasarela_info">
                         <p className="titulo_pasarela">{e.titulo}</p>
                         <p className="autor_pasarela">{e.autor}</p>
                         <p className="editorial_pasarela">{e.editorial}</p>
                         <p className="unidades_pasarela">Unidades: {e.count}</p>
                         <p className="precio_pasarela"><span className="peso_pasarela">$</span> {e.precio * e.count}</p>
+                        </div>
+                        
                        
                     </div>)
                     
             })}
             </div>
             <div className="datos_pasarela">
-                <p className='neto_pasarela'>Sub-Total: {precioTotal.toFixed(2)} </p>
-                <p className='iva_pasarela'>iva: {(Math.round(precioTotal * 0.15))}</p>
-                <p className='total_pasarela'>Total: {(Math.round(precioTotal + precioTotal * 0.15))}</p>
+                <p className='neto_pasarela'>Sub-Total: <span className="subtotal_pasarela">$ {precioTotal.toFixed(2)}</span> </p>
+                <p className='total_pasarela'>Total: <span className="total_numero_pasarela">$ {(Math.round(precioTotal))}</span></p>
             </div>
                 <p>Facuracion</p>             
             <div >
@@ -130,5 +132,6 @@ export default function CheckCart(){
 
         </div>
     </div>
+    
     )
 }

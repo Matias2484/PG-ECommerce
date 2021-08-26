@@ -30,13 +30,15 @@ router.post('/',validarJWTUser, async (req,res)=>{
     
     productos.map(async p=> {
         var book = await Producto.findById(p.producto)
+        
         book = await Producto.findByIdAndUpdate({"_id":p.producto},{"stock":book.stock-Number(p.cantidad)},{new:true})
+        
     })
     
-
-    res.send(book)
+    
     }
     catch (error){
+        
         var compra= {...req.body,estado:'cancelada'}
         var response='pago rechazado'
     }
@@ -47,6 +49,8 @@ router.post('/',validarJWTUser, async (req,res)=>{
         await orden.save();
         await Usuario.findByIdAndUpdate(id, {$push:{"historialDeCompras": orden}})
         res.send({ok:response})
+        
+       
     }
 });
 //------busca el libro, cambia el stock y lo envia al front para el carrito

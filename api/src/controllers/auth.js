@@ -23,8 +23,9 @@ const createUser = async(req, res=response)=>{
 
         res.status(201).send({token})
     } catch (error) {
-        console.log(error);
-        res.status(500).send(error)
+
+    
+        res.sendStatus(500)
     }
 }
 
@@ -36,7 +37,8 @@ const loginUser = async (req, res=response)=>{
         if(!user) return res.status(400).send({ok:false, msg:'el usuario no existe'})
         const token = await generarJWT (user.id,user.nombre,user.admin)
         const validarPassword= bcrypt.compareSync( password, user.password)
-        !validarPassword? res.status(400).send({msg:'correo o password incorrectos'}): res.status(200).send({token})
+        
+        !validarPassword? res.status(400).send({msg:'correo o password incorrectos'}): res.status(200).send({token, user})
     } catch (error) {
         res.send(error)
     }

@@ -24,6 +24,7 @@ import {
     GET_PROFILE,
     GET_PROFILES
 
+
 } from '../Actions/index';
 
 
@@ -35,6 +36,7 @@ const initialState = {
     orderBooks: [],
     details: {},
     cart: {},
+    user: {},
     book: undefined,
     url: "",
     forRender:0,
@@ -270,7 +272,7 @@ function rootReducer(state = initialState, action) {
                     profile:action.payload
 
                 }
-                case GET_PROFILES:
+              case GET_PROFILES:
                     return{
                         ...state,
                         profiles:action.payload

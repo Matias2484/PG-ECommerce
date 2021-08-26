@@ -43,6 +43,11 @@ const UsuarioSchema = Schema({
         type: Boolean,
         default: false
     },
+    
+    passRetriever:{
+        type: String,
+    },
+
 
 });
 
