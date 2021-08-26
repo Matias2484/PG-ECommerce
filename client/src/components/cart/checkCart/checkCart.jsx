@@ -109,17 +109,17 @@ export default function CheckCart(){
                 <p className='neto_pasarela'>Sub-Total: <span className="subtotal_pasarela">$ {precioTotal.toFixed(2)}</span> </p>
                 <p className='total_pasarela'>Total: <span className="total_numero_pasarela">$ {(Math.round(precioTotal))}</span></p>
             </div>
-                <p>Facuracion</p>             
+                <p>Facturación</p>             
             <div >
                 <div >
-                    <p>Direccion de envio</p>
-                    <label>Pais</label>  
+                    <p>Dirección de envío</p>
+                    <label>País</label>  
                     <input type='text' required autoComplete='country-name' name='pais' value={state.pais} onChange={(e)=>handleChange(e)} />    
-                    <label>Cuidad</label> 
+                    <label>Ciudad</label> 
                      <input type='text' required autoComplete='off' name='cuidad' value={state.cuidad} onChange={(e)=>handleChange(e)}/>    
                     <label>Calle</label>  
                     <input type='text' required autoComplete='street-address' name='calle' value={state.calle} onChange={(e)=>handleChange(e)} />     
-                    <label>Codigo Postal</label>  
+                    <label>Código Postal</label>  
                     <input type='number' required autoComplete='postal-code' name='codigoPostal' value={state.codigoPostal} onChange={(e)=>handleChange(e)}/>    
 
                 </div>
