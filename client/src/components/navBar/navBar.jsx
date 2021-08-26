@@ -23,6 +23,8 @@ export default function NavBar() {
     const url = useSelector((state) => state.url);
     const carts = useSelector((state)=>state.cart);
 
+    const history = useHistory()
+
 
 
   const history = useHistory()
