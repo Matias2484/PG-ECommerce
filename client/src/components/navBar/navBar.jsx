@@ -22,15 +22,7 @@ export default function NavBar() {
     const orderAllBooks = useSelector((state) => state.filteredAllBooks);
     const url = useSelector((state) => state.url);
     const carts = useSelector((state)=>state.cart);
-
-
-    
-    const token = window.localStorage.getItem("token")
-
-    if(token) {
-      var a = payloadJWT()
-      
-    }
+    const history = useHistory()
 
 
     
