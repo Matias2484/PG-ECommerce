@@ -393,3 +393,8 @@ margin-top: 0.5rem;
   color: #181717;
   cursor: pointer;
 }
+.profileImg{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
