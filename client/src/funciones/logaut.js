@@ -6,5 +6,5 @@ export function logaut(){
         text: "Logueado!",
         icon: "success",
         });
-    window.localStorage.clear('token')
+    window.localStorage.removeItem("token")
 }

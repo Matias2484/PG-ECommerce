@@ -115,7 +115,7 @@ router.post( '/changepass', async (req , res) => {
 
 //----elimina un usuario para que no se pueda logear
 router.delete('/delete/:id',validarJWTUser,(req,res)=>{
-    const id= req.uid
+    const {id}=req.params
     Usuario.findByIdAndDelete(id)
     res.send('ok')
 })

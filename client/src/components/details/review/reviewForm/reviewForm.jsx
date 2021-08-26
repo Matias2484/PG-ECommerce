@@ -2,31 +2,13 @@ import React from 'react';
 import Valoracion from "../valoracion/valoracion";
 import Comentarios from "../comentarios/comentarios";
 import { useSelector } from 'react-redux';
+import {insertaReview} from '../../../../funciones/insertarReview'
 import "./reviewForm.css"
 import {payloadJWT} from "../../../../funciones/payloadJWT"
 
-async function insertaReview(review) {
-
-   
-    let respuestaDelBack;
-    await fetch (`http://localhost:4000/productos/review`, {
-        method: 'POST',
-        headers:{
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(review)
-    })
-    .then( response => response.json())
-    .then( response => respuestaDelBack = response)
-    return respuestaDelBack;
-};
-
 export default function ReviewForm() {
-
-
-    
-    if(window.localStorage.token) {
+  let token=window.localStorage.getItem('token')
+    if(token) {
         var a = payloadJWT()
         
       }
@@ -51,7 +33,7 @@ export default function ReviewForm() {
             comentario: e.target[5].value
         }
         respuestaDelBack = await insertaReview(review);
-        console.log(respuestaDelBack)
+
     }
    
     return (

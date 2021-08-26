@@ -6,7 +6,6 @@ const {generarJWT} = require ("../middleware/generarJWT")
 const createUser = async(req, res=response)=>{
     const {email,password}=req.body
 
-
     try {
         let user = await Usuario.findOne ({email});
     
@@ -21,7 +20,6 @@ const createUser = async(req, res=response)=>{
         await user.save()
 
         const token = await generarJWT (user._id,user.nombre,user.admin)
-    
 
         res.status(201).send({token})
     } catch (error) {

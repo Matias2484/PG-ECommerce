@@ -15,7 +15,6 @@ export default function Perfil() {
     const [foto, setfoto] = useState('')
     const [admin,setadmin]= useState('')
     var token=payloadJWT()
-    console.log(admin.length)
     useEffect(() => {
         dispatch(getProfile(id))
     }, [dispatch,id])
@@ -44,9 +43,8 @@ export default function Perfil() {
                {!token.admin && <input type="file" required accept="image/*" className='inputFoto' onChange={(e)=>processImage(e)}/>}
             </div>
             <div>
-            {token.admin && <button onClick={()=>deleteProfile()}>Eliminar</button>}
+            {token.admin && <button onClick={()=>deleteProfile(id)}>Eliminar</button>}
                 <p>{`usuario: ${state.nombre} ${state.apellido}`}</p>
-                <label>DNI/CI: {state.documento}</label>
                 <p>email: {state.email}</p>
                 <p>Estatus: {state.admin? <label>Administrador</label> : <label>Usuario</label>}</p>
                 {token.admin && admin.length===0 && <Select

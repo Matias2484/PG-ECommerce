@@ -37,8 +37,9 @@ export default function NavBar() {
     const token = window.localStorage.getItem("token")
   
     if(token) {
-      var user=payloadJWT()}
-
+      var user=payloadJWT()
+    }
+    
     useEffect(() => {
         dispatch(getAllBooks())
         dispatch(getGenders())
@@ -171,7 +172,7 @@ export default function NavBar() {
       {url === "http://localhost:3000/" ? (
         <div>
         
-        <button className = {leftBarState === true ? "leftNavBarButton_active" : "leftNavBarButton_inactive"} onClick={ leftBarFunction }>
+        <button className = {leftBarState ? "leftNavBarButton_active" : "leftNavBarButton_inactive"} onClick={ leftBarFunction }>
             <MdMenu className="icono_nav"/>
         </button>
             <div id='leftNavBar'>
@@ -246,7 +247,7 @@ export default function NavBar() {
         </div>
         
           <div className="icono_Usuario">
-          <div id={loginBarState === true ? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
+          <div id={loginBarState? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
           <MdAccountCircle/>
           </div>
   <div id ="loginNavBar">
@@ -268,15 +269,18 @@ export default function NavBar() {
 
 </div>
 </div>
+
        </div>
           {user && !user.admin && <div>
-            <div id={rightBarState === true ? "rightNavBarButton_active" : "rightNavBarButton_inactive"} className="rightNavBarButton" onClick={ rightBarFunction }>
+
+            <div id={rightBarState? "rightNavBarButton_active" : "rightNavBarButton_inactive"} className="rightNavBarButton" onClick={ rightBarFunction }>
             <MdShoppingCart className="icono_nav_der"/> <span className="numero_icono">{Object.values(carts).length}</span>
             </div>           
             <div id ="rightNavBar">
             <Cart/>
             </div>
           </div>  }  
+
 
         </div>
       

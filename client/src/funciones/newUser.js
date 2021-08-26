@@ -11,7 +11,6 @@ export default async function newUser (data){
     
         const res = await user.json();
 
-         window.localStorage.setItem("token",res.token)
         return res
     
 }//guardar en la carpeta nueva
