@@ -10,7 +10,6 @@ export default function userLogin(data){
     })
         const res = await user.json();
 
-
         return res
     }
 }//guardar en la carpeta nueva

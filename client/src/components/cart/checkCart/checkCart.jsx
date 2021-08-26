@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import {useHistory} from 'react-router-dom'
 import swal from 'sweetalert';
@@ -14,7 +14,12 @@ const stripePromise = loadStripe("pk_test_51JQAouFWmGEeX4odlkQmbhbHUp3CKtVyX8x3I
 export default function CheckCart(){
     const dispatch = useDispatch()
     const history= useHistory()
-
+    const [state,setState]= useState({
+        pais:'',
+        cuidad:'',
+        calle:'',
+        codigoPostal:''
+    })
     const carts = useSelector((state)=>state.cart)
 
     const arrayCart=[]
@@ -30,6 +35,12 @@ export default function CheckCart(){
         precioTotal+=carts[i].precio*carts[i].count
     }
 
+    function handleChange(e){
+        setState({
+            ...state,
+            [e.target.name]:e.target.value
+        });
+    };
     
     const Payment = () => {
 
@@ -52,7 +63,7 @@ export default function CheckCart(){
         }
         let token= window.localStorage.getItem('token')
         dispatch(addBuyUser(pago,token))
-        swal("purchase made!", "you will receive an email soon", "success");
+        swal("Gracias por su Compra", "recibira un email con los detalles", "success");
         history.push('/')
         
           
@@ -62,10 +73,12 @@ export default function CheckCart(){
         }
     }
         return <form className= "form_compra" onSubmit={handleSubmit}>
-        <CardElement className="tarjeta"/>
-        <button>
-            Comprar
-        </button>
+            <div className='tarjetas_div'>
+                  <CardElement className="tarjeta"/>      
+            </div>
+           {state.pais && state.calle && state.codigoPostal && <button>
+                Comprar
+            </button>}
         </form>
     }
 
@@ -94,10 +107,27 @@ export default function CheckCart(){
                 <p className='iva_pasarela'>iva: {(Math.round(precioTotal * 0.15))}</p>
                 <p className='total_pasarela'>Total: {(Math.round(precioTotal + precioTotal * 0.15))}</p>
             </div>
-            
-            <Elements stripe={stripePromise}>
-            <Payment/>
-            </Elements>   
+                <p>Facuracion</p>             
+            <div >
+                <div >
+                    <p>Direccion de envio</p>
+                    <label>Pais</label>  
+                    <input type='text' required autoComplete='country-name' name='pais' value={state.pais} onChange={(e)=>handleChange(e)} />    
+                    <label>Cuidad</label> 
+                     <input type='text' required autoComplete='off' name='cuidad' value={state.cuidad} onChange={(e)=>handleChange(e)}/>    
+                    <label>Calle</label>  
+                    <input type='text' required autoComplete='street-address' name='calle' value={state.calle} onChange={(e)=>handleChange(e)} />     
+                    <label>Codigo Postal</label>  
+                    <input type='number' required autoComplete='postal-code' name='codigoPostal' value={state.codigoPostal} onChange={(e)=>handleChange(e)}/>    
+
+                </div>
+                <div>
+                    <Elements stripe={stripePromise}>
+                        <Payment/>
+                    </Elements>                      
+                </div>
+            </div>
+
         </div>
     </div>
     )

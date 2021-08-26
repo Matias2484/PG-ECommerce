@@ -23,19 +23,27 @@ export default function RegisterForm({loginBarFunction}){
             [e.target.name]: e.target.value
         });
     }
-    const enviarInput = (e) => {
+    const enviarInput =async (e) => {
         e.preventDefault();
         loginBarFunction();
         closeRegisModal();
-        if(input.nombre && input.password && input.email) {
-            newUser(input);    
-            swal({
-                title: "Gracias",
-                text: "Formulario enviado con éxito",
-                icon: "success",
-            });
+        let a= await newUser(input);   
+        setInput({
+            email:'',
+            password:'',
+            nombre:'',
+            apellido:''
+        })
+        a.token && window.localStorage.setItem("token", a.token)
+        a.token? (swal({
+             title: "Bienvenido",
+             icon: "success",
+         })):(swal({
+             title: "A ocurrido un error",
+             icon: "error",
+         })) 
 
-        }
+        
     }
 
         const closeRegisModal = () => {
@@ -65,13 +73,13 @@ export default function RegisterForm({loginBarFunction}){
             <div className="modal_dialog">
             <form  className="formLogin" onSubmit={enviarInput}>
                     <h1 className="regisName">Nombre</h1>
-                    <input  placeholder="Tu nombre..." name="nombre" autoComplete='off' onChange={handleInputChange} />
+                    <input  placeholder="Tu nombre..." name="nombre" autoComplete='off' required  value={input.nombre} onChange={handleInputChange} />
                     <h1 className="regisLastName">Apellido</h1>
-                    <input  placeholder="Tu apellido..." name="apellido" autoComplete='off'  onChange={handleInputChange} />
+                    <input  placeholder="Tu apellido..." name="apellido" autoComplete='off' required value={input.apellido} onChange={handleInputChange} />
                     <h1 className="regisPass">Contraseña</h1>
-                    <input placeholder="Elige una contraseña..." name="password" autoComplete='off'  type="password" onChange={handleInputChange}/>
+                    <input placeholder="Elige una contraseña..." name="password" autoComplete='off' value={input.password} required minLength='6' type="password" onChange={handleInputChange}/>
                     <h1 className="regisEmail">Correo electronico</h1>
-                    <input placeholder="email" name="email" type="email" autoComplete='off'  onChange={handleInputChange}/>
+                    <input placeholder="email" name="email" type="email" autoComplete='off' required value={input.email} onChange={handleInputChange}/>
                     <input id="buttonInput" type="submit" className="regisBtn" autoComplete='off'  value ="Registrate" />
                 </form>
                 <GoogleLogin
