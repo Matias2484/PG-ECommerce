@@ -1,3 +1,10 @@
+.opcionesUser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
 .perfilGo{
     color:rgb(255, 255, 255);
     font-size: 20px;
@@ -23,27 +30,13 @@ opacity:1;
 .historialGo:active{
     opacity: 1;
 }
-
-
 .profilePhoto{
     height: 170px;
     width: 185px;
     border-radius: 50%;
     margin-top: 10px;
 }
-
-.photoContainer{
-    margin-left:35px;
-    background-color: sandybrown;
-    align-content: center;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 50%;
-    width: 190px ;
-    height:190px;
-}
-
 .welcome{
     color:black;
-    font-size: 30px;
+    font-size: 24px;
 }

@@ -24,6 +24,7 @@ export default function Perfil() {
         const imageUrl = new FileReader();
         imageUrl.readAsDataURL(imageFile)
         imageUrl.onload=(e)=>{
+            console.log(foto)
         setfoto(e.target.result)
         };
     };

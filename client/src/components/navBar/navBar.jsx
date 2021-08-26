@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks, getGenders, orderBooks, searchByName, filterPrice, filterLanguage } from "../../Actions/index";
+import { getProfile, getAllBooks, getGenders, orderBooks, searchByName, filterPrice, filterLanguage } from "../../Actions/index";
 import './navBar.css'
 import { MdMenu, MdShoppingCart, MdAccountCircle } from "react-icons/md";
 import { RiSoundModuleFill  } from "react-icons/ri";
@@ -17,16 +17,17 @@ import OpcionesUser from '../opciones/opcionesUser'
 import OpcionesAdmin from "../opciones/opcionesAdmin";
 
 export default function NavBar() {
-
+  const profileImg = useSelector(state => state.profile)
     const dispatch = useDispatch();
     const orderAllBooks = useSelector((state) => state.filteredAllBooks);
     const url = useSelector((state) => state.url);
     const carts = useSelector((state)=>state.cart);
     const history = useHistory();
     const token = window.localStorage.getItem("token")
-  
+
     if(token) {
       var user=payloadJWT()
+      dispatch(getProfile(user.uid))
     }
     
     useEffect(() => {
@@ -237,7 +238,7 @@ export default function NavBar() {
         
           <div className="icono_Usuario">
           <div id={loginBarState? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
-          <MdAccountCircle/>
+          {user && user.uid ? <img className='profileImg' src={profileImg.foto} alt="imagen de perfil" /> : <MdAccountCircle/>}
           </div>
   <div id ="loginNavBar">
 
