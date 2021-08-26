@@ -27,10 +27,19 @@ router.post("/", validarJWTAdmin, async (req, res) => {
 });
 
 
-router.post("/review",async (req, res) => { 
- 
+router.post("/review",validarJWTUser,async (req, res) => { 
+ var id = req.uid
+ var {nombre, apellido} = req
+
+ const obj = {
+   ...req.body,
+   nombre, 
+   apellido,
+   userId:id
+ }
+ console.log(obj)
   try {
-    const producto = await Producto.updateOne({ "_id": req.body._id},{ $push:{ review:req.body } })
+    const producto = await Producto.updateOne({ "_id": req.body._id},{ $push:{ review:obj },  })
    
 
     res.status(201).send({ msg: 'exito' });     

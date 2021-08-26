@@ -24,15 +24,8 @@ export default function NavBar() {
     const carts = useSelector((state)=>state.cart);
 
 
-    
-    const token = window.localStorage.getItem("token")
 
-    if(token) {
-      var a = payloadJWT()
-      
-    }
-
-
+  const history = useHistory()
     
     const token = window.localStorage.getItem("token")
   

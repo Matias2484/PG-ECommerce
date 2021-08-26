@@ -18,10 +18,11 @@ export default function Details() {
     
 
 
-if(window.localStorage.token) {
-  var a = payloadJWT()
+ const token = window.localStorage.getItem("token")
   
-}
+    if(token) {
+      var a=payloadJWT()
+    }
 
     useEffect(() => {
         dispatch(getDetails(id));
@@ -105,10 +106,10 @@ if(window.localStorage.token) {
                     <div className="opiniones">
                     <h2 className="titulo_valoracion">Opiniones de nuestros lectores</h2>
                     {review ?  <div> 
-                        
+                        {console.log(review)}
                         {review.map(r=> { return (
-                            <div className="valoraciones">
-                            <h4>{r.usuario}</h4>
+                            <div key={r.valoracion + "a"} className="valoraciones">
+                            <h4>{r.nombre + " " + r.apellido}</h4>
                             <p>{estrellas(r.valoracion)}</p>
                             <p className="comentario_usuario">" {r.comentario} "</p>
                             </div>

@@ -12,13 +12,14 @@ const validarJWTAdmin= (req,res,next)=>{
     }
 
     try {
-        const {uid,nombre,admin} = jwt.verify(
+        const {uid,nombre,admin, apellido} = jwt.verify(
             token,
             CLAVE_TOKEN
         )
         req.uid=uid
         req.nombre=nombre
         req.admin=admin
+        req.apellido=apellido
         admin=== true?  next() : res.status(500).json({ok:false,msg:'ruta no permitida'})
 
     } catch (error) {
@@ -37,13 +38,14 @@ const validarJWTUser= (req,res,next)=>{
     }
 
     try {
-        const {uid,nombre,admin} = jwt.verify(
+        const {uid,nombre,admin, apellido} = jwt.verify(
             token,
             CLAVE_TOKEN
         )
         req.uid=uid
         req.nombre=nombre
         req.admin=admin
+        req.apellido=apellido
        
 
     } catch (error) {
