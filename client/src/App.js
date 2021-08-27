@@ -12,7 +12,7 @@ import DetailOrden from './components/historyShopping/detailOrden/detailOrden'
 import Profiles from './components/perfiles/perfilesAdmin'
 import Perfil from './components/perfiles/perfil'
 import Sucursales from "./components/sucursales/sucursales";
-
+import RegisterForm from "../src/components/registerForm/registerForm"
 import {payloadJWT} from './funciones/payloadJWT'
 
 
@@ -28,21 +28,23 @@ function App() {
       <Route path='/details/:id' component = {Details} />
       <Route path= '/check' component={checkCart} />      
       <Route path='/sucursales' component={Sucursales} />
+      <Route path='/registerUser' component={RegisterForm}/>
       <Switch>
          <Route path= '/add' render={()=>{
-              return a && a.admin ? <CreateProducto/> : <Redirect to='/'/>
+              return a && a.admin === true ? <CreateProducto/> : <Redirect to='/'/>
             }}
           />
+          
            <Route path= '/edit/:id' render={()=>{
-              return a && a.admin ? <EditProduct/> : <Redirect to='/'/>
+              return a && a.admin === true ? <EditProduct/> : <Redirect to='/'/>
             }}
           />
           <Route path='/profiles' render={()=>{
-              return a && a.admin ? <Profiles /> : <Redirect to='/'/>
+              return a && a.admin === true ? <Profiles /> : <Redirect to='/'/>
             }}
           />
           <Route exact path='/ordenes' render={()=>{
-              return a ? <HistoryShopping /> : <Redirect to='/'/>
+              return a ?  <HistoryShopping /> : <Redirect to='/'/>
             }}
           />
           <Route path='/ordenes/detail/:id' render={()=>{
@@ -50,9 +52,10 @@ function App() {
             }}
           />
           <Route path='/profile/:id' render={()=>{
-              return a ? <Perfil/> : <Redirect to='/'/>
+              return a? <Perfil/> : <Redirect to='/'/>
             }}
           />
+          
       </Switch>
     </div>
   );

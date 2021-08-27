@@ -22,7 +22,8 @@ import {
     FILTER_PRICE,
     FILTER_LANGUAGE,
     GET_PROFILE,
-    GET_PROFILES
+    GET_PROFILES,
+    DELETE_PROFILE
 
 
 } from '../Actions/index';
@@ -276,6 +277,11 @@ function rootReducer(state = initialState, action) {
                     return{
                         ...state,
                         profiles:action.payload
+                    }
+              case DELETE_PROFILE:
+                    return{
+                        ...state,
+                        profile: {}
                     }
         default: return state
     }

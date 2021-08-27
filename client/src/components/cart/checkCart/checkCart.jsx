@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import {useHistory} from 'react-router-dom'
 import swal from 'sweetalert';
-import {addBuyUser} from '../../../Actions/index'
+import {addBuyUser, seeCart} from '../../../Actions/index'
 import {CardElement,useElements, useStripe} from "@stripe/react-stripe-js"
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -16,7 +16,7 @@ export default function CheckCart(){
     const history= useHistory()
     const [state,setState]= useState({
         pais:'',
-        cuidad:'',
+        ciudad:'',
         calle:'',
         codigoPostal:''
     })
@@ -24,6 +24,12 @@ export default function CheckCart(){
     const token= window.localStorage.getItem('token')
     const arrayCart=[]
     let precioTotal= 0   
+
+    useEffect(() => {
+         
+        dispatch(seeCart())
+ 
+    },[dispatch])
 
     for (const i in carts) {
         arrayCart.push(carts[i])
@@ -58,7 +64,7 @@ export default function CheckCart(){
            const {id} = paymentMethod;
            let pago = {
             productos:compras,
-            direccion: `${state.pais}/ ${state.cuidad}, ${state.calle}, CP: ${state.codigoPostal}`,
+            direccion: `${state.pais}/ ${state.ciudad}, ${state.calle}, CP: ${state.codigoPostal}`,
             valorTotal:Math.round(precioTotal),
             pago:id
         }
@@ -75,7 +81,7 @@ export default function CheckCart(){
     }
         return <form className= "form_compra" onSubmit={handleSubmit}>
            <CardElement className="tarjeta"/>      
-           {state.pais && state.calle && state.codigoPostal && <button>
+           {state.pais && state.calle && state.codigoPostal && <button className="btn_pasarela_compra">
                 Comprar
             </button>}
 
@@ -111,19 +117,28 @@ export default function CheckCart(){
                 <p className='neto_pasarela'>iva: <span className="subtotal_pasarela">$ {(precioTotal* 0.1).toFixed(2)}</span> </p>
                 <p className='total_pasarela'>Total: <span className="total_numero_pasarela">$ {(Math.round(precioTotal+precioTotal* 0.1))}</span></p>
             </div>
-            {token ? (<div>
-                <p>Facuracion</p>     
-                <div>
-                    <p>Direccion de envio</p>
-                    <label>Pais</label>  
+            </div>
+            {token ? (<div className="contenedor_facturacion">
+                <p className="facturacion_pasarela">Facturación</p>     
+                <p className="direccion_pasarela">Dirección de envío</p>
+                <div className="datos_personales_pasarela">
+                    <div>
+                    <label>País</label>  
                     <input type='text' required autoComplete='country-name' name='pais' value={state.pais} onChange={(e)=>handleChange(e)} />    
-                    <label>Cuidad</label> 
-                     <input type='text' required autoComplete='off' name='cuidad' value={state.cuidad} onChange={(e)=>handleChange(e)}/>    
+                    </div>
+                    <div>
+                    <label>Ciudad</label> 
+                    <input type='text' required autoComplete='off' name='ciudad' value={state.ciudad} onChange={(e)=>handleChange(e)}/>    
+                    </div>
+                    <div>
                     <label>Calle</label>  
                     <input type='text' required autoComplete='street-address' name='calle' value={state.calle} onChange={(e)=>handleChange(e)} />     
-                    <label>Codigo Postal</label>  
+                    </div>
+                    <div>
+                    <label>Código Postal</label>  
                     <input type='number' required autoComplete='postal-code' name='codigoPostal' value={state.codigoPostal} onChange={(e)=>handleChange(e)}/>    
-                </div>
+                    </div>
+               </div>
                 <div>
                     <Elements stripe={stripePromise}>
                         <Payment/>
@@ -135,7 +150,7 @@ export default function CheckCart(){
             </div>)}
 
         </div>
-    </div>
+    
     
     )
 }

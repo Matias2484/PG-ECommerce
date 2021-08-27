@@ -1,4 +1,6 @@
 const Producto = require("../models/Producto");
+const Orden = require("../models/Orden");
+
 const { Router } = require("express");
 const router = Router();
 const {validarJWTAdmin, validarJWTUser} = require ("../middleware/validarJWT")
@@ -36,12 +38,24 @@ router.post("/review",validarJWTUser,async (req, res) => {
    apellido,
    userId:id
  }
+ var orden = await Orden.find({"user":id}, {"productos":1})
+ var fruta = [].concat.apply([], orden.map(e=>e.productos))
+ var fruta2 = fruta.filter(e=>e.producto == req.body._id)
+
+ if(fruta2.length === 0) {
+ return res.status(500).send({ok:false})
+ }
+
+ 
+ var comentario = await Producto.find({"user":ud}, {review:userId})
+ console.log(comentario)
 
   try {
-     var a= await Producto.updateOne({ "_id": req.body._id},{ $push:{ review:obj}}, {new:true})
+    var a= await Producto.updateOne({ "_id": req.body._id},{ $push:{ review:obj}}, {new:true})
    
 
-    res.status(201).send(a);     
+    res.status(201).send(a);
+          
   } catch (error) {
      res.status(500).send({ msg:' no se pudo dejar su review' }); 
     console.log(error)

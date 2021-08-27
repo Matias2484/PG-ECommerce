@@ -1,11 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
+import React,{ useState }  from 'react';
 import swal from 'sweetalert';
 import newUser from '../../funciones/newUser'
 import '../registerForm/registerForm.css'
 import GoogleLogin from 'react-google-login';
 
-export default function RegisterForm({loginBarFunction}){
+export default function RegisterForm(){
 
     const [input, setInput] = useState({
         nombre: '',
@@ -25,8 +24,7 @@ export default function RegisterForm({loginBarFunction}){
     }
     const enviarInput =async (e) => {
         e.preventDefault();
-        loginBarFunction();
-        closeRegisModal();
+      
         let a= await newUser(input);   
         setInput({
             email:'',
@@ -39,23 +37,16 @@ export default function RegisterForm({loginBarFunction}){
              title: "Bienvenido",
              icon: "success",
          })):(swal({
-             title: "A ocurrido un error",
+             title: "Ha ocurrido un error",
              icon: "error",
          })) 
 
         
     }
 
-        const closeRegisModal = () => {
-            let logModal = document.getElementById('regisModal')
-            let ninjaButton = document.getElementById('buttonsForms')
-            logModal.style.opacity = '0';
-            logModal.style.zIndex = '1'; 
-            ninjaButton.style.opacity = '1';
-            ninjaButton.style.zIndex = '2'
-        }
 
-        //loggin google
+
+    //loggin google
     const respuestaGoogle = async (respuesta)=>{
 
         const login = {
@@ -71,21 +62,22 @@ export default function RegisterForm({loginBarFunction}){
              title: "Bienvenido",
              icon: "success",
          })):(swal({
-             title: "A ocurrido un error",
+             title: "Ha ocurrido un error",
              icon: "error",
          })) 
     }
     
     return (
+        
         <div id="regisModal" className="logModal">
             <div className="modal_dialog">
             <form  className="formLogin" onSubmit={enviarInput}>
                     <h1 className="regisName">Nombre</h1>
-                    <input  placeholder="Tu nombre..." name="nombre" autoComplete='off' required  value={input.nombre} onChange={handleInputChange} />
+                    <input  placeholder="Tu nombre..." name="nombre" autoComplete='off' required   value={input.nombre} onChange={handleInputChange} />
                     <h1 className="regisLastName">Apellido</h1>
-                    <input  placeholder="Tu apellido..." name="apellido" autoComplete='off' required value={input.apellido} onChange={handleInputChange} />
+                    <input  placeholder="Tu apellido..." name="apellido" autoComplete='off' required  value={input.apellido} onChange={handleInputChange} />
                     <h1 className="regisPass">Contraseña</h1>
-                    <input placeholder="Elige una contraseña..." name="password" autoComplete='off' value={input.password} required minLength='6' type="password" onChange={handleInputChange}/>
+                    <input placeholder="Elige una contraseña..." name="password" autoComplete='off'  value={input.password} required minLength='6' type="password" onChange={handleInputChange}/>
                     <h1 className="regisEmail">Correo electronico</h1>
                     <input placeholder="email" name="email" type="email" autoComplete='off' required value={input.email} onChange={handleInputChange}/>
                     <input id="buttonInput" type="submit" className="regisBtn" autoComplete='off'  value ="Registrate" />
@@ -97,7 +89,7 @@ export default function RegisterForm({loginBarFunction}){
                     onFailure={respuestaGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
-                <button className="close" onClick={closeRegisModal}>X</button>
+                <button className="close">X</button>
         </div>
         </div>
     )

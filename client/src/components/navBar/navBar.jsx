@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile, getAllBooks, getGenders, orderBooks, searchByName, filterPrice, filterLanguage } from "../../Actions/index";
+import { getProfile, getAllBooks, getGenders, orderBooks, searchByName, filterPrice, filterLanguage, deleteProfile } from "../../Actions/index";
 import './navBar.css'
 import { MdMenu, MdShoppingCart, MdAccountCircle } from "react-icons/md";
 import { RiSoundModuleFill  } from "react-icons/ri";
@@ -10,24 +10,28 @@ import { NavLink } from "react-router-dom";
 import Cart from '../cart/cart'
 import LoginForms  from "../loginForm/loginForms.jsx"; 
 import {logaut} from "../../funciones/logaut"
-import RegisterForm from "../registerForm/registerForm"
+
 import { useHistory } from "react-router";
 import {payloadJWT} from '../../funciones/payloadJWT'
 import OpcionesUser from '../opciones/opcionesUser'
 import OpcionesAdmin from "../opciones/opcionesAdmin";
 
 export default function NavBar() {
-  const profileImg = useSelector(state => state.profile)
+    const profileImg = useSelector(state => state.profile)
     const dispatch = useDispatch();
     const orderAllBooks = useSelector((state) => state.filteredAllBooks);
     const url = useSelector((state) => state.url);
     const carts = useSelector((state)=>state.cart);
     const history = useHistory();
     const token = window.localStorage.getItem("token")
-
+  
     if(token) {
       var user=payloadJWT()
-      dispatch(getProfile(user.uid))
+      if(!profileImg.foto) {
+        dispatch(getProfile(user.uid))
+        
+      }
+      
     }
     
     useEffect(() => {
@@ -129,11 +133,8 @@ export default function NavBar() {
       }
 
       //POP-UP DE LOGIN
-      const openModal = () => {
-        let logModal = document.getElementById('logModal')
+      const openModal = async() => {
         let ninjaButton = document.getElementById('buttonsForms')
-        logModal.style.opacity = '1';
-        logModal.style.zIndex = '2'; 
         ninjaButton.style.opacity = '0';
         ninjaButton.style.zIndex = '1'
         
@@ -141,18 +142,18 @@ export default function NavBar() {
       /* POP-UP DE REGISTRO */
 
       const openRegisModal = () => {
-        let logModal = document.getElementById('regisModal')
         let ninjaButton = document.getElementById('buttonsForms')
-        logModal.style.opacity = '1';
-        logModal.style.zIndex = '2'; 
         ninjaButton.style.opacity = '0';
         ninjaButton.style.zIndex = '1'
+        history.push('/registerUser')
       }
       
       const locaLogout = () => {
+        dispatch(deleteProfile())
         logaut();
         loginBarFunction();
-        history.push('/')
+        history.push('/');
+ 
       }
 
   return (
@@ -250,12 +251,12 @@ export default function NavBar() {
        ):
       (<div>
         {user? user.admin ? <OpcionesAdmin /> : <OpcionesUser/>: null}
-        <button onClick={locaLogout}  className="userLoginButton"> Cerrar Sesion </button>
+        <button onClick={locaLogout}  className="userLoginButton"> Cerrar Sesión </button>
         </div>)}
 
     </div>
     <LoginForms loginBarFunction={loginBarFunction} />
-    <RegisterForm loginBarFunction={loginBarFunction}/>
+    
 
 </div>
 </div>
@@ -277,3 +278,4 @@ export default function NavBar() {
     </div> 
   );
 }
+

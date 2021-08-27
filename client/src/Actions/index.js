@@ -21,7 +21,8 @@ export const ORDEN_DETAIL = 'ORDEN_DETAIL';
 export const FILTER_PRICE = 'FILTER_PRICE';
 export const FILTER_LANGUAGE = 'FILTER_LANGUAGE';
 export const GET_PROFILE = 'GET_PROFILE';
-export const GET_PROFILES ='GET_PROFILES'
+export const GET_PROFILES ='GET_PROFILES';
+export const DELETE_PROFILE = 'DELETE_PROFILE'
 
 
 
@@ -303,4 +304,10 @@ export function getProfiles (){
     profiles= await profiles.json();
     return dispatch({type: GET_PROFILES, payload:profiles})
   };
+};
+export function deleteProfile() {
+  return {
+    type: DELETE_PROFILE,
+    
+  }
 };
