@@ -26,8 +26,11 @@ function validarEmail(e) {
     }
 }   
 
+
+        
+
     async function handleSumbit(){
-        const correo = await sendMail(document.getElementById('inputMail').value)
+         await sendMail(document.getElementById('inputMail').value)
             let pepeA = document.getElementById('pepeA')
             let pepeB = document.getElementById('pepeB')
             let pepeC = document.getElementById('pepeC')
@@ -117,24 +120,43 @@ function validarEmail(e) {
                         <button id="enviaPop">nup :'C</button>
                     )}
                     
-                    <button className="closePop" onClick={onClick}>cancelar</button>
+                    <button className="closePop" onClick={onClick}>Atras</button>
                 </div>
 
                 <div id="pepeB">
-                    <button className="buttonBack" onClick={handleClose}> {"<====="} </button>
-                    <h3>codigo</h3>
-                    <input type="text"  id='code'name="code"/>
-                    <button onClick={handleSumbitModify}>enviar</button>
+                    
+                    
+                    <input 
+                    type="text"  
+                    id='code'  
+                    name="code" 
+                    placeholder="Introduce aqui el codigo que enviamos a tu correo"
+                    autoComplete="off"/>
+                    <button className="enviaCode" onClick={handleSumbitModify}>Enviar</button>
+                    <button className="buttonBack" onClick={handleClose}> Atras </button>
                 </div>
 
 
                 <div id="pepeC">
-                <button className="buttonBack" onClick={handleClose}> {"<====="} </button>
-                    <h3>Nueva contra</h3>
-                    <input type="text" id='newPass' name="newPass" />
-                    <h3>Repita la contraseña</h3>
-                    <input type="text"/>
-                    <button onClick={sumbitNewPass}> Enviar </button>
+                    <input type="text" 
+                    id='newPass' 
+                    className="newPass" 
+                    name="newPass" 
+                    autoComplete="off" 
+                    placeholder="introduzca la nueva contraseña"
+                    changui="true"
+                    />
+            
+                    <input type="text"
+                    id="newPassB"
+                    className="newPass"
+                    autoComplete="off"
+                    placeholdeR="Repita la contraseña"
+                    changui="true"
+                    />
+                    <label id="msgNewPass"></label>
+                    <button className="buttonBack" id="enviaPass" onClick={sumbitNewPass}> Enviar </button>
+                    <button className="buttonBack" onClick={handleClose}> Atras </button>
                 </div>
 
             </div>
