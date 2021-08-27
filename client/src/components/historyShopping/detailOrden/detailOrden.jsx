@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import Select from 'react-select';
 import {Link} from 'react-router-dom'
 
-import {getOrdenesID,updateOrden} from '../../../Actions/index'
+import {getOrdenesID,updateOrden, seeCart} from '../../../Actions/index'
 import { payloadJWT } from '../../../funciones/payloadJWT'
 
 export default function DetailOrdenAdmin (){
@@ -24,6 +24,7 @@ export default function DetailOrdenAdmin (){
 
     useEffect(() => {
         dispatch(getOrdenesID(id))
+        dispatch(seeCart())
     }, [dispatch,id])
     return (
         <div>

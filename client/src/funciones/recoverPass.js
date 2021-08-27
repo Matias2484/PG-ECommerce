@@ -1,4 +1,4 @@
-async function sendMail(email){
+export async function sendMail(email){
     
     var user = await fetch('http://localhost:4000/auth/sendemail',{
         method: 'POST',
@@ -15,7 +15,7 @@ async function sendMail(email){
         return res
 }
 
-async function  passModifi(code , newPass, email){
+export async function  passModifi(code , newPass, email){
     var user = await fetch('http://localhost:4000/auth/recoverpass',{
         method: 'POST',
         headers:{
@@ -32,7 +32,7 @@ async function  passModifi(code , newPass, email){
         const res = await user.json();
         return res
 }
-async function  changePass(code , newPass, email){
+export async function  changePass(code , newPass, email){
     var user = await fetch('http://localhost:4000/auth/changepass',{
         method: 'POST',
         headers:{
@@ -50,4 +50,3 @@ async function  changePass(code , newPass, email){
         return res
 }
 
-module.exports = {sendMail, passModifi, changePass}

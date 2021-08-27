@@ -62,7 +62,14 @@ export default function LoginForms  ({loginBarFunction}){
             email: respuesta.profileObj.email
         }
         let a = await dispatch(userLogin(login))
-        window.localStorage.setItem("token", a.token)
+        a.token && window.localStorage.setItem("token", a.token)
+        a.token? (swal({
+            title: "Bienvenido",
+            icon: "success",
+        })):(swal({
+            title: "A ocurrido un error",
+            icon: "error",
+        }))
     }
     return(
         <div id='logModal' className= 'logModal'>

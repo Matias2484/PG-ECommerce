@@ -1,12 +1,12 @@
 const { Router } = require("express");
-/* const { dbConnection } = require("../configDB/config"); */
-
 const router = Router();
 const Usuario = require ("../models/Usuario")
 const Producto= require("../models/Producto");
 const Orden = require("../models/Orden");
 const {validarJWTUser} = require ('../middleware/validarJWT');
 const Stripe = require("stripe")
+const {EMAIL, EMAILCLAVE} = process.env
+const nodemailer = require('nodemailer')
 
 
 const stripe = new Stripe("sk_test_51JQAouFWmGEeX4od3qJjkwW2cdTVunEMWXE9PgKcNaz0sU2DvmGqLMHAIhuix7usRB1f6oSbE9ZfkD92GKRTmVdv001bFGHwHL")
@@ -15,7 +15,7 @@ const stripe = new Stripe("sk_test_51JQAouFWmGEeX4od3qJjkwW2cdTVunEMWXE9PgKcNaz0
 //-----ruta para user y admin
 router.post('/',validarJWTUser, async (req,res)=>{
     const {pago, valorTotal, productos} = req.body;
-    
+    const id=req.uid
     try {
 
         await stripe.paymentIntents.create({
@@ -25,32 +25,51 @@ router.post('/',validarJWTUser, async (req,res)=>{
             payment_method: pago,
             confirm: true
         })
-    var compra= {...req.body,estado:'creada'}      
-    var response= 'ok'  
-    
-    productos.map(async p=> {
-        var book = await Producto.findById(p.producto)
+        var compra= {...req.body,estado:'creada'}      
+        var resCompra= true  
         
-        book = await Producto.findByIdAndUpdate({"_id":p.producto},{"stock":book.stock-Number(p.cantidad)},{new:true})
-        
-    })
+        productos.map(async p=> {
+            var book = await Producto.findById(p.producto)
+            
+            book = await Producto.findByIdAndUpdate({"_id":p.producto},{"stock":book.stock-Number(p.cantidad)},{new:true})
+            
+        })
     
     
     }
     catch (error){
         
         var compra= {...req.body,estado:'cancelada'}
-        var response='pago rechazado'
+        var resCompra=false
     }
     finally{
         const orden= new Orden(compra);
-        const id=req.uid
         orden.user=id
         await orden.save();
-        await Usuario.findByIdAndUpdate(id, {$push:{"historialDeCompras": orden}})
+        const user= await Usuario.findByIdAndUpdate(id, {$push:{"historialDeCompras": orden}})
+        const transporter = await nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true,
+            auth:{
+                user: EMAIL,
+                pass: EMAILCLAVE
+            }
+        })
+        var mailOptions={
+            from:"Remitente",
+            to: user.email,
+            subject:"Informe de Compra",
+            text: resCompra ? `¡Hola ${user.nombre} ${user.apellido} su compra N° ${orden._id} realizada el dia ${orden.fecha.split('.')[0].replace('T',' ')} se completo con exito;puede ver el resumen de su compra en nuestra web.
+            Pronto estaremos enviando el producto, que tenga buen dia ` : `¡Hola ${user.nombre} ${user.apellido} le informamos que su compra N° ${orden._id} realizada el dia ${orden.fecha.split('.')[0].replace('T',' ')} se encuentra cancelada por problemas al realizar el cobro de la tarjeta, le invitamos a realizar nuevamente la compra. que tenga buen dia`
+        }
+
+        transporter.sendMail(mailOptions,(err,info)=>{
+            err? res.status(500).send('error en email') : console.log('hola')
+        })
+
         res.send({ok:response})
-        
-       
+    
     }
 });
 //------busca el libro, cambia el stock y lo envia al front para el carrito

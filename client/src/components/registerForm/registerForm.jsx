@@ -65,7 +65,15 @@ export default function RegisterForm({loginBarFunction}){
             nombre: respuesta.profileObj.givenName,
             foto: respuesta.profileObj.imageUrl
         }
-       newUser(login)
+        let a= await newUser(login);   
+        a.token && window.localStorage.setItem("token", a.token)
+        a.token? (swal({
+             title: "Bienvenido",
+             icon: "success",
+         })):(swal({
+             title: "A ocurrido un error",
+             icon: "error",
+         })) 
     }
     
     return (

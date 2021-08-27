@@ -2,7 +2,7 @@ import './details.css';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router";
-import { getDetails, url, addCart} from '../../Actions';
+import { getDetails, url, addCart, seeCart} from '../../Actions';
 import { NavLink } from 'react-router-dom';
 import ReviewForm from './review/reviewForm/reviewForm';
 import gif_carga from "../../img/libros_paginas.gif";
@@ -18,15 +18,13 @@ export default function Details() {
     
 
 
- const token = window.localStorage.getItem("token")
-  
-    if(token) {
       var a=payloadJWT()
-    }
+   
 
     useEffect(() => {
         dispatch(getDetails(id));
         dispatch(url(window.location.href))
+        dispatch(seeCart())
     }, [dispatch, id]);
 
     const { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio, _id, review } = details;
@@ -34,10 +32,7 @@ export default function Details() {
 
    
     if(review) {
-
-        var valoraciones = review.map(r=> r.valoracion)
-        // eslint-disable-next-line
-        var estrellita = valoraciones.map(e=>e)
+    
         
     var estrellas = (estrellita) => {
         let estrellas = [];
@@ -105,10 +100,9 @@ export default function Details() {
                     </div>
                     <div className="opiniones">
                     <h2 className="titulo_valoracion">Opiniones de nuestros lectores</h2>
-                    {review ?  <div> 
-                        {console.log(review)}
-                        {review.map(r=> { return (
-                            <div key={r.valoracion + "a"} className="valoraciones">
+                    {review &&  <div> 
+                        {review.map((r,i)=> { return (
+                            <div key={i} className="valoraciones">
                             <h4>{r.nombre + " " + r.apellido}</h4>
                             <p>{estrellas(r.valoracion)}</p>
                             <p className="comentario_usuario">" {r.comentario} "</p>
@@ -116,17 +110,10 @@ export default function Details() {
                             
                         )
                         })}
-    
                         </div>
-                        : null}
+                        }
                     </div>
-                    {a && a.admin===false?
-                <div>
-                <ReviewForm />
-                </div>    
-                :null}
-                    
-                    
+                    {a && !a.admin && <div><ReviewForm /></div>}
                 </div>
             </div>
         )
@@ -134,4 +121,3 @@ export default function Details() {
         return <img src={gif_carga} alt="Cargando..."/>
     }
 }
-

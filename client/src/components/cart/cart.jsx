@@ -33,10 +33,10 @@ export default function Cart() {
         <div className="contenedor_cart">
         <div className="cart_contenedor">
             <h3>Carrito de compras</h3>
-            {arrayCart.length > 0 && (<div>
+            {arrayCart.length > 0 ? (<div>
                 
                 {arrayCart.map(e=>{
-                return (<div className="cart">
+                return (<div key={e._id} className="cart">
                     <IoIosCloseCircle className='cartsButton' onClick={()=> dispatch(removeAllCart(e._id, e.count))}/>
                        <div className="cart_info">
                        <p className="contador">x{e.count}</p>
@@ -54,13 +54,8 @@ export default function Cart() {
                                     
                     </div>)
                 })
-                } {
-
-                }
-            </div>)
-            } 
-            {
-                arrayCart.length === 0 && (<div className="carrito_vacio"><p>Tu carrito está vacío</p>
+                } 
+            </div>) : (<div className="carrito_vacio"><p>Tu carrito está vacío</p>
                 <p>¿No sabés qué comprar? ¡Miles de libros te esperan!</p> 
                 </div>)
             }    

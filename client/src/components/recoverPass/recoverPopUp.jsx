@@ -3,7 +3,6 @@ import ReactCircleModal from 'react-circle-modal'
 import   './recoverPopUp.css'
 import {passModifi, sendMail, changePass} from '../../funciones/recoverPass'
 
-
 export default function RecoverPopUp (){
     const [aprove, setAprove] = useState(false)
     

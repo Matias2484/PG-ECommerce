@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route, Switch, Redirect} from "react-router-dom";
 import Home from "./components/home/home";
 import Details from "./components/details/details";
 import NavBar from "./components/navBar/navBar";
@@ -11,21 +11,49 @@ import HistoryShopping from './components/historyShopping/historyShopping'
 import DetailOrden from './components/historyShopping/detailOrden/detailOrden'
 import Profiles from './components/perfiles/perfilesAdmin'
 import Perfil from './components/perfiles/perfil'
+import Sucursales from "./components/sucursales/sucursales";
+
+import {payloadJWT} from './funciones/payloadJWT'
 
 
 function App() {
+  
+    var a = payloadJWT()
+
+
   return (
     <div className="App">
       <NavBar/>
       <Route exact path='/' component={Home}/>
       <Route path='/details/:id' component = {Details} />
-      <Route path= '/add' component={CreateProducto} />
-      <Route path= '/check' component={checkCart} />
-      <Route path= '/edit/:id' component={EditProduct} />
-      <Route exact path='/ordenes' component={HistoryShopping} />
-      <Route path='/ordenes/detail/:id' component={DetailOrden} />
-      <Route path='/profiles' component={Profiles}/>
-      <Route path='/profile/:id' component={Perfil}/> 
+      <Route path= '/check' component={checkCart} />      
+      <Route path='/sucursales' component={Sucursales} />
+      <Switch>
+         <Route path= '/add' render={()=>{
+              return a && a.admin ? <CreateProducto/> : <Redirect to='/'/>
+            }}
+          />
+           <Route path= '/edit/:id' render={()=>{
+              return a && a.admin ? <EditProduct/> : <Redirect to='/'/>
+            }}
+          />
+          <Route path='/profiles' render={()=>{
+              return a && a.admin ? <Profiles /> : <Redirect to='/'/>
+            }}
+          />
+          <Route exact path='/ordenes' render={()=>{
+              return a ? <HistoryShopping /> : <Redirect to='/'/>
+            }}
+          />
+          <Route path='/ordenes/detail/:id' render={()=>{
+              return a ? <DetailOrden/> : <Redirect to='/'/>
+            }}
+          />
+          <Route path='/profile/:id' render={()=>{
+              return a ? <Perfil/> : <Redirect to='/'/>
+            }}
+          />
+      </Switch>
     </div>
   );
 }
