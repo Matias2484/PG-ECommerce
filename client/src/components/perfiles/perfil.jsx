@@ -14,6 +14,8 @@ export default function Perfil() {
     const state = useSelector(state => state.profile)
     const [foto, setfoto] = useState('')
     const [admin,setadmin]= useState('')
+
+    
     var token=payloadJWT()
     useEffect(() => {
         dispatch(getProfile(id))

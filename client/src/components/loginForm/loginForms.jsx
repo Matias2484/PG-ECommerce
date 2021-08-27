@@ -3,6 +3,7 @@ import GoogleLogin from 'react-google-login';
 import userLogin from '../../funciones/logIn'
 import {useDispatch} from 'react-redux';
 import RecoverPopUp from '../recoverPass/recoverPopUp.jsx';
+import { getProfile } from '../../Actions';
 import  './loginForms.css';
 import swal from 'sweetalert';
 
@@ -30,10 +31,11 @@ export default function LoginForms  ({loginBarFunction}){
             title: "Bienvenido",
             icon: "success",
         })):(swal({
-            title: "A ocurrido un error",
+            title: "Ha ocurrido un error",
             icon: "error",
         }))
-
+        
+        dispatch(getProfile(a.user._id))
     }
 
     
@@ -67,7 +69,7 @@ export default function LoginForms  ({loginBarFunction}){
             title: "Bienvenido",
             icon: "success",
         })):(swal({
-            title: "A ocurrido un error",
+            title: "Ha ocurrido un error",
             icon: "error",
         }))
     }

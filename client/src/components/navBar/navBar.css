@@ -67,6 +67,7 @@
   }
 
   .userLoginButton{
+      cursor: pointer;
       border: none;
       width: 10rem;
       padding: 0.7rem;

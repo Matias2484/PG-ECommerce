@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import {insertaReview} from '../../../../funciones/insertarReview'
 import { payloadJWT } from '../../../../funciones/payloadJWT';
 import "./reviewForm.css"
+import swal from 'sweetalert';
 
 
 export default function ReviewForm() {
@@ -15,7 +16,7 @@ export default function ReviewForm() {
 
     
     async function handleSubmitReview(e){
-
+        e.preventDefault()
         let valoracion = 0;
         for( let i=0 ; i<5 ; i++ ) {
             let starStatus = e.target[i].checked
@@ -29,9 +30,10 @@ export default function ReviewForm() {
             comentario: e.target[5].value
         }
         
-         insertaReview(review, token);
+         var review2 = await insertaReview(review, token);
+         !review2.ok && swal({title: "Tienes que comprar el libro para opinar", icon: "warning",
+        })
         
-
     }
    
     return (

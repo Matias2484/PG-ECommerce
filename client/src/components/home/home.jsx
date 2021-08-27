@@ -1,7 +1,7 @@
 import "./home.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks, getGenders, filterBook, filterClear, url, seeCart } from "../../Actions/index";
+import { getAllBooks, getGenders, filterBook, filterClear, url, seeCart, getProfile } from "../../Actions/index";
 import Producto from "../producto/producto";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import undraw from "../../img/undraw.svg"
@@ -17,10 +17,10 @@ export function Home () {
     useSelector((state) => state.forRender); 
     const genders = useSelector((state) => state.genders);
     const allBooks = useSelector((state) => state.allBooks);
-
+    const profile = useSelector((state) => state.profile)
+    
 
  const token = window.localStorage.getItem('token')
-
 
     if(token) {
       
@@ -35,8 +35,10 @@ export function Home () {
         dispatch(getGenders())
         dispatch(url(window.location.href)) 
         dispatch(seeCart())
-      
+ 
     },[dispatch, token])
+    
+    
 
 //Paginas
 var numeroPagina = []
@@ -104,7 +106,7 @@ function categoryClear(e){
 
           <div className="titulos_carousel">
 
-            {a && a.nombre ? <h2>{`¡Bienvenido ${a.nombre}!`}</h2>:<h2>¡Bienvenido Usuario!</h2>}
+            {profile && profile.nombre ? <h2>{`¡Bienvenido ${profile.nombre}!`}</h2>:<h2>¡Bienvenido Usuario!</h2>}
     <h4>Compra tus libros esenciales aquí</h4>
       </div>
           </motion.div>
