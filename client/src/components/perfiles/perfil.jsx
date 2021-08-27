@@ -41,7 +41,7 @@ export default function Perfil() {
         <div>
             <div>
                 <img src={state.foto} alt='foto de perfil' />
-               {!token.admin && <input type="file" required accept="image/*" className='inputFoto' onChange={(e)=>processImage(e)}/>}
+                {!token.admin && <input type="file" required accept="image/*" className='inputFoto' onChange={(e)=>processImage(e)}/>}
             </div>
             <div>
             {token.admin && <button onClick={()=>deleteProfile(id)}>Eliminar</button>}
