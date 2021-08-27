@@ -3,13 +3,6 @@ import React from 'react';
 
 export function Comentarios(){
 
-    /* const dispatch = useDispatch()
-    const filteredAllBooks = useSelector((state) => state.filteredAllBooks.reverse());
-
-    useEffect(() => {
-        dispatch(getAllBooks())
-        
-    },[dispatch]) */
 
     return(
         <div className="contenedor_comentarios">

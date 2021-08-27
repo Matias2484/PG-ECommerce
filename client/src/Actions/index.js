@@ -178,7 +178,7 @@ export function clearCart(payload){
 
 export function addBuyUser (payload,token){
   return async function (dispatch) {
-    await fetch ('http://localhost:4000/cart', {
+    await fetch ('http://localhost:4020/cart', {
       method: 'POST',
       headers:{
         'x-token': token,

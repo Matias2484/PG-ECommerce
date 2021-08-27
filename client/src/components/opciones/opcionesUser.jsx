@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux'
 export default function OpcionesUser (){
     const state = useSelector(state => state.profile)
     let token=payloadJWT()
-    console.log(token)
     return (
         <div>
             <h1 className="welcome" >¡Bienvenido {state.nombre}!</h1>

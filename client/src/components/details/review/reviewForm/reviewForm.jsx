@@ -3,21 +3,19 @@ import Valoracion from "../valoracion/valoracion";
 import Comentarios from "../comentarios/comentarios";
 import { useSelector } from 'react-redux';
 import {insertaReview} from '../../../../funciones/insertarReview'
+import { payloadJWT } from '../../../../funciones/payloadJWT';
 import "./reviewForm.css"
 
 
 export default function ReviewForm() {
-  let token=window.localStorage.getItem('token')
+  const token=window.localStorage.getItem('token')
     
-
     const details = useSelector((state) => state.details);
-    let respuestaDelBack;
 
 
     
     async function handleSubmitReview(e){
-          
-     
+
         let valoracion = 0;
         for( let i=0 ; i<5 ; i++ ) {
             let starStatus = e.target[i].checked
@@ -30,7 +28,9 @@ export default function ReviewForm() {
             valoracion,
             comentario: e.target[5].value
         }
-        respuestaDelBack = await insertaReview(review, token);
+        
+         insertaReview(review, token);
+        
 
     }
    

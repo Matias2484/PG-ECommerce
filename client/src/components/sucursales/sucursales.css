@@ -1,0 +1,11 @@
+.map{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+}
+.leaflet-container{
+    width: 60%;
+    height: 60vh;
+}

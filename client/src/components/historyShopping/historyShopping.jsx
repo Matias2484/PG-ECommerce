@@ -1,6 +1,6 @@
 import React,{ useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getOrdenesUser, getOrdenes} from '../../Actions/index'
+import {getOrdenesUser, getOrdenes,seeCart} from '../../Actions/index'
 import { payloadJWT } from '../../funciones/payloadJWT'
 import CardOrdenes from './cardOrdenes/cardOrdenes'
 import Select from 'react-select';
@@ -11,9 +11,10 @@ export default function HistoryShopping(){
     const dispatch = useDispatch()
     const ordenesDeCompras= useSelector(state => state.ordenes)
     const [ordenes, setordenes] = useState([])
-    console.log(admin)
+
  useEffect(() => {
     admin.admin ? dispatch(getOrdenes(token)) : dispatch(getOrdenesUser(token))
+    dispatch(seeCart())
  }, [token,admin.admin,dispatch]);
 
  useEffect(() => {

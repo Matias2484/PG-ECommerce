@@ -27,12 +27,6 @@ export function Home () {
       var a = payloadJWT()
       
     }
-    
-   
-    // useEffect(() => {
-    //   a = undefined;
-    // }, [token])
-
 
     const [filter, setFilter] = useState([]);
 
@@ -41,7 +35,7 @@ export function Home () {
         dispatch(getGenders())
         dispatch(url(window.location.href)) 
         dispatch(seeCart())
-        a = undefined;
+      
     },[dispatch, token])
 
 //Paginas

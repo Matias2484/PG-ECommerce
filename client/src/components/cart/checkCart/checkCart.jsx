@@ -21,7 +21,7 @@ export default function CheckCart(){
         codigoPostal:''
     })
     const carts = useSelector((state)=>state.cart)
-
+    const token= window.localStorage.getItem('token')
     const arrayCart=[]
     let precioTotal= 0   
 
@@ -58,10 +58,11 @@ export default function CheckCart(){
            const {id} = paymentMethod;
            let pago = {
             productos:compras,
+            direccion: `${state.pais}/ ${state.cuidad}, ${state.calle}, CP: ${state.codigoPostal}`,
             valorTotal:Math.round(precioTotal),
             pago:id
         }
-        let token= window.localStorage.getItem('token')
+
         dispatch(addBuyUser(pago,token))
         swal("Gracias por su Compra", "recibira un email con los detalles", "success");
         history.push('/')
@@ -88,7 +89,7 @@ export default function CheckCart(){
         <div className="contenedor_pasarela">
             <div className="pasarela_card">
             {arrayCart.map(e=>{
-                return (<div className="pasarela_cdtm">
+                return (<div key={e._id} className="pasarela_cdtm">
                         <div>
                         <img className="imagen_pasarela"alt="imagen_pasarela"src={e.img}></img>
                         </div>
@@ -107,28 +108,31 @@ export default function CheckCart(){
             </div>
             <div className="datos_pasarela">
                 <p className='neto_pasarela'>Sub-Total: <span className="subtotal_pasarela">$ {precioTotal.toFixed(2)}</span> </p>
-                <p className='total_pasarela'>Total: <span className="total_numero_pasarela">$ {(Math.round(precioTotal))}</span></p>
+                <p className='neto_pasarela'>iva: <span className="subtotal_pasarela">$ {(precioTotal* 0.1).toFixed(2)}</span> </p>
+                <p className='total_pasarela'>Total: <span className="total_numero_pasarela">$ {(Math.round(precioTotal+precioTotal* 0.1))}</span></p>
             </div>
-                <p>Facturación</p>             
-            <div >
-                <div >
-                    <p>Dirección de envío</p>
-                    <label>País</label>  
+            {token ? (<div>
+                <p>Facuracion</p>     
+                <div>
+                    <p>Direccion de envio</p>
+                    <label>Pais</label>  
                     <input type='text' required autoComplete='country-name' name='pais' value={state.pais} onChange={(e)=>handleChange(e)} />    
-                    <label>Ciudad</label> 
+                    <label>Cuidad</label> 
                      <input type='text' required autoComplete='off' name='cuidad' value={state.cuidad} onChange={(e)=>handleChange(e)}/>    
                     <label>Calle</label>  
                     <input type='text' required autoComplete='street-address' name='calle' value={state.calle} onChange={(e)=>handleChange(e)} />     
-                    <label>Código Postal</label>  
+                    <label>Codigo Postal</label>  
                     <input type='number' required autoComplete='postal-code' name='codigoPostal' value={state.codigoPostal} onChange={(e)=>handleChange(e)}/>    
-
                 </div>
                 <div>
                     <Elements stripe={stripePromise}>
                         <Payment/>
                     </Elements>                      
                 </div>
-            </div>
+            </div>): (<div>
+                <p>Para continuar con la compra debes logearte</p>
+
+            </div>)}
 
         </div>
     </div>
