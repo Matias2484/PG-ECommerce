@@ -1,4 +1,4 @@
-.logModal{
+.logModal1{
     background-color: rgb(250, 220, 164);
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@
     border-radius: 10%;
 }
 
-.modal{
+.modal1{
     background-color: rgb(250, 220, 164);
     display: grid;
     opacity: 0; 
@@ -27,36 +27,36 @@
     position: absolute;
 }
 
-.modal-open{
+.modal-open1{
     display:grid;
     
 }
-.modal_dialog{
+.modal_dialog_regis1{
     align-items:center ;
 }
-.regisName{
+.regisName1{
     color: rgb(0, 0, 0);
     font-size: 20px;
     margin-bottom: -1em;
 }
-.regisLastName{
-    color: rgb(0, 0, 0);
-    font-size: 20px;
-    margin-bottom: -1em;
-}
-
-.regisPass{
+.regisLastName1{
     color: rgb(0, 0, 0);
     font-size: 20px;
     margin-bottom: -1em;
 }
 
-.regisEmail{
+.regisPass1{
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    margin-bottom: -1em;
+}
+
+.regisEmail1{
     color: rgb(0, 0, 0);
     font-size: 20px;
     margin-bottom: -1em
 }
-.registerClose {
+.registerClose1 {
     position: relative;
     float: right;
     width: 32px;
@@ -67,7 +67,7 @@
     border-radius: 40%;
     }
     
-    .close:before .close:after {
+    .close1:before .close1:after {
         position: relative;
         float: right;
         content: ' ';
@@ -76,7 +76,7 @@
         background-color: #333;
     }
     
-    .regisBtn{
+    .regisBtn1{
         border: none;
         width: 80%;
         padding: 1rem;
@@ -88,6 +88,6 @@
         margin-top: 25px;
     }
 
-    .regisBtn:hover{
+    .regisBtn1:hover{
         background-color: rgb(244, 164, 96,1);
     }

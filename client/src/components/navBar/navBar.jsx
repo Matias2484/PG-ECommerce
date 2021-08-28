@@ -134,17 +134,16 @@ export default function NavBar() {
 
       //POP-UP DE LOGIN
       const openModal = async() => {
+        let logModal = document.getElementById('logModal')
         let ninjaButton = document.getElementById('buttonsForms')
         ninjaButton.style.opacity = '0';
         ninjaButton.style.zIndex = '1'
-        
+        logModal.style.opacity = '1';
+        logModal.style.zIndex = '2'
       }
       /* POP-UP DE REGISTRO */
 
       const openRegisModal = () => {
-        let ninjaButton = document.getElementById('buttonsForms')
-        ninjaButton.style.opacity = '0';
-        ninjaButton.style.zIndex = '1'
         history.push('/registerUser')
       }
       
@@ -153,7 +152,6 @@ export default function NavBar() {
         logaut();
         loginBarFunction();
         history.push('/');
- 
       }
 
   return (
