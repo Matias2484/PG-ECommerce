@@ -236,7 +236,7 @@ export default function NavBar() {
         value={busqueda}
         onChange={handleChange}/>
         </div>
-        <NavLink to='/sucursales'>sucursales</NavLink>
+        <NavLink to='/sucursales'className="sucursales" ><p>sucursales</p> </NavLink>
           <div className="icono_Usuario">
           <div id={loginBarState? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
           {user && user.uid ? <img className='profileImg' src={profileImg.foto} alt="imagen de perfil" /> : <MdAccountCircle/>}
