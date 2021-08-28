@@ -1,6 +1,7 @@
 .fotoMarco{
+    margin-top: 50px;
     border-style: solid;
-    border-radius: 50%;
+    border-radius: 40%;
     border-width: 10px;
     color: sandybrown;
     float: inline-start;
@@ -13,7 +14,7 @@
 }
 
 .inputFoto{
-    float:inline-start ;
+    float:inline-start;
     
 }
 
@@ -22,7 +23,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: -365px;
+    margin-top: -400px;
     font-size: 30px;
 }
 
