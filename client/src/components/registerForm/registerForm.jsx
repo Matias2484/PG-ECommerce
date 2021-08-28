@@ -8,10 +8,14 @@ import { Link } from 'react-router-dom';
 export default function RegisterForm(){
 
     const [input, setInput] = useState({
-        nombre: '',
-        apellido:'',
-        password: '',
         email:'',
+        password:'',
+        password_confirm:'',
+        nombre:'',
+        apellido:'',
+        telefono:'',
+        direccion:'',
+        documento: '',
         
     });
         
@@ -30,8 +34,12 @@ export default function RegisterForm(){
         setInput({
             email:'',
             password:'',
+            password_confirm:'',
             nombre:'',
-            apellido:''
+            apellido:'',
+            telefono:'',
+            direccion:'',
+            documento: '',
         })
         a.token && window.localStorage.setItem("token", a.token)
         a.token? (swal({
@@ -56,6 +64,7 @@ export default function RegisterForm(){
             email: respuesta.profileObj.email,
             nombre: respuesta.profileObj.givenName,
             foto: respuesta.profileObj.imageUrl
+
         }
         let a= await newUser(login);   
         a.token && window.localStorage.setItem("token", a.token)
@@ -69,6 +78,7 @@ export default function RegisterForm(){
     }
     
     return (
+
         
         <div id="regisModal" className="logModal1">
             <div className="modal_dialog_regis1">
@@ -83,14 +93,24 @@ export default function RegisterForm(){
                     <input placeholder="email" name="email" type="email" autoComplete='off' required value={input.email} onChange={handleInputChange}/>
                     <input id="buttonInput" type="submit" className="regisBtn1" autoComplete='off'  value ="Registrate" />
                 </form>
-                <GoogleLogin
+               
+                <div className="regisTerminos">
+                <input className="terminosCheck" type="checkbox"/>
+                <p className="regisCondiciones">Acepto los Términos y Condiciones y autorizo el uso de mis datos de acuerdo a la Declaración de Privacidad y la Autorización de Tratamiendo de Datos</p>
+                </div>
+                 <GoogleLogin
                     clientId="1306055516-vqakgi1c0sql95der98ul0vpsufbppd9.apps.googleusercontent.com"
                     buttonText="Registrate con google"
                     onSuccess={respuestaGoogle}
                     onFailure={respuestaGoogle}
                     cookiePolicy={'single_host_origin'}
+                    className="google_btn"
                 />
+
                 <Link to="/"><button className="close">X</button></Link>
+
+                <input id="buttonInput" type="submit" className="regisBtn" autoComplete='off'  value ="Registrate" />
+
                 
         </div>
         </div>
