@@ -40,18 +40,19 @@
 
 .modal-open1{
     display:grid;
+}
 
- .modal_dialog{
+.modal_dialog1{
     border: 1px solid black;
     border-radius: 1rem;
     align-items: center; 
     margin: auto;
     width: 70%; 
-    height: 100%;
+    height: 80%;
     background-color: rgb(233, 233, 233);
- }
- 
- .formLogin input {
+}
+
+.formLogin1 input {
     border:none;
     border-bottom: 0.5px solid rgb(170, 161, 161);
     outline: none;
@@ -61,40 +62,40 @@
 
     
  }
- .regisNombreApellido {
+ .regisNombreApellido1 {
      display: flex;   
      margin-top: 2rem;
  }
  
- .regisLeft {
+ .regisLeft1 {
    left: -2rem;
    position:relative;
    margin-top: 1rem;
    top: -1rem;
    margin-bottom: 2rem;
  }
- .regisLeft input {
+ .regisLeft1 input {
      width: 25rem;
      color: #413e3e;
      font-size: 1rem;
  }
 
- .regisLeft h3 {
+ .regisLeft1 h3 {
      text-align: left;
      
  }
  
- .contraseña {
+ .contraseña1 {
      display: flex;
      
  }
- .telMail {
+ .telMail1 {
      display: flex;
  }
- .documentoDire {
+ .documentoDire1 {
     display: flex;  
  }
-.direccion_input {
+.direccion_input1 {
     display:flex;   
 }
 
