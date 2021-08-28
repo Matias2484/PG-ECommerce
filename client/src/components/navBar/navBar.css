@@ -173,7 +173,8 @@
 
 
 .titulo_principal {
-    margin-left: 5rem;
+    margin-left: 5rem;  
+    
 }
 
 .titulo_b {
@@ -222,7 +223,6 @@ padding: 0.5rem;
 margin-left: 6rem;
 border-radius: 1rem;
 display: flex;
-margin-top: 0.5rem;
 }
 
 .search-input {
@@ -247,7 +247,7 @@ margin-top: 0.5rem;
 }
 
 .search {
-  margin-top: 0.5rem;
+
   color: black;
 }
 
@@ -398,4 +398,19 @@ margin-top: 0.5rem;
   width: 50px;
   height: 50px;
   border-radius: 50%;
+}
+
+.sucursales{
+  color: black;
+  text-decoration:none;
+  border: none;
+  width: 5rem;
+  height: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: rgb(244, 164, 96);
+  font-weight: bold;
+  font-size: 15px;
+  margin-left: 75px;
+  margin-top: 25px;
 }

@@ -6,7 +6,7 @@ import Select from 'react-select';
 import {getProfile, profileUpdate } from '../../Actions/index'
 import {deletePerfil} from '../../funciones/delete'
 import { payloadJWT } from '../../funciones/payloadJWT';
-
+import './perfil.css'
 export default function Perfil() {
     const dispatch = useDispatch()
     const {id} = useParams();
@@ -41,23 +41,24 @@ export default function Perfil() {
     }
     return (
         <div>
-            <div>
-                <img src={state.foto} alt='foto de perfil' />
+            <div className="userContenedor">
+                <img className="fotoMarco" src={state.foto} alt='foto de perfil' />
                 {!token.admin && <input type="file" required accept="image/*" className='inputFoto' onChange={(e)=>processImage(e)}/>}
             </div>
-            <div>
-            {token.admin && <button onClick={()=>deleteProfile(id)}>Eliminar</button>}
-                <p>{`usuario: ${state.nombre} ${state.apellido}`}</p>
-                <p>email: {state.email}</p>
-                <p>Estatus: {state.admin? <label>Administrador</label> : <label>Usuario</label>}</p>
-                {token.admin && admin.length===0 && <Select
-                        options={!state.admin? [{ value:'true',label:'si'}]:[{ value:'false',label:'no'}]}
-                        onChange={(e)=>setadmin(e.value)}
-                        placeholder='cambiar estatus'
-                    />}
-                {(admin.length>0 || foto.length>0) && <button onClick={()=>guardar()}>Guardar</button>}
+            <div className="table">
+                <div className="childTable">
+                {token.admin && <button onClick={()=>deleteProfile(id)}>Eliminar</button>}
+                    <th>Usuario:</th><td>{`${state.nombre} ${state.apellido}`}</td><br />
+                    <th>Email:</th><td>{state.email}</td><br />
+                    <th>Estatus:</th> <td>{state.admin? <label>Administrador</label> : <label>Usuario</label>}</td><br />
+                    {token.admin && admin.length===0 && <Select
+                            options={!state.admin? [{ value:'true',label:'si'}]:[{ value:'false',label:'no'}]}
+                            onChange={(e)=>setadmin(e.value)}
+                            placeholder='cambiar estatus'
+                        />}
+                    {(admin.length>0 || foto.length>0) && <button onClick={()=>guardar()}>Guardar</button>}
+                </div>
             </div>
-
 
         </div>
     )

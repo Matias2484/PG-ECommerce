@@ -1,0 +1,35 @@
+.fotoMarco{
+    border-style: solid;
+    border-radius: 50%;
+    border-width: 10px;
+    color: sandybrown;
+    float: inline-start;
+    margin-left: 0px;
+}
+.userContenedor{
+    background-color: rgb(128, 128, 128,0.2);
+    height: 500px;
+    display: grid;
+}
+
+.inputFoto{
+    float:inline-start ;
+    
+}
+
+.table{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: -365px;
+    font-size: 30px;
+}
+
+.childTable{
+    background-color: rgb(240, 171, 110, 0.8);
+    border-radius: 10%;
+    padding: 1rem;
+    margin-top: -35px;
+    margin-left: 300px;
+}
