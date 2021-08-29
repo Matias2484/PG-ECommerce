@@ -1,0 +1,54 @@
+.opcionesAdmin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+h1{
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.perfiles{
+    color:rgb(255, 255, 255);
+    font-size: 20px;
+    padding: 15px;
+    background-color: sandybrown;
+    margin-bottom: 5px;
+    opacity: 0.7;
+    width: 221px;
+}
+
+.perfiles:hover{
+    opacity: 1;
+}
+
+.ordenes{
+    color:rgb(255, 255, 255);
+    font-size: 20px;
+    padding: 15px;
+    background-color: sandybrown;
+    margin-bottom: 5px;
+    opacity: 0.7;
+    width: 221px;
+}
+.ordenes:hover{
+    opacity: 1;
+}
+
+.agregar{
+    color:rgb(255, 255, 255);
+    font-size: 20px;
+    padding: 15px;
+    background-color: sandybrown;
+    margin-bottom: 5px;
+    opacity: 0.7;
+    width: 221px;
+    margin-bottom: 250px;
+}
+
+.agregar:hover{
+    opacity: 1;
+}

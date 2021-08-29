@@ -3,6 +3,7 @@ import swal from 'sweetalert';
 import newUser from '../../funciones/newUser'
 import '../registerForm/registerForm.css'
 import GoogleLogin from 'react-google-login';
+import { Link } from 'react-router-dom';
 
 export default function RegisterForm(){
 
@@ -68,61 +69,29 @@ export default function RegisterForm(){
         let a= await newUser(login);   
         a.token && window.localStorage.setItem("token", a.token)
         a.token? (swal({
-             title: "Bienvenido",
-             icon: "success",
-         })):(swal({
-             title: "Ha ocurrido un error",
-             icon: "error",
-         })) 
+            title: "Bienvenido",
+            icon: "success",
+        })):(swal({
+            title: "Ha ocurrido un error",
+            icon: "error",
+        })) 
     }
     
     return (
-       
-        <div id="regisModal" className="logModal">
-            <h1 className="regisTitulo">Completa tus Datos</h1>
-            <div className="modal_dialog">
-            <form  className="formLogin" onSubmit={enviarInput}>
-                <div className="regisNombreApellido">
-                    <div className="regisLeft">
-                    <h3 >Nombre</h3>
-                    <input  placeholder="Tu nombre..." name="nombre" autoComplete='off' required   value={input.nombre} onChange={handleInputChange} />
-                    </div>
-                <div className="regisRight">
-                <h3>Apellido</h3>
-                    <input  placeholder="Tu apellido..." name="apellido" autoComplete='off' required  value={input.apellido} onChange={handleInputChange} />
-                    </div>
-                </div>                
-                <div className="contraseña">
-                   <div className="regisLeft">
-                   <h3>Contraseña</h3>
-                   <input placeholder="Escribe tu contraseña..." name="password" autoComplete='off'  value={input.password} required minLength='6' type="password" onChange={handleInputChange}/>
-                   </div>
-                   <div className="regisRight">
-                   <h3>Confirmar Contraseña</h3>
-                   <input placeholder="Confirma tu contraseña..." name="password_confirm" autoComplete='off'  value={input.password_confirm} required minLength='6' type="password" onChange={handleInputChange}/>
-                   </div>
-                </div>
-                <div className="telMail">
-                   <div className="regisLeft">
-                    <h3 className="regisEmail">Correo electrónico</h3>
-                    <input placeholder="correo@mail.com" name="email" type="email" autoComplete='off' required value={input.email} onChange={handleInputChange}/>
-                    </div>
-                    <div className="regisRight">
-                    <h3 className="regisTelefono">Teléfono</h3>
-                    <input placeholder="Nro de Teléfono..." name="telefono" type="telefono" autoComplete='off' required value={input.telefono} onChange={handleInputChange}/>
-                    </div>
-                </div>
-                 <div className="documentoDire">
-                    <div className="regisLeft">
-                    <h3 className="regisDocumento">Documento</h3>
-                    <input placeholder="Documento..." name="documento" type="documento" autoComplete='off' required value={input.documento} onChange={handleInputChange}/>
-                    </div>
-                   <div className="regisRight"> 
-                   <h3 className="regisDireccion">Dirección</h3>
-                    <input className="direccion_input" placeholder="Dirección..." name="direccion" type="direccion" autoComplete='off' required value={input.direccion} onChange={handleInputChange}/>
-                   </div>
-                 </div>
 
+        
+        <div id="regisModal" className="logModal1">
+            <div className="modal_dialog_regis1">
+            <form  className="formLogin1" onSubmit={enviarInput}>
+                    <h1 className="regisName1">Nombre</h1>
+                    <input  placeholder="Tu nombre..." name="nombre" autoComplete='off' required   value={input.nombre} onChange={handleInputChange} />
+                    <h1 className="regisLastName1">Apellido</h1>
+                    <input  placeholder="Tu apellido..." name="apellido" autoComplete='off' required  value={input.apellido} onChange={handleInputChange} />
+                    <h1 className="regisPass1">Contraseña</h1>
+                    <input placeholder="Elige una contraseña..." name="password" autoComplete='off'  value={input.password} required minLength='6' type="password" onChange={handleInputChange}/>
+                    <h1 className="regisEmail1">Correo electronico</h1>
+                    <input placeholder="email" name="email" type="email" autoComplete='off' required value={input.email} onChange={handleInputChange}/>
+                    <input id="buttonInput" type="submit" className="regisBtn1" autoComplete='off'  value ="Registrate" />
                 </form>
                
                 <div className="regisTerminos">
@@ -137,7 +106,11 @@ export default function RegisterForm(){
                     cookiePolicy={'single_host_origin'}
                     className="google_btn"
                 />
+
+                <Link to="/"><button className="close">X</button></Link>
+
                 <input id="buttonInput" type="submit" className="regisBtn" autoComplete='off'  value ="Registrate" />
+
                 
         </div>
         </div>

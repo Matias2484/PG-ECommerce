@@ -134,17 +134,16 @@ export default function NavBar() {
 
       //POP-UP DE LOGIN
       const openModal = async() => {
+        let logModal = document.getElementById('logModal')
         let ninjaButton = document.getElementById('buttonsForms')
         ninjaButton.style.opacity = '0';
         ninjaButton.style.zIndex = '1'
-        
+        logModal.style.opacity = '1';
+        logModal.style.zIndex = '2'
       }
       /* POP-UP DE REGISTRO */
 
       const openRegisModal = () => {
-        let ninjaButton = document.getElementById('buttonsForms')
-        ninjaButton.style.opacity = '0';
-        ninjaButton.style.zIndex = '1'
         history.push('/registerUser')
       }
       
@@ -153,7 +152,6 @@ export default function NavBar() {
         logaut();
         loginBarFunction();
         history.push('/');
- 
       }
 
   return (
@@ -236,7 +234,7 @@ export default function NavBar() {
         value={busqueda}
         onChange={handleChange}/>
         </div>
-        <NavLink to='/sucursales'>sucursales</NavLink>
+        <NavLink to='/sucursales'className="sucursales" ><p>sucursales</p> </NavLink>
           <div className="icono_Usuario">
           <div id={loginBarState? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
           {user && user.uid ? <img className='profileImg' src={profileImg.foto} alt="imagen de perfil" /> : <MdAccountCircle/>}

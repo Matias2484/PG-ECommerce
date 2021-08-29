@@ -8,7 +8,7 @@ import { tiendas } from './iconMap/tiendas'
 import { direccion } from '../../funciones/direccion'
 import './sucursales.css'
 import swal from 'sweetalert';
-
+import undraw3 from "../../img/alfiler.png"
 export default function Sucursales (){
     const dispatch = useDispatch()
 
@@ -37,10 +37,12 @@ export default function Sucursales (){
     }
     return <div>
         <div>
-            <h2>Sucursales</h2>
-            <p>Somos una de las librerias mas antiguas de Buenos Aires; actualmente contamos con 8 sucursales fisicas; no dudes en visitarnos</p>
-            <div>
-                    <p>buscar sucursal mas cercana  <button onClick={()=>locationUser()}>X</button></p> 
+            <h2 className="sucTitle">Sucursales</h2>
+            
+            <div className="info">
+            <p >Somos una de las librerias mas antiguas de Buenos Aires; actualmente contamos con 8 sucursales fisicas, no dudes en visitarnos, ¡Te esperamos!</p>
+                    <p> permitenos saber tu ubicacion para buscar la sucursal mas cercana </p>  
+                    <img className="imageGPS" src={undraw3} alt="img" onClick={()=>locationUser()}/>
             </div>
         </div>
         <div className='map'>

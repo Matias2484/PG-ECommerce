@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import './opcionesAdmin.css'
 
 export default function OpcionesAdmin (){
 
     return (
-        <div>
-            <Link to='/profiles' style={{textDecoration:'none'}}><p>Perfiles de Usuarios</p></Link>
-            <Link to='/ordenes' style={{textDecoration:'none'}}><p>Ordenes de Compras</p></Link>
-            <Link to='/add' style={{textDecoration:'none'}}><p>Agregar Producto</p></Link>
+        <div className="opcionesAdmin">
+            <h1>Bienvenido admin</h1>
+             <Link to='/profiles' style={{textDecoration:'none'}}><p className="perfiles">Perfiles de Usuarios</p></Link>
+             <Link to='/ordenes' style={{textDecoration:'none'}}><p className="ordenes">Ordenes de Compras</p></Link>
+             <Link to='/add' style={{textDecoration:'none'}}><p className="agregar">Agregar Producto</p></Link>
         </div>
     )
 }
