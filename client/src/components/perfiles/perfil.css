@@ -35,8 +35,9 @@ opacity: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: -55vh;
+    margin-top: -60vh;
     font-size: 30px;
+    line-height: 30px;
 }
 
 .childTable{
