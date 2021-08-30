@@ -6,28 +6,26 @@ import './cart.css'
 import {addCart,removeAllCart, clearCart, removeOneCart} from '../../Actions/index'
 
 export default function Cart() {
-
     const dispatch = useDispatch()
     const carts = useSelector((state)=>state.cart)
     const arrayCart=[]
-
+    
     var totalPrecio = 0;  
 
     for (const i in carts) {
         arrayCart.push(carts[i]);
         totalPrecio += carts[i].precio*carts[i].count   
     }
-
     // const [rightBarState, setrightBarState] = useState(true);
     function rightBarFunction(){
-      let rightNavBar = document.getElementById('rightNavBar');
+        let rightNavBar = document.getElementById('rightNavBar');
 
-      rightNavBar.style.top = '-100vh';
-       
-
-      
+        rightNavBar.style.top = '-100vh';
     }
-    
+    function agregarLibro (e) {
+
+        
+    }
 
     return (
         <div className="contenedor_cart">
@@ -48,7 +46,7 @@ export default function Cart() {
                         </div>
                        </div>
                         <div className="btn_add">
-                            <IoMdAddCircleOutline className='carts_add' onClick={()=> dispatch(addCart(e._id))}/>   
+                            {e.count < e.stock ? <IoMdAddCircleOutline className='carts_add' onClick={ () => dispatch(addCart(e._id)) }/> : null }
                            <IoMdRemoveCircleOutline className='carts_add_red' onClick={()=> dispatch(removeOneCart(e._id,e.count))}/>
                         </div>    
                                     

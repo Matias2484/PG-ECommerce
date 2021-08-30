@@ -36,6 +36,7 @@ export default function LoginForms  ({loginBarFunction}){
         }))
         
         dispatch(getProfile(a.user._id))
+        window.location.reload()
     }
 
     

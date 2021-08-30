@@ -53,7 +53,7 @@ export default function Perfil() {
                     <th>Estatus:</th> <td>{state.admin? <label>Administrador</label> : <label>Usuario</label>}</td><br />
                     {token.admin && admin.length===0 &&
                         <Select
-                            options={!state.admin? [{ value:'true',label:'si'}]:[{ value:'false',label:'no'}]}
+                            options={!state.admin? [{ value:'true',label:'Nombrar Administrador'}]:[{ value:'false',label:'Nombrar Usuario'}]}
                             onChange={(e)=>setadmin(e.value)}
                             placeholder='cambiar estatus'
                         />}

@@ -257,7 +257,7 @@ export default function NavBar() {
 </div>
 
        </div>
-          {user && !user.admin && <div>
+          { user && user.admin ? false : <div>
 
             <div id={rightBarState? "rightNavBarButton_active" : "rightNavBarButton_inactive"} className="rightNavBarButton" onClick={ rightBarFunction }>
             <MdShoppingCart className="icono_nav_der"/> <span className="numero_icono">{Object.values(carts).length}</span>
@@ -265,7 +265,7 @@ export default function NavBar() {
             <div id ="rightNavBar">
             <Cart/>
             </div>
-          </div>  }  
+          </div> }
 
 
         </div>

@@ -13,13 +13,9 @@ export default function Details() {
     const dispatch = useDispatch();
     const details = useSelector((state) => state.details);
     const { id } = useParams();
-    
+    let carritoStock = JSON.parse(window.localStorage.getItem('cart'))['a'+id].count
 
-    
-
-
-      var a=payloadJWT()
-   
+    var a=payloadJWT()
 
     useEffect(() => {
         dispatch(getDetails(id));
@@ -76,10 +72,10 @@ export default function Details() {
                     </div>
                 </div>
                 <div className="contenido_details">
-                    <div className="comprar">
-                        {a && a.admin===false?<button className={stock<= 0? "vacio_detail": "comprar_detail"} onClick={()=>dispatch(addCart(id))}>Comprar</button>:null}
+                    {carritoStock < stock ? <div className="comprar">
+                        {a && a.admin ? false : <button className={stock<= 0? "vacio_detail": "comprar_detail"} onClick={()=>dispatch(addCart(id))}>Comprar</button>}
                        
-                    </div>
+                    </div> : null}
                     <h2 className="titulo_detail">{titulo}</h2>
                     <div className="autor_editorial">
                         <h3 className="autor_detail_der">{autor}</h3>
