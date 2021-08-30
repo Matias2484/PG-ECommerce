@@ -1,0 +1,27 @@
+.historyShop{
+    display: grid;
+    grid-template-columns:repeat(4, 1fr);
+    position: relative;
+    width: auto;
+    margin-top: 10vh;
+}
+
+.historialCompra{
+    background-color: sandybrown;
+    width: 100%;
+    height: 10vh;
+}
+
+h2{
+    color: white;
+}
+.filtro{
+    margin-left: -120vh;
+    margin-top: 2vh
+}
+
+.select{
+    width: 60vh;
+    margin-top: 2vh;
+}
+

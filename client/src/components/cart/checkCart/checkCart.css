@@ -92,11 +92,11 @@ color: #413e3e;
 }
 .tarjeta {
   border: 1px solid rgb(46, 41, 37);
-  border-radius: 10px;
+  border-radius: 5px;
   width: 60%;
-  margin: auto;
+  margin-left: 9rem;
   margin-bottom: 2rem;
-  
+  padding: 0.5rem;
 }
 .btn_pasarela_compra {
    margin-top: 2rem;
@@ -166,3 +166,6 @@ align-items: center;
     padding: 0.3rem;
     padding-left: 0.3rem;
 }
+
+
+

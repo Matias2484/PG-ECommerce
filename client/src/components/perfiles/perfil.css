@@ -1,0 +1,51 @@
+.fotoMarco{
+    border-style: outset;
+    border-width: 10px;
+    border-color: rgb(238, 173, 116);
+    float: inline-start;
+    margin-left: -100vh;
+    margin-top: 15vh;   
+}
+
+.userContenedor{
+    background-color: rgb(128, 128, 128,0.2);
+    height: 70vh;
+}
+
+.inputFoto{     
+width: 35vh;
+height: 10vh;
+opacity: 0;
+}
+
+.realButton{
+    display: flex;
+    flex-direction: column;
+    border: none;
+    width: 23vh;
+    height: 3vh;
+    background-color: rgb(244, 164, 96);
+    color: white;
+    margin-left: 32.5vh;
+    font-weight: bold;
+}
+
+.table{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: -55vh;
+    font-size: 30px;
+}
+
+.childTable{
+    border-style: outset;
+    border-width: 2vh;
+    border-color: rgb(241, 169, 106);
+    background-color: rgb(240, 171, 110, 0.8);
+    border-radius: 10%;
+    padding: 1rem;
+    margin-top: -35px;
+    margin-left: 300px;
+}

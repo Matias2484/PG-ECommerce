@@ -4,7 +4,7 @@ import {getOrdenesUser, getOrdenes,seeCart} from '../../Actions/index'
 import { payloadJWT } from '../../funciones/payloadJWT'
 import CardOrdenes from './cardOrdenes/cardOrdenes'
 import Select from 'react-select';
-
+import './historyShopping.css'
 export default function HistoryShopping(){
     const token= window.localStorage.getItem('token')
     const admin=payloadJWT()
@@ -28,35 +28,35 @@ export default function HistoryShopping(){
  const opcion=[{ value:'creada',label:'creada'},{ value:'cancelada',label:'cancelada'},{ value:'procesando',label:'procesando'},{ value:'completada',label:'completada'}]
 
     return (
-        <div>
-            {admin.admin ?( <div>
+        <div >
+            {admin.admin ?(
+            <div className='historialCompra'>
                 <h2>Historial de Pedidos</h2>
                 <div>
-                    <p>Filtrar por</p>
-                <Select
+                        <p className='filtro'>Filtrar las compras por estado:</p>
+                        <Select className='select'
                         options={opcion}
                         onChange={(e)=>filtrarOrdenes(e.value)}
-                    />
+                            />
                 </div>
-                <div>
+                <div className="historyShop"    >
                 {ordenes.length>0? ordenes.map(e=> <CardOrdenes props={{...e,admin:true}} key={e._id}/>) : <p>Aun no hay compras realizadas</p>} 
                 </div>
-        </div>):
-           ( <div>
+            </div>):
+            ( <div className='historialCompra'>
                 <h2>Hitorial de compras</h2>
                 <div>
-                <p>Filtrar por</p>
-                <Select
+                <p className='filtro'>Filtrar las compras por estado:</p>
+                <Select className='select'
                         options={opcion}
                         onChange={(e)=>filtrarOrdenes(e.value)}
                     />
                 </div>
-                <div>
+                <div  className="historyShop">
                 {ordenes.length>0? ordenes.map(e=> <CardOrdenes props={{...e,admin:false}} key={e._id}/>):<p>Aun no hay compras realizadas</p>} 
                 </div>
             </div>)
             }
-           
         </div>
     )
 }

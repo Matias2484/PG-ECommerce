@@ -1,12 +1,12 @@
 .openPop{
     border: none;
-    width: 10rem;
+    width: 23vh;
     padding: 1rem;
     border-radius: 5px;
     background-color: rgb(244, 164, 96, 0.5);
     color: white;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 2vh;
 }
 
 .openPop:hover{
@@ -48,7 +48,7 @@ background-color: rgb(244, 164, 96, 1);
     padding: 4em;
     margin-top:5%;
     width: 40%;
-    height: 70%;
+    height: 90%;
     margin-left: 28%;
 }
 

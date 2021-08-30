@@ -1,0 +1,17 @@
+.perfilesAdmin{
+    align-items: center;
+    width: 100vh;
+    margin-left: 35vh;
+    background-color: sandybrown;
+    margin-top: 5vh;    
+}
+.titulo{
+    color: white;
+}
+
+.userComplete{
+border-style: groove;
+border-color: black;
+line-height: 4vh;
+background-color: rgb(182, 179, 179);
+}

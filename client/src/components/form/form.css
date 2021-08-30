@@ -232,6 +232,7 @@
 
 .checkbox_idioma {
     cursor: pointer;
+    position: relative
 }
 
 .button_confirm_newbook_disabled {

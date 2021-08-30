@@ -3,9 +3,10 @@ import ReactCircleModal from 'react-circle-modal'
 import   './recoverPopUp.css'
 import {passModifi, sendMail, changePass} from '../../funciones/recoverPass'
 
+
 export default function RecoverPopUp (){
     const [aprove, setAprove] = useState(false)
-    
+    const [aprovePass, setAprovePass] = useState(false)
 
 const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 function validarEmail(e) {
@@ -25,11 +26,30 @@ function validarEmail(e) {
     }
 }   
 
+    function validarPass(){
+        let newPassA = document.getElementById('newPassA')
+        let newPassB = document.getElementById('newPassB')
+        let enviaPass = document.getElementById('enviaPass')
+        let msgNewPass = document.getElementById('msgNewPass')
+        if(newPassA.value === newPassB.value){
+            setAprovePass(true)
+            enviaPass.style.backgroundColor = 'rgb(244, 164, 96)'
+            msgNewPass.style.color = 'green'
+            msgNewPass.textContent = "¡Perfecto!"
+        }else{
+            setAprovePass(false)
+            enviaPass.style.backgroundColor = 'grey'
+            msgNewPass.style.color = 'red'
+            msgNewPass.textContent = "Las contraseñas deben ser iguales"
+        }
+        
+    }
+
 
         
 
     async function handleSumbit(){
-         await sendMail(document.getElementById('inputMail').value)
+        await sendMail(document.getElementById('inputMail').value)
             let pepeA = document.getElementById('pepeA')
             let pepeB = document.getElementById('pepeB')
             let pepeC = document.getElementById('pepeC')
@@ -61,7 +81,7 @@ function validarEmail(e) {
             e.preventDefault()
             const a =  await passModifi(
             document.getElementById('code').value,
-            document.getElementById('newPass').value,
+            document.getElementById('newPassA').value,
             document.getElementById('inputMail').value
             )
             if(a.msg === "Codigo enviado"){
@@ -77,16 +97,16 @@ function validarEmail(e) {
             }
         }
 
-        async function sumbitNewPass (e){
-                e.preventDefault()
-                const a =  await changePass(
-                document.getElementById('code').value,
-                document.getElementById('newPass').value,
-                document.getElementById('inputMail').value
-                )
-                alert(a.msg)
-        }
-
+    async function sumbitNewPass (e){
+        e.preventDefault()
+        const a =  await changePass(
+            document.getElementById('code').value,
+            document.getElementById('newPassA').value,
+            document.getElementById('inputMail').value
+        )
+        alert(a.msg)
+        window.location.reload()
+    }
 
     return (
         <ReactCircleModal 
@@ -100,7 +120,6 @@ function validarEmail(e) {
         offsetY={0}
         >
         {(onClick) => (
-            
             <div  className="pepe">
                 <div id="pepeA">
                     <p>Escribe tu direccion de correo electronico a continuacion y recibiras una nueva clave</p><br />
@@ -137,24 +156,33 @@ function validarEmail(e) {
 
 
                 <div id="pepeC">
-                    <input type="text" 
-                    id='newPass' 
+                    <input 
+                    id='newPassA' 
                     className="newPass" 
-                    name="newPass" 
+                    name="newPassA" 
                     autoComplete="off" 
                     placeholder="introduzca la nueva contraseña"
+                    type="password"
                     changui="true"
+                    
+                    onChange = {validarPass}
                     />
-            
-                    <input type="text"
+
+                    <span id="msgNewPass"></span>
+
+                    <input type="password"
                     id="newPassB"
                     className="newPass"
                     autoComplete="off"
                     placeholder="Repita la contraseña"
                     changui="true"
+                    
+                    onChange = {validarPass}
                     />
                     <label id="msgNewPass"></label>
-                    <button className="buttonBack" id="enviaPass" onClick={sumbitNewPass}> Enviar </button>
+                    { aprovePass ? (<button className="buttonBack" id="enviaPass" onClick={sumbitNewPass}> Enviar </button>):(
+                        <button className="buttonBack" id="enviaPass"> nope. </button>
+                    )}
                     <button className="buttonBack" onClick={handleClose}> Atras </button>
                 </div>
 
