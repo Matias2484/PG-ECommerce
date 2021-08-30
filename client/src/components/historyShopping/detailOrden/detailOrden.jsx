@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { useParams } from "react-router";
 import Select from 'react-select';
 import {Link} from 'react-router-dom'
-
+import './detailOrden.css'
 import {getOrdenesID,updateOrden, seeCart} from '../../../Actions/index'
 import { payloadJWT } from '../../../funciones/payloadJWT'
 
@@ -27,12 +27,12 @@ export default function DetailOrdenAdmin (){
         dispatch(seeCart())
     }, [dispatch,id])
     return (
-        <div>
+        <div className='detailCompra'>
             { state.user ?(<div>
                 <div>
                     <h2>Datos del comprador</h2>
-                    <p>{`${user.nombre} ${user.apellido}`}</p>
-                    <p>{`${user.email}`}</p>
+                    <p className='datosUser'>{`${user.nombre} ${user.apellido}`}</p>
+                    <p className='datosUser'>{`${user.email}`}</p>
                 </div>
                 <div>
                     <h2>Datos de la compra</h2> 

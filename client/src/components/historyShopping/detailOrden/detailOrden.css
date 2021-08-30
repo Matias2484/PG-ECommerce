@@ -1,0 +1,14 @@
+.detailCompra{
+    background-color: sandybrown;
+    width: 60vh;
+    margin-left: 60vh;
+    margin-top: 10vh;
+    border-radius: 5vh;
+    border-style: outset;
+}
+
+
+.datosUser{
+    color: black;
+    font-size: 3vh;
+}
