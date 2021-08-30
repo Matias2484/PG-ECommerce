@@ -150,7 +150,7 @@ function validarEmail(e) {
                     id="newPassB"
                     className="newPass"
                     autoComplete="off"
-                    placeholdeR="Repita la contraseña"
+                    placeholder="Repita la contraseña"
                     changui="true"
                     />
                     <label id="msgNewPass"></label>

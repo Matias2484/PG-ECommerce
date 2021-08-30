@@ -60,15 +60,15 @@ router.post('/',validarJWTUser, async (req,res)=>{
             from:"Remitente",
             to: user.email,
             subject:"Informe de Compra",
-            text: resCompra ? `¡Hola ${user.nombre} ${user.apellido} su compra N° ${orden._id} realizada el dia ${orden.fecha.substring(0, 10)} se completo con exito;puede ver el resumen de su compra en nuestra web.
-            Pronto estaremos enviando el producto, que tenga buen dia ` : `¡Hola ${user.nombre} ${user.apellido} le informamos que su compra N° ${orden._id} realizada el dia ${orden.fecha.substring(0, 10)} se encuentra cancelada por problemas al realizar el cobro de la tarjeta, le invitamos a realizar nuevamente la compra. que tenga buen dia`
+            text: resCompra ? `¡Hola ${user.nombre} ${user.apellido} su compra N° ${orden._id} realizada el dia ${orden.fecha.toDateString()} se completo con exito;puede ver el resumen de su compra en nuestra web.
+            Pronto estaremos enviando el producto, que tenga buen dia ` : `¡Hola ${user.nombre} ${user.apellido} le informamos que su compra N° ${orden._id} realizada el dia ${orden.fecha.toDateString()} se encuentra cancelada por problemas al realizar el cobro de la tarjeta, le invitamos a realizar nuevamente la compra. que tenga buen dia`
         }
 
         transporter.sendMail(mailOptions,(err,info)=>{
-            err? res.status(500).send('error en email') : console.log('hola')
+           if(err) return res.status(500).send('error en email')
         })
 
-        res.send({ok:response})
+        res.send({ok:resCompra})
     
     }
 });

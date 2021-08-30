@@ -12,7 +12,9 @@ import DetailOrden from './components/historyShopping/detailOrden/detailOrden'
 import Profiles from './components/perfiles/perfilesAdmin'
 import Perfil from './components/perfiles/perfil'
 import Sucursales from "./components/sucursales/sucursales";
-import RegisterForm from "../src/components/registerForm/registerForm"
+import RegisterForm from "./components/registerForm/registerForm"
+import PromoVigente from './components/promociones/promoVigentes'
+import CreatePromo from './components/promociones/promo'
 import {payloadJWT} from './funciones/payloadJWT'
 
 
@@ -31,16 +33,24 @@ function App() {
       <Route path='/registerUser' component={RegisterForm}/>
       <Switch>
          <Route path= '/add' render={()=>{
-              return a && a.admin === true ? <CreateProducto/> : <Redirect to='/'/>
+              return a && a.admin ? <CreateProducto/> : <Redirect to='/'/>
+            }}
+          />
+          <Route path= '/add_promo' render={()=>{
+              return a && a.admin ? <CreatePromo/> : <Redirect to='/'/>
+            }}
+          />
+          <Route path= '/promos' render={()=>{
+              return a && a.admin? <PromoVigente/> : <Redirect to='/'/>
             }}
           />
           
            <Route path= '/edit/:id' render={()=>{
-              return a && a.admin === true ? <EditProduct/> : <Redirect to='/'/>
+              return a && a.admin ? <EditProduct/> : <Redirect to='/'/>
             }}
           />
           <Route path='/profiles' render={()=>{
-              return a && a.admin === true ? <Profiles /> : <Redirect to='/'/>
+              return a && a.admin ? <Profiles /> : <Redirect to='/'/>
             }}
           />
           <Route exact path='/ordenes' render={()=>{

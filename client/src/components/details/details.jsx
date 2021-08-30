@@ -69,7 +69,7 @@ export default function Details() {
                         </div>
                         <div>
                             <p>Publicación:</p>
-                            <p className="detail_texto">{fecha.substring(0, 10)}</p>
+                            <p className="detail_texto">{new Date(fecha).toDateString()}</p>
                         </div> 
                       { a && a.admin===true? <button className="boton_editar"><NavLink className="btn_editar" style={{textDecoration:'none'}} to={`/edit/${_id}`} >Edit</NavLink></button>:null}
 

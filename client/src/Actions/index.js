@@ -22,7 +22,7 @@ export const FILTER_PRICE = 'FILTER_PRICE';
 export const FILTER_LANGUAGE = 'FILTER_LANGUAGE';
 export const GET_PROFILE = 'GET_PROFILE';
 export const GET_PROFILES ='GET_PROFILES';
-export const DELETE_PROFILE = 'DELETE_PROFILE'
+export const DELETE_PROFILE = 'DELETE_PROFILE';
 
 
 
@@ -155,19 +155,13 @@ export function orderBooks(orden ) {
 }
 
 export function removeOneCart(id){
-  // return async function (dispatch){
-    // var removeOne= await fetch(`http://localhost:4000/cart/removeOne/${id}`);
-    // removeOne= await removeOne.json();
-    return {type:REMOVE_ONE_CART, payload:id}
-  // };
+  return {type:REMOVE_ONE_CART, payload:id}
+
 }
 
 export function removeAllCart(id){
-  // return async function (dispatch){
-  //   var removeAll= await fetch(`http://localhost:4000/cart/removeAll/${id}/${count}`);
-    // removeAll= await removeAll.json();
-    return {type:REMOVE_ALL_CART, payload:id}
-  // };
+  return {type:REMOVE_ALL_CART, payload:id}
+
 }
 
 export function clearCart(payload){
@@ -305,9 +299,12 @@ export function getProfiles (){
     return dispatch({type: GET_PROFILES, payload:profiles})
   };
 };
+
 export function deleteProfile() {
   return {
     type: DELETE_PROFILE,
     
   }
 };
+
+

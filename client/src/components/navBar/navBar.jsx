@@ -23,16 +23,13 @@ export default function NavBar() {
     const url = useSelector((state) => state.url);
     const carts = useSelector((state)=>state.cart);
     const history = useHistory();
-    const token = window.localStorage.getItem("token")
   
-    if(token) {
       var user=payloadJWT()
-      if(!profileImg.foto) {
+      if(!profileImg.foto && user) {
         dispatch(getProfile(user.uid))
-        
       }
       
-    }
+  
     
     useEffect(() => {
         dispatch(getAllBooks())
@@ -244,7 +241,7 @@ export default function NavBar() {
   <div id ="loginNavBar">
 
     <div id ="buttonsForms" >
-      {!token?(<div>
+      {!user?(<div>
          <button onClick={openModal} className="userLoginButton">Accede!</button>
          <button className="userLoginButton" onClick={openRegisModal}>Registrate!</button>
         </div>

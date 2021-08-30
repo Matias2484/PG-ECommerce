@@ -38,17 +38,16 @@ router.post("/review",validarJWTUser,async (req, res) => {
    apellido,
    userId:id
  }
- var orden = await Orden.find({"user":id}, {"productos":1})
- var fruta = [].concat.apply([], orden.map(e=>e.productos))
- var fruta2 = fruta.filter(e=>e.producto == req.body._id)
+  var orden = await Orden.find({"user":id}, {"productos":1})
+      orden = [].concat.apply([], orden.map(e=>e.productos))
+      orden = orden.filter(e=>e.producto == req.body._id)
 
- if(fruta2.length === 0) {
- return res.status(500).send({ok:false})
- }
-
+      var {review} = await Producto.findById({"_id":req.body._id},{"review":1})
+          review= review.find(e=>e.userId===id)
+      
+  if(orden.length === 0) return res.status(500).send({ok:'comprar'})
+  if(review.userId) return res.status(500).send({ok:'duplicado'})
  
- var comentario = await Producto.find({"user":ud}, {review:userId})
- console.log(comentario)
 
   try {
     var a= await Producto.updateOne({ "_id": req.body._id},{ $push:{ review:obj}}, {new:true})

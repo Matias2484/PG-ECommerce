@@ -1,14 +1,13 @@
 import "./home.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks, getGenders, filterBook, filterClear, url, seeCart, getProfile } from "../../Actions/index";
+import { getAllBooks, getGenders, filterBook, filterClear, url, seeCart} from "../../Actions/index";
 import Producto from "../producto/producto";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import undraw from "../../img/undraw.svg"
 import gif_carga from "../../img/libros_paginas.gif";
 import undraw2 from "../../img/undraw_Gifts.svg"
 import { motion } from "framer-motion"
-import {payloadJWT} from "../../funciones/payloadJWT"
 
 export function Home () {
 
@@ -22,11 +21,6 @@ export function Home () {
 
  const token = window.localStorage.getItem('token')
 
-    if(token) {
-      
-      var a = payloadJWT()
-      
-    }
 
     const [filter, setFilter] = useState([]);
 
@@ -50,10 +44,6 @@ const numberPage = (e) => {
   setCurrentPage(Number(e.target.value) * 20);
   e.preventDefault();
 }
-
- 
-
-
 
   
   const [currentPage, setCurrentPage] = useState(0);

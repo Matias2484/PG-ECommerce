@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import {seeCart} from '../../Actions/index'
 import {MapContainer, TileLayer} from 'react-leaflet'
@@ -11,15 +11,9 @@ import swal from 'sweetalert';
 
 export default function Sucursales (){
     const dispatch = useDispatch()
-
-    // const [state, setState]= useState({
-    //     lat:'-34.598387932559795', 
-    //     lng: '-58.439818381557'
-    // })
-
     useEffect(() => {
         dispatch(seeCart())
-    }, [])
+    }, [dispatch])
 
     function locationUser(){
         navigator.geolocation.getCurrentPosition(
