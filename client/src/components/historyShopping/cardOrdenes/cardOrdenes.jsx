@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import './cardOrdenes.css'
 export default function CardOrdenes({props}){
     const {user,_id,productos,estado,valorTotal,fecha,admin}=props
-    
+
     return (
         
         <div className="pedidosUser">
@@ -11,8 +11,8 @@ export default function CardOrdenes({props}){
             <p className='numCompra'> N° de compra {_id}</p>
             <div>
                 {admin && <p>{`${user.nombre} ${user.apellido}`}</p>}
-                <p className='fechaCompra'>{`fecha de compra: ${fecha.split('.')[0]}`}</p>
-                <label className='stateName'> Estado: {estado}</label>
+                <p>{`fecha de compra: ${new Date(fecha).toDateString()}`}</p>
+                <label>Estado:{estado}</label>
                 <div>
                     <h4>Productos</h4>
                     {productos.map(e=><p key={e._id}>{`${e.producto.titulo} ${e.cantidad} U`}</p>)}

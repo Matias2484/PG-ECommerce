@@ -37,7 +37,7 @@ export default function DetailOrdenAdmin (){
                 <div>
                     <h2>Datos de la compra</h2> 
                     <label>N° de compra: {state._id}</label>
-                    <p>fecha: {state.fecha.split('.')[0].replace('T',' ')}</p>
+                    <p>fecha: {new Date(state.fecha).toDateString()}</p>
                 <div>
                     <p>Productos</p>
                     {productos.map(e=>(

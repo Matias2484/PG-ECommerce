@@ -3,7 +3,6 @@ import Valoracion from "../valoracion/valoracion";
 import Comentarios from "../comentarios/comentarios";
 import { useSelector } from 'react-redux';
 import {insertaReview} from '../../../../funciones/insertarReview'
-import { payloadJWT } from '../../../../funciones/payloadJWT';
 import "./reviewForm.css"
 import swal from 'sweetalert';
 
@@ -31,8 +30,7 @@ export default function ReviewForm() {
         }
         
          var review2 = await insertaReview(review, token);
-         !review2.ok && swal({title: "Tienes que comprar el libro para opinar", icon: "warning",
-        })
+         review2.ok==='comprar' ? swal({title: "Tienes que comprar el libro para dejar una valoracion", icon: "warning",}) :swal({title: "Ya dejaste una valoracion", icon: "warning",})
         
     }
    
