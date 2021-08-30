@@ -61,40 +61,40 @@
     background-color: rgb(233, 233, 233);
 
     
- }
- .regisNombreApellido1 {
-     display: flex;   
-     margin-top: 2rem;
- }
- 
- .regisLeft1 {
-   left: -2rem;
-   position:relative;
-   margin-top: 1rem;
-   top: -1rem;
-   margin-bottom: 2rem;
- }
- .regisLeft1 input {
-     width: 25rem;
-     color: #413e3e;
-     font-size: 1rem;
- }
+}
+.regisNombreApellido1 {
+    display: flex;   
+    margin-top: 2rem;
+}
 
- .regisLeft1 h3 {
-     text-align: left;
-     
- }
- 
- .contraseña1 {
-     display: flex;
-     
- }
- .telMail1 {
-     display: flex;
- }
- .documentoDire1 {
-    display: flex;  
- }
+.regisLeft1 {
+left: -2rem;
+position:relative;
+margin-top: 1rem;
+top: -1rem;
+margin-bottom: 2rem;
+}
+.regisLeft1 input {
+    width: 25rem;
+    color: #413e3e;
+    font-size: 1rem;
+}
+
+.regisLeft1 h3 {
+    text-align: left;
+    
+}
+
+.contraseña1 {
+    display: flex;
+    
+}
+.telMail1 {
+    display: flex;
+}
+.documentoDire1 {
+display: flex;  
+}
 .direccion_input1 {
     display:flex;   
 }
