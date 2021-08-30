@@ -79,7 +79,7 @@ export default function LoginForms  ({loginBarFunction}){
                 <h1 className="title">inicia sesion </h1>
             <form onSubmit={handleSumbit} className="formLogin">
                     <h1 className="loginUser">Correo Electronico</h1>
-                    <input  placeholder="Correo Electronico" className="inputMail" autoComplete='off' required name="email" onChange={handleChange} value={data.email}/>
+                    <input  placeholder="Correo Electronico" className="inputMail1  " autoComplete='off' required name="email" onChange={handleChange} value={data.email}/>
                     <h1 className="loginPass">Contraseña</h1>
                     <input placeholder="password" name="password" className="inputPass"  type="password" required autoComplete='off' onChange={handleChange} value={data.password}/>
                     {data.email && data.password && <input id="buttonInput"  type="submit" className="logginBtn" value ="Logueate" />}
@@ -93,8 +93,9 @@ export default function LoginForms  ({loginBarFunction}){
                 />
                 <h1 className="olvidaste">¿Olvidaste tu contraseña?</h1>
                 <RecoverPopUp/>
+                <button className="close" onClick={closeModal}>Atrás</button>
             </div>
-            <button className="close" onClick={closeModal}>Atrás</button>  
+             
         </div>
     );
 };

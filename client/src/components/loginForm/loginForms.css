@@ -55,9 +55,9 @@
     }
     
 .close:hover{
-    background-color: rgb(244, 164, 96, 1); 
-    }
-    
+background-color: rgb(244, 164, 96, 1); 
+}
+
 .logginBtn{
     border: none;
     width: 10rem;

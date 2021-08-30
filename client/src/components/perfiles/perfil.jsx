@@ -43,7 +43,7 @@ export default function Perfil() {
         <div>
             <div className="userContenedor">
                 <img className="fotoMarco" src={state.foto} alt='foto de perfil' />
-                {!token.admin && <input type="file" required accept="image/*" className='inputFoto' onChange={(e)=>processImage(e)}/>}
+                {!token.admin && <div className='realButton'>Subi tu foto<input type="file" required accept="image/*" className='inputFoto' onChange={(e)=>processImage(e)}/></div>}
             </div>
             <div className="table">
                 <div className="childTable">
@@ -51,7 +51,8 @@ export default function Perfil() {
                     <th>Usuario:</th><td>{`${state.nombre} ${state.apellido}`}</td><br />
                     <th>Email:</th><td>{state.email}</td><br />
                     <th>Estatus:</th> <td>{state.admin? <label>Administrador</label> : <label>Usuario</label>}</td><br />
-                    {token.admin && admin.length===0 && <Select
+                    {token.admin && admin.length===0 &&
+                        <Select
                             options={!state.admin? [{ value:'true',label:'si'}]:[{ value:'false',label:'no'}]}
                             onChange={(e)=>setadmin(e.value)}
                             placeholder='cambiar estatus'

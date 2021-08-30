@@ -40,7 +40,7 @@
 
   #loginNavBar{
     align-items: center;
-    width: 250px;
+    width: 40vh;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -69,13 +69,14 @@
   .userLoginButton{
       cursor: pointer;
       border: none;
-      width: 10rem;
+      width: 20vh;
       padding: 0.7rem;
       border-radius: 5px;
       background-color: sandybrown;
       color: white;
       font-weight: bold;
       font-size: 15px;
+      position: static;
   }
 
 

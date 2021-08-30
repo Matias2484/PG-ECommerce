@@ -128,17 +128,18 @@ display: flex;
 .regisBtn {
     margin-top: 2rem;
     font-size: 1.2rem;
-     border: none;
-     border-radius: 5px;
-     padding: 0.6rem; 
-     margin-bottom: 2rem;
-     background-color: sandybrown;
-     color: #413e3e;
-     font-weight: bold;
- }
- .regisBtn:hover {
+    border: none;
+    border-radius: 5px;
+    padding: 0.6rem; 
+    margin-bottom: 2rem;
+    background-color: sandybrown;
+    color: #413e3e;
+    font-weight: bold;
+}
+
+.regisBtn:hover {
     cursor: pointer;
     background-color: rgb(255, 168, 6);
 
-
+}
 
