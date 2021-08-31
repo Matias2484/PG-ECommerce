@@ -1,32 +1,6 @@
-
-.logModal1{
-    background-color: rgb(250, 220, 164);
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    width: 90%; 
-    height: 60%;
-    margin: 0;
-    transition:  all 0.5s ease-in-out; 
-    line-height: 1em;
-    z-index: 1;
-    position: absolute;
-    justify-content: space-evenly;
-    border-radius: 10%;
-}
-
-.modal1{
-    background-color: rgb(250, 220, 164);
-    display: grid;
-    opacity: 0; 
-    width: 5em; 
-    height: auto;
-    margin: 0;
-    transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1s ;
-    line-height: 0.5em;
-    z-index: 1;
-    position: absolute;
-
+.logModalUser {
+    background-color: #f8f7f7;
+    margin-bottom: 2rem;
 }
 .regisTitulo {
     margin-bottom: 2rem;
@@ -37,94 +11,95 @@
     
  }
 
-
-.modal-open1{
-    display:grid;
-}
-
-.modal_dialog1{
+ .modal_dialog_user{
     border: 1px solid black;
     border-radius: 1rem;
     align-items: center; 
     margin: auto;
     width: 70%; 
-    height: 80%;
+    height: 100%;
     background-color: rgb(233, 233, 233);
-}
-
-.formLogin1 input {
+ }
+ 
+ .formLoginUser input {
     border:none;
     border-bottom: 0.5px solid rgb(170, 161, 161);
     outline: none;
     color: #867f7f;
     font-weight: 500;
     background-color: rgb(233, 233, 233);
-
     
-}
-.regisNombreApellido1 {
-    display: flex;   
-    margin-top: 2rem;
-}
+ }
+ .regisNombreApellido {
+     display: flex;   
+     margin-top: 2rem;
+ }
+ 
+ .regisLeft {
+   left: 2rem;
+   position:relative;
+   margin-top: 1rem;
+   top: -1rem;
+   margin-bottom: 2rem;
+ }
+ .regisLeft input {
+     width: 25rem;
+     color: #413e3e;
+     font-size: 1rem;
+ }
 
-.regisLeft1 {
-left: -2rem;
-position:relative;
-margin-top: 1rem;
-top: -1rem;
-margin-bottom: 2rem;
-}
-.regisLeft1 input {
-    width: 25rem;
-    color: #413e3e;
-    font-size: 1rem;
-}
-
-.regisLeft1 h3 {
-    text-align: left;
-    
-}
-
-.contraseña1 {
-    display: flex;
-    
-}
-.telMail1 {
-    display: flex;
-}
-.documentoDire1 {
-display: flex;  
-}
-.direccion_input1 {
+ .regisLeft h3 {
+     text-align: left;
+     
+ }
+ 
+ .contraseña {
+     display: flex;
+     
+ }
+ .telMail {
+     display: flex;
+ }
+ .documentoDire {
+    display: flex;  
+ }
+.direccion_input {
     display:flex;   
 }
-
-.modal_dialog_regis1{
-    align-items:center ;
+.regisRight {
+    right: -6rem;
+    position:relative;
+    margin-top: 1rem;
+    top: -1rem;
+    margin-bottom: 2rem; 
 }
-.regisName1{
-    color: rgb(0, 0, 0);
-    font-size: 20px;
-    margin-bottom: -1em;
+.regisRight input {
+    width: 25rem;
+    font-size: 1rem;
+    color: #413e3e;
 }
-.regisLastName1{
-    color: rgb(0, 0, 0);
-    font-size: 20px;
-    margin-bottom: -1em;
+.regisRight h3 {
+    text-align: left;    
 }
-
-.regisPass1{
-    color: rgb(0, 0, 0);
-    font-size: 20px;
-    margin-bottom: -1em;
+.regisTerminos {
+    display: flex;
 }
-
-.regisEmail1{
-    color: rgb(0, 0, 0);
-    font-size: 20px;
-    margin-bottom: -1em
+.terminosCheck {
+    margin-left: 2.5rem;
+    top: -0.2rem;
+    position: relative;
+    height: 2rem;
 }
-
+.regisCondiciones {
+    text-align: left;
+    margin-bottom: 3rem;
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+    color: #413e3e;
+}
+.google_btn {
+    margin-bottom: 2rem;
+}
 .regisBtn {
     margin-top: 2rem;
     font-size: 1.2rem;
@@ -135,11 +110,13 @@ display: flex;
     background-color: sandybrown;
     color: #413e3e;
     font-weight: bold;
-}
-
-.regisBtn:hover {
+ }
+ .regisBtn:hover {
     cursor: pointer;
     background-color: rgb(255, 168, 6);
-
-}
-
+    
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 15px sandybrown;
+ }
+ 

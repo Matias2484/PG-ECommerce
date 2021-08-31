@@ -101,9 +101,9 @@ margin-top: 1rem;
   color: black;
 }
 
-.titulos_carousel h1{
-  margin-bottom: 0;
+.titulos_carousel h2{
   text-decoration: none !important;
+  color: black;
 }
 
 .link_carousel {

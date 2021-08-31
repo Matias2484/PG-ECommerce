@@ -96,7 +96,7 @@ function categoryClear(e){
 
           <div className="titulos_carousel">
 
-            {profile && profile.nombre ? <h2>{`¡Bienvenido ${profile.nombre}!`}</h2>:<h2>¡Bienvenido Usuario!</h2>}
+            {profile && profile.nombre ? <h2>{`¡Bienvenido ${profile.nombre}!`}</h2>:<h2>¡Bienvenido!</h2>}
     <h4>Compra tus libros esenciales aquí</h4>
       </div>
           </motion.div>

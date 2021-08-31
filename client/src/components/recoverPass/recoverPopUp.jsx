@@ -113,7 +113,7 @@ function validarEmail(e) {
         backgroundColor="rgb(244, 164, 96)"
         toogleComponent={onClick => (
             <button className="openPop" onClick={onClick}>
-            ¡Recupérala!
+            ¿Olvidaste tu contraseña?
             </button>
         )}
         offsetX={0}
@@ -122,8 +122,8 @@ function validarEmail(e) {
         {(onClick) => (
             <div  className="pepe">
                 <div id="pepeA">
-                    <p>Escribe tu direccion de correo electronico a continuacion y recibiras una nueva clave</p><br />
-                    <p> revisa la bandeja de entrada o tu casilla de spam </p>
+                    <p>Escribe tu dirección de correo electrónico a continuación y recibirás una nueva clave:</p><br />
+                    <p>¡Revisa la bandeja de entrada o tu casilla de spam en tu buzón de mensajes!</p>
                     <span id="msgRecoverPass"></span>
                     <input 
                     id="inputMail"

@@ -219,8 +219,9 @@
 .searchBar {
 width: 30rem;
 background-color: rgb(233, 233, 233);
-align-self: center;
 padding: 0.5rem;
+margin-top: 0.5rem;
+height: 1.5rem;
 margin-left: 6rem;
 border-radius: 1rem;
 display: flex;
@@ -401,17 +402,22 @@ display: flex;
   border-radius: 50%;
 }
 
-.sucursales{
-  color: black;
-  text-decoration:none;
+.sucursales_button_home{
   border: none;
   width: 5rem;
-  height: 1rem;
-  padding: 1rem;
+  height: 2rem;
+  padding: 0.3rem;
+  margin-top: 0.4rem;
+  margin-left: 9rem;
   border-radius: 5px;
-  background-color: rgb(244, 164, 96);
+  background-color: sandybrown;
+  color: white;
   font-weight: bold;
-  font-size: 15px;
-  margin-left: 75px;
-  margin-top: 25px;
+  font-size: 12px;
+  text-decoration: none !important;
+}
+
+.sucursales_button_home:hover {
+  background-color: rgb(255, 168, 6);
+  cursor: pointer;
 }

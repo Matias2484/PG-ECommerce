@@ -141,6 +141,7 @@ export default function NavBar() {
       /* POP-UP DE REGISTRO */
 
       const openRegisModal = () => {
+        loginBarFunction();
         history.push('/registerUser')
       }
       
@@ -231,7 +232,7 @@ export default function NavBar() {
         value={busqueda}
         onChange={handleChange}/>
         </div>
-        <NavLink to='/sucursales'className="sucursales" ><p>sucursales</p> </NavLink>
+        <button className="sucursales_button_home"><NavLink to='/sucursales' style={{"text-decoration": "none", "color":"white"}}>Sucursales</NavLink></button>
           <div className="icono_Usuario">
           <div id={loginBarState? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
           {user && user.uid ? <img className='profileImg' src={profileImg.foto} alt="imagen de perfil" /> : <MdAccountCircle/>}
@@ -240,8 +241,8 @@ export default function NavBar() {
 
     <div id ="buttonsForms" >
       {!user?(<div>
-         <button onClick={openModal} className="userLoginButton">Accede!</button>
-         <button className="userLoginButton" onClick={openRegisModal}>Registrate!</button>
+         <button onClick={openModal} className="userLoginButton">Acceder</button>
+         <button className="userLoginButton" onClick={openRegisModal}>Registrarse</button>
         </div>
        ):
       (<div>
