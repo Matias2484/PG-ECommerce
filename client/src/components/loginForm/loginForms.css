@@ -1,12 +1,13 @@
 
 .title{
+    margin-top: 1rem;
     font-size: 4vh;
-    color: rgb(255, 255, 255);
-    margin-bottom: 6vh;
+    color: #413e3e;
+    margin-bottom: 4vh;
 }
 
 .logModal{
-    background-color: rgb(250, 220, 164);
+
     display: block;
     flex-direction: column;
     align-items: center; 
@@ -45,32 +46,36 @@
 
 .close {
     border: none;
-    width: 23vh;
-    padding: 1rem;
+    width: 5rem;
+    padding: 0.7rem;
     border-radius: 5px;
     background-color: rgb(244, 164, 96, 0.5);
-    color: white;
+    color: black;
     font-weight: bold;
-    font-size: 2vh;
+    font-size: 15px;
     }
     
 .close:hover{
 background-color: rgb(244, 164, 96, 1); 
+color: white;
+cursor: pointer;
 }
 
 .logginBtn{
     border: none;
-    width: 10rem;
-    padding: 1rem;
+    width: 5rem;
+    padding: 0.7rem;
     border-radius: 5px;
     background-color: rgb(244, 164, 96,0.5);
-    color: white;
+    color: black;
     font-weight: bold;
     font-size: 15px;
 }
 
 .logginBtn:hover{
     background-color: rgb(244, 164, 96,1);
+    cursor: pointer;
+    color:white;
 }
 
 .olvidaste{

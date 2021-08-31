@@ -27,16 +27,23 @@ export default function LoginForms  ({loginBarFunction}){
             password:''
         })
        a.token && window.localStorage.setItem("token", a.token)
-       a.token? (swal({
-            title: "Bienvenido",
+
+       if(a.token) {
+
+        swal({
+            title: "¡Bienvenid@! Sesión iniciada exitosamente",
             icon: "success",
-        })):(swal({
-            title: "Ha ocurrido un error",
-            icon: "error",
-        }))
+        })
         
         dispatch(getProfile(a.user._id))
         window.location.reload()
+       }else{
+        (swal({
+            title: "Correo o contraseña incorrectos. Inténtelo de nuevo.",
+            icon: "error",
+        }))
+       
+        }
     }
 
     
@@ -66,20 +73,21 @@ export default function LoginForms  ({loginBarFunction}){
         }
         let a = await dispatch(userLogin(login))
         a.token && window.localStorage.setItem("token", a.token)
+
         a.token? (swal({
-            title: "Bienvenido",
+            title: "¡Bienvenid@! Sesión iniciada exitosamente",
             icon: "success",
         })):(swal({
-            title: "Ha ocurrido un error",
+            title: "Correo o contraseña incorrectos. Inténtelo de nuevo.",
             icon: "error",
         }))
     }
     return(
         <div id='logModal' className= 'logModal'>
             <div className="modal_dialog">
-                <h1 className="title">inicia sesion </h1>
+                <h1 className="title">Iniciar Sesión</h1>
             <form onSubmit={handleSumbit} className="formLogin">
-                    <h1 className="loginUser">Correo Electronico</h1>
+                    <h1 className="loginUser">Correo Electrónico</h1>
 
                     <input  placeholder="Correo Electronico" className="inputMail1" type='email' autoComplete='off' required name="email" onChange={handleChange} value={data.email}/>
                     <h1 className="loginPass">Contraseña</h1>
@@ -93,7 +101,6 @@ export default function LoginForms  ({loginBarFunction}){
                     onFailure={respuestaGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
-                <h1 className="olvidaste">¿Olvidaste tu contraseña?</h1>
                 <RecoverPopUp/>
                 <button className="close" onClick={closeModal}>Atrás</button>
             </div>
