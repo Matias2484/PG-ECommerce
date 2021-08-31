@@ -26,6 +26,9 @@ router.get('/:idOrden', async (req,res)=>{
 router.post('/:estado/:idOrden', validarJWTAdmin,async(req,res)=>{
     const {estado,idOrden}=req.params
     const orden= await Orden.findByIdAndUpdate(idOrden,{"estado":estado},{new:true})
+                            .populate('user',['nombre','apellido','email'])
+                            .populate('productos.producto',['titulo','precio'])
+    console.log(orden)
     res.send(orden)
 })
 module.exports = router;

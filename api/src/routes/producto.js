@@ -1,6 +1,5 @@
 const Producto = require("../models/Producto");
 const Orden = require("../models/Orden");
-
 const { Router } = require("express");
 const router = Router();
 const {validarJWTAdmin, validarJWTUser} = require ("../middleware/validarJWT")
@@ -23,7 +22,6 @@ router.post("/", validarJWTAdmin, async (req, res) => {
     await producto.save();
     res.status(201).send(producto);     
   } catch (error) {
-    console.log(error);
     res.status(500).send({ok: false, msg:' no se pudo crear el producto'}); 
   }
 });
@@ -66,6 +64,12 @@ router.put('/edit/:id', validarJWTAdmin, async (req,res)=>{
   const update= req.body
   const editBook= await Producto.findByIdAndUpdate(id,update, {new:true}); 
   res.status(201).send(editBook);
-})
+});
+
+router.delete('/delete/:id', validarJWTAdmin, async (req,res)=>{
+  const {id}=req.params
+  await Producto.findByIdAndDelete(id); 
+  res.send({ok:true});
+});
 
 module.exports = router;

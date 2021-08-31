@@ -13,7 +13,7 @@ export default function PerfilesAdmin(){
     return (
         <div className='perfilesAdmin'>
             <h1 className='titulo'>Usuarios registrados</h1>
-          {profiles.map(e=><Link to={`profile/${e._id}`}><p className="userComplete" key={e._id}>{`${e.nombre} ${e.apellido}`}</p></Link>)}        
+          {profiles.map(e=><Link key={e._id} to={`profile/${e._id}`}><p className="userComplete" >{`${e.nombre} ${e.apellido}`}</p></Link>)}        
         </div>
     )
 }

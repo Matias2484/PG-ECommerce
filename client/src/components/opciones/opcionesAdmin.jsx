@@ -10,6 +10,7 @@ export default function OpcionesAdmin (){
              <Link to='/profiles' style={{textDecoration:'none'}}><p className="perfiles">Perfiles de Usuarios</p></Link>
              <Link to='/ordenes' style={{textDecoration:'none'}}><p className="ordenes">Ordenes de Compras</p></Link>
              <Link to='/add' style={{textDecoration:'none'}}><p className="agregar">Agregar Producto</p></Link>
+             <Link to='/categorias' style={{textDecoration:'none'}}><p>Categorias</p></Link>
         </div>
     )
 }

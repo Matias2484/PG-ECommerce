@@ -1,6 +1,6 @@
 import React,{ useState }  from 'react';
 import swal from 'sweetalert';
-import newUser from '../../funciones/newUser'
+import newUser from '../../funciones/login/newUser'
 import '../registerForm/registerForm.css'
 import GoogleLogin from 'react-google-login';
 import { useHistory } from 'react-router';

@@ -7,6 +7,4 @@ export function payloadJWT(){
     renovar=JSON.parse(renovar)  
     return renovar
   }
-  
-
 }    

@@ -15,7 +15,7 @@ export default function CardOrdenes({props}){
                 <label>Estado:{estado}</label>
                 <div>
                     <h4>Productos</h4>
-                    {productos.map(e=><p key={e._id}>{`${e.producto.titulo} ${e.cantidad} U`}</p>)}
+                    {productos.map(e=><p key={e._id}>{`${e.titulo} ${e.cantidad} U`}</p>)}
                 </div>
                 <label>{valorTotal}</label>
             </div>

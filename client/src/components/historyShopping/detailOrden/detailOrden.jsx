@@ -5,7 +5,7 @@ import Select from 'react-select';
 import {Link} from 'react-router-dom'
 import './detailOrden.css'
 import {getOrdenesID,updateOrden, seeCart} from '../../../Actions/index'
-import { payloadJWT } from '../../../funciones/payloadJWT'
+import { payloadJWT } from '../../../funciones/storage/payloadJWT'
 
 export default function DetailOrdenAdmin (){
 
@@ -18,7 +18,7 @@ export default function DetailOrdenAdmin (){
     const{user,productos}=state
 
     var opcion1=[{ value:'cancelada',label:'cancelada'},{ value:'procesando',label:'procesando'}]
-    var opcion2=[{ value:'cancelada',label:'cancelada'},{ value:'completa',label:'completa'}]
+    var opcion2=[{ value:'cancelada',label:'cancelada'},{ value:'completada',label:'completada'}]
 
     
 
@@ -57,7 +57,7 @@ export default function DetailOrdenAdmin (){
                 </div>
                 <div>
                   <p>estado del pedido: {state.estado}</p>
-                   {admin && state.estado!=='completa' && <Select
+                   {admin && state.estado!=='completada' && state.estado!=='cancelada' &&<Select
                         options={state.estado==='creada'? opcion1 : opcion2}
                         onChange={(e)=>dispatch(updateOrden(e.value,state._id,token))}
                     />}

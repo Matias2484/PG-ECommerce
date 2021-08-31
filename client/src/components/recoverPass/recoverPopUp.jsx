@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ReactCircleModal from 'react-circle-modal'
 import   './recoverPopUp.css'
-import {passModifi, sendMail, changePass} from '../../funciones/recoverPass'
+import {passModifi, sendMail, changePass} from '../../funciones/login/recoverPass'
 
 
 export default function RecoverPopUp (){
@@ -120,7 +120,7 @@ function validarEmail(e) {
         offsetY={0}
         >
         {(onClick) => (
-            <div  className="pepe">
+            <form  className="pepe">
                 <div id="pepeA">
                     <p>Escribe tu dirección de correo electrónico a continuación y recibirás una nueva clave:</p><br />
                     <p>¡Revisa la bandeja de entrada o tu casilla de spam en tu buzón de mensajes!</p>
@@ -186,7 +186,7 @@ function validarEmail(e) {
                     <button className="buttonBack" onClick={handleClose}> Atras </button>
                 </div>
 
-            </div>
+            </form>
         )}
         </ReactCircleModal>
     )

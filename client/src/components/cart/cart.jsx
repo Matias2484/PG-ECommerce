@@ -22,10 +22,6 @@ export default function Cart() {
 
         rightNavBar.style.top = '-100vh';
     }
-    function agregarLibro (e) {
-
-        
-    }
 
     return (
         <div className="contenedor_cart">
@@ -62,7 +58,7 @@ export default function Cart() {
             {
                 arrayCart.length !== 0 ? (
                 <div> 
-                    <p className="total_cart"><span className="cart_total">Total:</span> <span className="total_peso">$</span>{totalPrecio.toFixed(2)} <hr className="cart_linea"/></p>  
+                    <p className="total_cart"><span className="cart_total">Total:</span> <span className="total_peso">$</span>{totalPrecio.toFixed(2)} </p> <hr className="cart_linea"/>
                     <div >
                         <button className="btn_confirm" onClick={rightBarFunction}><NavLink to='/check' style={{textDecoration:"none"}}><span className="confirm_text">Confirmar</span></NavLink></button>
                     </div>   

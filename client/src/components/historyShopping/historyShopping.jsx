@@ -1,7 +1,7 @@
 import React,{ useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getOrdenesUser, getOrdenes,seeCart} from '../../Actions/index'
-import { payloadJWT } from '../../funciones/payloadJWT'
+import { payloadJWT } from '../../funciones/storage/payloadJWT'
 import CardOrdenes from './cardOrdenes/cardOrdenes'
 import Select from 'react-select';
 import './historyShopping.css'

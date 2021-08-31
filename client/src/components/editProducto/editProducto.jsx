@@ -1,4 +1,5 @@
-import {editBook, createGender} from '../../Actions/index'
+import {createGender} from '../../Actions/index'
+import {editBook} from '../../funciones/edit'
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from "react-router-dom";
 import React,{useState} from 'react';
@@ -8,7 +9,7 @@ import { useParams } from "react-router";
 
 export default function EditProduct (){
     const dispatch = useDispatch()
-
+    const token= window.localStorage.getItem('token')
     const history= useHistory()
     
     const genderAll= useSelector(state=>state.genders)
@@ -62,11 +63,11 @@ export default function EditProduct (){
 //------aca se revisa si en el estado de los generos hay alguno distinto al array de generos anterior para despachar la creacion
         arrGender.forEach(e => {
             if (genderAll.indexOf(e.value) === -1){
-                return dispatch(createGender({genero:e.value}))
+                return dispatch(createGender({genero:e.value},token))
             }
         });
         const generosValue= arrGender.map(e=>e.value)
-        dispatch(editBook({...state,generos:generosValue},id))
+        editBook({...state,generos:generosValue},id,token)
         setstate({
             titulo:'',
             autor:'',

@@ -15,7 +15,8 @@ import Sucursales from "./components/sucursales/sucursales";
 import RegisterForm from "./components/registerForm/registerForm"
 import PromoVigente from './components/promociones/promoVigentes'
 import CreatePromo from './components/promociones/promo'
-import {payloadJWT} from './funciones/payloadJWT'
+import Generos from "./components/categorias/generos";
+import { payloadJWT } from './funciones/storage/payloadJWT'
 
 
 function App() {
@@ -42,6 +43,10 @@ function App() {
           />
           <Route path= '/promos' render={()=>{
               return a && a.admin? <PromoVigente/> : <Redirect to='/'/>
+            }}
+          />
+          <Route path= '/categorias' render={()=>{
+              return a && a.admin? <Generos/> : <Redirect to='/'/>
             }}
           />
           

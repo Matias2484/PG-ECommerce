@@ -6,14 +6,23 @@ import { getDetails, url, addCart, seeCart} from '../../Actions';
 import { NavLink } from 'react-router-dom';
 import ReviewForm from './review/reviewForm/reviewForm';
 import gif_carga from "../../img/libros_paginas.gif";
-import {payloadJWT} from "../../funciones/payloadJWT"
+import {payloadJWT} from "../../funciones/storage/payloadJWT"
+import swal from 'sweetalert';
+import {useHistory} from 'react-router-dom';
+import { deleteBook } from '../../funciones/delete';
 
 export default function Details() {
     
     const dispatch = useDispatch();
     const details = useSelector((state) => state.details);
     const { id } = useParams();
-    let carritoStock = JSON.parse(window.localStorage.getItem('cart'))['a'+id].count
+    const history= useHistory()
+    var local=window.localStorage
+
+    if(local.cart) {
+       var carritoStock = JSON.parse(local.cart)['a'+id]
+      carritoStock= carritoStock ? carritoStock.count : false
+    } 
 
     var a=payloadJWT()
 
@@ -28,17 +37,44 @@ export default function Details() {
 
    
     if(review) {
-    
-        
-    var estrellas = (estrellita) => {
-        let estrellas = [];
-        for (let i = 0; i < estrellita; i++) {
-            estrellas.push(<p className="estrellas">★</p>)
             
+        var estrellas = (estrellita) => {
+            let estrellas = [];
+            for (let i = 0; i < estrellita; i++) {
+                estrellas.push(<p className="estrellas">★</p>)
+                
+            }
+            return estrellas
+        }  
+    }
+
+   async function removeBook(id,token){
+        var mando= await swal ( " ¿Seguro que quieres eliminarlo? " , { 
+            dangerMode: true,
+            buttons: {
+                cancel: {
+                  text: "Cancel",
+                  value: false,
+                  visible: true,
+                  closeModal: true,
+                },
+                confirm: {
+                  text: "OK",
+                  value: true,
+                  visible: true,
+                  closeModal: true
+                }
+              }
+        })
+        if(mando){
+            await deleteBook(id,token) 
+            swal ( " ¡Producto Eliminado! " , { 
+                icon: "success",
+                botón : false , 
+              } ) ;
+            history.push('/')                      
         }
-        return estrellas
-    }  
-}
+    }
 
 
 
@@ -72,10 +108,11 @@ export default function Details() {
                     </div>
                 </div>
                 <div className="contenido_details">
-                    {carritoStock < stock ? <div className="comprar">
+                    {!carritoStock && carritoStock < stock && <div className="comprar">
                         {a && a.admin ? false : <button className={stock<= 0? "vacio_detail": "comprar_detail"} onClick={()=>dispatch(addCart(id))}>Comprar</button>}
-                       
-                    </div> : null}
+                    
+                    </div>}
+                    {a && a.admin && <button onClick={()=> removeBook(id,local.token)}>Eliminar</button> }
                     <h2 className="titulo_detail">{titulo}</h2>
                     <div className="autor_editorial">
                         <h3 className="autor_detail_der">{autor}</h3>

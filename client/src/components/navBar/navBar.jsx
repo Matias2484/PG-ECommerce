@@ -9,10 +9,10 @@ import { BiSearchAlt } from "react-icons/bi";
 import { NavLink } from "react-router-dom"; 
 import Cart from '../cart/cart'
 import LoginForms  from "../loginForm/loginForms.jsx"; 
-import {logaut} from "../../funciones/logaut"
+import {logaut} from "../../funciones/login/logaut"
 
 import { useHistory } from "react-router";
-import {payloadJWT} from '../../funciones/payloadJWT'
+import { payloadJWT } from '../../funciones/storage/payloadJWT'
 import OpcionesUser from '../opciones/opcionesUser'
 import OpcionesAdmin from "../opciones/opcionesAdmin";
 
@@ -115,7 +115,7 @@ export default function NavBar() {
       const handleSubmit = (e) => {
 
         e.preventDefault();
-        if(filtroPrecioIdioma.min && filtroPrecioIdioma.max){
+        if(filtroPrecioIdioma.min && filtroPrecioIdioma.max && filtroPrecioIdioma.min < filtroPrecioIdioma.max){
 
           dispatch(filterPrice(filtroPrecioIdioma.min, filtroPrecioIdioma.max));
           setfiltroPrecioIdioma({
@@ -177,7 +177,7 @@ export default function NavBar() {
                     <div className="menu_filtrado_precio">
                       <input className="precio_min_input" type="number" required min='0' placeholder="Mínimo" name="min" value={filtroPrecioIdioma.min} onChange={handleChangePrecio}></input>
                       <BsArrowLeftRight className="precio_icon"/>
-                      <input className="precio_max_input" type="number" required min='0' placeholder="Máximo" name="max" value={filtroPrecioIdioma.max} onChange={handleChangePrecio}></input>
+                      <input className="precio_max_input" type="number" required min={filtroPrecioIdioma.min} placeholder="Máximo" name="max" value={filtroPrecioIdioma.max} onChange={handleChangePrecio}></input>
                     </div>
                     <button className={filtroPrecioIdioma.min && filtroPrecioIdioma.max ? "button_filtrar_precio_activo" : "button_filtrar_precio_inactivo"} onClick={handleSubmit}>Filtrar</button>
                   </div>
@@ -232,7 +232,7 @@ export default function NavBar() {
         value={busqueda}
         onChange={handleChange}/>
         </div>
-        <button className="sucursales_button_home"><NavLink to='/sucursales' style={{"text-decoration": "none", "color":"white"}}>Sucursales</NavLink></button>
+        <button className="sucursales_button_home"><NavLink to='/sucursales' style={{textDecoration: "none", color:"white"}}>Sucursales</NavLink></button>
           <div className="icono_Usuario">
           <div id={loginBarState? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
           {user && user.uid ? <img className='profileImg' src={profileImg.foto} alt="imagen de perfil" /> : <MdAccountCircle/>}
