@@ -10,6 +10,7 @@ import {payloadJWT} from "../../funciones/storage/payloadJWT"
 import swal from 'sweetalert';
 import {useHistory} from 'react-router-dom';
 import { deleteBook } from '../../funciones/delete';
+import { MdCompareArrows } from 'react-icons/md';
 
 export default function Details() {
     
@@ -17,13 +18,11 @@ export default function Details() {
     const details = useSelector((state) => state.details);
     const { id } = useParams();
     const history= useHistory()
-    var local=window.localStorage
+    var token=window.localStorage.getItem('token')
 
-    if(local.cart) {
-       var carritoStock = JSON.parse(local.cart)['a'+id]
-      carritoStock= carritoStock ? carritoStock.count : false
-    } 
 
+    const { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio, _id, review } = details;
+        
     var a=payloadJWT()
 
     useEffect(() => {
@@ -31,11 +30,14 @@ export default function Details() {
         dispatch(url(window.location.href))
         dispatch(seeCart())
     }, [dispatch, id]);
-
-    const { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio, _id, review } = details;
     
+    function comprar() {     
+        dispatch(addCart(id))
+        history.push(`/details/${id}`)
+    }
 
-   
+
+
     if(review) {
             
         var estrellas = (estrellita) => {
@@ -48,7 +50,7 @@ export default function Details() {
         }  
     }
 
-   async function removeBook(id,token){
+    async function removeBook(id,token){
         var mando= await swal ( " ¿Seguro que quieres eliminarlo? " , { 
             dangerMode: true,
             buttons: {
@@ -76,8 +78,6 @@ export default function Details() {
         }
     }
 
-
-
     if(titulo) {
         
         return (
@@ -103,16 +103,15 @@ export default function Details() {
                             <p>Publicación:</p>
                             <p className="detail_texto">{new Date(fecha).toDateString()}</p>
                         </div> 
-                      { a && a.admin===true? <button className="boton_editar"><NavLink className="btn_editar" style={{textDecoration:'none'}} to={`/edit/${_id}`} >Edit</NavLink></button>:null}
+                      { a && a.admin? <button className="boton_editar"><NavLink className="btn_editar" style={{textDecoration:'none'}} to={`/edit/${_id}`} >Edit</NavLink></button>:null}
 
                     </div>
                 </div>
                 <div className="contenido_details">
-                    {!carritoStock && carritoStock < stock && <div className="comprar">
-                        {a && a.admin ? false : <button className={stock<= 0? "vacio_detail": "comprar_detail"} onClick={()=>dispatch(addCart(id))}>Comprar</button>}
-                    
-                    </div>}
-                    {a && a.admin && <button onClick={()=> removeBook(id,local.token)}>Eliminar</button> }
+                    <div className="comprar" >
+                        {a && a.admin ? false : <button className={stock<= 0? "vacio_detail": "comprar_detail"} onClick={()=>comprar()}>Comprar</button>}
+                    </div>
+                    {a && a.admin && <button onClick={()=> removeBook(id,token)}>Eliminar</button> }
                     <h2 className="titulo_detail">{titulo}</h2>
                     <div className="autor_editorial">
                         <h3 className="autor_detail_der">{autor}</h3>

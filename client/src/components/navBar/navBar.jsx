@@ -179,7 +179,7 @@ export default function NavBar() {
                       <BsArrowLeftRight className="precio_icon"/>
                       <input className="precio_max_input" type="number" required min={filtroPrecioIdioma.min} placeholder="Máximo" name="max" value={filtroPrecioIdioma.max} onChange={handleChangePrecio}></input>
                     </div>
-                    <button className={filtroPrecioIdioma.min && filtroPrecioIdioma.max ? "button_filtrar_precio_activo" : "button_filtrar_precio_inactivo"} onClick={handleSubmit}>Filtrar</button>
+                    <button className={filtroPrecioIdioma.min && filtroPrecioIdioma.max && filtroPrecioIdioma.min < filtroPrecioIdioma.max? "button_filtrar_precio_activo" : "button_filtrar_precio_inactivo"} onClick={handleSubmit}>Filtrar</button>
                   </div>
 
                   <div className="filtrado_idioma">
