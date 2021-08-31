@@ -2,7 +2,7 @@ import React from 'react';
 import Valoracion from "../valoracion/valoracion";
 import Comentarios from "../comentarios/comentarios";
 import { useSelector } from 'react-redux';
-import {insertaReview} from '../../../../funciones/insertarReview'
+import {insertaReview} from '../../../../funciones/insertar'
 import "./reviewForm.css"
 import swal from 'sweetalert';
 

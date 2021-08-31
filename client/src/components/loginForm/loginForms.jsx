@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import GoogleLogin from 'react-google-login';
-import userLogin from '../../funciones/logIn'
+import userLogin from '../../funciones/login/logIn'
 import {useDispatch} from 'react-redux';
 import RecoverPopUp from '../recoverPass/recoverPopUp.jsx';
 import { getProfile } from '../../Actions';

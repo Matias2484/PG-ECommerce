@@ -4,7 +4,6 @@ export const DETAILS = 'DETAILS';
 export const GET_GENDERS = 'GET_GENDERS';
 export const CREATE_BOOK = 'CREATE_BOOK';
 export const CREATE_GENDER = 'CREATE_GENDER';
-export const EDIT_BOOK = 'EDIT_BOOK'
 export const ADD_CART = 'ADD_CART';
 export const REMOVE_ONE_CART = 'REMOVE_ONE_CART';
 export const REMOVE_ALL_CART = 'REMOVE_ALL_CART';
@@ -46,11 +45,12 @@ export function getGenders(){
   };
 };
 
-export function createBook(payload){
+export function createBook(payload,token){
   return async function (dispatch){
       var book= await fetch('http://localhost:4000/productos',{
           method: 'POST',
           headers:{
+              'x-token':token,
               'Accept': 'application/json',
               'Content-type': 'application/json; charset=utf-8'
           },
@@ -99,38 +99,21 @@ export function getDetails(id){
 };
 
 
-export function createGender(payload) {
+export function createGender(payload,token) {
   return async function (dispatch) {
     var gender = await fetch("http://localhost:4000/generos", {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        "x-token": token,
+        "Accept": "application/json",
         "Content-type": "application/json; charset=utf-8",
       },
       body: JSON.stringify(payload),
     });
-    const res = await gender.json();
-    return dispatch({ type: CREATE_GENDER, payload: res });
+    gender = await gender.json();
+    return dispatch({ type: CREATE_GENDER, payload: gender });
   };
 }
-
-
-
-
-export function editBook(payload,id){
-  return async function(dispatch) {
-      var book= await fetch(`http://localhost:4000/productos/edit/${id}`,{
-          method: 'PUT',
-          headers:{
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload)
-      });
-      const res= await book.json();
-      return dispatch({type: EDIT_BOOK, payload:res})
-  };
-};
 
 export function addCart (id){
   return async function(dispatch) {

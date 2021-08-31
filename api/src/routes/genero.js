@@ -18,21 +18,25 @@ router.get('/', async (req,res)=>{
   /* mongoose.connection.close(); */
 });
 
-//Puta mierda de validación meter leugo de la demo validarJWTAdmin
-router.post("/", async (req, res) => { /* add agregar */ 
+router.post("/", validarJWTAdmin,async (req, res) => { 
   const { genero } = req.body;
-
   const newGenero = new Genero({ genero });
 
   await newGenero.save();
-
-  /* mongoose.connection.close(); */
-
-  res.json(newGenero.genero);
+  res.send({genero:newGenero.genero});
 
 });
 
-router.delete('/', async (req, res)=>{
+router.put("/:genero", validarJWTAdmin,async (req, res) => { 
+  const { genero } = req.params;
+  const {updateGenero}= req.query
+  const editGenero= await Genero.findOneAndUpdate({"genero":genero},{"genero":updateGenero},{new:true}); 
+
+  res.json(editGenero);
+
+});
+
+router.delete('/delete',validarJWTAdmin ,async (req, res)=>{
   const {genero}=req.query
 
   await Genero.findOneAndDelete({genero})

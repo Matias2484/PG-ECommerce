@@ -22,4 +22,4 @@ export function localStore(items, action) {
     } 
     window.localStorage.setItem("cart",JSON.stringify(getCart))
     return getCart
-} 
+}; 

@@ -3,17 +3,21 @@ import { useDispatch,useSelector } from 'react-redux';
 import { useParams } from "react-router";
 import {useHistory} from 'react-router-dom'
 import Select from 'react-select';
-import {getProfile, profileUpdate } from '../../Actions/index'
-import {deletePerfil} from '../../funciones/delete'
-import { payloadJWT } from '../../funciones/payloadJWT';
-import './perfil.css'
+import {getProfile, profileUpdate } from '../../Actions/index';
+import {deletePerfil} from '../../funciones/delete';
+import { payloadJWT } from '../../funciones/storage/payloadJWT';
+import swal from 'sweetalert';
+import './perfil.css';
+
 export default function Perfil() {
+
     const dispatch = useDispatch()
     const {id} = useParams();
     const history= useHistory()
     const state = useSelector(state => state.profile)
     const [foto, setfoto] = useState('')
     const [admin,setadmin]= useState('')
+
 
     
     var token=payloadJWT()
@@ -26,19 +30,46 @@ export default function Perfil() {
         const imageUrl = new FileReader();
         imageUrl.readAsDataURL(imageFile)
         imageUrl.onload=(e)=>{
-            console.log(foto)
         setfoto(e.target.result)
         };
     };
-    function deleteProfile(){
-        deletePerfil(id)
-        history.push('/')
-    }
+
+    async function deleteProfiles(){
+        
+        var mando= await swal ( " ¿Seguro que quieres eliminarlo? " , { 
+            dangerMode: true,
+            buttons: {
+                cancel: {
+                  text: "Cancel",
+                  value: false,
+                  visible: true,
+                  closeModal: true,
+                },
+                confirm: {
+                  text: "OK",
+                  value: true,
+                  visible: true,
+                  closeModal: true
+                }
+              }
+        });
+        if(mando){
+            let token=window.localStorage.getItem('token')
+            await deletePerfil(id,token) 
+            swal ( " ¡Usuario Eliminado! " , { 
+                icon: "success",
+                botón : false , 
+              } ) ;
+            history.push('/profiles')                      
+        };
+    };
+
     function guardar(){
         token.admin? dispatch(profileUpdate(id,{admin})) : dispatch(profileUpdate(id,{foto}))
         setadmin('')
         setfoto('')
     }
+
     return (
         <div>
             <div className="userContenedor">
@@ -47,10 +78,10 @@ export default function Perfil() {
             </div>
             <div className="table">
                 <div className="childTable">
-                {token.admin && <button onClick={()=>deleteProfile(id)}>Eliminar</button>}
-                    <th>Usuario:</th><td>{`${state.nombre} ${state.apellido}`}</td><br />
-                    <th>Email:</th><td>{state.email}</td><br />
-                    <th>Estatus:</th> <td>{state.admin? <label>Administrador</label> : <label>Usuario</label>}</td><br />
+                {token.admin && <button onClick={()=>deleteProfiles()}>Eliminar</button>}
+                    <p><b>Usuario:</b> <label>{`${state.nombre} ${state.apellido}`}</label></p><br />
+                    <p><b>Email:</b> <label>{state.email}</label></p><br />
+                    <p><b>Estatus:</b> {state.admin? <label>Administrador</label> : <label>Usuario</label>}</p><br />
                     {token.admin && admin.length===0 &&
                         <Select
                             options={!state.admin? [{ value:'true',label:'Nombrar Administrador'}]:[{ value:'false',label:'Nombrar Usuario'}]}

@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGenders } from '../../Actions/index';
-import {createPromo} from '../../funciones/promo'
+import {createPromo} from '../../funciones/insertar'
 import PromoGenero from './formPromo/promoGenero'
 import Promo2x1 from './formPromo/promo2x1'
 

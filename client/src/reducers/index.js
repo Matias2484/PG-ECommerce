@@ -1,4 +1,4 @@
-import {localStore} from '../funciones/localStoreFunction'
+import {localStore} from '../funciones/storage/localStoreFunction'
 import {
     GET_BOOKS,
     FIND_BYCATEGORY,
@@ -6,7 +6,6 @@ import {
     GET_GENDERS,
     CREATE_GENDER,
     CREATE_BOOK,
-    EDIT_BOOK,
     ADD_CART,
     REMOVE_ONE_CART,
     REMOVE_ALL_CART,
@@ -171,19 +170,11 @@ function rootReducer(state = initialState, action) {
             } break
 
         case CREATE_GENDER:
-            console.log(action.payload)
+            
             return{
                 ...state,
-                genders:[action.payload, ...state.genders]
+                genders:[ ...state.genders,action.payload.genero]
             }
-
-        case EDIT_BOOK:
-            return{
-                ...state,
-                allBooks:[action.payload, state.allBooks.filter(e=>e._id !== action.payload._id)],
-                filteredAllBooks: [action.payload, state.filteredAllBooks.filter(e=>e._id !== action.payload._id)]
-            }
-
             case ADD_CART:
 
                 const addCart= localStore(action.payload,'add')

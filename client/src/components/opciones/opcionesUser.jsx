@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { payloadJWT } from '../../funciones/payloadJWT'
+import { payloadJWT } from '../../funciones/storage/payloadJWT'
 
 import './opcionesUser.css'
 import { useSelector } from 'react-redux'

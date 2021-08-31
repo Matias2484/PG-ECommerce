@@ -20,7 +20,7 @@ const validarJWTAdmin= (req,res,next)=>{
         req.nombre=nombre
         req.admin=admin
         req.apellido=apellido
-        admin=== true?  next() : res.status(500).json({ok:false,msg:'ruta no permitida'})
+        admin?  next() : res.status(500).json({ok:false,msg:'ruta no permitida'})
 
     } catch (error) {
         return res.status(401).json({ok:false,msg:'No hay token en la peticion'})
