@@ -114,7 +114,6 @@
  .regisBtn:hover {
     cursor: pointer;
     background-color: rgb(255, 168, 6);
-    
     color: white;
     font-weight: bold;
     box-shadow: 0 0 15px sandybrown;

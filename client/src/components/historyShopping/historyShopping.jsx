@@ -25,30 +25,32 @@ export default function HistoryShopping(){
     setordenes([...ordenesDeCompras].filter(e=>e.estado===estado))
  };
 
- const opcion=[{ value:'creada',label:'creada'},{ value:'cancelada',label:'cancelada'},{ value:'procesando',label:'procesando'},{ value:'completada',label:'completada'}]
+ const opcion=[{ value:'Creada',label:'Creada'},{ value:'Cancelada',label:'Cancelada'},{ value:'Procesando',label:'Procesando'},{ value:'Completada',label:'Completada'}]
 
     return (
         <div >
             {admin.admin ?(
             <div className='historialCompra'>
-                <h2>Historial de Pedidos</h2>
-                <div>
+                <h2 className="historial_titulo">Historial de Pedidos</h2>
+                <div className="select_opciones">
                         <p className='filtro'>Filtrar las compras por estado:</p>
                         <Select className='select'
                         options={opcion}
                         onChange={(e)=>filtrarOrdenes(e.value)}
                             />
                 </div>
-                <div className="historyShop"    >
+                <div className="historyShop">
+                  
                 {ordenes.length>0? ordenes.map(e=> <CardOrdenes props={{...e,admin:true}} key={e._id}/>) : <p>Aun no hay compras realizadas</p>} 
                 </div>
             </div>):
             ( <div className='historialCompra'>
-                <h2>Hitorial de compras</h2>
-                <div>
+                <h2 className="historial_titulo">Historial de Compras</h2>
+                <div className="select_opciones">
                 <p className='filtro'>Filtrar las compras por estado:</p>
                 <Select className='select'
                         options={opcion}
+
                         onChange={(e)=>filtrarOrdenes(e.value)}
                     />
                 </div>

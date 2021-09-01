@@ -5,6 +5,7 @@ import {createGender} from '../../Actions/index'
 import { deleteGenero } from "../../funciones/delete";
 import {getGenders} from "../../Actions/index";
 import swal from 'sweetalert';
+import "./generos.css"
 
 export default function Generos () {
 
@@ -59,20 +60,28 @@ export default function Generos () {
         setstate('')
     }
     return (
-        <div>
-            <div>
+        <div className="categorias_menu_admin">
+            <h2 className="administrar_categorias">Administrar Categorías</h2>
+
+            <div className="categorias_crear">
                 <button onClick={(e)=>create()}>Crear Categoria</button><input type='text' name='state' onChange={(e)=> setstate(e.target.value)} />
             </div>
-            <div>
-                {genders.map(e=><div key={e}>
-                    <button onClick={()=>removeGenero(e)}>Eliminar</button>
-                    <button onDoubleClick={()=>cambiar(e)} style={{background:'none',border:'none'}}><p>{e}</p></button>
-                    <div id={e} style={{display:'none'}}>
-                        <input placeholder='modificar categoria' type='text' name='state' onChange={(e)=> setstate(e.target.value)}  />
-                        <button onClick={()=>edit(e)}>Guardar Cambios</button>
+            
+            <div className="categorias_crear_map">
+                {genders.map(e=><div className="genero_map" key={e}> 
+                    <button onDoubleClick={()=>cambiar(e)} style={{background:'none',border:'none'}}><p className="genero_categoria">{e}</p></button>
+                    <div className="botones_categoria">
+                    <button className="eliminar_categoria"onClick={()=>removeGenero(e)}>Eliminar Categoría</button>
+                    <div id={e}>
+                        <div><input placeholder='Modificar Categoría' type='text' name='state' onChange={(e)=> setstate(e.target.value)}  /></div>
+                        <div><button className="guardar_categoria" onClick={()=>edit(e)}>Guardar Cambios</button></div>
+                        
+                        
+                    </div>
                     </div>
                 </div>)}
             </div>
+            
         </div>
     )
 }

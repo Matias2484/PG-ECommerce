@@ -194,3 +194,21 @@ background-color: #666666;
 .comentario_usuario {
     margin-bottom: 2rem;
 }
+
+.btn_Eliminar {
+    margin-top: 2rem;
+    border: none;
+    width: 5rem;
+    padding: 0.7rem;
+    border-radius: 5px;
+    background-color: rgb(51, 40, 30);
+    font-size: 15px;  
+    color: white;
+    font-weight: bold;
+    right: -25rem;
+    position: relative;
+}
+.btn_Eliminar:hover {
+cursor: pointer;
+background-color: rgb(199, 7, 7);
+}

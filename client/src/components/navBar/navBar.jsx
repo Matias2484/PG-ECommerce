@@ -23,6 +23,7 @@ export default function NavBar() {
     const url = useSelector((state) => state.url);
     const carts = useSelector((state)=>state.cart);
     const history = useHistory();
+    
   
       var user=payloadJWT()
       if(!profileImg.foto && user) {
@@ -93,9 +94,10 @@ export default function NavBar() {
 
       //busqueda
       const[busqueda, setBusqueda] = useState("")
-      const handleChange = e =>{
+      const handleChange = e =>{ 
         setBusqueda(e.target.value);
         dispatch(searchByName(e.target.value));
+
       }
 
       //filtro precio
