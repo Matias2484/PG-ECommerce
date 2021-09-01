@@ -54,6 +54,7 @@ export default function RegisterForm(){
             }))
 
             history.push('/');
+            
         }else{
             (swal({
                 title: "El registro no ha sido exitoso. Inténtelo de nuevo.",
@@ -70,7 +71,7 @@ export default function RegisterForm(){
 
     //loggin google
     const respuestaGoogle = async (respuesta)=>{
-
+        if(respuesta.profileObj) {
         const login = {
             apellido: respuesta.profileObj.familyName,
             password: respuesta.profileObj.googleId,
@@ -81,6 +82,7 @@ export default function RegisterForm(){
         }
         let a= await newUser(login);   
         a.token && window.localStorage.setItem("token", a.token)
+        
         if(a.token){
             (swal({
                 title: "Registro realizado con éxito. ¡Bievenid@!",
@@ -88,6 +90,7 @@ export default function RegisterForm(){
             }))
 
             history.push('/');
+        }
         }else{
             (swal({
                 title: "El registro no ha sido exitoso. Inténtelo de nuevo.",
