@@ -243,7 +243,7 @@ background-color: rgb(233, 233, 233);
 padding: 0.5rem;
 margin-top: 0.5rem;
 height: 1.5rem;
-margin-left: 6rem;
+margin-left: 5rem;
 border-radius: 1rem;
 display: flex;
 }
@@ -441,4 +441,10 @@ display: flex;
 .sucursales_button_home:hover {
   background-color: rgb(255, 168, 6);
   cursor: pointer;
+}
+.img_logo_nav {
+  width: 4rem;
+  height: 4rem;
+  margin-left: 2rem;
+ margin-top: 0.3rem;
 }

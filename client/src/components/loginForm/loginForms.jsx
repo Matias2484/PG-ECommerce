@@ -65,8 +65,10 @@ export default function LoginForms  ({loginBarFunction}){
         ninjaButton.style.zIndex = '2'
     }
 
-    //loggin google
+    // loggin google
     const respuestaGoogle = async (respuesta)=>{
+        if(respuesta.profileObj) {
+
         const login = {
             password: respuesta.profileObj.googleId,
             email: respuesta.profileObj.email
@@ -81,7 +83,9 @@ export default function LoginForms  ({loginBarFunction}){
             title: "Correo o contraseña incorrectos. Inténtelo de nuevo.",
             icon: "error",
         }))
+
         window.location.reload()
+    }
     }
     return(
         <div id='logModal' className= 'logModal'>

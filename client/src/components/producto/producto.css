@@ -9,7 +9,7 @@
 }
 
 .producto {
-  margin-top: 2rem;
+  margin-top: 1rem;
  
   
 }
@@ -26,6 +26,7 @@
 .imagen {
   width: 8rem;
   height: 12rem;
+  margin-top: 2rem;
  
 }
 .autor {
@@ -50,6 +51,20 @@
   color: red;
   font-weight: bold;
   font-size: 0.9rem;
+}
+.producto_descuento {
+  position: absolute;
+  margin-left: 9.5rem;
+  background-color: rgb(17, 224, 107);
+  padding-right: 0.8rem;
+  padding-left: 0.8rem;
+  border-radius: 1.5rem;
+  color: white; 
+  margin-top: 0.3rem;
+  
+}
+.producto_descuento:hover {
+  background-color: seagreen;
 }
 
 

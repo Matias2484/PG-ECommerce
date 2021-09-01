@@ -73,13 +73,16 @@ color: #413e3e;
   font-size: 1rem;
   color: #666666;
 }
+.subtotal_pasarela_descuento {
+   color: seagreen;
+}
 .total_pasarela {
    margin-top: 1rem;
    font-size: 1.3rem;
    
 }
 .total_numero_pasarela {
-   color: #413e3e;
+   color: sandybrown;
    
 }
 .tarjeta_pasarela {
