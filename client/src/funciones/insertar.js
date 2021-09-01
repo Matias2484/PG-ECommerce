@@ -1,6 +1,6 @@
 export async function insertaReview(review, token) {
 
-    var a = await fetch (`http://localhost:4000/productos/review`, {
+    var a = await fetch (`https://pg-henry-ecommerce.herokuapp.com/productos/review`, {
         method: 'POST',
         headers:{
             'Accept': 'application/json',
@@ -14,7 +14,7 @@ export async function insertaReview(review, token) {
 };
 
 export async function createPromo (promo,token){
-    var promoCreate= await fetch (`http://localhost:4000/promo`, {
+    var promoCreate= await fetch (`https://pg-henry-ecommerce.herokuapp.com/promo`, {
         method: 'post',
         headers:{
         'x-token':token,

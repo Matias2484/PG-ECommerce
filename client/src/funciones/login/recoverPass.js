@@ -1,6 +1,6 @@
 export async function sendMail(email){
     
-    var user = await fetch('http://localhost:4000/auth/sendemail',{
+    var user = await fetch('https://pg-henry-ecommerce.herokuapp.com/auth/sendemail',{
         method: 'POST',
         headers:{
             'Accept': 'application/json',
@@ -16,7 +16,7 @@ export async function sendMail(email){
 }
 
 export async function  passModifi(code , newPass, email){
-    var user = await fetch('http://localhost:4000/auth/recoverpass',{
+    var user = await fetch('https://pg-henry-ecommerce.herokuapp.com/auth/recoverpass',{
         method: 'POST',
         headers:{
             'Accept': 'application/json',
@@ -33,7 +33,7 @@ export async function  passModifi(code , newPass, email){
         return res
 }
 export async function  changePass(code , newPass, email){
-    var user = await fetch('http://localhost:4000/auth/changepass',{
+    var user = await fetch('https://pg-henry-ecommerce.herokuapp.com/auth/changepass',{
         method: 'POST',
         headers:{
             'Accept': 'application/json',
