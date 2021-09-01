@@ -249,7 +249,7 @@ export default function NavBar() {
        ):
       (<div>
         {user? user.admin ? <OpcionesAdmin /> : <OpcionesUser/>: null}
-        <button onClick={locaLogout}  className="userLoginButton"> Cerrar Sesión </button>
+        <button onClick={locaLogout}  className="userLoginButtonSesion"> Cerrar Sesión </button>
         </div>)}
 
     </div>
