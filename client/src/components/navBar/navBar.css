@@ -79,7 +79,25 @@
       position: static;
   }
   .userLoginButton:hover{
-      background-color: rgb(204, 52, 14);
+      background-color: orange;
+  }
+
+  .userLoginButtonSesion{
+      cursor: pointer;
+      border: none;
+      width: 20vh;
+      padding: 0.7rem;
+      opacity: 0.7;
+      border-radius: 5px;
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      position: static;
+  }
+  .userLoginButtonSesion:hover{
+      background-color: red;
+      opacity: 1;
   }
 
 
