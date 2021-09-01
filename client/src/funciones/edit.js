@@ -1,5 +1,5 @@
 export async function editBook(payload,id,token){
-    var book= await fetch(`http://localhost:4000/productos/edit/${id}`,{
+    var book= await fetch(`https://pg-henry-ecommerce.herokuapp.com/productos/edit/${id}`,{
         method: 'PUT',
         headers:{
             "x-token":token,
@@ -13,7 +13,7 @@ export async function editBook(payload,id,token){
 };
 
 export async function editGenders(payload,genero,token){
-    var gender= await fetch(`http://localhost:4000/generos/${genero}?updateGenero=${payload}`,{
+    var gender= await fetch(`https://pg-henry-ecommerce.herokuapp.com/generos/${genero}?updateGenero=${payload}`,{
         method: 'PUT',
         headers:{
             "x-token":token,
