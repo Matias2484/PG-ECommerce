@@ -71,27 +71,33 @@ export default function Perfil() {
     }
 
     return (
-        <div>
+       <div>
+            <h2 className="perfil_usuario_titulo">Perfil del Usuario</h2>
             <div className="userContenedor">
+                <div>
                 <img className="fotoMarco" src={state.foto} alt='foto de perfil' />
-                {!token.admin && <div className='realButton'>Subi tu foto<input type="file" required accept="image/*" className='inputFoto' onChange={(e)=>processImage(e)}/></div>}
-            </div>
-            <div className="table">
-                <div className="childTable">
-                {token.admin && <button onClick={()=>deleteProfiles()}>Eliminar</button>}
-                    <p><b>Usuario:</b> <label>{`${state.nombre} ${state.apellido}`}</label></p><br />
-                    <p><b>Email:</b> <label>{state.email}</label></p><br />
-                    <p><b>Estatus:</b> {state.admin? <label>Administrador</label> : <label>Usuario</label>}</p><br />
-                    {token.admin && admin.length===0 &&
+                {!token.admin && <div className='realButton'><span>Cambia tu foto</span><input type="file" required accept="image/*" className='inputFoto' onChange={(e)=>processImage(e)}/></div>}
+                {token.admin && admin.length===0 &&
                         <Select
+                            className="select_user"
                             options={!state.admin? [{ value:'true',label:'Nombrar Administrador'}]:[{ value:'false',label:'Nombrar Usuario'}]}
                             onChange={(e)=>setadmin(e.value)}
-                            placeholder='cambiar estatus'
+                            placeholder='Cambiar Rol'
                         />}
-                    {(admin.length>0 || foto.length>0) && <button onClick={()=>guardar()}>Guardar</button>}
                 </div>
+            <div className="table">
+                <div className="childTable">
+                
+                    <p className="nombre_usuario_perfil">{`${state.nombre} ${state.apellido}`}</p>
+                    <p className="email_perfil">E-Mail: <p>{state.email}</p></p>
+                    <p className="rol_perfil">Rol: {state.admin? <p>Administrador</p> : <p>Usuario</p>}</p>
+                    {token.admin && <button className="eliminar_usuario_perfil" onClick={()=>deleteProfiles()}>Eliminar</button>}
+                    </div>
+                   
+                    {(admin.length>0 || foto.length>0) && <button onClick={()=>guardar()}>Guardar</button>}
+                
             </div>
-
-        </div>
+            </div>
+            </div>
     )
 }

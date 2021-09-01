@@ -31,12 +31,29 @@ export default function Details() {
         dispatch(seeCart())
     }, [dispatch, id]);
     
-    function comprar() {     
-        dispatch(addCart(id))
-        history.push(`/details/${id}`)
+    
+
+    function comprarBoton(){
+        let contadorCarrito = document.getElementById('contadorCarrito')
+        if(contadorCarrito){
+            contadorCarrito = contadorCarrito.innerHTML
+            contadorCarrito = Number(contadorCarrito.substring(1))
+            
+        }else{
+            contadorCarrito = 1
+        }
+        
+        if(contadorCarrito < stock){
+            dispatch(addCart(id))
+            
+            
+        }else{
+            swal ( " ¡No hay más libros en Stock! " , { 
+                icon: "error",
+                botón : false , 
+              } ) ;
+        }
     }
-
-
 
     if(review) {
             
@@ -108,10 +125,10 @@ export default function Details() {
                     </div>
                 </div>
                 <div className="contenido_details">
-                    <div className="comprar" >
-                        {a && a.admin ? false : <button className={stock<= 0? "vacio_detail": "comprar_detail"} onClick={()=>comprar()}>Comprar</button>}
+                    <div className="comprar">
+                        {a && a.admin ? false : <button className={stock<= 0? "vacio_detail": "comprar_detail"} onClick={comprarBoton}>Comprar</button>}
                     </div>
-                    {a && a.admin && <button onClick={()=> removeBook(id,token)}>Eliminar</button> }
+                    {a && a.admin && <button className="btn_Eliminar"onClick={()=> removeBook(id,token)}>Eliminar</button> }
                     <h2 className="titulo_detail">{titulo}</h2>
                     <div className="autor_editorial">
                         <h3 className="autor_detail_der">{autor}</h3>

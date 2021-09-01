@@ -33,7 +33,7 @@ export default function Cart() {
                 return (<div key={e._id} className="cart">
                     <IoIosCloseCircle className='cartsButton' onClick={()=> dispatch(removeAllCart(e._id, e.count))}/>
                        <div className="cart_info">
-                       <p className="contador">x{e.count}</p>
+                       <p id='contadorCarrito' className="contador">x{e.count}</p>
                        <div className="cart_data">
                         <p className="titulo_cart">{e.titulo}</p>
                         <p className="autor_cart">{e.autor}</p></div>

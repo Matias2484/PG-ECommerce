@@ -17,7 +17,7 @@ export function Home () {
     const genders = useSelector((state) => state.genders);
     const allBooks = useSelector((state) => state.allBooks);
     const profile = useSelector((state) => state.profile)
-    
+    const inputBooks = useSelector((state) => state.inputBooks)
 
  const token = window.localStorage.getItem('token')
 
@@ -32,6 +32,8 @@ export function Home () {
  
     },[dispatch, token])
     
+    
+
     
 
 //Paginas
@@ -87,6 +89,25 @@ function categoryClear(e){
     hidden: { opacity: 0, x: -100,},
   }
 
+  function searchInput () {
+    if(inputBooks === false && !filteredAllBooks.length) {
+    return <img className="img_carga" src={gif_carga} alt="Cargando..."/>
+    } else if(!filteredAllBooks.length && inputBooks===true) {
+    return (<h2 className="noEncontrado">No hay coincidencias para esta búsqueda...</h2>)
+    } else {
+     return (librosIniciales.map((e, index) => (
+        <Producto
+          key={index + 1}
+          titulo={e.titulo}
+          img={e.img}
+          autor={e.autor}
+          precio={e.precio}
+          id={e._id}
+          stock={e.stock}
+      />)))
+    }
+  }
+
   return (
     <div className="home">
         <div className='principalHome'>
@@ -136,19 +157,7 @@ function categoryClear(e){
               : null }
           </div>
             <div className="books">
-              {!filteredAllBooks.length ? <img className="img_carga" src={gif_carga} alt="Cargando..."/> :(
-                librosIniciales.map((e, index) => (
-                  <Producto
-                    key={index + 1}
-                    titulo={e.titulo}
-                    img={e.img}
-                    autor={e.autor}
-                    precio={e.precio}
-                    id={e._id}
-                    stock={e.stock}
-                />)
-                ))
-              }
+            {searchInput()}
             </div>
             
             <div className="btn_page">{numeroPagina.map(e=> {

@@ -170,12 +170,13 @@ margin-top: 1rem;
   font-weight: bold;
 }
 
-.failSearch{
-  color: grey;
-  font-size: 100px;
-  font-weight: bold;
-  margin-left: 50%;
-}
 .img_carga {
   margin-left: 30rem;
 }
+.noEncontrado {
+  margin-left: 27rem;
+  color: black;
+  width: 30rem;
+  color: rgb(97, 95, 95);
+}
+

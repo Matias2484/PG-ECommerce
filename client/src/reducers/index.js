@@ -31,9 +31,8 @@ import {
 const initialState = {
     allBooks: [],
     filteredAllBooks: [],
-    filterBooks: [],
-    genders:[],
-    orderBooks: [],
+    inputBooks: false,
+    genders:[],  
     details: {},
     cart: {},
     user: {},
@@ -82,6 +81,7 @@ function rootReducer(state = initialState, action) {
         case  SEARCH_BOOK:
                 return {
                     ...state,
+                    inputBooks: true,
                     filteredAllBooks: state.allBooks.filter( book => {
                         return book.titulo.toString().toLowerCase().includes(action.payload.toLowerCase()) || book.autor.toString().toLowerCase().includes(action.payload.toLowerCase())
                     })

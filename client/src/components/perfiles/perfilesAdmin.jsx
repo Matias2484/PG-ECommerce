@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux';
 import {getProfiles} from '../../Actions/index'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import './perfilesAdmin.css'
 export default function PerfilesAdmin(){
     const dispatch = useDispatch()
@@ -10,10 +10,15 @@ export default function PerfilesAdmin(){
         dispatch(getProfiles())
     }, [dispatch])
 
+    console.log(profiles)
     return (
         <div className='perfilesAdmin'>
-            <h1 className='titulo'>Usuarios registrados</h1>
-          {profiles.map(e=><Link key={e._id} to={`profile/${e._id}`}><p className="userComplete" >{`${e.nombre} ${e.apellido}`}</p></Link>)}        
+            <h1 className='titulo_Perfiles'>Usuarios Registrados</h1>
+            <div className="perfiles_admin">
+            {profiles.map(e=><div className="perfiles_foto_nombre"><img className="foto_perfil_admin" src={e.foto}></img><NavLink style={{"textDecoration": "none"}}key={e._id} to={`profile/${e._id}`}>
+                <p className="userComplete" >{`${e.nombre} ${e.apellido}`}</p></NavLink></div>)}        
+            </div>
+        
         </div>
     )
 }

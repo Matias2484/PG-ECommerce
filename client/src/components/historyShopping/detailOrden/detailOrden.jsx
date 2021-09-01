@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { useParams } from "react-router";
 import Select from 'react-select';
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import './detailOrden.css'
 import {getOrdenesID,updateOrden, seeCart} from '../../../Actions/index'
 import { payloadJWT } from '../../../funciones/storage/payloadJWT'
@@ -17,8 +17,8 @@ export default function DetailOrdenAdmin (){
 
     const{user,productos}=state
 
-    var opcion1=[{ value:'cancelada',label:'cancelada'},{ value:'procesando',label:'procesando'}]
-    var opcion2=[{ value:'cancelada',label:'cancelada'},{ value:'completada',label:'completada'}]
+    var opcion1=[{ value:'Cancelada',label:'Cancelada'},{ value:'Procesando',label:'Procesando'}]
+    var opcion2=[{ value:'Cancelada',label:'Cancelada'},{ value:'Completada',label:'Completada'}]
 
     
 
@@ -27,42 +27,45 @@ export default function DetailOrdenAdmin (){
         dispatch(seeCart())
     }, [dispatch,id])
     return (
+        <div className="detalle_compra">
+            <h2 className="detalle_compra_titulo">Resumen de la compra</h2>
         <div className='detailCompra'>
             { state.user ?(<div>
                 <div>
-                    <h2>Datos del comprador</h2>
+                    <h2 className="datos_comprador">Datos del comprador</h2>
                     <p className='datosUser'>{`${user.nombre} ${user.apellido}`}</p>
-                    <p className='datosUser'>{`${user.email}`}</p>
+                    <p className='mailUser'>{`${user.email}`}</p>
                 </div>
                 <div>
-                    <h2>Datos de la compra</h2> 
-                    <label>N° de compra: {state._id}</label>
-                    <p>fecha: {new Date(state.fecha).toDateString()}</p>
+                    <h2 className="datos_compra">Datos de la compra</h2> 
+                    <p className="numero_compra">N° de Compra: {state._id}</p>
+                    <p className="fecha_compra">Fecha: {new Date(state.fecha).toDateString()}</p>
                 <div>
-                    <p>Productos</p>
+                    <p className="productos_compra">Productos</p>
                     {productos.map(e=>(
-                        <div key={e._id}>
-                            <Link to={`/details/${e.producto._id}`}><p>{`${e.producto.titulo} ${e.producto.precio}`}</p></Link>
-                            <p>{e.cantidad}U</p>
-                            <p>{e.cantidad * e.producto.precio}</p>
+                        <div className="datos_libro_detalle"key={e._id}>
+                            <NavLink className=""style={{"textDecoration": "none"}}to={`/details/${e.producto._id}`}><p className="titulo_detalle_compra">{`${e.producto.titulo}`}</p></NavLink>
+                            <p className="cantidad_detalle_compra">x{e.cantidad}</p>
+                            <p className="precio_datos_compra"><span className="peso_dato_compra">$ </span>{e.cantidad * e.producto.precio}</p>
 
                         </div>
                     ))}
-                    <p>Precio Total: {state.valorTotal}</p>
+                    <p>Precio Total: ${state.valorTotal}</p>
                 </div>
                 </div>
                 <div>
-                    <h2>Direccion De envio</h2>
+                    <h2>Dirección de Envío</h2>
                     <p>{state.direccion}</p>
                 </div>
                 <div>
-                  <p>estado del pedido: {state.estado}</p>
+                  <p>Estado del Pedido: {state.estado[0].toUpperCase() + state.estado.slice(1)}</p>
                    {admin && state.estado!=='completada' && state.estado!=='cancelada' &&<Select
                         options={state.estado==='creada'? opcion1 : opcion2}
                         onChange={(e)=>dispatch(updateOrden(e.value,state._id,token))}
                     />}
                 </div>
             </div>):(<p>Cargando...</p>)}
+        </div>
         </div>
     )
 }
