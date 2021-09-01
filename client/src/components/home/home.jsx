@@ -1,7 +1,8 @@
 import "./home.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks, getGenders, filterBook, filterClear, url, seeCart} from "../../Actions/index";
+import { getAllBooks, getGenders, filterBook, filterClear, url, seeCart, getPromos} from "../../Actions/index";
+import {promoDesc} from '../../funciones/promos'
 import Producto from "../producto/producto";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import undraw from "../../img/undraw.svg"
@@ -18,8 +19,8 @@ export function Home () {
     const allBooks = useSelector((state) => state.allBooks);
     const profile = useSelector((state) => state.profile)
     const inputBooks = useSelector((state) => state.inputBooks)
-
- const token = window.localStorage.getItem('token')
+    const promo = useSelector(state => state.promo)
+    const token = window.localStorage.getItem('token')
 
 
     const [filter, setFilter] = useState([]);
@@ -29,12 +30,10 @@ export function Home () {
         dispatch(getGenders())
         dispatch(url(window.location.href)) 
         dispatch(seeCart())
- 
+        dispatch(getPromos())
     },[dispatch, token])
     
-    
-
-    
+    var librosPromo =promoDesc(allBooks,promo)
 
 //Paginas
 var numeroPagina = []
@@ -104,6 +103,7 @@ function categoryClear(e){
           precio={e.precio}
           id={e._id}
           stock={e.stock}
+          promo={librosPromo.includes(e._id)? true: false}
       />)))
     }
   }

@@ -11,14 +11,15 @@ router.post('/',validarJWTAdmin,async (req,res)=>{
 
 router.get('/', async(req,res)=>{
     var promos= await Promo.find({})
-    const date= new Date()
-    promos = promos.filter(e=>e.fechaInicio <= date && e.fechaFinal >= date)
+    const date= new Date().getTime()
+    promos = promos.filter(e=>e.fechaInicio.getTime()<= date && e.fechaFinal.getTime() >= date)
+    
     res.send(promos)
 });
 
-router.delete('/delete/:id',validarJWTAdmin,(req,res)=>{
+router.delete('/delete/:id',validarJWTAdmin,async (req,res)=>{
     const {id}=req.params
-    Promo.findByIdAndDelete(id)
+    await Promo.findByIdAndDelete(id)
     res.send({ok:true})
 });
 

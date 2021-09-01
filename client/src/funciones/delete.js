@@ -36,3 +36,17 @@ export async function deleteBook (id,token){
   deleteBooks= await deleteBooks.json()
   return deleteBooks
 };
+
+
+export async function deletePromo (id,token){
+  var deleteBooks= await fetch (`http://localhost:4000/promo/delete/${id}`,{
+      method:'DELETE',
+      headers:{
+        'x-token':token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+  });
+  deleteBooks= await deleteBooks.json()
+  return deleteBooks
+};

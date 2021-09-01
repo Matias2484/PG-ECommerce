@@ -2,8 +2,8 @@ import React from "react";
 import "./producto.css";
 import { NavLink } from "react-router-dom";
 
-export default function Producto({ titulo, autor, img, precio, id, stock }) {
-  
+export default function Producto({ titulo, autor, img, precio, id, stock, promo}) {
+
   return (
     
     <div className="libro">
@@ -17,6 +17,9 @@ export default function Producto({ titulo, autor, img, precio, id, stock }) {
         </div>
         <div>
           <p className="autor">{autor}</p>
+        </div>
+        <div>
+           {promo ? <p>Descuento</p>: null}
         </div>
         {stock >= 0? <div>
           <p className="precio"><span className="peso">$:</span> {precio}</p>

@@ -22,8 +22,8 @@ import {
     FILTER_LANGUAGE,
     GET_PROFILE,
     GET_PROFILES,
-    DELETE_PROFILE
-
+    DELETE_PROFILE,
+    GET_PROMOS
 
 } from '../Actions/index';
 
@@ -42,7 +42,8 @@ const initialState = {
     ordenes:[],
     ordenDetail:{},
     profiles:[],
-    profile:{}
+    profile:{},
+    promo:[]
 };
 
 
@@ -264,16 +265,21 @@ function rootReducer(state = initialState, action) {
                     profile:action.payload
 
                 }
-              case GET_PROFILES:
-                    return{
-                        ...state,
-                        profiles:action.payload
-                    }
-              case DELETE_PROFILE:
-                    return{
-                        ...state,
-                        profile: {}
-                    }
+            case GET_PROFILES:
+                return{
+                    ...state,
+                    profiles:action.payload
+                }
+            case DELETE_PROFILE:
+                return{
+                    ...state,
+                    profile: {}
+                }
+            case GET_PROMOS:
+                return{
+                    ...state,
+                    promo:action.payload,
+                }
         default: return state
     }
 
