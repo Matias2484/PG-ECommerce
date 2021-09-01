@@ -17,8 +17,8 @@ export default function DetailOrdenAdmin (){
 
     const{user,productos}=state
 
-    var opcion1=[{ value:'Cancelada',label:'Cancelada'},{ value:'Procesando',label:'Procesando'}]
-    var opcion2=[{ value:'Cancelada',label:'Cancelada'},{ value:'Completada',label:'Completada'}]
+    var opcion1=[{ value:'cancelada',label:'Cancelada'},{ value:'procesando',label:'Procesando'}]
+    var opcion2=[{ value:'cancelada',label:'Cancelada'},{ value:'completada',label:'Completada'}]
 
     
 

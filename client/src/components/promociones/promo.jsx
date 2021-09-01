@@ -17,18 +17,16 @@ export default function Promo () {
 
 //-----estado principal para enviar al post de promo
     const [state, setstate] = useState({
-        tipo:'',
         fechaInicio:'',
         fechaFinal:'', 
         porcentaje:'', 
-        cantidad:'',
-        gratis:'',
     });
+
+
 //-----estado para colocar los multiples generos
     const [generos, setgeneros]= useState([])
     //-----estado para colocar los multiples generos
     const [diasPromo, setdiasPromo]= useState([])
-
 
 //------modifica el estado principal
     function handleChange(e){
@@ -46,19 +44,21 @@ export default function Promo () {
     function handleDias(e){
         setdiasPromo(e)
     }
+
 //------une todos los estado creando un obj y lo envia para el post
    async function handleSubmit(e){
         e.preventDefault();
         const generosValue= generos.map(e=>e.value)
         const diasValue= diasPromo.map(e=>e.value)
-        let res= await createPromo({...state,generos:generosValue,dias:diasValue},token)
-      
-        history.push('/')
+        console.log({...state,genero:generosValue,dias:diasValue})
+        await createPromo({...state,genero:generosValue,dias:diasValue},token)
+        history.push('/promos')
     };
-
+    
     const opcionGenero=genders.map(e=>{
         return {value:e, label: e}
     })
+    opcionGenero.push({value:'All', label: 'Todos los generos'})
     const dias=[
         { value:'Mon',label:'Lunes'},
         { value:'Tue',label:'Martes'},
@@ -73,9 +73,8 @@ export default function Promo () {
         date=date.toISOString().split('T')[0]
   
     return (
-        <div>
-            <Promo2x1 dias={dias} date={date} />
-            <PromoGenero dias={dias} opcionGenero={opcionGenero} date={date} />
-        </div>
+             <div >
+                    <PromoGenero dias={dias} date={date} state={state} generos={generos} diasPromo={diasPromo} opcionGenero={opcionGenero} handleSubmit={handleSubmit} handleDias={handleDias} handleGenders={handleGenders} handleChange={handleChange} />
+             </div>
     )
 }

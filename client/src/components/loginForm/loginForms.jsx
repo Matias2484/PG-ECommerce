@@ -81,6 +81,7 @@ export default function LoginForms  ({loginBarFunction}){
             title: "Correo o contraseña incorrectos. Inténtelo de nuevo.",
             icon: "error",
         }))
+        window.location.reload()
     }
     return(
         <div id='logModal' className= 'logModal'>

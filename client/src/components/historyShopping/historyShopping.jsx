@@ -25,7 +25,7 @@ export default function HistoryShopping(){
     setordenes([...ordenesDeCompras].filter(e=>e.estado===estado))
  };
 
- const opcion=[{ value:'Creada',label:'Creada'},{ value:'Cancelada',label:'Cancelada'},{ value:'Procesando',label:'Procesando'},{ value:'Completada',label:'Completada'}]
+ const opcion=[{ value:'creada',label:'Creada'},{ value:'Cancelada',label:'cancelada'},{ value:'procesando',label:'Procesando'},{ value:'completada',label:'Completada'}]
 
     return (
         <div >
@@ -50,7 +50,6 @@ export default function HistoryShopping(){
                 <p className='filtro'>Filtrar las compras por estado:</p>
                 <Select className='select'
                         options={opcion}
-
                         onChange={(e)=>filtrarOrdenes(e.value)}
                     />
                 </div>

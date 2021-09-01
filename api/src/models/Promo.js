@@ -1,10 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const PromoSchema = Schema({
-    tipo: {
-        type: String,
-        required: true
-    },
     fechaInicio: {
         type: Date,
         default : Date.now
@@ -15,19 +11,15 @@ const PromoSchema = Schema({
     },
     dias:{
         type: Array,
-        require: true
+        required: true
     },
     porcentaje: {
-        type: Number
-    },
-    cantidad: {
-        type: Number
-    },
-    grsatis:{
-        type: Number
+        type: Number,
+        default: 25
     },
     genero:{
-        type: Array
+        type: Array,
+        required: true
     }
 });
 

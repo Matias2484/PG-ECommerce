@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import {useHistory} from 'react-router-dom'
 import swal from 'sweetalert';
-import {addBuyUser, seeCart} from '../../../Actions/index'
+import {addBuyUser, seeCart, getPromos} from '../../../Actions/index'
+import {promoDescPrecioFinal} from '../../../funciones/promos';
 import {CardElement,useElements, useStripe} from "@stripe/react-stripe-js"
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -20,27 +21,28 @@ export default function CheckCart(){
         calle:'',
         codigoPostal:''
     })
+    const promo = useSelector(state => state.promo)
     const carts = useSelector((state)=>state.cart)
     const token= window.localStorage.getItem('token')
     const arrayCart=[]
     let precioTotal= 0   
-
+    var compras=[]
     useEffect(() => {
-         
         dispatch(seeCart())
- 
-    },[dispatch])
-
+        dispatch(getPromos())
+    },[])
+    
     for (const i in carts) {
         arrayCart.push(carts[i])
     }
 
-    var compras=[]
+
     for (const i in carts) {
         compras.push({producto:carts[i].id,cantidad:carts[i].count})
         precioTotal+=carts[i].precio*carts[i].count
     }
-
+    var librosPromoPrecio = promoDescPrecioFinal(carts,promo,precioTotal)
+    console.log(librosPromoPrecio)
     function handleChange(e){
         setState({
             ...state,
@@ -113,9 +115,10 @@ export default function CheckCart(){
             })}
             </div>
             <div className="datos_pasarela">
-                <p className='neto_pasarela'>Sub-Total: <span className="subtotal_pasarela">$ {precioTotal.toFixed(2)}</span> </p>
-                <p className='neto_pasarela'>iva: <span className="subtotal_pasarela">$ {(precioTotal* 0.1).toFixed(2)}</span> </p>
-                <p className='total_pasarela'>Total: <span className="total_numero_pasarela">$ {(Math.round(precioTotal+precioTotal* 0.1))}</span></p>
+                <p className='neto_pasarela'>Sub-Total: <span className="subtotal_pasarela">{precioTotal.toFixed(2)}$ </span> </p>
+                <p className='neto_pasarela'>iva: <span className="subtotal_pasarela"> {(precioTotal* 0.1).toFixed(2)}$</span> </p>
+                {librosPromoPrecio > 1 && <p className='neto_pasarela'>Descuento:  <span className="subtotal_pasarela">-{Math.round(precioTotal-librosPromoPrecio)}$</span></p>}
+                <p className='total_pasarela'>{librosPromoPrecio>0? 'Total con Descuento': 'Total'}:<span className="total_numero_pasarela">{librosPromoPrecio>0? Math.round(librosPromoPrecio + librosPromoPrecio* 0.1):(Math.round(precioTotal+precioTotal* 0.1))}$</span></p>
             </div>
             </div>
             {token ? (<div className="contenedor_facturacion">

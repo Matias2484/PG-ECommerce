@@ -11,6 +11,8 @@ export default function OpcionesAdmin (){
              <Link to='/ordenes' style={{textDecoration:'none'}}><p className="ordenes">Ordenes de Compras</p></Link>
              <Link to='/add' style={{textDecoration:'none'}}><p className="agregar">Agregar Producto</p></Link>
              <Link to='/categorias' style={{textDecoration:'none'}}><p className="categorias">Categorias</p></Link>
+             <Link to='/add_promo' style={{textDecoration:'none'}}><p className="categorias">Crear promocion</p></Link>
+             <Link to='/promos' style={{textDecoration:'none'}}><p className="categorias">Promos vigentes</p></Link>
         </div>
     )
 }

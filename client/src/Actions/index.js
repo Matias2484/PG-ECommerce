@@ -22,6 +22,7 @@ export const FILTER_LANGUAGE = 'FILTER_LANGUAGE';
 export const GET_PROFILE = 'GET_PROFILE';
 export const GET_PROFILES ='GET_PROFILES';
 export const DELETE_PROFILE = 'DELETE_PROFILE';
+export const GET_PROMOS = 'GET_PROMOS'
 
 
 
@@ -290,4 +291,11 @@ export function deleteProfile() {
   }
 };
 
+export function getPromos (){
+  return async function (dispatch){
+    var promos= await fetch (`http://localhost:4000/promo`);
+    promos= await promos.json();
+    return dispatch({type: GET_PROMOS, payload:promos})
+  };
+};
 
