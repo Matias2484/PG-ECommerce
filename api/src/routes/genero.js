@@ -21,9 +21,8 @@ router.get('/', async (req,res)=>{
 router.post("/", validarJWTAdmin,async (req, res) => { 
   const { genero } = req.body;
   const newGenero = new Genero({ genero });
-
   await newGenero.save();
-  res.send({genero:newGenero.genero});
+  res.send({genero:newGenero.genero});   
 
 });
 

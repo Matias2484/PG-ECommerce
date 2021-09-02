@@ -3,15 +3,18 @@ import {useDispatch } from "react-redux";
 import {deleteWhishlist, postWhishlist} from "../../Actions";
 import "./producto.css";
 import { NavLink } from "react-router-dom";
+import {payloadJWT} from '../../funciones/storage/payloadJWT'
 
 export default function Producto({ titulo, autor, img, precio, id, stock, promo}) {
   const dispatch = useDispatch()
   const token= window.localStorage.getItem('token')
+  var user= payloadJWT()
   return (
     
     <div className="libro">
 
-      {stock==='whishlist' ? <button onClick={()=>dispatch(deleteWhishlist(id,token))}>Eliminar</button> : <button onClick={()=>dispatch(postWhishlist(id,token))}>add Whishlist</button>}
+      {stock==='whishlist' && <button onClick={()=>dispatch(deleteWhishlist(id,token))}>Eliminar</button>}
+      {user && !user.admin && stock!=='whishlist' &&<button onClick={()=>dispatch(postWhishlist(id,token))}>add Whishlist</button>}
       <NavLink style={{textDecoration:"none"}}className="libro_link" to={`/details/${id}`}>
       <div className="producto_descuento">
            {promo ? <p>Oferta</p>: null}

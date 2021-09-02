@@ -21,9 +21,7 @@ export default function Perfil() {
 
     
     var token=payloadJWT()
-    useEffect(() => {
-        dispatch(getProfile(id))
-    }, [dispatch,id])
+  
 
     function processImage(e){
         const imageFile = e.target.files[0];

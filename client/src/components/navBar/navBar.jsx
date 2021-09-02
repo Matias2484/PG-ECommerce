@@ -234,6 +234,7 @@ export default function NavBar() {
         onChange={handleChange}/>
         </div>
         <button className="sucursales_button_home"><NavLink to='/sucursales' style={{textDecoration: "none", color:"white"}}>Sucursales</NavLink></button>
+        {user && !user.admin && <button className="sucursales_button_home"><NavLink to='/whishlist' style={{textDecoration: "none", color:"white"}}>Lista de Deseos</NavLink></button>}
           <div className="icono_Usuario">
           <div id={loginBarState? "loginNavBarbutton_active" : "loginNavBarbutton_inactive"} className="loginNavBarbutton" onClick={ loginBarFunction }>
           {user && user.uid ? <img className='profileImg' src={profileImg.foto} alt="imagen de perfil" /> : <MdAccountCircle/>}

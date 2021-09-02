@@ -14,7 +14,7 @@ const stripe = new Stripe("sk_test_51JQAouFWmGEeX4od3qJjkwW2cdTVunEMWXE9PgKcNaz0
 //-----guarda la compra ya hecha en el usuario y en la base de datos general que seria para el adm
 //-----ruta para user y admin
 router.post('/',validarJWTUser, async (req,res)=>{
-    const {pago, valorTotal, productos} = req.body;
+    const {pago, valorTotal, direccion, productos} = req.body;
     const id=req.uid
     try {
 
@@ -33,6 +33,7 @@ router.post('/',validarJWTUser, async (req,res)=>{
             
             book = await Producto.findByIdAndUpdate({"_id":p.producto},{"stock":book.stock-Number(p.cantidad)},{new:true})
             await Usuario.findByIdAndUpdate(id,{$pull:{whishlist:{producto:p.producto}}})
+            await Usuario.findByIdAndUpdate(id,{direccion})
         })
         
     

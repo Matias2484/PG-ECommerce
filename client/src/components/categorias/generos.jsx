@@ -16,6 +16,7 @@ export default function Generos () {
         create:'',
         cambio:''
     })
+    const [div, setdiv] = useState(false)
     useEffect(() => {
         dispatch(getGenders())
     },[dispatch, token])
@@ -42,7 +43,7 @@ export default function Generos () {
          await deleteGenero(e,token) 
             swal ( " ¡Categoria Eliminado! " , { 
                 icon: "success",
-                botón : false , 
+                button : false , 
               } ) ;     
             dispatch(getGenders())               
         }
@@ -54,21 +55,34 @@ export default function Generos () {
             [e.target.name]: e.target.value
         })
     }
-    function edit(e) {
-        editGenders(state.cambio,e,token)  
+    async function edit(e) {
+       await editGenders(state.cambio,e,token)  
+        dispatch(getGenders())        
         setstate({
             ...state,
             cambio:''
-        })
-        dispatch(getGenders())
+        });
+        desplace(e)
     }
-
     function create() {
-      dispatch(createGender({genero:state.create},token))
-        setstate({
-            ...state,
-            create:''
-        })
+        if(!genders.includes(state.create.charAt(0).toUpperCase() + state.create.slice(1))){
+             dispatch(createGender({genero:state.create},token))
+            setstate({
+                ...state,
+                create:''
+            })
+        }else{
+            swal ( " ¡Ya existe la categoria! " , { 
+                icon: "warning",
+                button : false , 
+              } )
+        }
+
+    }
+    function desplace(e){
+        let campo= document.getElementById(e)
+        div? campo.style.display= 'none': campo.style.display='block'
+        !div? setdiv(true) : setdiv(false)
     }
     return (
         <div className="categorias_menu_admin">
@@ -80,14 +94,12 @@ export default function Generos () {
             
             <div className="categorias_crear_map">
                 {genders.map(e=><div className="genero_map" key={e}> 
-                    <p className="genero_categoria">{e}</p>
+                    <button className="genero_categoria" onClick={()=>desplace(e)}>{e}</button>
                     <div className="botones_categoria">
                     <button className="eliminar_categoria"onClick={()=>removeGenero(e)}>Eliminar Categoría</button>
-                    <div id={e}>
+                    <div id={e} style={{display:'none'}}>
                         <div><input placeholder='Modificar Categoría' type='text' name='cambio' value={state.cambio} onChange={(e)=> handleChange(e)}  /></div>
                         <div><button className="guardar_categoria" onClick={()=>edit(e)}>Guardar Cambios</button></div>
-                        
-                        
                     </div>
                     </div>
                 </div>)}

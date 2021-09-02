@@ -14,15 +14,19 @@ const stripePromise = loadStripe("pk_test_51JQAouFWmGEeX4odlkQmbhbHUp3CKtVyX8x3I
 
 export default function CheckCart(){
     const dispatch = useDispatch()
-    const history= useHistory()
+    const history= useHistory()   
+    const profile= useSelector((state)=>state.profile)
+    var direct= profile.direccion.replace(/[/,:/CP/]/g, "")
+    direct=direct.replace('  ',' ').split(' ')
     const [state,setState]= useState({
-        pais:'',
-        ciudad:'',
-        calle:'',
-        codigoPostal:''
+        pais:direct[0],
+        ciudad:direct[1],
+        calle:direct[2],
+        codigoPostal:direct[3]
     })
     const promo = useSelector(state => state.promo)
     const carts = useSelector((state)=>state.cart)
+ 
     const token= window.localStorage.getItem('token')
     const arrayCart=[]
     let precioTotal= 0   
@@ -65,11 +69,10 @@ export default function CheckCart(){
            const {id} = paymentMethod;
            let pago = {
             productos:compras,
-            direccion: `${state.pais}/ ${state.ciudad}, ${state.calle}, CP: ${state.codigoPostal}`,
+            direccion: `${state.pais}/ ${state.ciudad}, ${state.calle},CP: ${state.codigoPostal}`,
             valorTotal:Math.round(precioTotal),
             pago:id
         }
-
         dispatch(addBuyUser(pago,token))
         swal("Gracias por su Compra", "recibira un email con los detalles", "success");
         history.push('/')

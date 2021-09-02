@@ -4,13 +4,16 @@ import userLogin from '../../funciones/login/logIn'
 import {useDispatch} from 'react-redux';
 import RecoverPopUp from '../recoverPass/recoverPopUp.jsx';
 import { getProfile } from '../../Actions';
+import { payloadJWT } from '../../funciones/storage/payloadJWT';
+import { useHistory } from 'react-router';
 import  './loginForms.css';
 import swal from 'sweetalert';
 
 
 export default function LoginForms  ({loginBarFunction}){
     const dispatch = useDispatch();
-
+    const url = window.location
+    const history= useHistory()
     const [data, setData] = useState({
         email:"",
         password:""
@@ -19,9 +22,8 @@ export default function LoginForms  ({loginBarFunction}){
     //funcion envia datos al BK
     const handleSumbit =  async (e) => {
         e.preventDefault()
-        loginBarFunction()
-        closeModal()
         let a = await dispatch(userLogin(data))
+        if(a.token && url !== 'http://localhost:3000/') { history.push('/')}
         setData({
             email:'',
             password:''
@@ -41,10 +43,12 @@ export default function LoginForms  ({loginBarFunction}){
                     },
                 }
             })
-            if(res || !res ){
+
+            if(res || !res){
+                let user=payloadJWT()
                 loginBarFunction() 
-                closeModal() 
-                            
+                closeModal()
+                dispatch(getProfile(user.uid))               
             }
        }else{
         (swal({
@@ -83,6 +87,7 @@ export default function LoginForms  ({loginBarFunction}){
                 email: respuesta.profileObj.email
             }
            let a= await dispatch(userLogin(login)) 
+           if(a.token && url !== 'http://localhost:3000/') { history.push('/');}
             a.token && window.localStorage.setItem("token", a.token)
 
             if(a.token){ 
@@ -98,7 +103,8 @@ export default function LoginForms  ({loginBarFunction}){
                         }
                       }
                     })
-                if(res || !res ){
+
+                if(res || !res ){                  
                     loginBarFunction() 
                     closeModal()                 
                 }
@@ -115,7 +121,7 @@ export default function LoginForms  ({loginBarFunction}){
         <div id='logModal' className= 'logModal'>
             <div className="modal_dialog">
                 <h1 className="title">Iniciar Sesión</h1>
-            <form onSubmit={handleSumbit} className="formLogin">
+                <form onSubmit={handleSumbit} className="formLogin">
                     <h1 className="loginUser">Correo Electrónico</h1>
                     <input  placeholder="Correo Electronico" className="inputMail1" type='email' autoComplete='off' required name="email" value={data.email} onChange={handleChange} />
                     <h1 className="loginPass">Contraseña</h1>

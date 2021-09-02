@@ -4,7 +4,7 @@ import './cardOrdenes.css'
 export default function CardOrdenes({props}){
     const {user,_id,productos,estado,valorTotal,fecha,admin}=props
 
-
+console.log(props)
    
     return (
         

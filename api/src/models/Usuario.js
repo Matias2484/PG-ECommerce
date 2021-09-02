@@ -27,8 +27,8 @@ const UsuarioSchema = Schema({
         type: String,
         default: 'https://www.softzone.es/app/uploads-softzone.es/2018/04/guest.png?x=480&quality=20'
     },
-    direcciones: {
-        type: Array
+    direccion: {
+        type: String
     },
     historialDeCompras:[{
         orden:{
@@ -49,8 +49,7 @@ const UsuarioSchema = Schema({
     whishlist:[{
         producto:{
             type: Schema.Types.ObjectId,
-            ref: 'Producto',
-            unique:true
+            ref: 'Producto'
         }
     }]
 
