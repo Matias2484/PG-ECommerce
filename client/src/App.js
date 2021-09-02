@@ -3,7 +3,7 @@ import Home from "./components/home/home";
 import Details from "./components/details/details";
 import NavBar from "./components/navBar/navBar";
 import './App.css';
-import React from 'react';
+import React,{useEffect} from 'react';
 import CreateProducto from './components/createProducto/createProducto';
 import checkCart from './components/cart/checkCart/checkCart';
 import EditProduct from './components/editProducto/editProducto';
@@ -18,11 +18,18 @@ import CreatePromo from './components/promociones/promo';
 import Generos from "./components/categorias/generos";
 import Whishlist from './components/whishlist/whishlist'
 import { payloadJWT } from './funciones/storage/payloadJWT';
+import { useSelector } from "react-redux";
 
 
 function App() {
+  const state = useSelector(state => state.profile)
+  var a 
+  useEffect(() => {
+
+    a= payloadJWT()
+  }, [state])
   
-    var a = payloadJWT()
+    
 
 
   return (

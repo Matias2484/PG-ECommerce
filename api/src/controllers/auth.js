@@ -23,7 +23,7 @@ const createUser = async(req, res=response)=>{
 
         res.status(201).send({token})
     } catch (error) {
-
+        console.log(error)
     
         res.sendStatus(500)
     }

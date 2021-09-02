@@ -32,33 +32,42 @@ export default function RegisterForm(){
     }
     const enviarInput =async (e) => {
         e.preventDefault();
-      
-        let a = await newUser(input);   
-        setInput({
-            email:'',
-            password:'',
-            password_confirm:'',
-            nombre:'',
-            apellido:'',
-            telefono:'',
-            direccion:'',
-            documento: '',
-        })
+        if(input.password===input.password_confirm){
 
-        a.token && window.localStorage.setItem("token", a.token);
+            let a = await newUser(input);   
+            setInput({
+                email:'',
+                password:'',
+                password_confirm:'',
+                nombre:'',
+                apellido:'',
+                telefono:'',
+                direccion:'',
+                documento: '',
+            })
 
-        if(a.token){
-            (swal({
-                title: "Registro realizado con éxito. ¡Bievenid@!",
-                icon: "success",
-            }))
+            a.token && window.localStorage.setItem("token", a.token);
 
-            history.push('/');
+            if(a.token){
+                (swal({
+                    title: "Registro realizado con éxito. ¡Bievenid@!",
+                    icon: "success",
+                }))
+
+                history.push('/');
+            }else{
+                swal({
+                    title: "El registro no ha sido exitoso. Inténtelo de nuevo.",
+                    icon: "error",
+                })
+            }
         }else{
-            (swal({
-                title: "El registro no ha sido exitoso. Inténtelo de nuevo.",
-                icon: "error",
-            }))
+            if(input.password!==input.password_confirm) {           
+                swal({
+                    title: "Las contraseñas no coinciden",
+                    icon: "error",
+                })
+            }
         }
        
         
@@ -141,7 +150,7 @@ export default function RegisterForm(){
                     </div>
                    <div className="regisRight"> 
                    <h3 className="regisDireccion">Dirección</h3>
-                    <input className="direccion_input" placeholder="Dirección..." name="direccion" type="direccion" autoComplete='off' required value={input.direccion} onChange={handleInputChange}/>
+                    <input className="direccion_input" placeholder="Pais / Cuidad, Calle, CP" name="direccion" type="direccion" autoComplete='off' required value={input.direccion} onChange={handleInputChange}/>
                    </div>
                  </div>
                  <div className="regisTerminos">

@@ -1,9 +1,7 @@
-import React,{ useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React,{ useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getWhishlist,deleteWhishlist} from '../../Actions/index'
+import {getWhishlist} from '../../Actions/index'
 import Producto from '../producto/producto'
-import { payloadJWT } from '../../funciones/storage/payloadJWT'
 
 export default function Whishlist () {
     
@@ -12,7 +10,7 @@ export default function Whishlist () {
     const state = useSelector(state => state.whishlist)
     useEffect(() => {
         dispatch(getWhishlist(token))
-    }, [])
+    }, [state])
 
     return (
         <div>

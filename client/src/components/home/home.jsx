@@ -31,7 +31,7 @@ export function Home () {
         dispatch(url(window.location.href)) 
         dispatch(seeCart())
         dispatch(getPromos())
-    },[dispatch, token])
+    },[dispatch, token,profile])
     
     var librosPromo =promoDesc(allBooks,promo)
 
