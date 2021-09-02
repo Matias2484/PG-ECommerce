@@ -158,7 +158,7 @@ export default function NavBar() {
   <div className="nav_principal">
     <div>
     <div className='mainNavBar'>
-      {url === "http://localhost:3000/" ? (
+      {url === "https://keen-kirch-0844b7.netlify.app/" ? (
         <div>
         
         <button className = {leftBarState ? "leftNavBarButton_active" : "leftNavBarButton_inactive"} onClick={ leftBarFunction }>
