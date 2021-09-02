@@ -224,9 +224,28 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 // eslint-disable-next-line
-                filteredAllBooks: state.filteredAllBooks.filter((book) => {
-                    if(book.precio >= action.payload.min && book.precio <= action.payload.max){
-                        return book;
+                filteredAllBooks: state.allBooks.filter((book) => {
+                    console.log(action.payload.es)
+                    if(!action.payload.es && !action.payload.en){
+                        if(book.precio >= action.payload.min && book.precio <= action.payload.max){
+                            return book;
+                        }
+                    }else if( (action.payload.es || !action.payload.en) && action.payload.min ){
+                        if(book.precio >= action.payload.min && book.precio <= action.payload.max && book.idioma === 'es'){
+                            return book;
+                        }
+                    }else if( (!action.payload.es || action.payload.en) && action.payload.min ){
+                        if(book.precio >= action.payload.min && book.precio <= action.payload.max && book.idioma === 'en'){
+                            return book;
+                        }
+                    }else if( action.payload.es || !action.payload.en){
+                        if(book.idioma === 'es'){
+                            return book;
+                        }
+                    }else{
+                        if(book.idioma === 'en'){
+                            return book;
+                        }
                     }
                 })
             }

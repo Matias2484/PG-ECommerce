@@ -88,77 +88,76 @@ export default function NavBar() {
   };
     
   useEffect(() => {
-          dispatch(orderBooks(state.select, orderAllBooks))
-         // eslint-disable-next-line
-      }, [state.select])
+    dispatch(orderBooks(state.select, orderAllBooks))
+    // eslint-disable-next-line
+  }, [state.select])
 
-      //busqueda
-      const[busqueda, setBusqueda] = useState("")
-      const handleChange = e =>{ 
-        setBusqueda(e.target.value);
-        dispatch(searchByName(e.target.value));
+  //busqueda
+  const[busqueda, setBusqueda] = useState("")
+  const handleChange = e =>{ 
+    setBusqueda(e.target.value);
+    dispatch(searchByName(e.target.value));
+  }
 
-      }
+  const handleChangePrecio = () =>{
+    let campoMin = Number(document.getElementById('min').value)
+    let campoMax = Number(document.getElementById('max').value)
+    let es = document.getElementById('es').checked
+    let en = document.getElementById('en').checked
+    let button_filtrar_precio = document.getElementById('button_filtrar_precio')
 
-      //filtro precio
-      const[filtroPrecioIdioma, setfiltroPrecioIdioma] = useState({
-        "min": "",
-        "max": "",
-      })
+    if((campoMin && campoMax && campoMin >= campoMax) || !campoMin || !campoMax){
+      button_filtrar_precio.className = "button_filtrar_precio_inactivo";
+    }else{
+      button_filtrar_precio.className = "button_filtrar_precio_activo";
+    }
+    if(!campoMin && !campoMax){
+      button_filtrar_precio.className = "button_filtrar_precio_activo"
+    }
+    if(!campoMin && !campoMax && !es && !en){
+      button_filtrar_precio.className = "button_filtrar_precio_inactivo";
+    }
+  }
 
-      const handleChangePrecio = (e) =>{
-        setfiltroPrecioIdioma({
-          ...filtroPrecioIdioma,
-          [e.target.name]: e.target.value
-        });
-      }
+  //evento onclick del boton de filtrar por precio
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let campoMin = document.getElementById('min').value
+    let campoMax = document.getElementById('max').value
+    let es = document.getElementById('es').checked
+    let en = document.getElementById('en').checked
 
-      //evento onclick del boton de filtrar por precio
-      const handleSubmit = (e) => {
+    dispatch(filterPrice(campoMin, campoMax, es, en));
+  }
 
-        e.preventDefault();
-        if(filtroPrecioIdioma.min && filtroPrecioIdioma.max && filtroPrecioIdioma.min < filtroPrecioIdioma.max){
+  //POP-UP DE LOGIN
+  const openModal = async() => {
+    let logModal = document.getElementById('logModal')
+    let ninjaButton = document.getElementById('buttonsForms')
+    ninjaButton.style.opacity = '0';
+    ninjaButton.style.zIndex = '1'
+    logModal.style.opacity = '1';
+    logModal.style.zIndex = '2'
+  }
+  /* POP-UP DE REGISTRO */
 
-          dispatch(filterPrice(filtroPrecioIdioma.min, filtroPrecioIdioma.max));
-          setfiltroPrecioIdioma({
-            "min": "",
-            "max": "",
-          })
-        }
-      }
-      //filtro idioma
-      const handleChangeCheckBox = (e) =>{
-        dispatch(filterLanguage(e.target.value));
-      }
-
-      //POP-UP DE LOGIN
-      const openModal = async() => {
-        let logModal = document.getElementById('logModal')
-        let ninjaButton = document.getElementById('buttonsForms')
-        ninjaButton.style.opacity = '0';
-        ninjaButton.style.zIndex = '1'
-        logModal.style.opacity = '1';
-        logModal.style.zIndex = '2'
-      }
-      /* POP-UP DE REGISTRO */
-
-      const openRegisModal = () => {
-        loginBarFunction();
-        history.push('/registerUser')
-      }
-      
-      const locaLogout = () => {
-        dispatch(deleteProfile())
-        logaut();
-        loginBarFunction();
-        history.push('/');
-      }
+  const openRegisModal = () => {
+    loginBarFunction();
+    history.push('/registerUser')
+  }
+  
+  const locaLogout = () => {
+    dispatch(deleteProfile())
+    logaut();
+    loginBarFunction();
+    history.push('/');
+  }
 
   return (
   <div className="nav_principal">
     <div>
     <div className='mainNavBar'>
-      {url === "https://keen-kirch-0844b7.netlify.app/" ? (
+      {url === "http://localhost:3000/" ? (
         <div>
         
         <button className = {leftBarState ? "leftNavBarButton_active" : "leftNavBarButton_inactive"} onClick={ leftBarFunction }>
@@ -177,11 +176,11 @@ export default function NavBar() {
                   <div className="filtrado_precio">
                     <h3 className="titulo_filtrado_precio">Precio</h3>
                     <div className="menu_filtrado_precio">
-                      <input className="precio_min_input" type="number" required min='0' placeholder="Mínimo" name="min" value={filtroPrecioIdioma.min} onChange={handleChangePrecio}></input>
+                      <input className="precio_min_input" type="number" required placeholder="Mínimo" id='min' onChange={handleChangePrecio}></input>
                       <BsArrowLeftRight className="precio_icon"/>
-                      <input className="precio_max_input" type="number" required min={filtroPrecioIdioma.min} placeholder="Máximo" name="max" value={filtroPrecioIdioma.max} onChange={handleChangePrecio}></input>
+                      <input className="precio_max_input" type="number" required placeholder="Máximo" id='max' onChange={handleChangePrecio}></input>
                     </div>
-                    <button className={filtroPrecioIdioma.min && filtroPrecioIdioma.max && filtroPrecioIdioma.min < filtroPrecioIdioma.max? "button_filtrar_precio_activo" : "button_filtrar_precio_inactivo"} onClick={handleSubmit}>Filtrar</button>
+                    <button id='button_filtrar_precio' className="button_filtrar_precio_inactivo" onClick={handleSubmit}>Filtrar</button>
                   </div>
 
                   <div className="filtrado_idioma">
@@ -189,11 +188,11 @@ export default function NavBar() {
                     <div className="menu_filtrado_idioma">
                       <div className="checkbox_filtro_idioma_es">
                         <p>Español</p>
-                        <input type='radio' required autoComplete='off' name='idioma' value='es' onChange={handleChangeCheckBox}></input>
+                        <input type='checkbox' id='es' onChange={handleChangePrecio}></input>
                       </div>
                       <div>
                         <p>Inglés</p>
-                        <input className="checkbox_filtro_idioma_en" type='radio' required autoComplete='off' name='idioma' value='en' onChange={handleChangeCheckBox}></input>
+                        <input type='checkbox' id='en' onChange={handleChangePrecio}></input>
                       </div>
                     </div>
                   </div>
@@ -276,4 +275,5 @@ export default function NavBar() {
     </div> 
   );
 }
+
 
