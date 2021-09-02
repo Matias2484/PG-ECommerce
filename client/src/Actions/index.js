@@ -182,10 +182,10 @@ export function filterBook(genero) {
   }
 }
 
-export function filterPrice(min,max) {
+export function filterPrice(min,max,es,en) {
   return {
     type: FILTER_PRICE,
-    payload: {min, max}
+    payload: {min, max, es, en}
   }
 }
 
