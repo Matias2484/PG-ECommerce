@@ -32,8 +32,9 @@ router.post('/',validarJWTUser, async (req,res)=>{
             var book = await Producto.findById(p.producto)
             
             book = await Producto.findByIdAndUpdate({"_id":p.producto},{"stock":book.stock-Number(p.cantidad)},{new:true})
-            
+            await Usuario.findByIdAndUpdate(id,{$pull:{whishlist:{producto:p.producto}}})
         })
+        
     
     
     }

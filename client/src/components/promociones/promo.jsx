@@ -50,7 +50,6 @@ export default function Promo () {
         e.preventDefault();
         const generosValue= generos.map(e=>e.value)
         const diasValue= diasPromo.map(e=>e.value)
-        console.log({...state,genero:generosValue,dias:diasValue})
         await createPromo({...state,genero:generosValue,dias:diasValue},token)
         history.push('/promos')
     };

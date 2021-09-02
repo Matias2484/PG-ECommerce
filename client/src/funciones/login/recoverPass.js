@@ -11,7 +11,6 @@ export async function sendMail(email){
         })
     })
         const res = user.json();
-        console.log("-------------------------------------------------------------------")
         return res
 }
 

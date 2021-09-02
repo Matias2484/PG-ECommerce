@@ -4,19 +4,20 @@ import Details from "./components/details/details";
 import NavBar from "./components/navBar/navBar";
 import './App.css';
 import React from 'react';
-import CreateProducto from './components/createProducto/createProducto'
-import checkCart from './components/cart/checkCart/checkCart'
-import EditProduct from './components/editProducto/editProducto'
-import HistoryShopping from './components/historyShopping/historyShopping'
-import DetailOrden from './components/historyShopping/detailOrden/detailOrden'
-import Profiles from './components/perfiles/perfilesAdmin'
-import Perfil from './components/perfiles/perfil'
+import CreateProducto from './components/createProducto/createProducto';
+import checkCart from './components/cart/checkCart/checkCart';
+import EditProduct from './components/editProducto/editProducto';
+import HistoryShopping from './components/historyShopping/historyShopping';
+import DetailOrden from './components/historyShopping/detailOrden/detailOrden';
+import Profiles from './components/perfiles/perfilesAdmin';
+import Perfil from './components/perfiles/perfil';
 import Sucursales from "./components/sucursales/sucursales";
-import RegisterForm from "./components/registerForm/registerForm"
-import PromoVigente from './components/promociones/promoVigentes'
-import CreatePromo from './components/promociones/promo'
+import RegisterForm from "./components/registerForm/registerForm";
+import PromoVigente from './components/promociones/promoVigentes';
+import CreatePromo from './components/promociones/promo';
 import Generos from "./components/categorias/generos";
-import { payloadJWT } from './funciones/storage/payloadJWT'
+import Whishlist from './components/whishlist/whishlist'
+import { payloadJWT } from './funciones/storage/payloadJWT';
 
 
 function App() {
@@ -68,6 +69,10 @@ function App() {
           />
           <Route path='/profile/:id' render={()=>{
               return a? <Perfil/> : <Redirect to='/'/>
+            }}
+          />
+          <Route path='/whishlist' render={()=>{
+              return a? <Whishlist/> : <Redirect to='/'/>
             }}
           />
           

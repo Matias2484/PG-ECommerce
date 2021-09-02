@@ -31,7 +31,7 @@ const validarJWTAdmin= (req,res,next)=>{
 const validarJWTUser= (req,res,next)=>{
     
     const token = req.header('x-token');
-    
+
     
     if (!token){
         return res.status(401).json({ok:false,msg:'No hay token en la peticion'})

@@ -42,7 +42,6 @@ export default function CheckCart(){
         precioTotal+=carts[i].precio*carts[i].count
     }
     var librosPromoPrecio = promoDescPrecioFinal(carts,promo,precioTotal)
-    console.log(librosPromoPrecio)
     function handleChange(e){
         setState({
             ...state,
