@@ -54,6 +54,7 @@ export default function RegisterForm(){
             }))
 
             history.push('/');
+            
         }else{
             (swal({
                 title: "El registro no ha sido exitoso. Inténtelo de nuevo.",

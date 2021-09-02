@@ -114,10 +114,10 @@ export default function CheckCart(){
             })}
             </div>
             <div className="datos_pasarela">
-                <p className='neto_pasarela'>Sub-Total: <span className="subtotal_pasarela">{precioTotal.toFixed(2)}$ </span> </p>
-                <p className='neto_pasarela'>iva: <span className="subtotal_pasarela"> {(precioTotal* 0.1).toFixed(2)}$</span> </p>
-                {librosPromoPrecio > 1 && <p className='neto_pasarela'>Descuento:  <span className="subtotal_pasarela">-{Math.round(precioTotal-librosPromoPrecio)}$</span></p>}
-                <p className='total_pasarela'>{librosPromoPrecio>0? 'Total con Descuento': 'Total'}:<span className="total_numero_pasarela">{librosPromoPrecio>0? Math.round(librosPromoPrecio + librosPromoPrecio* 0.1):(Math.round(precioTotal+precioTotal* 0.1))}$</span></p>
+                <p className='neto_pasarela'>Sub-Total: <span className="subtotal_pasarela">$ {precioTotal.toFixed(2)} </span> </p>
+                <p className='neto_pasarela'>iva: <span className="subtotal_pasarela">$ {(precioTotal* 0.1).toFixed(2)}</span> </p>
+                {librosPromoPrecio > 1 && <p className='neto_pasarela'>Descuento:   <span className="subtotal_pasarela_descuento">- ${Math.round(precioTotal-librosPromoPrecio)}</span></p>}
+                <p className='total_pasarela'>{librosPromoPrecio>0? 'Total con Descuento': 'Total'}:<span className="total_numero_pasarela">$ {librosPromoPrecio>0? Math.round(librosPromoPrecio + librosPromoPrecio* 0.1):(Math.round(precioTotal+precioTotal* 0.1))}</span></p>
             </div>
             </div>
             {token ? (<div className="contenedor_facturacion">

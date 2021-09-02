@@ -10,7 +10,7 @@ import {payloadJWT} from "../../funciones/storage/payloadJWT"
 import swal from 'sweetalert';
 import {useHistory} from 'react-router-dom';
 import { deleteBook } from '../../funciones/delete';
-import { MdCompareArrows } from 'react-icons/md';
+// import { MdCompareArrows } from 'react-icons/md';
 
 export default function Details() {
     

@@ -10,6 +10,7 @@ import gif_carga from "../../img/libros_paginas.gif";
 import undraw2 from "../../img/undraw_Gifts.svg"
 import { motion } from "framer-motion"
 
+
 export function Home () {
 
     const dispatch = useDispatch()
@@ -122,7 +123,7 @@ function categoryClear(e){
       </div>
           </motion.div>
           <motion.div className="carousel" variants={variantMotion}>
-            <a className="link_carousel" href="http://localhost:3000/add">
+            <a className="link_carousel" href="http://localhost:3000/registerUser">
               <img src={undraw2} alt="imagenPresentacion" className="imagenPresentacion"></img>
             
               <div className="titulos_carousel">

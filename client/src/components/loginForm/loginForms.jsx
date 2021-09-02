@@ -33,12 +33,6 @@ export default function LoginForms  ({loginBarFunction}){
                 title: "¡Bienvenid@! Sesión iniciada exitosamente",
                 icon: "success",
                 buttons: {
-                    cancel: {
-                        text: "Cancel",
-                        value: 'cancel',
-                        visible: false,
-                        closeModal: true,
-                    },
                     confirm: {
                     text: "OK",
                     value: true,
@@ -47,11 +41,9 @@ export default function LoginForms  ({loginBarFunction}){
                     },
                 }
             })
-            if(res || res !== 'cancel'){
+            if(res || !res ){
                 loginBarFunction() 
-                setTimeout(() => {
-                    window.location.reload() 
-                }, 850);  
+                closeModal() 
                             
             }
        }else{
@@ -82,7 +74,7 @@ export default function LoginForms  ({loginBarFunction}){
         ninjaButton.style.zIndex = '2'
     }
 
-    //loggin google
+    // loggin google
     const respuestaGoogle = async (respuesta)=>{
 
         if(respuesta.profileObj){
@@ -98,12 +90,6 @@ export default function LoginForms  ({loginBarFunction}){
                     title: "¡Bienvenid@! Sesión iniciada exitosamente",
                     icon: "success",
                     buttons: {
-                        cancel: {
-                            text: "Cancel",
-                            value: 'cancel',
-                            visible: false,
-                            closeModal: true,
-                        },
                         confirm: {
                           text: "OK",
                           value: true,
@@ -112,11 +98,9 @@ export default function LoginForms  ({loginBarFunction}){
                         }
                       }
                     })
-                if(res || res !== 'cancel' ){
+                if(res || !res ){
                     loginBarFunction() 
-                    setTimeout(() => {
-                        window.location.reload() 
-                    }, 850);                 
+                    closeModal()                 
                 }
                 
             }else {
@@ -127,7 +111,6 @@ export default function LoginForms  ({loginBarFunction}){
             }
         }
     }
-
     return(
         <div id='logModal' className= 'logModal'>
             <div className="modal_dialog">

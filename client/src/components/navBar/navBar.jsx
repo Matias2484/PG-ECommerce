@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 import Cart from '../cart/cart'
 import LoginForms  from "../loginForm/loginForms.jsx"; 
 import {logaut} from "../../funciones/login/logaut"
-
+import Logo from "../../img/Logo-principal.png"
 import { useHistory } from "react-router";
 import { payloadJWT } from '../../funciones/storage/payloadJWT'
 import OpcionesUser from '../opciones/opcionesUser'
@@ -222,7 +222,7 @@ export default function NavBar() {
                 </div>
     <div className="titulo_principal">
       <NavLink  className="titulo_b" to={'/'}>
-      <h1>B-Comm</h1>
+      <img alt="logo" className="img_logo_nav" src={Logo}/>
       </NavLink>
             
         </div>  
@@ -249,7 +249,7 @@ export default function NavBar() {
        ):
       (<div>
         {user? user.admin ? <OpcionesAdmin /> : <OpcionesUser/>: null}
-        <button onClick={locaLogout}  className="userLoginButton"> Cerrar Sesión </button>
+        <button onClick={locaLogout}  className="userLoginButtonSesion"> Cerrar Sesión </button>
         </div>)}
 
     </div>

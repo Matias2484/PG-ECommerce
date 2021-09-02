@@ -14,7 +14,7 @@ export default function PerfilesAdmin(){
         <div className='perfilesAdmin'>
             <h1 className='titulo_Perfiles'>Usuarios Registrados</h1>
             <div className="perfiles_admin">
-            {profiles.map(e=><div className="perfiles_foto_nombre"><img className="foto_perfil_admin" src={e.foto}></img><NavLink style={{"textDecoration": "none"}}key={e._id} to={`profile/${e._id}`}>
+            {profiles.map(e=><div className="perfiles_foto_nombre"><img className="foto_perfil_admin" alt="fotoPerfil" src={e.foto}></img><NavLink style={{"textDecoration": "none"}}key={e._id} to={`profile/${e._id}`}>
                 <p className="userComplete" >{`${e.nombre} ${e.apellido}`}</p></NavLink></div>)}        
             </div>
         

@@ -79,7 +79,25 @@
       position: static;
   }
   .userLoginButton:hover{
-      background-color: rgb(204, 52, 14);
+      background-color: orange;
+  }
+
+  .userLoginButtonSesion{
+      cursor: pointer;
+      border: none;
+      width: 20vh;
+      padding: 0.7rem;
+      opacity: 0.7;
+      border-radius: 5px;
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      position: static;
+  }
+  .userLoginButtonSesion:hover{
+      background-color: red;
+      opacity: 1;
   }
 
 
@@ -225,7 +243,7 @@ background-color: rgb(233, 233, 233);
 padding: 0.5rem;
 margin-top: 0.5rem;
 height: 1.5rem;
-margin-left: 6rem;
+margin-left: 5rem;
 border-radius: 1rem;
 display: flex;
 }
@@ -423,4 +441,10 @@ display: flex;
 .sucursales_button_home:hover {
   background-color: rgb(255, 168, 6);
   cursor: pointer;
+}
+.img_logo_nav {
+  width: 4rem;
+  height: 4rem;
+  margin-left: 2rem;
+ margin-top: 0.3rem;
 }
