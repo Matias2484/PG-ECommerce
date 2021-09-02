@@ -43,10 +43,16 @@ const UsuarioSchema = Schema({
         type: Boolean,
         default: false
     },
-    
     passRetriever:{
         type: String,
     },
+    whishlist:[{
+        producto:{
+            type: Schema.Types.ObjectId,
+            ref: 'Producto',
+            unique:true
+        }
+    }]
 
 
 });

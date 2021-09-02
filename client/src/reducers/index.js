@@ -23,7 +23,8 @@ import {
     GET_PROFILE,
     GET_PROFILES,
     DELETE_PROFILE,
-    GET_PROMOS
+    GET_PROMOS,
+    WHISHLIST
 
 } from '../Actions/index';
 
@@ -43,7 +44,8 @@ const initialState = {
     ordenDetail:{},
     profiles:[],
     profile:{},
-    promo:[]
+    promo:[],
+    whishlist:[]
 };
 
 
@@ -87,8 +89,6 @@ function rootReducer(state = initialState, action) {
                         return book.titulo.toString().toLowerCase().includes(action.payload.toLowerCase()) || book.autor.toString().toLowerCase().includes(action.payload.toLowerCase())
                     })
                 }
-            
-
         case DETAILS:
             return {
             ...state,
@@ -184,102 +184,106 @@ function rootReducer(state = initialState, action) {
                     cart: addCart
                 }
 
-            case REMOVE_ONE_CART:
-                    const removeOneCart=localStore(action.payload, 'subtract')
+        case REMOVE_ONE_CART:
+                const removeOneCart=localStore(action.payload, 'subtract')
+                return{
+                    ...state,
+                    cart:removeOneCart
+                }
+
+        case REMOVE_ALL_CART:
+                    const removeAllCart = localStore( action.payload, 'delete')
                     return{
                         ...state,
-                        cart:removeOneCart
+                        cart: removeAllCart
                     }
-
-            case REMOVE_ALL_CART:
-                        const removeAllCart = localStore( action.payload, 'delete')
-                        return{
-                            ...state,
-                            cart: removeAllCart
-                        }
-            case SEE_CART:
-                        const seeCart = localStore('see','see')
-        
-                        return{
-                            ...state,
-                            cart:seeCart
-                        }
-        
-
-            case CLEAR_CART:
-                const clearCart = localStore( 'clear', 'clear')
-                return {
-                    ...state,
-                    cart: clearCart
-                }
-            case FILTER_BOOK:
-                
-                return {
-                    ...state,
-                    filteredAllBooks: state.allBooks.filter((book) => {
-                        return book.generos.some((t) => t=== action.payload);
-                    }),
-                }
+        case SEE_CART:
+                    const seeCart = localStore('see','see')
+    
+                    return{
+                        ...state,
+                        cart:seeCart
+                    }
+        case CLEAR_CART:
+            const clearCart = localStore( 'clear', 'clear')
+            return {
+                ...state,
+                cart: clearCart
+            }
+        case FILTER_BOOK:
             
-            case FILTER_PRICE:
+            return {
+                ...state,
+                filteredAllBooks: state.allBooks.filter((book) => {
+                    return book.generos.some((t) => t=== action.payload);
+                }),
+            }
+        
+        case FILTER_PRICE:
 
-                return {
-                    ...state,
-                    // eslint-disable-next-line
-                    filteredAllBooks: state.filteredAllBooks.filter((book) => {
-                        if(book.precio >= action.payload.min && book.precio <= action.payload.max){
-                            return book;
-                        }
-                    })
-                }
+            return {
+                ...state,
+                // eslint-disable-next-line
+                filteredAllBooks: state.filteredAllBooks.filter((book) => {
+                    if(book.precio >= action.payload.min && book.precio <= action.payload.max){
+                        return book;
+                    }
+                })
+            }
 
-            case FILTER_LANGUAGE:
-                return {
-                    ...state,
-                    // eslint-disable-next-line
-                    filteredAllBooks: state.filteredAllBooks.filter((book) => {
-                        if(book.idioma === action.payload){
-                            return book;
-                        }
-                    })
-                }
-                
-            case URL:
-                return {
-                    ...state,
-                    url: action.payload
-                }
-            case GET_ORDENES:
-                return{
-                    ...state,
-                    ordenes:action.payload
-                }
-            case ORDEN_DETAIL:
-                return{
-                    ...state,
-                    ordenDetail:action.payload
-                } 
-            case GET_PROFILE:
-                return{
-                    ...state,
-                    profile:action.payload
+        case FILTER_LANGUAGE:
+            return {
+                ...state,
+                // eslint-disable-next-line
+                filteredAllBooks: state.filteredAllBooks.filter((book) => {
+                    if(book.idioma === action.payload){
+                        return book;
+                    }
+                })
+            }
+            
+        case URL:
+            return {
+                ...state,
+                url: action.payload
+            }
+        case GET_ORDENES:
+            return{
+                ...state,
+                ordenes:action.payload
+            }
+        case ORDEN_DETAIL:
+            return{
+                ...state,
+                ordenDetail:action.payload
+            } 
+        case GET_PROFILE:
+            return{
+                ...state,
+                profile:action.payload
 
-                }
-            case GET_PROFILES:
-                return{
-                    ...state,
-                    profiles:action.payload
-                }
-            case DELETE_PROFILE:
-                return{
-                    ...state,
-                    profile: {}
-                }
-            case GET_PROMOS:
-                return{
-                    ...state,
-                    promo:action.payload,
-                }
+            }
+        case GET_PROFILES:
+            return{
+                ...state,
+                profiles:action.payload
+            }
+        case DELETE_PROFILE:
+            return{
+                ...state,
+                profile: {}
+            }
+        case GET_PROMOS:
+            return{
+                ...state,
+                promo:action.payload,
+            }
+        case WHISHLIST:
+            return{
+                ...state,
+                whishlist: action.payload.length? action.payload : [...state.whishlist]
+            }
+
         default: return state
     }
 

@@ -22,7 +22,9 @@ export const FILTER_LANGUAGE = 'FILTER_LANGUAGE';
 export const GET_PROFILE = 'GET_PROFILE';
 export const GET_PROFILES ='GET_PROFILES';
 export const DELETE_PROFILE = 'DELETE_PROFILE';
-export const GET_PROMOS = 'GET_PROMOS'
+export const GET_PROMOS = 'GET_PROMOS';
+export const WHISHLIST = 'WHISHLIST'
+
 
 
 
@@ -264,7 +266,7 @@ export function getProfile (id){
 export function profileUpdate (id,payload){
   return async function (dispatch) {
     var profileUptate= await fetch (`http://localhost:4000/auth/profile/edit/${id}`, {
-        method: 'post',
+        method: 'POST',
         headers:{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -299,3 +301,47 @@ export function getPromos (){
   };
 };
 
+export function getWhishlist(token) {
+  return async function (dispatch){
+    let whishlist = await fetch (`http://localhost:4000/auth/whishlist`,{
+      method: 'GET',
+      headers:{
+        'x-token':token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    });
+      whishlist =await whishlist.json()
+      return dispatch({type:WHISHLIST, payload: whishlist})
+  };
+};
+
+export function postWhishlist (idProducto,token){
+  return async function (dispatch) {
+    let whishlist= await fetch (`http://localhost:4000/auth/whishlist/${idProducto}`, {
+        method: 'POST',
+        headers:{
+          'x-token':token,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      });
+      whishlist= await whishlist.json()
+      return dispatch ({type:WHISHLIST, payload:whishlist})
+    };
+};
+
+export function deleteWhishlist (idProducto,token){
+  return async function (dispatch) {
+    let whishlist= await fetch (`http://localhost:4000/auth/whishlist/${idProducto}`, {
+        method: 'DELETE',
+        headers:{
+          'x-token':token,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      });
+      whishlist= await whishlist.json()
+      return dispatch ({type:WHISHLIST, payload:whishlist})
+    };
+};

@@ -5,6 +5,7 @@ import { payloadJWT } from '../../funciones/storage/payloadJWT'
 import CardOrdenes from './cardOrdenes/cardOrdenes'
 import Select from 'react-select';
 import './historyShopping.css'
+
 export default function HistoryShopping(){
     const token= window.localStorage.getItem('token')
     const admin=payloadJWT()

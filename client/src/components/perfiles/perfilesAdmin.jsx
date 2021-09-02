@@ -10,7 +10,6 @@ export default function PerfilesAdmin(){
         dispatch(getProfiles())
     }, [dispatch])
 
-    console.log(profiles)
     return (
         <div className='perfilesAdmin'>
             <h1 className='titulo_Perfiles'>Usuarios Registrados</h1>

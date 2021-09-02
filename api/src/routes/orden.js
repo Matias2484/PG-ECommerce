@@ -28,7 +28,6 @@ router.post('/:estado/:idOrden', validarJWTAdmin,async(req,res)=>{
     const orden= await Orden.findByIdAndUpdate(idOrden,{"estado":estado},{new:true})
                             .populate('user',['nombre','apellido','email'])
                             .populate('productos.producto',['titulo','precio'])
-    console.log(orden)
     res.send(orden)
 })
 module.exports = router;

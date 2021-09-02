@@ -14,6 +14,7 @@ export default function OpcionesUser (){
             <img src={state.foto} alt="profilePhoto" className="profilePhoto" />
             <Link to={`/profile/${token.uid}`} style={{textDecoration:'none'}} ><h2 className="perfilGo">Ver perfil</h2></Link>
             <Link to='/ordenes' style={{textDecoration:'none'}} ><h2 className="historialGo">Historial de Compras</h2></Link>
+            <Link to='/whishlist' style={{textDecoration:'none'}} ><h2 className="historialGo">Lista de Deseos</h2></Link>
         </div>
     )
 }

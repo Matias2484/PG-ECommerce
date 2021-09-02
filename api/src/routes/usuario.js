@@ -157,6 +157,31 @@ router.post('/profile/edit/:id',async (req,res)=>{
     res.send(userUpdate)
 });
 
+router.post('/whishlist/:producto',validarJWTUser,async(req,res)=>{
+    const id=req.uid
+    const {producto}=req.params
+    let search = await Usuario.findById(id,{whishlist:{$elemMatch:{producto}}})
+    if(search.whishlist.length>0){
+        return res.send({msj:'ya existe este item'})
+    }
+    let {whishlist}= await Usuario.findByIdAndUpdate(id,{ $push:{ whishlist:{producto}}}, {new:true})
+    res.send(whishlist)
+});
+
+router.get('/whishlist',validarJWTUser, async (req,res)=>{
+    const id= req.uid
+    let {whishlist} = await Usuario.findById(id,{"whishlist.producto":1})
+                                    .populate("whishlist.producto",["titulo", "_id", "precio", "autor", "img"])
+    res.send(whishlist)
+})
+
+router.delete('/whishlist/:producto',validarJWTUser,async(req,res)=>{
+    const id= req.uid
+    const {producto}=req.params
+    let {whishlist}=await Usuario.findByIdAndUpdate(id,{$pull:{whishlist: {producto}}},{new:true})
+    res.send(whishlist)
+})
+
 router.get('/profiles',async(req,res)=>{
     const users= await Usuario.find({},{"password":0, "historialDeCompras":0,"tarjetas":0,"direcciones":0})
     res.send(users)
