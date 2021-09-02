@@ -1,5 +1,5 @@
 export async function deletePerfil (id,token){
-    var deletePrfoile= await fetch (`http://localhost:4000/auth/delete/${id}`,{
+    var deletePrfoile= await fetch (`https://pg-henry-ecommerce.herokuapp.com/auth/delete/${id}`,{
         method:'DELETE',
         headers:{
           'x-token':token,
@@ -12,7 +12,7 @@ export async function deletePerfil (id,token){
 };
 
 export async function deleteGenero(genero,token) {
-  var deleteGenero= await fetch (`http://localhost:4000/generos/delete?genero=${genero}`,{
+  var deleteGenero= await fetch (`https://pg-henry-ecommerce.herokuapp.com/generos/delete?genero=${genero}`,{
       method:'DELETE',
       headers:{
         'x-token':token,
@@ -25,7 +25,7 @@ export async function deleteGenero(genero,token) {
 };
 
 export async function deleteBook (id,token){
-  var deleteBooks= await fetch (`http://localhost:4000/productos/delete/${id}`,{
+  var deleteBooks= await fetch (`https://pg-henry-ecommerce.herokuapp.com/productos/delete/${id}`,{
       method:'DELETE',
       headers:{
         'x-token':token,
@@ -39,7 +39,7 @@ export async function deleteBook (id,token){
 
 
 export async function deletePromo (id,token){
-  var deleteBooks= await fetch (`http://localhost:4000/promo/delete/${id}`,{
+  var deleteBooks= await fetch (`https://pg-henry-ecommerce.herokuapp.com/promo/delete/${id}`,{
       method:'DELETE',
       headers:{
         'x-token':token,

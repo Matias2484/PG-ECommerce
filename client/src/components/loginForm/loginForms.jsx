@@ -43,6 +43,7 @@ export default function LoginForms  ({loginBarFunction}){
                     },
                 }
             })
+
             if(res || !res){
                 let user=payloadJWT()
                 loginBarFunction() 
@@ -77,7 +78,7 @@ export default function LoginForms  ({loginBarFunction}){
         ninjaButton.style.zIndex = '2'
     }
 
-    //loggin google
+    // loggin google
     const respuestaGoogle = async (respuesta)=>{
 
         if(respuesta.profileObj){
@@ -102,6 +103,7 @@ export default function LoginForms  ({loginBarFunction}){
                         }
                       }
                     })
+
                 if(res || !res ){                  
                     loginBarFunction() 
                     closeModal()                 
@@ -115,7 +117,6 @@ export default function LoginForms  ({loginBarFunction}){
             }
         }
     }
-
     return(
         <div id='logModal' className= 'logModal'>
             <div className="modal_dialog">

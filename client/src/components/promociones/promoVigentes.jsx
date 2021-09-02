@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPromos } from '../../Actions/index';
 import { deletePromo } from '../../funciones/delete';
 import swal from 'sweetalert';
+import './promoVigentes.css'
 
 import {useHistory} from 'react-router-dom';
 
@@ -46,18 +47,27 @@ export default function PromoVigentes () {
     }
     
     return (
-        <div>
-            {state.map((e,i)=><div>
-                <p>Promo {i+1}</p>
-                <button onClick={()=>eliminar(e._id)}>Elminar</button>
-                <p>De: {new Date(e.fechaInicio).toDateString()}  Hasta: {new Date(e.fechaFinal).toDateString()} </p>
-                <div>
-                    <p>Detalles</p>
-                    <p>Categoria/s en Descuentos: {e.genero.join(',').replace(/,/g,' ')}</p>
-                    <p>Dias de descuento: {e.dias.join(',')}</p>
+        <div className="promo_vigente">
+            <h2 className="promo_vigente_titulo">Promociones Vigentes</h2>
+            <div className="promos_vigentes">
+            {state.map((e,i)=><div className="promo_card">
+                <p className="promo_card_titulo">Promo {i+1}</p>
+                <div className="promo_card_fecha">
+                <p>De: <span>{new Date(e.fechaInicio).toDateString()}</span> </p> 
+                <p>Hasta: <span> {new Date(e.fechaFinal).toDateString()}</span></p>
                 </div>
+
+                <div className="detalles_promo_vigente">
+                    <p className="detalles_promo_vigente_titulo">Detalles</p>
+                    <p className="detalles_promo_vigentes_categorias">Categoría/s en descuentos:</p> 
+                    <p className="detalles_promo_genero">{e.genero.join(', ').replace(/,/g,' ')}</p>
+                    <p className="detalles_promo_dias">Días de descuento:</p> 
+                    <p className="detalles_promo_dias_nombre">{e.dias.join(', ')}</p>
+                </div>
+                <button className="detalles_promo_eliminar" onClick={()=>eliminar(e._id)}>Eliminar</button>
             </div>
             )}
+            </div>
         </div>
     )
 }

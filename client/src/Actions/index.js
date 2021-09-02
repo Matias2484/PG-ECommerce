@@ -30,7 +30,7 @@ export const WHISHLIST = 'WHISHLIST'
 
 export function getAllBooks(){
     return function(dispatch){
-        return fetch(`http://localhost:4000/productos`)
+        return fetch(`https://pg-henry-ecommerce.herokuapp.com/productos`)
         .then(response=> response.json())
         .then(json=>{
             dispatch({
@@ -42,7 +42,7 @@ export function getAllBooks(){
 
 export function getGenders(){
   return async function(dispatch) {
-      var genders= await fetch('http://localhost:4000/generos');
+      var genders= await fetch('https://pg-henry-ecommerce.herokuapp.com/generos');
           genders= await genders.json();
       return dispatch({type:GET_GENDERS, payload:genders})
   };
@@ -50,7 +50,7 @@ export function getGenders(){
 
 export function createBook(payload,token){
   return async function (dispatch){
-      var book= await fetch('http://localhost:4000/productos',{
+      var book= await fetch('https://pg-henry-ecommerce.herokuapp.com/productos',{
           method: 'POST',
           headers:{
               'x-token':token,
@@ -90,7 +90,7 @@ export function searchByName(titulo){
 
 export function getDetails(id){
   return function(dispatch){
-    return fetch(`http://localhost:4000/productos/${id}`)
+    return fetch(`https://pg-henry-ecommerce.herokuapp.com/productos/${id}`)
       .then(response => response.json())
       .then(data =>{
         dispatch({
@@ -104,7 +104,7 @@ export function getDetails(id){
 
 export function createGender(payload,token) {
   return async function (dispatch) {
-    var gender = await fetch("http://localhost:4000/generos", {
+    var gender = await fetch("https://pg-henry-ecommerce.herokuapp.com/generos", {
       method: "POST",
       headers: {
         "x-token": token,
@@ -120,7 +120,7 @@ export function createGender(payload,token) {
 
 export function addCart (id){
   return async function(dispatch) {
-    var book= await fetch(`http://localhost:4000/cart/${id}`);
+    var book= await fetch(`https://pg-henry-ecommerce.herokuapp.com/cart/${id}`);
         book= await book.json();
     return dispatch({type:ADD_CART, payload:book})
   };
@@ -159,7 +159,7 @@ export function clearCart(payload){
 
 export function addBuyUser (payload,token){
   return async function (dispatch) {
-    await fetch ('http://localhost:4000/cart', {
+    await fetch ('https://pg-henry-ecommerce.herokuapp.com/cart', {
       method: 'POST',
       headers:{
         'x-token': token,
@@ -182,10 +182,10 @@ export function filterBook(genero) {
   }
 }
 
-export function filterPrice(min,max) {
+export function filterPrice(min,max,es,en) {
   return {
     type: FILTER_PRICE,
-    payload: {min, max}
+    payload: {min, max, es, en}
   }
 }
 
@@ -204,7 +204,7 @@ export function url(url) {
 };
 export function getOrdenes(token){
   return async function(dispatch) {
-    let ordenes= await fetch('http://localhost:4000/orden',{
+    let ordenes= await fetch('https://pg-henry-ecommerce.herokuapp.com/orden',{
       method:'GET',
       headers:{
         'x-token':token,
@@ -218,7 +218,7 @@ export function getOrdenes(token){
 }
 export function getOrdenesID(id){
   return async function(dispatch) {
-    let orden= await fetch(`http://localhost:4000/orden/${id}`);
+    let orden= await fetch(`https://pg-henry-ecommerce.herokuapp.com/orden/${id}`);
         orden= await orden.json();
     return dispatch({type:ORDEN_DETAIL, payload:orden})
   };
@@ -227,7 +227,7 @@ export function getOrdenesID(id){
 
 export function getOrdenesUser(token){
   return async function (dispatch) {
-    let ordenesUser= await fetch ('http://localhost:4000/auth/historyShopping', {
+    let ordenesUser= await fetch ('https://pg-henry-ecommerce.herokuapp.com/auth/historyShopping', {
         method: 'GET',
         headers:{
           'x-token': token,
@@ -242,7 +242,7 @@ export function getOrdenesUser(token){
 
 export function updateOrden(state,id,token){
   return async function (dispatch) {
-    var updateState= await fetch (`http://localhost:4000/orden/${state}/${id}`, {
+    var updateState= await fetch (`https://pg-henry-ecommerce.herokuapp.com/orden/${state}/${id}`, {
         method: 'post',
         headers:{
           'x-token': token,
@@ -257,7 +257,7 @@ export function updateOrden(state,id,token){
 
 export function getProfile (id){
   return async function (dispatch){
-    var profile= await fetch (`http://localhost:4000/auth/profile/${id}`);
+    var profile= await fetch (`https://pg-henry-ecommerce.herokuapp.com/auth/profile/${id}`);
     profile= await profile.json();
     return dispatch({type: GET_PROFILE, payload:profile })
   };
@@ -265,7 +265,7 @@ export function getProfile (id){
 
 export function profileUpdate (id,payload){
   return async function (dispatch) {
-    var profileUptate= await fetch (`http://localhost:4000/auth/profile/edit/${id}`, {
+    var profileUptate= await fetch (`https://pg-henry-ecommerce.herokuapp.com/auth/profile/edit/${id}`, {
         method: 'POST',
         headers:{
           'Accept': 'application/json',
@@ -280,7 +280,7 @@ export function profileUpdate (id,payload){
 
 export function getProfiles (){
   return async function (dispatch){
-    var profiles= await fetch (`http://localhost:4000/auth/profiles`);
+    var profiles= await fetch (`https://pg-henry-ecommerce.herokuapp.com/auth/profiles`);
     profiles= await profiles.json();
     return dispatch({type: GET_PROFILES, payload:profiles})
   };
@@ -295,7 +295,7 @@ export function deleteProfile() {
 
 export function getPromos (){
   return async function (dispatch){
-    var promos= await fetch (`http://localhost:4000/promo`);
+    var promos= await fetch (`https://pg-henry-ecommerce.herokuapp.com/promo`);
     promos= await promos.json();
     return dispatch({type: GET_PROMOS, payload:promos})
   };

@@ -54,6 +54,7 @@ export default function RegisterForm(){
                     icon: "success",
                 }))
 
+
                 history.push('/');
             }else{
                 swal({
@@ -61,6 +62,7 @@ export default function RegisterForm(){
                     icon: "error",
                 })
             }
+
         }else{
             if(input.password!==input.password_confirm) {           
                 swal({
