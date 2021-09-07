@@ -1,6 +1,6 @@
 export default async function newUser (data){
     
-    var user = await fetch('https://pg-henry-ecommerce.herokuapp.com/auth',{
+    var user = await fetch('http://localhost:4000/auth',{
         method: 'POST',
         headers:{
             'Accept': 'application/json',

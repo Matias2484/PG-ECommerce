@@ -82,11 +82,11 @@ export default function Form ({state, genderAll, handleChange, handleSubmit, han
                             <div className="contenedor_form_newbook_left_idioma">
                                 <div className="contenedor_es">
                                     <p className="titulo_idiomas">Español</p>
-                                    <input className="checkbox_idioma" type='radio' required autoComplete='off' name='idioma' value='en' onChange={(e)=>handleChange(e)}/>
+                                    <input className="checkbox_idioma" type='radio' required autoComplete='off' name='idioma' value='es' onChange={(e)=>handleChange(e)}/>
                                 </div>
                                 <div className="contenedor_in">
                                     <p className="titulo_idiomas">Inglés</p>
-                                    <input className="checkbox_idioma" type='radio' required autoComplete='off' name='idioma' value='es' onChange={(e)=>handleChange(e)}/>
+                                    <input className="checkbox_idioma" type='radio' required autoComplete='off' name='idioma' value='en' onChange={(e)=>handleChange(e)}/>
                                 </div>
                             </div>
 

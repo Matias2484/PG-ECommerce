@@ -21,11 +21,11 @@ import {
     FILTER_PRICE,
     FILTER_LANGUAGE,
     GET_PROFILE,
+    GET_PROFILE2,
     GET_PROFILES,
     DELETE_PROFILE,
     GET_PROMOS,
-    WHISHLIST
-
+    WHISHLIST,
 } from '../Actions/index';
 
 
@@ -44,6 +44,7 @@ const initialState = {
     ordenDetail:{},
     profiles:[],
     profile:{},
+    profile2:{},
     promo:[],
     whishlist:[]
 };
@@ -280,6 +281,12 @@ function rootReducer(state = initialState, action) {
             return{
                 ...state,
                 profile:action.payload
+
+            }
+        case GET_PROFILE2:
+            return{
+                ...state,
+                profile2:action.payload
 
             }
         case GET_PROFILES:

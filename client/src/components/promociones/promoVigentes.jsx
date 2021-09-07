@@ -42,7 +42,10 @@ export default function PromoVigentes () {
                 icon: "success",
                 botón : false , 
               } ) ;
-            history.push('/promos')                      
+            history.push('/promos')  
+            setTimeout(() => {
+                window.location.reload()
+            }, 300);
         }
     }
     

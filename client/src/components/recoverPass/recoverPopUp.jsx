@@ -48,7 +48,8 @@ function validarEmail(e) {
 
         
 
-    async function handleSumbit(){
+    async function handleSumbit(e){
+        e.preventDefault()
         await sendMail(document.getElementById('inputMail').value)
             let pepeA = document.getElementById('pepeA')
             let pepeB = document.getElementById('pepeB')
@@ -78,7 +79,6 @@ function validarEmail(e) {
         }
 
         async  function handleSumbitModify (e){
-            e.preventDefault()
             const a =  await passModifi(
             document.getElementById('code').value,
             document.getElementById('newPassA').value,
@@ -120,7 +120,7 @@ function validarEmail(e) {
         offsetY={0}
         >
         {(onClick) => (
-            <form  className="pepe">
+            <div className="pepe">
                 <div id="pepeA">
                     <p>Escribe tu dirección de correo electrónico a continuación y recibirás una nueva clave:</p><br />
                     <p>¡Revisa la bandeja de entrada o tu casilla de spam en tu buzón de mensajes!</p>
@@ -186,7 +186,7 @@ function validarEmail(e) {
                     <button className="buttonBack" onClick={handleClose}> Atras </button>
                 </div>
 
-            </form>
+            </div>
         )}
         </ReactCircleModal>
     )

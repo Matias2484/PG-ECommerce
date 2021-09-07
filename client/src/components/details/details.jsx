@@ -20,7 +20,6 @@ export default function Details() {
     const history= useHistory()
     var token=window.localStorage.getItem('token')
 
-
     const { titulo, autor, editorial, descripcion, fecha, paginas, generos, img, idioma, stock, precio, _id, review } = details;
         
     var a=payloadJWT()
@@ -31,27 +30,21 @@ export default function Details() {
         dispatch(seeCart())
     }, [dispatch, id]);
     
-    
-
     function comprarBoton(){
-        let contadorCarrito = document.getElementById('contadorCarrito')
+        let contadorCarrito = document.getElementById('details' + id)
         if(contadorCarrito){
             contadorCarrito = contadorCarrito.innerHTML
             contadorCarrito = Number(contadorCarrito.substring(1))
-            
         }else{
             contadorCarrito = 1
         }
-        
         if(contadorCarrito < stock){
             dispatch(addCart(id))
-            
-            
         }else{
             swal ( " ¡No hay más libros en Stock! " , { 
                 icon: "error",
                 botón : false , 
-              } ) ;
+            } ) ;
         }
     }
 
@@ -61,7 +54,6 @@ export default function Details() {
             let estrellas = [];
             for (let i = 0; i < estrellita; i++) {
                 estrellas.push(<p className="estrellas">★</p>)
-                
             }
             return estrellas
         }  
@@ -72,25 +64,25 @@ export default function Details() {
             dangerMode: true,
             buttons: {
                 cancel: {
-                  text: "Cancel",
-                  value: false,
-                  visible: true,
-                  closeModal: true,
+                    text: "Cancel",
+                    value: false,
+                    visible: true,
+                    closeModal: true,
                 },
                 confirm: {
-                  text: "OK",
-                  value: true,
-                  visible: true,
-                  closeModal: true
+                    text: "OK",
+                    value: true,
+                    visible: true,
+                    closeModal: true
                 }
-              }
+            }
         })
         if(mando){
             await deleteBook(id,token) 
             swal ( " ¡Producto Eliminado! " , { 
                 icon: "success",
                 botón : false , 
-              } ) ;
+            } ) ;
             history.push('/')                      
         }
     }
@@ -120,8 +112,7 @@ export default function Details() {
                             <p>Publicación:</p>
                             <p className="detail_texto">{new Date(fecha).toDateString()}</p>
                         </div> 
-                      { a && a.admin? <button className="boton_editar"><NavLink className="btn_editar" style={{textDecoration:'none'}} to={`/edit/${_id}`} >Edit</NavLink></button>:null}
-
+                        { a && a.admin? <button className="boton_editar"><NavLink className="btn_editar" style={{textDecoration:'none'}} to={`/edit/${_id}`} >Edit</NavLink></button>:null}
                     </div>
                 </div>
                 <div className="contenido_details">
