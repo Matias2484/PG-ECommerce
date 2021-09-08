@@ -15,14 +15,14 @@ const stripePromise = loadStripe("pk_test_51JQAouFWmGEeX4odlkQmbhbHUp3CKtVyX8x3I
 export default function CheckCart(){
     const dispatch = useDispatch()
     const history= useHistory()   
-    const profile= useSelector((state)=>state.profile)
+    /* const profile= useSelector((state)=>state.profile)
     var direct= profile.direccion.replace(/[/,:/CP/]/g, "")
-    direct=direct.replace('  ',' ').split(' ')
+    direct=direct.replace('  ',' ').split(' ')*/
     const [state,setState]= useState({
-        pais:direct[0],
-        ciudad:direct[1],
-        calle:direct[2],
-        codigoPostal:direct[3]
+        pais:'',
+        ciudad:'',
+        calle:'',
+        codigoPostal:''
     })
     const promo = useSelector(state => state.promo)
     const carts = useSelector((state)=>state.cart)
@@ -34,7 +34,7 @@ export default function CheckCart(){
     useEffect(() => {
         dispatch(seeCart())
         dispatch(getPromos())
-    },[])
+    },[dispatch])
     
     for (const i in carts) {
         arrayCart.push(carts[i])

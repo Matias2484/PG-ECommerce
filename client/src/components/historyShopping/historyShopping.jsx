@@ -41,8 +41,8 @@ export default function HistoryShopping(){
                             />
                 </div>
                 <div className="historyShop">
-                  
-                {ordenes.length>0? ordenes.map(e=> <CardOrdenes props={{...e,admin:true}} key={e._id}/>) : <p>Aun no hay compras realizadas</p>} 
+                
+                {ordenes.length>0 ? ordenes.map(e=> <CardOrdenes props={{...e,admin:true}} key={e._id}/>) : <p>Aun no hay compras realizadas</p>} 
                 </div>
             </div>):
             ( <div className='historialCompra'>
@@ -55,7 +55,7 @@ export default function HistoryShopping(){
                     />
                 </div>
                 <div  className="historyShop">
-                {ordenes.length>0? ordenes.map(e=> <CardOrdenes props={{...e,admin:false}} key={e._id}/>):<p>Aun no hay compras realizadas</p>} 
+                {ordenes.length>0 ? ordenes.map(e=> <CardOrdenes props={{...e,admin:false}} key={e._id}/>):<p>Aun no hay compras realizadas</p>} 
                 </div>
             </div>)
             }

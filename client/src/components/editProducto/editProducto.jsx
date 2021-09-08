@@ -79,6 +79,9 @@ export default function EditProduct (){
             stock:''
         })    
         history.push('/')
+        setTimeout(() => {
+            window.location.reload()
+        }, 500);
     };
 
     return (

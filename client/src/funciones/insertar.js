@@ -14,7 +14,7 @@ export async function insertaReview(review, token) {
 };
 
 export async function createPromo (promo,token){
-    var promoCreate= await fetch (`https://pg-henry-ecommerce.herokuapp.com/promo`, {
+    var promoCreate= await fetch (`http://localhost:4000/promo`, {
         method: 'post',
         headers:{
         'x-token':token,

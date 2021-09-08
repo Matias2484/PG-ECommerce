@@ -19,7 +19,7 @@ import Generos from "./components/categorias/generos";
 import Whishlist from './components/whishlist/whishlist'
 import { payloadJWT } from './funciones/storage/payloadJWT';
 import { useSelector } from "react-redux";
-
+import Perfil2 from './components/perfiles/perfiles2';
 
 function App() {
   const state = useSelector(state => state.profile)
@@ -76,6 +76,10 @@ function App() {
           />
           <Route path='/profile/:id' render={()=>{
               return a? <Perfil/> : <Redirect to='/'/>
+            }}
+          />
+          <Route path='/profile2/:id' render={()=>{
+              return a? <Perfil2/> : <Redirect to='/'/>
             }}
           />
           <Route path='/whishlist' render={()=>{
